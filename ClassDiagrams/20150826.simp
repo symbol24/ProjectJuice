@@ -1,0 +1,432 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<sim-project version="8.2" multi-file="no">
+  <meta>
+    <name>Project</name>
+    <authors> </authors>
+    <description />
+  </meta>
+  <counters models="1">
+    <entity-names>
+      <counter>
+        <item-type stereotype="" type="UmlClass" />
+        <value>13</value>
+      </counter>
+    </entity-names>
+    <entity-ids>
+      <counter>
+        <item-type stereotype="" type="UmlClass" />
+        <value>14</value>
+      </counter>
+      <counter>
+        <item-type stereotype="" type="AbstractElementGroup" />
+        <value>125</value>
+      </counter>
+      <counter>
+        <item-type stereotype="" type="UmlRealization" />
+        <value>5</value>
+      </counter>
+      <counter>
+        <item-type stereotype="" type="UmlComment" />
+        <value>4</value>
+      </counter>
+      <counter>
+        <item-type stereotype="" type="UmlCommentConnector" />
+        <value>4</value>
+      </counter>
+      <counter>
+        <item-type stereotype="" type="UmlDependency" />
+        <value>4</value>
+      </counter>
+    </entity-ids>
+    <diagrams>
+      <counter>
+        <type>SoftwareIdeasModeler.Core.Diagrams.UmlDiagrams.UmlClassDiagram</type>
+        <value>1</value>
+      </counter>
+    </diagrams>
+    <fields>
+      <counter>
+        <type>SoftwareIdeasModeler.Core.DiagramItems.Fields.OperationField</type>
+        <value>9</value>
+      </counter>
+      <counter>
+        <type>SoftwareIdeasModeler.Core.DiagramItems.Fields.AttributeField</type>
+        <value>13</value>
+      </counter>
+    </fields>
+  </counters>
+  <alias-groups />
+  <management>
+    <persons>
+      <person id="P1b793793529c42fcae47889f68fa3e2a">
+        <first-name />
+        <last-name />
+        <role />
+        <e-mail />
+        <phone-number />
+        <description />
+        <color>#00000000</color>
+      </person>
+    </persons>
+    <tasks />
+    <requirements />
+    <issues />
+    <to-dos />
+  </management>
+  <glossary />
+  <types>
+    <type-sets>
+      <type-set file="UmlTypes.xml" />
+    </type-sets>
+    <custom-types />
+  </types>
+  <filters />
+  <items>
+    <item id="di855165854932957989" cid="CMT001" type="comment" name="Comment" style-class="" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creator="P1b793793529c42fcae47889f68fa3e2a" creation-date="08/26/2015 20:57:17">
+      <stereotypes />
+      <associated-diagrams />
+      <owned-items />
+      <style class="default" />
+      <comment>This class is responsible of checking for IHPInstantModifier
+</comment>
+    </item>
+    <item id="di835335662354111446" cid="CN001" type="comment-connector" name="" style-class="" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creator="P1b793793529c42fcae47889f68fa3e2a" creation-date="08/26/2015 20:57:17">
+      <stereotypes />
+      <associated-diagrams />
+      <owned-items />
+      <style class="default" />
+    </item>
+    <item id="di879627436788295027" cid="CMT002" type="comment" name="Comment" style-class="" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creator="P1b793793529c42fcae47889f68fa3e2a" creation-date="08/26/2015 20:59:46">
+      <stereotypes />
+      <associated-diagrams />
+      <owned-items />
+      <style class="default" />
+      <comment>Responsible of spawning a gameobject by chance</comment>
+    </item>
+    <item id="di778090150606560662" cid="CN002" type="comment-connector" name="" style-class="" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creator="P1b793793529c42fcae47889f68fa3e2a" creation-date="08/26/2015 20:59:46">
+      <stereotypes />
+      <associated-diagrams />
+      <owned-items />
+      <style class="default" />
+    </item>
+    <item id="di328314241964736601" cid="CMT003" type="comment" name="Comment" style-class="" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creator="P1b793793529c42fcae47889f68fa3e2a" creation-date="08/26/2015 21:05:12">
+      <stereotypes />
+      <associated-diagrams />
+      <owned-items />
+      <style class="default" />
+      <comment>These properties are assigned by the gun and non visible to edit</comment>
+    </item>
+    <item id="di504794698917052250" cid="CN003" type="comment-connector" name="" style-class="" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creator="P1b793793529c42fcae47889f68fa3e2a" creation-date="08/26/2015 21:05:12">
+      <stereotypes />
+      <associated-diagrams />
+      <owned-items />
+      <style class="default" />
+    </item>
+  </items>
+  <models>
+    <model id="p438232003836685175" name="Model 1" type="" namespace="" order-index="1">
+      <meta>
+        <authors>
+          <author> </author>
+        </authors>
+        <description />
+        <creation-date>08/25/2015 19:06:40</creation-date>
+        <change-date>01/01/0001 00:00:00</change-date>
+        <revision-count>0</revision-count>
+        <version />
+      </meta>
+      <abstract-items />
+      <sub-models />
+      <diagram type="uml-class" id="p170484924262225147" name="ClassDiagram1" order-index="1" show-id="false" show-name="true" show-parent-name="false" show-stereotypes="true" show-tagged-values="false" show-template-parameters="true" show-fields="true" show-empty-compartments="true" show-attributes="true" show-attribute-visibility="true" show-operations="true" show-operation-parameters="true" show-operation-visibility="true" show-nullability="true" show-sequence-number="false" show-extension-points="false" show-relationship-texts="true" auto-routed-paths="false">
+        <style>
+          <background-color index="1" color="#FFFFFFFF" />
+          <background-color index="2" color="#FFFFFFFF" />
+          <background-type type="solid" />
+        </style>
+        <meta>
+          <authors>
+            <author> </author>
+          </authors>
+          <description />
+          <creation-date>08/25/2015 19:06:40</creation-date>
+          <change-date>08/26/2015 21:13:03</change-date>
+          <revision-count>0</revision-count>
+          <version />
+        </meta>
+        <abstract-items>
+          <item id="di779920367121306989" cid="C001" type="class" name="JuiceSpawner" style-class="" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creator="P1b793793529c42fcae47889f68fa3e2a" creation-date="08/26/2015 20:48:50">
+            <stereotypes />
+            <associated-diagrams />
+            <owned-items />
+            <style class="default" />
+            <attributes />
+            <operations>
+              <operation id="oef42ea16c0a34878adcba7122e47cc2a773" cid="OP001" name="OnParticleCollision" type="" type-id="" visibility="public">
+                <style class="default" />
+                <source-codes />
+              </operation>
+            </operations>
+            <template-parameters>
+              <source-codes />
+            </template-parameters>
+          </item>
+          <item id="di628410307122813447" cid="REA002" type="realization" name="" style-class="" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creator="P1b793793529c42fcae47889f68fa3e2a" creation-date="08/26/2015 21:02:19">
+            <stereotypes />
+            <associated-diagrams />
+            <owned-items />
+            <style class="default" />
+          </item>
+          <item id="di458982065820857775" cid="C010" type="class" name="IHPInstantModifier" style-class="" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creator="P1b793793529c42fcae47889f68fa3e2a" creation-date="08/26/2015 21:01:32">
+            <stereotypes>
+              <stereotype name="interface" />
+            </stereotypes>
+            <associated-diagrams />
+            <owned-items />
+            <style class="default" />
+            <attributes>
+              <attribute id="a5ab6e5088592481faed722a2dafda861946" cid="AT006" name="Modifier" type="" type-id="" visibility="private" constraint="get;">
+                <style class="default" />
+              </attribute>
+            </attributes>
+            <operations />
+            <template-parameters>
+              <source-codes />
+            </template-parameters>
+          </item>
+          <item id="di966521610862054491" cid="C008" type="class" name="Bullet" style-class="" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creator="P1b793793529c42fcae47889f68fa3e2a" creation-date="08/26/2015 21:00:28">
+            <stereotypes />
+            <associated-diagrams />
+            <owned-items />
+            <style class="default" />
+            <attributes>
+              <attribute id="abe04546a30c94226a24a1a54f1fa3218165" cid="AT004" name="Speed" type="" type-id="" visibility="private" constraint="get;set;">
+                <style class="default" />
+              </attribute>
+              <attribute id="a9497aefcdc0046219c8bf8faef626535735" cid="AT005" name="Damage" type="" type-id="" visibility="private" constraint="get;set;">
+                <style class="default" />
+              </attribute>
+            </attributes>
+            <operations />
+            <template-parameters>
+              <source-codes />
+            </template-parameters>
+          </item>
+          <item id="di726985669983105447" cid="C007" type="class" name="HPPickUp" style-class="" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creator="P1b793793529c42fcae47889f68fa3e2a" creation-date="08/26/2015 20:57:49">
+            <stereotypes />
+            <associated-diagrams />
+            <owned-items />
+            <style class="default" />
+            <attributes>
+              <attribute id="a3327b1adf82c42dfb0503b8765c1afe3595" cid="AT003" name="HPModifier" type="" type-id="" visibility="private" constraint="get;set;">
+                <style class="default" />
+              </attribute>
+            </attributes>
+            <operations />
+            <template-parameters>
+              <source-codes />
+            </template-parameters>
+          </item>
+          <item id="di880917335971525309" cid="C006" type="class" name="HP" style-class="" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creator="P1b793793529c42fcae47889f68fa3e2a" creation-date="08/26/2015 20:56:19">
+            <stereotypes />
+            <associated-diagrams />
+            <owned-items />
+            <style class="default" />
+            <attributes>
+              <attribute id="a1d1c2736c5fc4043834d33084d31082a696" cid="AT002" name="HPValue" type="" type-id="" visibility="private" constraint="get;set;">
+                <style class="default" />
+              </attribute>
+            </attributes>
+            <operations>
+              <operation id="o702692b13d944befbbe564fdb13ce194763" cid="OP005" name="event OnHPChanged" type="" type-id="" visibility="public">
+                <style class="default" />
+                <source-codes />
+              </operation>
+              <operation id="oafc0d15b464e46bb87e45cbba0a1e419743" cid="OP006" name="OnCollisionCheck" type="" type-id="" visibility="public">
+                <style class="default" />
+                <source-codes />
+              </operation>
+            </operations>
+            <template-parameters>
+              <source-codes />
+            </template-parameters>
+          </item>
+          <item id="di240761593886932897" cid="REA003" type="realization" name="" style-class="" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creator="P1b793793529c42fcae47889f68fa3e2a" creation-date="08/26/2015 21:02:24">
+            <stereotypes />
+            <associated-diagrams />
+            <owned-items />
+            <style class="default" />
+          </item>
+          <item id="di821015684796441748" cid="C011" type="class" name="Gun" style-class="" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creator="P1b793793529c42fcae47889f68fa3e2a" creation-date="08/26/2015 21:03:57">
+            <stereotypes />
+            <associated-diagrams />
+            <owned-items />
+            <style class="default" />
+            <attributes>
+              <attribute id="ae2e95808ae4741eea5e1cd5f34b748fd38" cid="AT007" name="Recoil" type="" type-id="" visibility="private" constraint="get;set;">
+                <style class="default" />
+              </attribute>
+              <attribute id="aea8e00de820d48a3bce6ad57de95cb67784" cid="AT008" name="RateOfFire" type="" type-id="" visibility="private" constraint="get;set;">
+                <style class="default" />
+              </attribute>
+              <attribute id="a8f20956a33994b168eb71438dd00eed7463" cid="AT009" name="BulletSpeed" type="" type-id="" visibility="private" constraint="get;set;">
+                <style class="default" />
+              </attribute>
+              <attribute id="abacb07a65396441a80ec76956c52fd95704" cid="AT010" name="BulletDamage" type="" type-id="" visibility="private" constraint="get;set;">
+                <style class="default" />
+              </attribute>
+            </attributes>
+            <operations>
+              <operation id="od9071b8351844840854c1c5c3f5a463d614" cid="OP007" name="Fire" type="" type-id="" visibility="public">
+                <style class="default" />
+                <source-codes />
+              </operation>
+            </operations>
+            <template-parameters>
+              <source-codes />
+            </template-parameters>
+          </item>
+          <item id="di368778237847170908" cid="DEP003" type="dependency" name="spawns" style-class="" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creator="P1b793793529c42fcae47889f68fa3e2a" creation-date="08/26/2015 21:09:16">
+            <stereotypes>
+              <stereotype name="use" />
+            </stereotypes>
+            <associated-diagrams />
+            <owned-items />
+            <style class="default" />
+          </item>
+          <item id="di823530373527568578" cid="DEP002" type="dependency" name="detects" style-class="" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creator="P1b793793529c42fcae47889f68fa3e2a" creation-date="08/26/2015 21:08:30">
+            <stereotypes>
+              <stereotype name="use" />
+            </stereotypes>
+            <associated-diagrams />
+            <owned-items />
+            <style class="default" />
+          </item>
+          <item id="di758664346339079503" cid="C013" type="class" name="MeleeWeapon" style-class="" is-abstract="false" is-root="false" is-leaf="false" is-active="false" creator="P1b793793529c42fcae47889f68fa3e2a" creation-date="08/26/2015 21:12:10">
+            <stereotypes />
+            <associated-diagrams />
+            <owned-items />
+            <style class="default" />
+            <attributes>
+              <attribute id="a282fbcec4f364ad29e3bee5e20ed1355772" cid="AT011" name="RateOfFire" type="" type-id="" visibility="private" constraint="get;set;">
+                <style class="default" />
+              </attribute>
+            </attributes>
+            <operations>
+              <operation id="o3af7969aa63e41b38431319e423a95b8564" cid="OP008" name="Fire" type="" type-id="" visibility="public">
+                <style class="default" />
+                <source-codes />
+              </operation>
+            </operations>
+            <template-parameters>
+              <source-codes />
+            </template-parameters>
+          </item>
+        </abstract-items>
+        <layer name="Default" visible="true" enabled="true" locked="false">
+          <item id="di726985669983105447" iid="20dc1193444142269c603f03cd1da913" creation-date="08/26/2015 20:57:49" order-index="8" type="entity">
+            <layout ax="510" ay="39.5" awidth="152" aheight="160" x="510" y="39.5" width="152" height="160" angle="0" />
+            <class />
+          </item>
+          <item id="di835335662354111446" iid="4d33aa7f56b6455d9f0bc16d250b132e" creation-date="08/26/2015 20:57:17" order-index="7" type="comment-connector">
+            <layout line-style="oblique" lock-start-point="false" lock-end-point="false" lock-to-fields="false" name-position="10,-10" auto-path="" x1="194" y1="554" x2="194" y2="554" start-border-pos="0.125762195121951" end-border-pos="0.624237804878049">
+              <points>
+                <point x="194" y="554" />
+                <point x="194" y="554" />
+              </points>
+            </layout>
+            <relation from="di855165854932957989" from-iid="245e760f8e8347e9b3d94cd04fd6b1ec" to="di880917335971525309" to-iid="af8ff533fdc24bc2b5049fe54ef5dbbd" />
+          </item>
+          <item id="di779920367121306989" iid="b6daf312b4284fe9a7a4e41992684191" creation-date="08/26/2015 20:48:50" order-index="0" type="entity">
+            <layout ax="93" ay="39.5" awidth="201" aheight="160" x="93" y="39.5" width="201" height="160" angle="0" />
+            <class />
+          </item>
+          <item id="di966521610862054491" iid="8024a3b2469e409d843b4357e8bd726b" creation-date="08/26/2015 21:00:28" order-index="11" type="entity">
+            <layout ax="576" ay="473.5" awidth="140" aheight="160" x="576" y="473.5" width="140" height="160" angle="0" />
+            <class />
+          </item>
+          <item id="di879627436788295027" iid="76b503e7db074399895e1e76da11f580" creation-date="08/26/2015 20:59:46" order-index="9" type="entity">
+            <layout ax="93" ay="199.5" awidth="201" aheight="38" x="93" y="199.5" width="201" height="38" angle="0" />
+          </item>
+          <item id="di458982065820857775" iid="f23ad3edd2c6410cbca4c317e843f573" creation-date="08/26/2015 21:01:32" order-index="12" type="entity">
+            <layout ax="452" ay="334" awidth="164" aheight="85" x="452" y="334" width="164" height="85" angle="0" />
+            <class />
+          </item>
+          <item id="di778090150606560662" iid="009e5722820144e7a9153e73951eda92" creation-date="08/26/2015 20:59:46" order-index="10" type="comment-connector">
+            <layout line-style="oblique" lock-start-point="false" lock-end-point="false" lock-to-fields="false" name-position="10,-10" auto-path="" x1="194" y1="200" x2="194" y2="200" start-border-pos="0.125621890547264" end-border-pos="0.624378109452736">
+              <points>
+                <point x="194" y="200" />
+                <point x="194" y="200" />
+              </points>
+            </layout>
+            <relation from="di879627436788295027" from-iid="76b503e7db074399895e1e76da11f580" to="di779920367121306989" to-iid="b6daf312b4284fe9a7a4e41992684191" />
+          </item>
+          <item id="di628410307122813447" iid="19155c2e0d4148b39cfdf6a9ed3231c7" creation-date="08/26/2015 21:02:19" order-index="13" type="relation">
+            <layout line-style="oblique" lock-start-point="false" lock-end-point="true" lock-to-fields="false" name-position="10,-10" auto-path="" x1="558" y1="200" x2="509" y2="334" start-border-pos="0.671752026206569" end-border-pos="0.0875456275009527">
+              <points>
+                <point x="558" y="200" />
+                <point x="509" y="334" />
+              </points>
+            </layout>
+            <relation from="di726985669983105447" from-iid="20dc1193444142269c603f03cd1da913" to="di458982065820857775" to-iid="f23ad3edd2c6410cbca4c317e843f573" />
+          </item>
+          <item id="di240761593886932897" iid="73117f9036f6435a8eb9ec5bd609abfa" creation-date="08/26/2015 21:02:24" order-index="14" type="relation">
+            <layout line-style="oblique" lock-start-point="false" lock-end-point="false" lock-to-fields="false" name-position="10,-10" auto-path="" x1="596" y1="474" x2="561" y2="419" start-border-pos="0.0351123264857701" end-border-pos="0.583755865329649">
+              <points>
+                <point x="596" y="474" />
+                <point x="561" y="419" />
+              </points>
+            </layout>
+            <relation from="di966521610862054491" from-iid="8024a3b2469e409d843b4357e8bd726b" to="di458982065820857775" to-iid="f23ad3edd2c6410cbca4c317e843f573" />
+          </item>
+          <item id="di821015684796441748" iid="e466268c6b1f427c9faa6a8774fb174c" creation-date="08/26/2015 21:03:57" order-index="15" type="entity">
+            <layout ax="880.5" ay="473.5" awidth="201" aheight="160" x="880.5" y="473.5" width="201" height="160" angle="0" />
+            <class />
+          </item>
+          <item id="di328314241964736601" iid="703a7f7883a2442da0099fd3bfaee7e1" creation-date="08/26/2015 21:05:12" order-index="16" type="entity">
+            <layout ax="576" ay="633.5" awidth="140" aheight="66" x="576" y="633.5" width="140" height="66" angle="0" />
+          </item>
+          <item id="di504794698917052250" iid="f2d5fc89e3d145e38bb5fef1f29d2e67" creation-date="08/26/2015 21:05:12" order-index="17" type="comment-connector">
+            <layout line-style="oblique" lock-start-point="false" lock-end-point="false" lock-to-fields="false" name-position="10,-10" auto-path="" x1="646" y1="634" x2="646" y2="634" start-border-pos="0.125" end-border-pos="0.625">
+              <points>
+                <point x="646" y="634" />
+                <point x="646" y="634" />
+              </points>
+            </layout>
+            <relation from="di328314241964736601" from-iid="703a7f7883a2442da0099fd3bfaee7e1" to="di966521610862054491" to-iid="8024a3b2469e409d843b4357e8bd726b" />
+          </item>
+          <item id="di823530373527568578" iid="58e9c9b52f184ee38809f30d31af87ad" creation-date="08/26/2015 21:08:30" order-index="19" type="relation">
+            <layout line-style="oblique" lock-start-point="false" lock-end-point="false" lock-to-fields="false" name-position="10,-10" auto-path="" x1="276" y1="446" x2="452" y2="398" start-border-pos="0.344049663212947" end-border-pos="0.811211081112132">
+              <points>
+                <point x="276" y="446" />
+                <point x="452" y="398" />
+              </points>
+            </layout>
+            <relation from="di880917335971525309" from-iid="af8ff533fdc24bc2b5049fe54ef5dbbd" to="di458982065820857775" to-iid="f23ad3edd2c6410cbca4c317e843f573" />
+          </item>
+          <item id="di880917335971525309" iid="af8ff533fdc24bc2b5049fe54ef5dbbd" creation-date="08/26/2015 20:56:19" order-index="5" type="entity">
+            <layout ax="111.5" ay="381" awidth="164" aheight="173" x="111.5" y="381" width="164" height="173" angle="0" />
+            <class />
+          </item>
+          <item id="di368778237847170908" iid="1d103d6585f049bfa2466033c491cf19" creation-date="08/26/2015 21:09:16" order-index="20" type="relation">
+            <layout line-style="oblique" lock-start-point="false" lock-end-point="false" lock-to-fields="false" name-position="10,-10" auto-path="" x1="880" y1="554" x2="716" y2="554" start-border-pos="0.87421875" end-border-pos="0.37578125">
+              <points>
+                <point x="880" y="554" />
+                <point x="716" y="554" />
+              </points>
+            </layout>
+            <relation from="di821015684796441748" from-iid="e466268c6b1f427c9faa6a8774fb174c" to="di966521610862054491" to-iid="8024a3b2469e409d843b4357e8bd726b" />
+          </item>
+          <item id="di758664346339079503" iid="88ffda1b3ff64fcfa8609edea7a837e2" creation-date="08/26/2015 21:12:10" order-index="21" type="entity">
+            <layout ax="880.5" ay="221" awidth="152" aheight="160" x="880.5" y="221" width="152" height="160" angle="0" />
+            <class />
+          </item>
+          <item id="di855165854932957989" iid="245e760f8e8347e9b3d94cd04fd6b1ec" creation-date="08/26/2015 20:57:17" order-index="6" type="entity">
+            <layout ax="111.5" ay="554" awidth="164" aheight="50" x="111.5" y="554" width="164" height="50" angle="0" />
+          </item>
+        </layer>
+      </diagram>
+    </model>
+  </models>
+  <documents />
+  <document-templates />
+</sim-project>
