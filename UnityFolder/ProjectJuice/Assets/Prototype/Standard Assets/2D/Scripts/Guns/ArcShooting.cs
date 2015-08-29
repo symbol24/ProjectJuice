@@ -2,17 +2,15 @@
 using System.Collections;
 using UnityStandardAssets.CrossPlatformInput;
 using System;
+using GamepadInput;
 
 public class ArcShooting : Gun {
-    float m_yAxis;
-    float m_xAxis;
+    float m_LeftAxisY;
+    float m_LeftAxisX;
+    float m_RightAxisY;
+    float m_RightAxisX;
     public bool m_isTwinStick;
-    string m_VerticalName = "Vertical";
-    string m_HorizontalName = "Horizontal";
-    string m_TSVertical = "rightVertical";
-    string m_TSHorizontal = "rightHorizontal";
-    string m_ArcVertical = "Vertical";
-    string m_ArcHorizontal = "Horizontal";
+    private bool m_isIdle = true;
 
     public float m_TwinStickDelay = 0.3f;
     private float m_TwinStickTimer;
@@ -20,27 +18,42 @@ public class ArcShooting : Gun {
     new void Start()
     {
         base.Start();
-        print(m_VerticalName);
         m_CurrentDelay = m_ShotDelayMedium;
     }
 
     // Update is called once per frame
     new void Update() {
         base.Update();
-        if((m_isTwinStick && m_VerticalName != m_TSVertical) || (!m_isTwinStick && m_VerticalName != m_ArcVertical))
-            SetTwinStick(m_isTwinStick);
 
-        m_yAxis = CrossPlatformInputManager.GetAxis(m_VerticalName);
-        m_xAxis = CrossPlatformInputManager.GetAxis(m_HorizontalName);
-        
+        if (m_isTwinStick)
+        {
+            m_RightAxisX = GamePad.GetAxis(GamePad.Axis.RightStick, controller).x;
+            m_RightAxisY = GamePad.GetAxis(GamePad.Axis.RightStick, controller).y;
+        }
+        else
+        {
+            m_LeftAxisY = GamePad.GetAxis(GamePad.Axis.LeftStick, controller).y;
+            m_LeftAxisX = GamePad.GetAxis(GamePad.Axis.LeftStick, controller).x;
+        }
+
+        if (m_isTwinStick && (m_RightAxisX != 0 || m_RightAxisY != 0))
+            m_isIdle = false;
+        else if (!m_isTwinStick && (m_LeftAxisX != 0 || m_LeftAxisY != 0))
+            m_isIdle = false;
+        else
+            m_isIdle = true;
     }
 
     new void FixedUpdate()
     {
         base.FixedUpdate();
-        if (m_xAxis != 0f || m_yAxis != 0f)
+        if (m_isTwinStick && !m_isIdle)
         {
-            RotateGun(m_xAxis, m_yAxis);
+            RotateGun(m_RightAxisX, m_RightAxisY);
+        }
+        else if(!m_isTwinStick && !m_isIdle)
+        {
+            RotateGun(m_LeftAxisX, m_LeftAxisY);
         }
     }
 
@@ -52,7 +65,7 @@ public class ArcShooting : Gun {
 
 
         transform.eulerAngles = new Vector3(xAngle, yAngle, zAngle);
-        if (m_isTwinStick) Fire();
+        if (m_isTwinStick && !m_isIdle) Fire();
     }
 
     public override void Fire()
@@ -72,21 +85,5 @@ public class ArcShooting : Gun {
         Bullet newBullet;
         if (canFire)
             newBullet = Instantiate(m_BulletPrefab, m_GunReference.transform.position, m_GunReference.transform.rotation) as Bullet;
-    }
-
-    private void SetTwinStick(bool isTwinStick)
-    {
-
-        if (isTwinStick)
-        {
-            m_VerticalName = m_TSVertical;
-            m_HorizontalName = m_TSHorizontal;
-            m_TwinStickTimer = Time.time;
-        }
-        else
-        {
-            m_VerticalName = m_ArcVertical;
-            m_HorizontalName = m_ArcHorizontal;
-        }
     }
 }

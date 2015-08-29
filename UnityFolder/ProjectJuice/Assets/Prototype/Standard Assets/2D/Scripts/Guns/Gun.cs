@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityStandardAssets.CrossPlatformInput;
+using GamepadInput;
 
 public class Gun : MonoBehaviour {
 
@@ -12,6 +13,13 @@ public class Gun : MonoBehaviour {
     private float m_ShotTimer;
     protected float m_CurrentDelay;
 
+    protected GamePad.Index controller = GamePad.Index.Any;
+    protected GamepadState state;
+
+    void Awake()
+    {
+        state = GamePad.GetState(controller);
+    }
 
     // Use this for initialization
     protected void Start () {
@@ -21,7 +29,7 @@ public class Gun : MonoBehaviour {
 	// Update is called once per frame
 	protected void Update ()
     {
-        m_Fire1 = CrossPlatformInputManager.GetButton("Fire1");
+        m_Fire1 = GamePad.GetButton(GamePad.Button.X, controller);
     }
 
     protected void FixedUpdate()
