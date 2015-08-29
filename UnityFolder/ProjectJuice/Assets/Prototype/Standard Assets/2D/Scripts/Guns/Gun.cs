@@ -45,6 +45,6 @@ public class Gun : MonoBehaviour {
 
     public virtual void Fire()
     {
-        print("fire");
+        //print("fire");
     }
 }
