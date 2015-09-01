@@ -59,7 +59,7 @@ public class ArcShooting : Gun {
 
     private void RotateGun(float xAxis, float yAxis)
     {
-        float zAngle = -(Mathf.Atan2(xAxis, yAxis) * Mathf.Rad2Deg);
+        float zAngle = Mathf.Atan2(yAxis, xAxis) * Mathf.Rad2Deg;
         float xAngle = 0f;
         float yAngle = 0f;
 
