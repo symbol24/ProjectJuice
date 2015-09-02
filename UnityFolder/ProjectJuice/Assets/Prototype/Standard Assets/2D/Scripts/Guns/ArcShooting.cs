@@ -19,7 +19,7 @@ public class ArcShooting : Gun {
         float xAngle = 0f;
         float yAngle = 0f;
 
-        transform.eulerAngles = new Vector3(xAngle, yAngle, zAngle);
+        m_GunProperties.transform.eulerAngles = new Vector3(xAngle, yAngle, zAngle);
     }
 
 }

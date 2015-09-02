@@ -34,8 +34,8 @@ namespace UnityStandardAssets._2D
             // Setting up references.
             m_Controller = GetComponent<Platformer2DUserControl>();
             if (m_Controller == null) print("NO Platformer2DUserControls on player");
-            m_GroundCheck = transform.Find("GroundCheck");
-            m_CeilingCheck = transform.Find("CeilingCheck");
+            m_GroundCheck = transform.FindChild("GroundCheck");
+            m_CeilingCheck = transform.FindChild("CeilingCheck");
             m_Anim = m_Body.GetComponent<Animator>();
             m_Rigidbody2D = GetComponent<Rigidbody2D>();
         }

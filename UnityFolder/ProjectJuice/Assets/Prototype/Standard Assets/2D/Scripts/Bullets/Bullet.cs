@@ -1,9 +1,26 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
-public class Bullet : MonoBehaviour {
-    public float m_baseSpeed;
-	
+public class Bullet : MonoBehaviour, IDamaging {
+    [SerializeField] private float m_baseSpeed;
+    [SerializeField] private float m_Damage;
+    public float Damage
+    {
+        get
+        {
+            return m_Damage;
+        }
+    }
+
+    public bool IsAvailableForConsumption
+    {
+        get
+        {
+            return true;
+        }
+    }
+
     void Start()
     {
         Destroy(gameObject, 0.5f);
@@ -14,12 +31,8 @@ public class Bullet : MonoBehaviour {
         transform.Translate(Vector2.up * m_baseSpeed * Time.deltaTime);
 	}
 
-    void OnCollisionEnter2D(Collision2D coll)
+    public void Consumed()
     {
-        if(coll.gameObject.layer == 8)
-        {
-            print("ground");
-            Destroy(this);
-        }
+        Destroy(gameObject);
     }
 }
