@@ -21,8 +21,6 @@ public class PlayerData : MonoBehaviour {
         }
     }
 
-    public enum PlayerIDs { A, B, C, D}
-
     [SerializeField] private PlayerIDs m_PlayerID;
     public PlayerIDs playerID { get { return m_PlayerID; } set { m_PlayerID = value; } }
 
