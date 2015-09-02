@@ -6,28 +6,23 @@ using UnityStandardAssets._2D;
 
 public class Gun : ExtendedMonobehaviour {
     public Platformer2DUserControl m_Controller { get; private set; }
-    private DelayManager m_DelayManager;
+    public DelayManager m_DelayManager { get; private set; }
 
     [SerializeField] private GameObject m_GunReference; //used for flipping maybe
+    public GameObject m_GunRef { get { return m_GunReference; } }
     [SerializeField] private GameObject m_Gun;
     public GameObject m_GunProperties { get { return m_Gun; } }
     [SerializeField] private Bullet m_BulletPrefab;
+    public Bullet m_Bullet { get { return m_BulletPrefab; } }
     [SerializeField] private float m_ShotDelay = 0.1f;
-    [SerializeField] private float m_BurstDelay = 0.1f;
-    
-    private float m_ShotTimer;
+    public float m_Delay { get { return m_ShotDelay; } }
 
 
-    void Awake()
+    protected void Awake()
     {
         m_Controller = GetComponent<Platformer2DUserControl>();
         m_DelayManager = GetComponent<DelayManager>();
     }
-
-    // Use this for initialization
-    protected void Start () {
-        m_ShotTimer = Time.time;
-	}
 	
 	// Update is called once per frame
 	protected void Update ()
@@ -40,8 +35,13 @@ public class Gun : ExtendedMonobehaviour {
 
     public virtual void Fire()
     {
-        Bullet newBullet = Instantiate(m_BulletPrefab, m_GunReference.transform.position, m_GunReference.transform.rotation) as Bullet;
+        FireOneBullet();
 
         m_DelayManager.AddDelay(m_ShotDelay);
+    }
+
+    public void FireOneBullet()
+    {
+        Bullet newBullet = Instantiate(m_BulletPrefab, m_GunReference.transform.position, m_GunReference.transform.rotation) as Bullet;
     }
 }
