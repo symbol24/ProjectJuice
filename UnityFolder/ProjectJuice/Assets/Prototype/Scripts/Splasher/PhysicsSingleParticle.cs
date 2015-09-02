@@ -21,6 +21,9 @@ public class PhysicsSingleParticle : MonoBehaviour {
     private bool _triggered = false;
     [SerializeField] private float _probabilityOfHealthPickup = 0.1f;
     [SerializeField] private float _hpRecovered = 5;
+    [SerializeField] private float _timeoutBeforeDisapearing = 0;
+    [SerializeField] private bool _arePickupsToDisapear = false;
+    [SerializeField] private float _timeoutBeforeDisapearingForPickups = 2f;
     // Use this for initialization
 	void Start ()
 	{
@@ -46,11 +49,16 @@ public class PhysicsSingleParticle : MonoBehaviour {
         {
             var recov = gameObject.AddComponent<HPRecovery>();
             recov.HPRecov = HpRecovered;
+            if (_arePickupsToDisapear)
+            {
+                var timer = gameObject.AddComponent<DestroyOnTimer>();
+                timer.Timeout = _timeoutBeforeDisapearingForPickups;
+            }
         }
         else
         {
             var timer = gameObject.AddComponent<DestroyOnTimer>();
-            timer.Timeout = 0;
+            timer.Timeout = _timeoutBeforeDisapearing;
         }
     }
 

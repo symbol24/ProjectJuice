@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Linq;
+using UnityEngine;
 using System.Collections;
 
 public abstract class ExtendedMonobehaviour : MonoBehaviour, IGameObject {
@@ -22,4 +23,11 @@ public abstract class ExtendedMonobehaviour : MonoBehaviour, IGameObject {
     {
         transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, zValue);
     }
+
+    protected bool IsAChild(GameObject toCheck)
+    {
+        var checkComponents = GetComponentsInChildren<IDamaging>();
+        return checkComponents.Any();
+    }
+
 }

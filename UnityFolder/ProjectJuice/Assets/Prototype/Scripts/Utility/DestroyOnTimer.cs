@@ -17,10 +17,10 @@ public class DestroyOnTimer : MonoBehaviour
     public enum KindOfDestruction
     {
         Script,
-        WholeGamObject
+        WholeGameObject
     };
 
-    public KindOfDestruction Kind = KindOfDestruction.WholeGamObject;
+    public KindOfDestruction Kind = KindOfDestruction.WholeGameObject;
 
 
     // Use this for initialization
@@ -40,7 +40,7 @@ public class DestroyOnTimer : MonoBehaviour
 	            case KindOfDestruction.Script:
 	                Destroy(this);
 	                break;
-	            case KindOfDestruction.WholeGamObject:
+	            case KindOfDestruction.WholeGameObject:
 	                Destroy(this.gameObject);
 	                break;
 	            default:

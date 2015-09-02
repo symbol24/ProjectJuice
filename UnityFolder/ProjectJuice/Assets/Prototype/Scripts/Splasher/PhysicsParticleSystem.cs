@@ -6,7 +6,7 @@ using Random = UnityEngine.Random;
 
 public class PhysicsParticleSystem : ExtendedMonobehaviour
 {
-    [SerializeField] private float _probabilityOfPickup = 0.1f;
+    [Range(0,1)][SerializeField] private float _probabilityOfPickup = 0.1f;
     [SerializeField] private bool _overrideProbabilityToParticles = true;
     [SerializeField] private bool _overrideHealthAmountPerParticle = true;
     [SerializeField] private float _healthRecoveredPerParticle = 5f;
@@ -17,7 +17,7 @@ public class PhysicsParticleSystem : ExtendedMonobehaviour
         get
         {
             var range = _maxXSpeed - _minXSpeed;
-            var ret = Random.value*range - _maxXSpeed + _minXSpeed;
+            var ret = Random.value*range + _minXSpeed;
             return ret;
         }
     }
@@ -28,7 +28,7 @@ public class PhysicsParticleSystem : ExtendedMonobehaviour
         get
         {
             var range = _maxYSpeed - _minYSpeed;
-            var ret = Random.value*range - _maxYSpeed + _minYSpeed;
+            var ret = Random.value*range + _minYSpeed;
             if (_allowPositiveYForce) ret = Mathf.Abs(ret);
             return ret;
         }
