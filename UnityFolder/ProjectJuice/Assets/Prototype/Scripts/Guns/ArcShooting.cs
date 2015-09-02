@@ -20,10 +20,13 @@ public class ArcShooting : Gun
 
     private void RotateGun(float xAxis, float yAxis)
     {
+        if (!m_Controller.m_FacingRight && xAxis > 0) xAxis = -xAxis;
+        if (!m_Controller.m_FacingRight && xAxis == 0 && yAxis == 0) xAxis = -1f;
+
         float zAngle = Mathf.Atan2(yAxis, xAxis) * Mathf.Rad2Deg;
         float xAngle = 0f;
         float yAngle = 0f;
-
+        
         m_GunProperties.transform.eulerAngles = new Vector3(xAngle, yAngle, zAngle);
     }
 
