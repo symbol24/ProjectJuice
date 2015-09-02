@@ -8,36 +8,72 @@ public class MeleeAttack : ExtendedMonobehaviour
     private Platformer2DUserControl _inputManager;
     [SerializeField] 
     private GameObject _swingerCollider;
-    [SerializeField] 
-    private Transform _swingerColliderInitialRotation;
     [SerializeField]
-    private Transform _swingerColliderFinalRotation;
+    private DelayManager _delayManager;
+    [SerializeField]
+    private float _damage = 80;
 
     public float rotationSpeed = 100f;
     public float startingRotation = -45;
     public float endingRotation = 45;
+    public float _delayAfterSwing = 0.5f;
 
     // Use this for initialization
     private void Start()
     {
+        if (_delayManager == null) _delayManager = GetComponent<DelayManager>();
         if (_inputManager == null) _inputManager = GetComponent<Platformer2DUserControl>();
-        SetRotationEulerZ(startingRotation);
+        _swingerCollider.SetRotationEulerZ(startingRotation);
     }
 
     // Update is called once per frame
     private void Update()
     {
-        if (_swingerCollider.transform.rotation.eulerAngles.z <= endingRotation)
+        if (_inputManager.m_Melee && !_isSwingingAnimationOnGoing)
         {
-            SetRotationEulerZ(startingRotation);
+            _swingingAnimation = StartSwingingAnimation();
+            StartCoroutine(_swingingAnimation);
         }
-        else
+    }
+
+    private bool _isSwingingAnimationOnGoing = false;
+    private IEnumerator _swingingAnimation;
+    
+
+    private IEnumerator StartSwingingAnimation()
+    {
+        _isSwingingAnimationOnGoing = true;
+        _delayManager.AddDelay(100f);
+        _swingerCollider.SetActive(true);
+        yield return null;
+        while (_swingerCollider.transform.rotation.eulerAngles.z.ToNormalizedAngle() >= endingRotation)
         {
-            _swingerCollider.transform.Rotate(Vector3.forward * Time.deltaTime * rotationSpeed);
+            _swingerCollider.SetRotationEulerZ(startingRotation);
+            yield return new WaitForEndOfFrame();
         }
-        
+        _swingerCollider.SetActive(false);
+        yield return null;
+        _swingerCollider.transform.Rotate(Vector3.forward * Time.deltaTime * rotationSpeed);
+        yield return new WaitForSeconds(_delayAfterSwing);
+        _wasConsumedDuringThisAnimation = false;
+        _delayManager.Reset();
+        _isSwingingAnimationOnGoing = false;
     }
 
 
+    private bool _wasConsumedDuringThisAnimation = false;
+    public bool IsAvailableForConsumption
+    {
+        get { return _isSwingingAnimationOnGoing && !_wasConsumedDuringThisAnimation; }
+    }
 
+    public void Consumed()
+    {
+        _wasConsumedDuringThisAnimation = true;
+    }
+
+    public float Damage
+    {
+        get { return _damage; }
+    }
 }

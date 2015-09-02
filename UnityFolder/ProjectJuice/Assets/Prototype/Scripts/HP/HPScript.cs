@@ -29,9 +29,17 @@ public class HPScript : ExtendedMonobehaviour
 
     [SerializeField] private float _raycastVariationPerTry = 0.1f;
     [SerializeField] private float _raycastIterationsToFindTarget = 5;
+    [SerializeField] private Transform _centerOfReferenceForJuice;
 
     public event EventHandler<ImpactEventArgs> HpImpactReceived;
     public event EventHandler<HpChangedEventArgs> HpChanged;
+    public event EventHandler Dead;
+
+    protected virtual void OnDead()
+    {
+        EventHandler handler = Dead;
+        if (handler != null) handler(this, EventArgs.Empty);
+    }
 
     protected virtual void OnHpChanged(HpChangedEventArgs e)
     {
@@ -48,6 +56,7 @@ public class HPScript : ExtendedMonobehaviour
     private void Start()
     {
         CurrentHp = MaxHp;
+        if (_centerOfReferenceForJuice == null) _centerOfReferenceForJuice = transform;
     }
 
     // Update is called once per frame
@@ -59,41 +68,58 @@ public class HPScript : ExtendedMonobehaviour
     private void OnTriggerEnter2D(Collider2D collider)
     {
         //Debug.Log("OnTriggerEnter in " + gameObject.name);
+
+        CheckForDamage(collider);
+        CheckForPowerUp(collider);
+
+    }
+
+    private void CheckForPowerUp(Collider2D collider)
+    {
+        var checkPowerUp = collider.gameObject.GetComponent<IPowerUp>();
+        if (checkPowerUp != null)
+        {
+            if (checkPowerUp.IsAvailableForConsumption)
+            {
+                CurrentHp += checkPowerUp.HPRecov;
+                checkPowerUp.Consumed();
+            }
+        }
+    }
+
+    private void CheckForDamage(Collider2D collider)
+    {
         var checkDamaging = collider.gameObject.GetComponent<IDamaging>();
 
         //If it is not damaging, dont bother with calculations
-        if (checkDamaging != null)
+        if (checkDamaging != null && !IsAChild(collider.gameObject))
         {
-            var othersPosition = collider.gameObject.transform.position - transform.position;
+            var othersPosition = collider.gameObject.transform.position - _centerOfReferenceForJuice.position;
             RaycastHit2D hit = default(RaycastHit2D);
             #region DetectImpact
             for (int i = 0; i < _raycastIterationsToFindTarget; i++)
             {
-                var firstTarget = new Vector3(othersPosition.x + _raycastVariationPerTry*i, othersPosition.y + _raycastVariationPerTry * i, othersPosition.z);
-                hit = Physics2D.Raycast(transform.position, firstTarget, float.MaxValue);
+                var firstTarget = new Vector3(othersPosition.x + _raycastVariationPerTry * i, othersPosition.y + _raycastVariationPerTry * i, othersPosition.z);
+                hit = Physics2D.Raycast(_centerOfReferenceForJuice.position, firstTarget, float.MaxValue);
                 if (hit.collider == collider) break;
                 //Testing where raycast went
-                //Debug.DrawRay(transform.position, firstTarget, Color.green);
+                //Debug.DrawRay(_centerOfReferenceForJuice.position, firstTarget, Color.green);
                 //EditorApplication.isPaused = true;
-                var secondTarget = new Vector3(othersPosition.x - _raycastVariationPerTry * i, othersPosition.y - _raycastVariationPerTry*i, othersPosition.z);
-                hit = Physics2D.Raycast(transform.position, secondTarget, float.MaxValue);
+                var secondTarget = new Vector3(othersPosition.x - _raycastVariationPerTry * i, othersPosition.y - _raycastVariationPerTry * i, othersPosition.z);
+                hit = Physics2D.Raycast(_centerOfReferenceForJuice.position, secondTarget, float.MaxValue);
                 if (hit.collider == collider) break;
-                //Debug.DrawRay(transform.position, secondTarget, Color.red);
+                //Debug.DrawRay(_centerOfReferenceForJuice.position, secondTarget, Color.red);
             }
             #endregion DetectImpact
 
-            CurrentHp = checkDamaging.Damage;
+            CurrentHp -= checkDamaging.Damage;
             Vector2 pointOfCollision = hit.point;
             OnHpImpactReceived(new ImpactEventArgs
             {
                 Damage = checkDamaging.Damage,
                 PointOfCollision = pointOfCollision
             });
+            if (CurrentHp <= 0) OnDead();
         }
-    }
-
-    private void OnCollisionEnter2D(Collision2D coll)
-    {
-        
     }
 }

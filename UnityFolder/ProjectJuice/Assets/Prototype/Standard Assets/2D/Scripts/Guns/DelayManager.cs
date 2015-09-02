@@ -17,4 +17,9 @@ public class DelayManager : MonoBehaviour {
     {
         m_CurrentDelay += toAdd;
     }
+
+    public void Reset()
+    {
+        m_CurrentDelay = 0f;
+    }
 }
