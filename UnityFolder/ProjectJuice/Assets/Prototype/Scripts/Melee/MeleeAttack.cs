@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using System.Collections;
 using UnityStandardAssets._2D;
 
@@ -13,6 +14,10 @@ public class MeleeAttack : ExtendedMonobehaviour
     private DelayManager _delayManager;
     [SerializeField]
     private float _damage = 80;
+    [SerializeField]
+    private Vector2 _impactForce;
+    [SerializeField]
+    private bool _addImpactForce = true;
 
     public float rotationSpeed = 100f;
     public float startingRotation = -45;
@@ -24,7 +29,7 @@ public class MeleeAttack : ExtendedMonobehaviour
     {
         if (_delayManager == null) _delayManager = GetComponent<DelayManager>();
         if (_inputManager == null) _inputManager = GetComponent<IPlatformer2DUserControl>();
-        _swingerCollider.SetRotationEulerZ(startingRotation);
+        _swingerCollider.gameObject.SetRotationEulerZ(startingRotation);
     }
 
     // Update is called once per frame
@@ -65,7 +70,7 @@ public class MeleeAttack : ExtendedMonobehaviour
         }
         _swingerCollider.SetActive(false);
         yield return null;
-        _swingerCollider.SetRotationEulerZ(startingRotation);
+        _swingerCollider.gameObject.SetRotationEulerZ(startingRotation);
         yield return new WaitForSeconds(_delayAfterSwing);
         _wasConsumedDuringThisAnimation = false;
         _delayManager.Reset();
@@ -74,6 +79,8 @@ public class MeleeAttack : ExtendedMonobehaviour
 
 
     private bool _wasConsumedDuringThisAnimation = false;
+    
+
     public bool IsAvailableForConsumption
     {
         get { return _isSwingingAnimationOnGoing && !_wasConsumedDuringThisAnimation; }
@@ -87,5 +94,17 @@ public class MeleeAttack : ExtendedMonobehaviour
     public float Damage
     {
         get { return _damage; }
+    }
+
+    public bool AddImpactForce
+    {
+        get { return _addImpactForce; }
+        private set { _addImpactForce = value; }
+    }
+
+    public Vector2 ImpactForce
+    {
+        get { return _impactForce*(_inputManager.m_FacingRight ? 1 : -1); }
+        private set { _impactForce = value; }
     }
 }

@@ -27,4 +27,6 @@ public class MeleeDamagingCollider : MonoBehaviour, IDamaging
     public float Damage { get { return _meleeAttack.Damage; } }
     public bool HasPreferredImpactPoint { get { return true; }}
     public Vector3 PreferredImpactPoint { get { return _preferredImpactPoint.position; }}
+    public bool AddImpactForce { get { return _meleeAttack.AddImpactForce; } }
+    public Vector2 ImpactForce { get { return _meleeAttack.ImpactForce; } }
 }
