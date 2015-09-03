@@ -6,9 +6,15 @@ using GamepadInput;
 namespace UnityStandardAssets._2D
 {
     [RequireComponent(typeof (PlatformerCharacter2D))]
-    public class Platformer2DUserControl : MonoBehaviour
+    public class Platformer2DUserControl : MonoBehaviour, IPlatformer2DUserControl
     {
-        public bool m_FacingRight = true;  // For determining which way the player is currently facing.
+        private bool _m_facingRight = true;
+
+        public bool m_FacingRight
+        {
+            get { return _m_facingRight; }
+            set { _m_facingRight = value; }
+        } // For determining which way the player is currently facing.
 
         //Gamepad values
         public bool m_Jump { get; private set; }

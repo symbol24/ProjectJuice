@@ -24,4 +24,7 @@ public class DamagingMock : MonoBehaviour, IDamaging {
         get { return _damage; }
         private set { _damage = value; }
     }
+
+    public bool HasPreferredImpactPoint { get { return false; } }
+    public Vector3 PreferredImpactPoint { get; private set; }
 }

@@ -74,6 +74,11 @@ public class HPScript : ExtendedMonobehaviour
 
     }
 
+    private void OnTriggerStay2D(Collider2D collider)
+    {
+        CheckForDamage(collider);
+    }
+
     private void CheckForPowerUp(Collider2D collider)
     {
         var checkPowerUp = collider.gameObject.GetComponent<IPowerUp>();
@@ -96,24 +101,32 @@ public class HPScript : ExtendedMonobehaviour
         {
             var othersPosition = collider.gameObject.transform.position - _centerOfReferenceForJuice.position;
             RaycastHit2D hit = default(RaycastHit2D);
+            Vector2 pointOfCollision;
             #region DetectImpact
-            for (int i = 0; i < _raycastIterationsToFindTarget; i++)
-            {
-                var firstTarget = new Vector3(othersPosition.x + _raycastVariationPerTry * i, othersPosition.y + _raycastVariationPerTry * i, othersPosition.z);
-                hit = Physics2D.Raycast(_centerOfReferenceForJuice.position, firstTarget, float.MaxValue);
-                if (hit.collider == collider) break;
-                //Testing where raycast went
-                //Debug.DrawRay(_centerOfReferenceForJuice.position, firstTarget, Color.green);
-                //EditorApplication.isPaused = true;
-                var secondTarget = new Vector3(othersPosition.x - _raycastVariationPerTry * i, othersPosition.y - _raycastVariationPerTry * i, othersPosition.z);
-                hit = Physics2D.Raycast(_centerOfReferenceForJuice.position, secondTarget, float.MaxValue);
-                if (hit.collider == collider) break;
-                //Debug.DrawRay(_centerOfReferenceForJuice.position, secondTarget, Color.red);
-            }
-            #endregion DetectImpact
 
+            if (checkDamaging.HasPreferredImpactPoint) pointOfCollision = checkDamaging.PreferredImpactPoint;
+            else
+            {
+                for (int i = 0; i < _raycastIterationsToFindTarget; i++)
+                {
+                    var firstTarget = new Vector3(othersPosition.x + _raycastVariationPerTry*i,
+                        othersPosition.y + _raycastVariationPerTry*i, othersPosition.z);
+                    hit = Physics2D.Raycast(_centerOfReferenceForJuice.position, firstTarget, float.MaxValue);
+                    if (hit.collider == collider) break;
+                    //Testing where raycast went
+                    //Debug.DrawRay(_centerOfReferenceForJuice.position, firstTarget, Color.green);
+                    //EditorApplication.isPaused = true;
+                    var secondTarget = new Vector3(othersPosition.x - _raycastVariationPerTry*i,
+                        othersPosition.y - _raycastVariationPerTry*i, othersPosition.z);
+                    hit = Physics2D.Raycast(_centerOfReferenceForJuice.position, secondTarget, float.MaxValue);
+                    if (hit.collider == collider) break;
+                    //Debug.DrawRay(_centerOfReferenceForJuice.position, secondTarget, Color.red);
+                }
+                pointOfCollision = hit.point;
+            }
+
+            #endregion DetectImpact
             CurrentHp -= checkDamaging.Damage;
-            Vector2 pointOfCollision = hit.point;
             OnHpImpactReceived(new ImpactEventArgs
             {
                 Damage = checkDamaging.Damage,

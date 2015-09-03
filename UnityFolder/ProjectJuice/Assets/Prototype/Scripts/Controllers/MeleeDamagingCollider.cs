@@ -5,7 +5,7 @@ public class MeleeDamagingCollider : MonoBehaviour, IDamaging
 {
 
     public MeleeAttack _meleeAttack;
-
+    public Transform _preferredImpactPoint;
 	// Use this for initialization
 	void Start () {
 	
@@ -25,4 +25,6 @@ public class MeleeDamagingCollider : MonoBehaviour, IDamaging
     }
 
     public float Damage { get { return _meleeAttack.Damage; } }
+    public bool HasPreferredImpactPoint { get { return true; }}
+    public Vector3 PreferredImpactPoint { get { return _preferredImpactPoint.position; }}
 }

@@ -5,7 +5,7 @@ namespace UnityStandardAssets._2D
 {
     public class PlatformerCharacter2D : MonoBehaviour
     {
-        private Platformer2DUserControl m_Controller;
+        private IPlatformer2DUserControl m_Controller;
 
         [SerializeField] private float m_MaxSpeed = 10f;                    // The fastest the player can travel in the x axis.
         [SerializeField] private float m_JumpForce = 400f;                  // Amount of force added when the player jumps.
@@ -32,7 +32,7 @@ namespace UnityStandardAssets._2D
         private void Awake()
         {
             // Setting up references.
-            m_Controller = GetComponent<Platformer2DUserControl>();
+            m_Controller = GetComponent<IPlatformer2DUserControl>();
             if (m_Controller == null) print("NO Platformer2DUserControls on player");
             m_GroundCheck = transform.FindChild("GroundCheck");
             m_CeilingCheck = transform.FindChild("CeilingCheck");

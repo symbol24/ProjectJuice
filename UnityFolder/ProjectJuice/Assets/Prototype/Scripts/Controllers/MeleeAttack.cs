@@ -4,10 +4,11 @@ using UnityStandardAssets._2D;
 
 public class MeleeAttack : ExtendedMonobehaviour
 {
-    [SerializeField] 
-    private Platformer2DUserControl _inputManager;
+    private IPlatformer2DUserControl _inputManager;
     [SerializeField] 
     private GameObject _swingerCollider;
+
+    [SerializeField] private GameObject _flipReference;
     [SerializeField]
     private DelayManager _delayManager;
     [SerializeField]
@@ -22,17 +23,25 @@ public class MeleeAttack : ExtendedMonobehaviour
     private void Start()
     {
         if (_delayManager == null) _delayManager = GetComponent<DelayManager>();
-        if (_inputManager == null) _inputManager = GetComponent<Platformer2DUserControl>();
+        if (_inputManager == null) _inputManager = GetComponent<IPlatformer2DUserControl>();
         _swingerCollider.SetRotationEulerZ(startingRotation);
     }
 
     // Update is called once per frame
-    private void Update()
+     void Update()
     {
         if (_inputManager.m_Melee && !_isSwingingAnimationOnGoing)
         {
             _swingingAnimation = StartSwingingAnimation();
             StartCoroutine(_swingingAnimation);
+        }
+        if (_inputManager.m_FacingRight)
+        {
+            _flipReference.transform.localScale = _flipReference.transform.localScale.SetX(1);
+        }
+        else
+        {
+            _flipReference.transform.localScale = _flipReference.transform.localScale.SetX(-1);
         }
     }
 
@@ -40,20 +49,23 @@ public class MeleeAttack : ExtendedMonobehaviour
     private IEnumerator _swingingAnimation;
     
 
+
+
     private IEnumerator StartSwingingAnimation()
     {
         _isSwingingAnimationOnGoing = true;
         _delayManager.AddDelay(100f);
         _swingerCollider.SetActive(true);
         yield return null;
-        while (_swingerCollider.transform.rotation.eulerAngles.z.ToNormalizedAngle() >= endingRotation)
+        while (_swingerCollider.transform.rotation.eulerAngles.z.ToNormalizedAngle() <= endingRotation)
         {
-            _swingerCollider.SetRotationEulerZ(startingRotation);
+            _swingerCollider.transform.Rotate(Vector3.forward * Time.deltaTime * rotationSpeed);
+            
             yield return new WaitForEndOfFrame();
         }
         _swingerCollider.SetActive(false);
         yield return null;
-        _swingerCollider.transform.Rotate(Vector3.forward * Time.deltaTime * rotationSpeed);
+        _swingerCollider.SetRotationEulerZ(startingRotation);
         yield return new WaitForSeconds(_delayAfterSwing);
         _wasConsumedDuringThisAnimation = false;
         _delayManager.Reset();

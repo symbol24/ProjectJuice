@@ -5,7 +5,7 @@ using GamepadInput;
 using UnityStandardAssets._2D;
 
 public class Gun : ExtendedMonobehaviour {
-    public Platformer2DUserControl m_Controller { get; private set; }
+    public IPlatformer2DUserControl m_Controller { get; private set; }
     public DelayManager m_DelayManager { get; private set; }
 
     [SerializeField] private GameObject m_GunReference; //used for flipping maybe
@@ -20,7 +20,7 @@ public class Gun : ExtendedMonobehaviour {
 
     protected void Awake()
     {
-        m_Controller = GetComponent<Platformer2DUserControl>();
+        m_Controller = GetComponent<IPlatformer2DUserControl>();
         m_DelayManager = GetComponent<DelayManager>();
     }
 	
