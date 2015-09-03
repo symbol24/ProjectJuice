@@ -21,9 +21,10 @@ public class Bullet : MonoBehaviour, IDamaging {
         }
     }
 
+    public LayerMask m_WhatIsGround; // A mask determining what is ground 
+
     void Start()
     {
-        Destroy(gameObject, 0.5f);
     }
 
 	// Update is called once per frame
@@ -35,4 +36,10 @@ public class Bullet : MonoBehaviour, IDamaging {
     {
         Destroy(gameObject);
     }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (LayerChecker.IsInLayerMask(collision.gameObject, m_WhatIsGround)) Consumed();
+    }
+
 }

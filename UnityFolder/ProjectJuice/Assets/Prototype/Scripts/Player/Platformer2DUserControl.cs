@@ -58,13 +58,5 @@ namespace UnityStandardAssets._2D
             m_Special = GamePad.GetButtonDown(m_SpecialButton, controller);
             m_Imobilize = GamePad.GetButtonDown(m_ImobilizeButton, controller);
         }
-
-
-        private void FixedUpdate()
-        {
-            // Resets the jump button so that you have to press again to jump
-            //m_Jump = false;
-            //m_Dash = false;
-        }
     }
 }
