@@ -21,25 +21,40 @@ public class PhysicsSingleParticle : MonoBehaviour {
     private bool _triggered = false;
     [SerializeField] private float _probabilityOfHealthPickup = 0.1f;
     [SerializeField] private float _hpRecovered = 5;
-    [SerializeField] private float _timeoutBeforeDisapearing = 0;
     [SerializeField] private bool _arePickupsToDisapear = false;
     [SerializeField] private float _timeoutBeforeDisapearingForPickups = 2f;
-    // Use this for initialization
-	void Start ()
-	{
-	    
 
-	}
+    public float _minDestroyTime = 1f;
+    public float _masDestroyTime = 5f;
+    private float RandomDestroyTime
+    {
+        get
+        {
+            var range = _masDestroyTime - _minDestroyTime;
+            var ret = Random.value * range + _minDestroyTime;
+            return ret;
+        }
+    }
+
+
+    // Use this for initialization
+    void Start ()
+	{
+        TriggerHpRecov();
+
+    }
 	
 	// Update is called once per frame
 	void FixedUpdate () 
     {
+        /*
 	    if ((_lastPosition == transform.position) && !_triggered)
 	    {
             TriggerHpRecov();
 	        _triggered = true;
 	    }
 	    _lastPosition = transform.position;
+        */
     }
 
 
@@ -58,7 +73,7 @@ public class PhysicsSingleParticle : MonoBehaviour {
         else
         {
             var timer = gameObject.AddComponent<DestroyOnTimer>();
-            timer.Timeout = _timeoutBeforeDisapearing;
+            timer.Timeout = RandomDestroyTime;
         }
     }
 

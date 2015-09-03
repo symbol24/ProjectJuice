@@ -64,7 +64,7 @@ public class HPScript : ExtendedMonobehaviour
     {
 
     }
-
+    /*
     private void OnTriggerEnter2D(Collider2D collider)
     {
         //Debug.Log("OnTriggerEnter in " + gameObject.name);
@@ -72,6 +72,14 @@ public class HPScript : ExtendedMonobehaviour
         CheckForDamage(collider);
         CheckForPowerUp(collider);
 
+    }
+    */
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Collider2D collider = collision.collider;
+
+        CheckForDamage(collider);
+        CheckForPowerUp(collider);
     }
 
     private void OnTriggerStay2D(Collider2D collider)
@@ -97,7 +105,7 @@ public class HPScript : ExtendedMonobehaviour
         var checkDamaging = collider.gameObject.GetComponent<IDamaging>();
 
         //If it is not damaging, dont bother with calculations
-        if (checkDamaging != null && !IsAChild(collider.gameObject))
+        if (checkDamaging != null && !IsAChild(collider.gameObject) && checkDamaging.IsAvailableForConsumption)
         {
             var othersPosition = collider.gameObject.transform.position - _centerOfReferenceForJuice.position;
             RaycastHit2D hit = default(RaycastHit2D);
@@ -127,11 +135,18 @@ public class HPScript : ExtendedMonobehaviour
 
             #endregion DetectImpact
             CurrentHp -= checkDamaging.Damage;
+<<<<<<< HEAD
+=======
+            checkDamaging.Consumed();
+
+            Vector2 pointOfCollision = hit.point;
+>>>>>>> 091cb65ed0147e2db8665a6cdd5c289700f77a61
             OnHpImpactReceived(new ImpactEventArgs
             {
                 Damage = checkDamaging.Damage,
                 PointOfCollision = pointOfCollision
             });
+
             if (CurrentHp <= 0) OnDead();
         }
     }
