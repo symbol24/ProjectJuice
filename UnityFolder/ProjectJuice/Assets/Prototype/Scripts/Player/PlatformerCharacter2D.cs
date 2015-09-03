@@ -9,11 +9,11 @@ namespace UnityStandardAssets._2D
 
         [SerializeField] private float m_MaxSpeed = 10f;                    // The fastest the player can travel in the x axis.
         [SerializeField] private float m_JumpForce = 400f;                  // Amount of force added when the player jumps.
-        //[Range(0, 1)] [SerializeField] private float m_CrouchSpeed = .36f;  // Amount of maxSpeed applied to crouching movement. 1 = 100%
         [SerializeField] private bool m_AirControl = false;                 // Whether or not a player can steer while jumping;
         [Range(0, 1)] [SerializeField] private float m_AirSpeed = 0.25f;    // Percentage of speed in the air from controller input
         private bool m_HasDoubleJump = false;                               // Determines if has special second jump
         private bool m_CanDash = false;                                     // Whether the player can dash. Restes on timer on ground, landing or double jump.
+        [SerializeField] private ForceMode2D m_DashType = ForceMode2D.Force;
         [SerializeField] private float m_DashImpulse;                       // Force of dash impulse
         [SerializeField] private float m_DashDelay = 0.5f;                  // Delay before dashing again
         private float m_DashTimer = 0.0f;
