@@ -1,8 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using System.Collections;
 
-public class ImpactEventArgs : EventArgs 
+public class ImpactEventArgs : EventArgs
 {
     public float Damage { get; set; }
     /// <summary>

@@ -15,6 +15,8 @@ public class Bullet : MonoBehaviour, IDamaging {
 
     public bool HasPreferredImpactPoint { get { return false; } }
     public Vector3 PreferredImpactPoint { get; private set; }
+    public bool AddImpactForce { get { return false; }}
+    public Vector2 ImpactForce { get; private set; }
 
     public bool IsAvailableForConsumption
     {

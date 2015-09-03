@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using UnityEditor;
 using UnityEngine;
 using System.Collections;
@@ -30,7 +31,9 @@ public class HPScript : ExtendedMonobehaviour
     [SerializeField] private float _raycastVariationPerTry = 0.1f;
     [SerializeField] private float _raycastIterationsToFindTarget = 5;
     [SerializeField] private Transform _centerOfReferenceForJuice;
+    [SerializeField] private Rigidbody2D _mainRigidbody;
 
+    #region EventsAvailable
     public event EventHandler<ImpactEventArgs> HpImpactReceived;
     public event EventHandler<HpChangedEventArgs> HpChanged;
     public event EventHandler Dead;
@@ -40,7 +43,6 @@ public class HPScript : ExtendedMonobehaviour
         EventHandler handler = Dead;
         if (handler != null) handler(this, EventArgs.Empty);
     }
-
     protected virtual void OnHpChanged(HpChangedEventArgs e)
     {
         EventHandler<HpChangedEventArgs> handler = HpChanged;
@@ -51,12 +53,14 @@ public class HPScript : ExtendedMonobehaviour
         EventHandler<ImpactEventArgs> handler = HpImpactReceived;
         if (handler != null) handler(this, e);
     }
+    #endregion EventsAvailable
 
     // Use this for initialization
     private void Start()
     {
         CurrentHp = MaxHp;
         if (_centerOfReferenceForJuice == null) _centerOfReferenceForJuice = transform;
+        if (_mainRigidbody == null) _mainRigidbody = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
@@ -64,7 +68,7 @@ public class HPScript : ExtendedMonobehaviour
     {
 
     }
-    /*
+    
     private void OnTriggerEnter2D(Collider2D collider)
     {
         //Debug.Log("OnTriggerEnter in " + gameObject.name);
@@ -73,7 +77,6 @@ public class HPScript : ExtendedMonobehaviour
         CheckForPowerUp(collider);
 
     }
-    */
     private void OnCollisionEnter2D(Collision2D collision)
     {
         Collider2D collider = collision.collider;
@@ -81,11 +84,11 @@ public class HPScript : ExtendedMonobehaviour
         CheckForDamage(collider);
         CheckForPowerUp(collider);
     }
-
+    /*
     private void OnTriggerStay2D(Collider2D collider)
     {
         CheckForDamage(collider);
-    }
+    }*/
 
     private void CheckForPowerUp(Collider2D collider)
     {
@@ -105,14 +108,17 @@ public class HPScript : ExtendedMonobehaviour
         var checkDamaging = collider.gameObject.GetComponent<IDamaging>();
 
         //If it is not damaging, dont bother with calculations
-        if (checkDamaging != null && !IsAChild(collider.gameObject) && checkDamaging.IsAvailableForConsumption)
+        if (checkDamaging != null && checkDamaging.IsAvailableForConsumption && !IsAChild(checkDamaging))
         {
             var othersPosition = collider.gameObject.transform.position - _centerOfReferenceForJuice.position;
             RaycastHit2D hit = default(RaycastHit2D);
             Vector2 pointOfCollision;
             #region DetectImpact
 
-            if (checkDamaging.HasPreferredImpactPoint) pointOfCollision = checkDamaging.PreferredImpactPoint;
+            if (checkDamaging.HasPreferredImpactPoint)
+            {
+                pointOfCollision = checkDamaging.PreferredImpactPoint;
+            }
             else
             {
                 for (int i = 0; i < _raycastIterationsToFindTarget; i++)
@@ -136,15 +142,26 @@ public class HPScript : ExtendedMonobehaviour
             #endregion DetectImpact
             CurrentHp -= checkDamaging.Damage;
             checkDamaging.Consumed();
+            if (checkDamaging.AddImpactForce)
+            {
+                StartCoroutine(AddForceCoroutine(checkDamaging.ImpactForce));
+            }
 
-            pointOfCollision = hit.point;
-            OnHpImpactReceived(new ImpactEventArgs
+            var e = new ImpactEventArgs
             {
                 Damage = checkDamaging.Damage,
                 PointOfCollision = pointOfCollision
-            });
+            };
+            OnHpImpactReceived(e);
 
             if (CurrentHp <= 0) OnDead();
         }
     }
+
+    IEnumerator AddForceCoroutine(Vector2 forceToAdd)
+    {
+        yield return new WaitForFixedUpdate();
+        _mainRigidbody.AddForce(forceToAdd , ForceMode2D.Force);
+    }
+
 }
