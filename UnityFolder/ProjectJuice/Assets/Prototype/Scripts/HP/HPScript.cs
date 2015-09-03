@@ -135,12 +135,9 @@ public class HPScript : ExtendedMonobehaviour
 
             #endregion DetectImpact
             CurrentHp -= checkDamaging.Damage;
-<<<<<<< HEAD
-=======
             checkDamaging.Consumed();
 
-            Vector2 pointOfCollision = hit.point;
->>>>>>> 091cb65ed0147e2db8665a6cdd5c289700f77a61
+            pointOfCollision = hit.point;
             OnHpImpactReceived(new ImpactEventArgs
             {
                 Damage = checkDamaging.Damage,
