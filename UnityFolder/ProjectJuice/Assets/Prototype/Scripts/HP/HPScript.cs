@@ -144,7 +144,7 @@ public class HPScript : ExtendedMonobehaviour
             checkDamaging.Consumed();
             if (checkDamaging.AddImpactForce)
             {
-                StartCoroutine(AddForceCoroutine(checkDamaging.ImpactForce));
+                StartCoroutine(AddForceCoroutine(checkDamaging.ImpactForce, checkDamaging.TimeToApplyForce));
             }
 
             var e = new ImpactEventArgs
@@ -158,10 +158,19 @@ public class HPScript : ExtendedMonobehaviour
         }
     }
 
-    IEnumerator AddForceCoroutine(Vector2 forceToAdd)
+    IEnumerator AddForceCoroutine(Vector2 forceToAdd, float timeToApplyForce)
     {
-        yield return new WaitForFixedUpdate();
-        _mainRigidbody.AddForce(forceToAdd , ForceMode2D.Force);
+        float currentTime = 0f;
+        while (currentTime < timeToApplyForce)
+        {
+            print(currentTime);
+            _mainRigidbody.velocity = forceToAdd;
+            currentTime += Time.deltaTime;
+            yield return null;
+        }
+        _mainRigidbody.velocity = Vector2.zero;
+        yield return null;
+        //_mainRigidbody.AddForce(forceToAdd, ForceMode2D.Impulse);
     }
 
 }
