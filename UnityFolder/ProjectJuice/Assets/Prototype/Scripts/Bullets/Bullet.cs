@@ -13,10 +13,31 @@ public class Bullet : MonoBehaviour, IDamaging {
         }
     }
 
-    public bool HasPreferredImpactPoint { get { return false; } }
-    public Vector3 PreferredImpactPoint { get; private set; }
-    public bool AddImpactForce { get { return false; }}
+    public bool HasPreferredImpactPoint
+    {
+        get { return _hasPreferredImpactPoint; }
+        private set { _hasPreferredImpactPoint = value; }
+    }
+
+    public Vector3 PreferredImpactPoint
+    {
+        get { return _preferredImpactPoint; }
+        private set { _preferredImpactPoint = value; }
+    }
+
+    public bool AddImpactForce
+    {
+        get { return _addImpactForce; }
+        private set { _addImpactForce = value; }
+    }
+
     public Vector2 ImpactForce { get; private set; }
+
+    public float TimeToApplyForce
+    {
+        get { return _timeToApplyForce; }
+        private set { _timeToApplyForce = value; }
+    }
 
     public bool IsAvailableForConsumption
     {
@@ -27,6 +48,14 @@ public class Bullet : MonoBehaviour, IDamaging {
     }
 
     public LayerMask m_WhatIsGround; // A mask determining what is ground 
+    [SerializeField]
+    private float _timeToApplyForce;
+    [SerializeField]
+    private bool _addImpactForce = false;
+    [SerializeField]
+    private bool _hasPreferredImpactPoint = false;
+    [SerializeField]
+    private Vector3 _preferredImpactPoint;
 
     void Start()
     {

@@ -18,6 +18,8 @@ public class MeleeAttack : ExtendedMonobehaviour
     private Vector2 _impactForce;
     [SerializeField]
     private bool _addImpactForce = true;
+    [SerializeField]
+    private float _timeToApplyForce;
 
     public float rotationSpeed = 100f;
     public float startingRotation = -45;
@@ -81,6 +83,7 @@ public class MeleeAttack : ExtendedMonobehaviour
     private bool _wasConsumedDuringThisAnimation = false;
     
 
+
     public bool IsAvailableForConsumption
     {
         get { return _isSwingingAnimationOnGoing && !_wasConsumedDuringThisAnimation; }
@@ -106,5 +109,11 @@ public class MeleeAttack : ExtendedMonobehaviour
     {
         get { return _impactForce*(_inputManager.m_FacingRight ? 1 : -1); }
         private set { _impactForce = value; }
+    }
+
+    public float TimeToApplyForce
+    {
+        get { return _timeToApplyForce; }
+        private set { _timeToApplyForce = value; }
     }
 }

@@ -8,4 +8,5 @@ public interface IDamaging : IConsumable
     Vector3 PreferredImpactPoint { get; }
     bool AddImpactForce { get; }
     Vector2 ImpactForce { get; }
+    float TimeToApplyForce { get; }
 }

@@ -12,6 +12,8 @@ public class DamagingMock : MonoBehaviour, IDamaging {
     private Vector3 _preferredImpactPoint;
     [SerializeField]
     private bool _hasPreferredImpactPoint = false;
+    [SerializeField] 
+    private float _timeToApplyForce;
 
     // Use this for initialization
 	void Start () {
@@ -56,5 +58,11 @@ public class DamagingMock : MonoBehaviour, IDamaging {
     {
         get { return _impactForce; }
         private set { _impactForce = value; }
+    }
+
+    public float TimeToApplyForce
+    {
+        get { return _timeToApplyForce; }
+        private set { _timeToApplyForce = value; }
     }
 }
