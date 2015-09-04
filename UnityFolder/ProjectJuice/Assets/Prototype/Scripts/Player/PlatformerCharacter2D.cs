@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 namespace UnityStandardAssets._2D
@@ -14,8 +15,11 @@ namespace UnityStandardAssets._2D
         private bool m_HasDoubleJump = false;                               // Determines if has special second jump
         private bool m_CanDash = false;                                     // Whether the player can dash. Restes on timer on ground, landing or double jump.
         [SerializeField] private ForceMode2D m_DashType = ForceMode2D.Force;
-        [SerializeField] private float m_DashImpulse;                       // Force of dash impulse
-        [SerializeField] private float m_DashDelay = 0.5f;                  // Delay before dashing again
+        [SerializeField] private float m_DashSpeed;
+        [Range(0, 1)][SerializeField] private float m_DashDelay = 0.5f;                  // Delay before dashing again
+        [Range(0, 1)][SerializeField] private float m_DashTime = 0.3f; 
+        [Range(0, 1)][SerializeField] private float m_DashEndTime = 0.05f; 
+        [Range(0, 1)][SerializeField] private float m_DashEndReducer = 0.9f; 
         private float m_DashTimer = 0.0f;
 
         [SerializeField] private LayerMask m_WhatIsGround;                  // A mask determining what is ground to the character
@@ -42,7 +46,7 @@ namespace UnityStandardAssets._2D
 
         private void Update()
         {
-            m_Grounded = SetGrounded();
+            m_Grounded = SetGrounded(m_Grounded);
 
             // Set the vertical animation
             m_Anim.SetFloat("vSpeed", m_Rigidbody2D.velocity.y);
@@ -92,7 +96,7 @@ namespace UnityStandardAssets._2D
             if (m_Grounded && jump && m_Anim.GetBool("Ground")) Jump();
 
             // If the player should dash
-            if (m_CanDash && dash) Dash();
+            if (m_CanDash && dash) StartCoroutine(Dash());
         }
 
 
@@ -107,12 +111,17 @@ namespace UnityStandardAssets._2D
             m_Body.transform.localScale = theScale;
         }
 
-        private void Dash()
+        IEnumerator Dash()
         {
             if (m_CanDash)
             {
                 // Add a directional force to the player as per input.
+                m_DashTimer = float.MaxValue;
                 m_CanDash = false;
+                m_AirControl = false;
+                float timer = Time.time + m_DashTime;
+
+                Vector2 previousVelocity = m_Rigidbody2D.velocity;
 
                 Vector2 angle = new Vector2(m_Controller.m_XAxis, m_Controller.m_YAxis); //get dash angle from x axis
 
@@ -124,22 +133,42 @@ namespace UnityStandardAssets._2D
                 }
 
                 // if grounded force y to positive
-                if (m_Grounded && angle.y < 0) angle.y = -angle.y;
+                if (m_Grounded && angle.y < 0) angle.y = 0f;
 
                 // if not facing right force x negative
                 if (!m_Controller.m_FacingRight && angle.x > 0) angle.x = -angle.x;
 
                 // normalize and add impulse value
-                angle = angle.normalized * m_DashImpulse;
+                angle = angle.normalized * m_DashSpeed;
 
-                //add the force as force
-                m_Rigidbody2D.AddForce(angle, ForceMode2D.Force);
+
+                while(Time.time <= timer)
+                {
+                    m_Rigidbody2D.velocity = angle;
+                    yield return 0;
+                }
+
+                Vector2 currentVelocity = m_Rigidbody2D.velocity;
+
+                float slowDownTimer = Time.time + m_DashEndTime;
+
+                while (Time.time <= slowDownTimer)
+                {
+                    print(m_Rigidbody2D.velocity);
+                    if (m_Rigidbody2D.velocity.y > 0)
+                    {
+                        var newVelocity = m_Rigidbody2D.velocity * m_DashEndReducer;
+                        m_Rigidbody2D.velocity = newVelocity;
+                    }
+                    yield return 0;
+                }
+                if (m_Grounded) m_Rigidbody2D.velocity = Vector2.zero;
 
                 //set values for cooldown
-                m_AirControl = false;
                 m_DashTimer = Time.time + m_DashDelay;
             }
         }
+
 
         private void Jump()
         {
@@ -149,7 +178,7 @@ namespace UnityStandardAssets._2D
             m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
         }
 
-        private bool SetGrounded()
+        private bool SetGrounded(bool previousGround)
         {
 
             // The player is grounded if a circlecast to the groundcheck position hits anything designated as ground
@@ -157,6 +186,7 @@ namespace UnityStandardAssets._2D
 
 
             bool isGrounded = false;
+
 
             Collider2D[] colliders = Physics2D.OverlapCircleAll(m_GroundCheck.position, k_GroundedRadius, m_WhatIsGround);
             for (int i = 0; i < colliders.Length; i++)
@@ -168,7 +198,9 @@ namespace UnityStandardAssets._2D
 
             if (isGrounded)
             {
-                //m_CanDash = true;
+                if(!previousGround)
+                    //m_CanDash = true;
+
                 m_AirControl = true;
             }
 
