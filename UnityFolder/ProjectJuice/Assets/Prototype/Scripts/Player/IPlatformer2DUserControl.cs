@@ -3,7 +3,6 @@ using System.Collections;
 
 public interface IPlatformer2DUserControl
 {
-
     bool m_Jump { get; }
     bool m_Dash { get; }
     float m_XAxis { get; }
