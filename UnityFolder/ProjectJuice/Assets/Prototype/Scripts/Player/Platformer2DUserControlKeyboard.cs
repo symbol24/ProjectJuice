@@ -46,8 +46,8 @@ public class Platformer2DUserControlKeyboard : MonoBehaviour, IPlatformer2DUserC
     {
         m_Jump = Input.GetKeyDown(_m_jump);
         m_Dash = Input.GetKeyDown(_m_dash);
-        m_XAxis = Convert.ToInt32(Input.GetKey(_m_right)) - Convert.ToInt32(Input.GetKey(_m_left));
-        m_YAxis = Convert.ToInt32(Input.GetKey(_m_up)) - Convert.ToInt32(Input.GetKey(_m_down));
+        m_XAxis = Convert.ToInt32(Input.GetKey(_m_right)) - (Input.GetKey(_m_left) ? 1 : 0);
+        m_YAxis = Convert.ToInt32(Input.GetKey(_m_up)) - (Input.GetKey(_m_down) ?  1 : 0);
         m_Shoot = Input.GetKeyDown(_m_shoot);
         m_Melee = Input.GetKeyDown(_m_melee);
         m_Special = Input.GetKeyDown(_m_special);

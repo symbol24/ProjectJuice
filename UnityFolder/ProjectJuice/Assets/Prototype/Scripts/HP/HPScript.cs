@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Runtime.Remoting.Messaging;
 using UnityEditor;
 using UnityEngine;
 using System.Collections;
@@ -108,7 +109,7 @@ public class HPScript : ExtendedMonobehaviour
         var checkDamaging = collider.gameObject.GetComponent<IDamaging>();
 
         //If it is not damaging, dont bother with calculations
-        if (checkDamaging != null && checkDamaging.IsAvailableForConsumption && !IsAChild(checkDamaging))
+        if (checkDamaging != null && CheckIfIDamagableIsActive(checkDamaging))
         {
             var othersPosition = collider.gameObject.transform.position - _centerOfReferenceForJuice.position;
             RaycastHit2D hit = default(RaycastHit2D);
@@ -156,6 +157,18 @@ public class HPScript : ExtendedMonobehaviour
 
             if (CurrentHp <= 0) OnDead();
         }
+    }
+
+    private bool CheckIfIDamagableIsActive(IDamaging checkDamaging)
+    {
+        var ret = checkDamaging.IsAvailableForConsumption && !IsAChild(checkDamaging);
+        if (ret && checkDamaging.HasImmuneTargets)
+        {
+            //If it is not in the immunetargets collection, it should do damage
+            ret = !checkDamaging.ImmuneTargets.Any(c => c == this);
+        }
+        return ret;
+
     }
 
     IEnumerator AddForceCoroutine(Vector2 forceToAdd, float timeToApplyForce)

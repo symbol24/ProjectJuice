@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
 using System.Collections;
 using System;
 
@@ -39,6 +41,10 @@ public class Bullet : MonoBehaviour, IDamaging {
         private set { _timeToApplyForce = value; }
     }
 
+    private Stack<HPScript> _immuneTargets = new Stack<HPScript>();
+    public IEnumerable<HPScript> ImmuneTargets { get { return _immuneTargets; } }
+    public bool HasImmuneTargets { get { return _immuneTargets.Any(); } }
+
     public bool IsAvailableForConsumption
     {
         get
@@ -74,6 +80,11 @@ public class Bullet : MonoBehaviour, IDamaging {
     void OnCollisionEnter2D(Collision2D collision)
     {
         if (LayerChecker.IsInLayerMask(collision.gameObject, m_WhatIsGround)) Consumed();
+    }
+
+    public void AddImmuneTarget(HPScript hpScript)
+    {
+        _immuneTargets.Push(hpScript);
     }
 
 }

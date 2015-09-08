@@ -16,12 +16,14 @@ public class Gun : ExtendedMonobehaviour {
     public Bullet m_Bullet { get { return m_BulletPrefab; } }
     [SerializeField] private float m_ShotDelay = 0.1f;
     public float m_Delay { get { return m_ShotDelay; } }
+    [SerializeField] private HPScript m_HpScript;
 
 
     protected void Awake()
     {
         m_Controller = GetComponent<IPlatformer2DUserControl>();
         m_DelayManager = GetComponent<DelayManager>();
+        if(m_HpScript == null) m_HpScript = GetComponent<HPScript>();
     }
 	
 	// Update is called once per frame
@@ -43,5 +45,6 @@ public class Gun : ExtendedMonobehaviour {
     public void FireOneBullet()
     {
         Bullet newBullet = Instantiate(m_BulletPrefab, m_GunReference.transform.position, m_GunReference.transform.rotation) as Bullet;
+        newBullet.AddImmuneTarget(m_HpScript);
     }
 }

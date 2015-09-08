@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using System.Collections;
 using UnityStandardAssets._2D;
 
 public class MeleeAttack : ExtendedMonobehaviour
 {
+    public IPlatformer2DUserControl InputManager { get { return _inputManager; } }
     private IPlatformer2DUserControl _inputManager;
     [SerializeField] 
     private GameObject _swingerCollider;
@@ -81,7 +83,7 @@ public class MeleeAttack : ExtendedMonobehaviour
 
 
     private bool _wasConsumedDuringThisAnimation = false;
-    
+    private List<HPScript> _immuneTargets = new List<HPScript>();
 
 
     public bool IsAvailableForConsumption
@@ -116,4 +118,7 @@ public class MeleeAttack : ExtendedMonobehaviour
         get { return _timeToApplyForce; }
         private set { _timeToApplyForce = value; }
     }
+
+    public IEnumerable<HPScript> ImmuneTargets { get { return _immuneTargets; } }
+    public bool HasImmuneTargets { get { return false; }}
 }

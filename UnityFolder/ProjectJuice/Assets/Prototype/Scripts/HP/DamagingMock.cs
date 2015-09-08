@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using System.Collections;
 
 public class DamagingMock : MonoBehaviour, IDamaging {
@@ -14,6 +15,10 @@ public class DamagingMock : MonoBehaviour, IDamaging {
     private bool _hasPreferredImpactPoint = false;
     [SerializeField] 
     private float _timeToApplyForce;
+    [SerializeField] 
+    private List<HPScript> _immuneTargets;
+    [SerializeField] 
+    private bool _hasImmuneTargets;
 
     // Use this for initialization
 	void Start () {
@@ -64,5 +69,16 @@ public class DamagingMock : MonoBehaviour, IDamaging {
     {
         get { return _timeToApplyForce; }
         private set { _timeToApplyForce = value; }
+    }
+
+    public IEnumerable<HPScript> ImmuneTargets
+    {
+        get { return _immuneTargets; }
+    }
+
+    public bool HasImmuneTargets
+    {
+        get { return _hasImmuneTargets; }
+        private set { _hasImmuneTargets = value; }
     }
 }

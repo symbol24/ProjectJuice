@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using System.Collections;
 
 public interface IDamaging : IConsumable
@@ -9,4 +10,6 @@ public interface IDamaging : IConsumable
     bool AddImpactForce { get; }
     Vector2 ImpactForce { get; }
     float TimeToApplyForce { get; }
+    IEnumerable<HPScript> ImmuneTargets { get; }
+    bool HasImmuneTargets { get; }
 }
