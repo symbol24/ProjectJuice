@@ -24,8 +24,14 @@ public class PlayerData : MonoBehaviour {
     [SerializeField] private PlayerIDs m_PlayerID;
     public PlayerIDs playerID { get { return m_PlayerID; } set { m_PlayerID = value; } }
 
-    private GamePad.Index m_PlayerGamepad;
-    public GamePad.Index playerGameplad { get { return m_PlayerGamepad; } set { m_PlayerGamepad = value; } }
+    [SerializeField] private GamePad.Index m_PlayerGamepad;
+    public GamePad.Index GamepadIndex { get { return m_PlayerGamepad; } set { m_PlayerGamepad = value; } }
+
+    private bool m_PlayerActivated = false;
+    public bool isActivated { get { return m_PlayerActivated; } set { m_PlayerActivated = value; } }
+
+    [SerializeField] private Abilities m_PlayerAbility = Abilities.None;
+    public Abilities PlayerAbility { get { return m_PlayerAbility; } set { m_PlayerAbility = value; } }
 
     void Awake()
     {
@@ -36,9 +42,16 @@ public class PlayerData : MonoBehaviour {
         }
         else
         {
-            if (this != _instance)
-                Destroy(this.gameObject);
+            //if (this != _instance)
+            //Destroy(this.gameObject);
+            DontDestroyOnLoad(this);
         }
+    }
+
+    public void CheckActivated()
+    {
+        if(!m_PlayerActivated)
+            Destroy(this.gameObject);
     }
 
 }
