@@ -23,6 +23,7 @@ public class PlayerSpawner : MonoBehaviour {
         {
             GameObject temp = Instantiate(m_PlayerPrefab, m_Spawners[i].transform.position, m_Spawners[i].transform.rotation) as GameObject;
             m_Players.Add(temp);
+            i++;
         }
     }
 }

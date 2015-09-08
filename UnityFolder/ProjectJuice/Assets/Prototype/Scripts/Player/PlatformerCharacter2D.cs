@@ -79,7 +79,7 @@ namespace UnityStandardAssets._2D
                 }
             }
 
-            if (m_DashTimer < Time.time && !m_CanDash)
+            if (m_DashTimer < Time.time && !m_CanDash && m_Grounded)
             {
                 CheckDrag();
                 m_CanDash = true;
@@ -113,13 +113,7 @@ namespace UnityStandardAssets._2D
 
             // If the player should dash
             if (m_CanDash && dash)
-            {
-                if (!m_DashIsPhysics)
-                    StartCoroutine(Dash());
-                else
-                    PhysicsDash();
-
-            }
+                PhysicsDash();
         }
 
 
@@ -134,67 +128,6 @@ namespace UnityStandardAssets._2D
             m_Body.transform.localScale = theScale;
         }
 
-        IEnumerator Dash()
-        {
-            if (m_CanDash)
-            {
-                // Add a directional force to the player as per input.
-                m_DashTimer = float.MaxValue;
-                m_CanDash = false;
-                m_AirControl = false;
-                float timer = Time.time + m_DashTime;
-
-                Vector2 previousVelocity = m_Rigidbody2D.velocity;
-
-                Vector2 angle = new Vector2(m_Controller.m_XAxis, m_Controller.m_YAxis); //get dash angle from x axis
-
-                //if no x input set direction to horizontal
-                if (m_Controller.m_XAxis <= 0.1f && m_Controller.m_XAxis >= -0.1f && m_Controller.m_YAxis <= 0.1f && m_Controller.m_YAxis >= -0.1f)
-                {
-                    angle.x = 1f;
-                    angle.y = 0f;
-                }
-
-                // if grounded force y to positive
-                if (m_Grounded && angle.y < 0) angle.y = 0f;
-
-                // if not facing right force x negative
-                if (!m_Controller.m_FacingRight && angle.x > 0) angle.x = -angle.x;
-
-                print(angle);
-
-                // normalize and add impulse value
-                angle = angle.normalized * m_DashSpeed;
-
-                print(angle);
-
-                while(Time.time <= timer)
-                {
-                    m_Rigidbody2D.velocity = angle;
-                    yield return 0;
-                }
-
-                Vector2 currentVelocity = m_Rigidbody2D.velocity;
-
-                float slowDownTimer = Time.time + m_DashEndTime;
-
-                while (Time.time <= slowDownTimer)
-                {
-                    if (m_Rigidbody2D.velocity.y > 0)
-                    {
-                        var newVelocity = m_Rigidbody2D.velocity * m_DashEndReducer;
-                        m_Rigidbody2D.velocity = newVelocity;
-                    }
-                    yield return 0;
-                }
-                if (m_Grounded) m_Rigidbody2D.velocity = previousVelocity;
-
-                //set values for cooldown
-                m_DashTimer = Time.time + m_DashDelay;
-            }
-        }
-
-
         private void Jump()
         {
             if (m_Grounded && m_Anim.GetBool("Ground"))
@@ -202,14 +135,15 @@ namespace UnityStandardAssets._2D
                 // Add a vertical force to the player.
                 m_Grounded = false;
                 m_Anim.SetBool("Ground", false);
+                m_Rigidbody2D.velocity = Vector2.zero;
                 m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
-                //if (m_Controller.m_PlayerData.PlayerAbility == Abilities.DoubleJump) m_DJTimer = Time.time + m_DoubleJumpDelay;
             }
             else if (m_HasDoubleJump && !m_Grounded && !m_UsedDoubleJump)
             {
                 CheckDrag();
                 m_UsedDoubleJump = true;
                 if (!m_CanDash) m_CanDash = !m_CanDash;
+                m_Rigidbody2D.velocity = Vector2.zero;
                 m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
             }
         }
@@ -273,6 +207,7 @@ namespace UnityStandardAssets._2D
 
                 // normalize and add impulse value
                 angle = angle.normalized * m_DashForce;
+                m_Rigidbody2D.velocity = Vector2.zero;
                 m_Rigidbody2D.AddForce(angle, m_DashType);
 
                 //set values for cooldown
