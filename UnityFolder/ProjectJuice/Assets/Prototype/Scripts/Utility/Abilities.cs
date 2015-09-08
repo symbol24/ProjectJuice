@@ -1,0 +1,1 @@
+﻿public enum Abilities { DoubleJump, Melee, AbsorbShield, GrapplingHook, None, }

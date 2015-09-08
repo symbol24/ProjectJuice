@@ -1,1 +1,1 @@
-﻿public enum PlayerIDs { A, B, C, D }
+﻿public enum PlayerIDs { A, B, C, D, X }

@@ -4,7 +4,7 @@ using System.Collections;
 
 public class Platformer2DUserControlKeyboard : MonoBehaviour, IPlatformer2DUserControl
 {
-
+    public PlayerData m_PlayerData { get; private set; }
     [SerializeField] 
     private KeyCode _m_jump = KeyCode.Space;
     public bool m_Jump { get; private set; }
