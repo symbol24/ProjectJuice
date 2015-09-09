@@ -19,14 +19,11 @@ namespace UnityStandardAssets._2D
         //dash
         private bool m_CanDash = false;                                     // Whether the player can dash. Restes on timer on ground, landing or double jump.
         [SerializeField] private ForceMode2D m_DashType = ForceMode2D.Force;
-        [SerializeField] private float m_DashSpeed;
         [SerializeField] private float m_DashForce;
-        [Range(0, 1)][SerializeField] private float m_DashDelay = 0.5f;                  // Delay before dashing again
-        [Range(0, 1)][SerializeField] private float m_DashTime = 0.3f; 
-        [Range(0, 1)][SerializeField] private float m_DashEndTime = 0.05f; 
-        [Range(0, 1)][SerializeField] private float m_DashEndReducer = 0.9f; 
+        [Range(0, 1)][SerializeField] private float m_DashDelay = 0.5f;      // Delay before dashing again
         private float m_DashTimer = 0.0f;
-        [SerializeField] private bool m_DashIsPhysics = false;
+        [Range(0, 10)][SerializeField] private int m_DashDrag = 5;
+        [Range(0, 1)][SerializeField] private float m_DashDragRemove = 0.12f;
 
         //grounding and ceiling
         [SerializeField] private LayerMask m_WhatIsGround;                  // A mask determining what is ground to the character
@@ -185,7 +182,6 @@ namespace UnityStandardAssets._2D
                 m_DashTimer = float.MaxValue;
                 m_CanDash = false;
                 m_AirControl = false;
-                float timer = Time.time + m_DashTime;
                 m_Rigidbody2D.drag = 5;
 
                 Vector2 angle = new Vector2(m_Controller.m_XAxis, m_Controller.m_YAxis); //get dash angle from x axis
@@ -212,6 +208,7 @@ namespace UnityStandardAssets._2D
 
                 //set values for cooldown
                 m_DashTimer = Time.time + m_DashDelay;
+                StartCoroutine(DashDragReset());
             }
         }
 
@@ -231,5 +228,10 @@ namespace UnityStandardAssets._2D
 
         }
 
+        IEnumerator DashDragReset()
+        {
+            yield return new WaitForSeconds(m_DashDragRemove);
+            CheckDrag();
+        }
     }
 }
