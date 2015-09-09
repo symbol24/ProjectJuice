@@ -24,4 +24,9 @@ public static class Extensions
     {
         return new Vector3(xValue, toSet.y, toSet.z);
     }
+
+    public static Vector2 ToVector2(this Vector3 toChange)
+    {
+        return new Vector2(toChange.x, toChange.y);
+    }
 }

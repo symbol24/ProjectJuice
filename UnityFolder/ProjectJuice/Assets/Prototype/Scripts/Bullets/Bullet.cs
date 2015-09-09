@@ -7,6 +7,7 @@ using System;
 public class Bullet : MonoBehaviour, IDamaging {
     [SerializeField] private float m_baseSpeed;
     [SerializeField] private float m_Damage;
+    private Rigidbody2D m_RigidBody;
     public float Damage
     {
         get
@@ -65,11 +66,15 @@ public class Bullet : MonoBehaviour, IDamaging {
 
     void Start()
     {
+        m_RigidBody = GetComponent<Rigidbody2D>();
+        //m_RigidBody.AddForce(Vector2.right * 2000);
     }
 
 	// Update is called once per frame
 	void Update () {
         transform.Translate(Vector2.up * m_baseSpeed * Time.deltaTime);
+        //m_RigidBody.MovePosition(transform.position.ToVector2() + (Vector2.right * m_baseSpeed * Time.deltaTime));
+        
 	}
 
     public void Consumed()
@@ -79,7 +84,11 @@ public class Bullet : MonoBehaviour, IDamaging {
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (LayerChecker.IsInLayerMask(collision.gameObject, m_WhatIsGround)) Consumed();
+        if (LayerChecker.IsInLayerMask(collision.gameObject, m_WhatIsGround))
+        {
+            print("hitting ground");
+            Consumed();
+        }
     }
 
     public void AddImmuneTarget(HPScript hpScript)
