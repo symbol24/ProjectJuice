@@ -19,11 +19,14 @@ public class PlayerSpawner : MonoBehaviour {
     void SpawnPlayers()
     {
         int i = 0;
+        PlayerIDs p = PlayerIDs.A;
         foreach(PlayerData pd in m_ListofPlayers)
         {
             GameObject temp = Instantiate(m_PlayerPrefab, m_Spawners[i].transform.position, m_Spawners[i].transform.rotation) as GameObject;
+            temp.GetComponent<Platformer2DUserControl>().PlayerID = p;
             m_Players.Add(temp);
             i++;
+            p++;
         }
     }
 }

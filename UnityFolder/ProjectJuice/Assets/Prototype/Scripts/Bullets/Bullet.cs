@@ -65,12 +65,12 @@ public class Bullet : MonoBehaviour, IDamaging {
     void Start()
     {
         m_RigidBody = GetComponent<Rigidbody2D>();
-        //m_RigidBody.AddForce(Vector2.right * 2000);
+        m_RigidBody.AddForce(transform.up * m_baseSpeed);
     }
 
 	// Update is called once per frame
 	void Update () {
-        transform.Translate(Vector2.up * m_baseSpeed * Time.deltaTime);
+        //transform.Translate(Vector2.up * m_baseSpeed * Time.deltaTime);
         //m_RigidBody.MovePosition(transform.position.ToVector2() + (Vector2.right * m_baseSpeed * Time.deltaTime));
         
 	}
