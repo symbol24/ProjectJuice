@@ -180,7 +180,7 @@ public class HPScript : ExtendedMonobehaviour
         while (currentTime < impactForceSettings.FirstCycleTime)
         {
             //print(_mainRigidbody.velocity);
-            _mainRigidbody.velocity = (impactForceSettings.DirectionComingForm == Direction2D.Right ? 1 : -1) *addPositiveForceTo(impactForceSettings.ImpactForce, currentMultiplier, _mainRigidbody.velocity);
+            _mainRigidbody.velocity = addPositiveForceTo(impactForceSettings.ImpactForce, currentMultiplier, _mainRigidbody.velocity, impactForceSettings.DirectionComingForm);
             currentTime += Time.deltaTime;
             currentMultiplier *= impactForceSettings.FirstCycleSpeedMitigator;
             yield return null;
@@ -197,7 +197,7 @@ public class HPScript : ExtendedMonobehaviour
         while (currentTime < impactForceSettings.SecondCycleTime)
         {
             //print(currentTime);
-            _mainRigidbody.velocity = (impactForceSettings.DirectionComingForm == Direction2D.Right ? 1 : -1) * addPositiveForceTo(cumulativeForce, currentMultiplier, _mainRigidbody.velocity);
+            _mainRigidbody.velocity = addPositiveForceTo(cumulativeForce, currentMultiplier, _mainRigidbody.velocity, impactForceSettings.DirectionComingForm);
             currentTime += Time.deltaTime;
             currentMultiplier *= impactForceSettings.SecondCycleSpeedMitigator;
             yield return null;
@@ -205,17 +205,18 @@ public class HPScript : ExtendedMonobehaviour
         if (impactForceSettings.ZeroVelocityAtEnd) _mainRigidbody.velocity = Vector2.zero;
     }
 
-    private Vector2 addPositiveForceTo(Vector2 reference, float multiplier, Vector2 checkForY)
+    private Vector2 addPositiveForceTo(Vector2 reference, float multiplier, Vector2 checkForY, Direction2D rightOrLeft)
     {
-        Vector2 ret;
+        Vector2 ignoringY;
         if (checkForY.y >= 0)
         {
-            ret = reference*multiplier;
+            ignoringY = reference*multiplier;
         }
         else
         {
-            ret = new Vector2(reference.x * multiplier, checkForY.y);
+            ignoringY = new Vector2(reference.x * multiplier, checkForY.y);
         }
+        var ret = new Vector2(ignoringY.x*(rightOrLeft == Direction2D.Right ? 1 : -1), ignoringY.y);
         return ret;
     }
 
