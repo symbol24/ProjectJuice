@@ -17,11 +17,10 @@ public class MeleeAttack : ExtendedMonobehaviour
     [SerializeField]
     private float _damage = 80;
     [SerializeField]
-    private Vector2 _impactForce;
-    [SerializeField]
     private bool _addImpactForce = true;
-    [SerializeField]
-    private float _timeToApplyForce;
+
+    public ImpactForceSettings _impactForceSettings;
+
 
     public float rotationSpeed = 100f;
     public float startingRotation = -45;
@@ -107,18 +106,7 @@ public class MeleeAttack : ExtendedMonobehaviour
         private set { _addImpactForce = value; }
     }
 
-    public Vector2 ImpactForce
-    {
-        get { return _impactForce*(_inputManager.m_FacingRight ? 1 : -1); }
-        private set { _impactForce = value; }
-    }
-
-    public float TimeToApplyForce
-    {
-        get { return _timeToApplyForce; }
-        private set { _timeToApplyForce = value; }
-    }
-
     public IEnumerable<HPScript> ImmuneTargets { get { return _immuneTargets; } }
     public bool HasImmuneTargets { get { return false; }}
+    public ImpactForceSettings ImpactForceSettings { get { return _impactForceSettings; } }
 }

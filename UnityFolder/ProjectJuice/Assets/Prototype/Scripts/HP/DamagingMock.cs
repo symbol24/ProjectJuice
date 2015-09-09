@@ -6,19 +6,17 @@ public class DamagingMock : MonoBehaviour, IDamaging {
     [SerializeField] 
     private float _damage;
     [SerializeField]
-    private Vector2 _impactForce;
-    [SerializeField]
     private bool _addImpactForce = false;
     [SerializeField]
     private Vector3 _preferredImpactPoint;
     [SerializeField]
     private bool _hasPreferredImpactPoint = false;
     [SerializeField] 
-    private float _timeToApplyForce;
-    [SerializeField] 
     private List<HPScript> _immuneTargets;
     [SerializeField] 
     private bool _hasImmuneTargets;
+    [SerializeField]
+    private ImpactForceSettings _impactForceSettings;
 
     // Use this for initialization
 	void Start () {
@@ -59,16 +57,10 @@ public class DamagingMock : MonoBehaviour, IDamaging {
         private set { _addImpactForce = value; }
     }
 
-    public Vector2 ImpactForce
+    public ImpactForceSettings ImpactForceSettings
     {
-        get { return _impactForce; }
-        private set { _impactForce = value; }
-    }
-
-    public float TimeToApplyForce
-    {
-        get { return _timeToApplyForce; }
-        private set { _timeToApplyForce = value; }
+        get { return _impactForceSettings; }
+        private set { _impactForceSettings = value; }
     }
 
     public IEnumerable<HPScript> ImmuneTargets

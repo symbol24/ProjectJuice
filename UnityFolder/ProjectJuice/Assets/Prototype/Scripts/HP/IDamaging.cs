@@ -8,8 +8,9 @@ public interface IDamaging : IConsumable
     bool HasPreferredImpactPoint { get; }
     Vector3 PreferredImpactPoint { get; }
     bool AddImpactForce { get; }
-    Vector2 ImpactForce { get; }
-    float TimeToApplyForce { get; }
+    //Vector2 ImpactForce { get; }
+    ImpactForceSettings ImpactForceSettings { get; }
+    //float TimeToApplyForce { get; }
     IEnumerable<HPScript> ImmuneTargets { get; }
     bool HasImmuneTargets { get; }
 }
