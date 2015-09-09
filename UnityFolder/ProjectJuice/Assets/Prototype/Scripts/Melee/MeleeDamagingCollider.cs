@@ -34,8 +34,7 @@ public class MeleeDamagingCollider : MonoBehaviour, IDamaging
     public bool HasPreferredImpactPoint { get { return true; }}
     public Vector3 PreferredImpactPoint { get { return _preferredImpactPoint.position; }}
     public bool AddImpactForce { get { return _meleeAttack.AddImpactForce; } }
-    public Vector2 ImpactForce { get { return _meleeAttack.ImpactForce; } }
-    public float TimeToApplyForce { get { return _meleeAttack.TimeToApplyForce; } }
+    public ImpactForceSettings ImpactForceSettings { get { return _meleeAttack.ImpactForceSettings; }}
     public IEnumerable<HPScript> ImmuneTargets { get { return _meleeAttack.ImmuneTargets; } }
     public bool HasImmuneTargets { get { return _meleeAttack.HasImmuneTargets; } }
 

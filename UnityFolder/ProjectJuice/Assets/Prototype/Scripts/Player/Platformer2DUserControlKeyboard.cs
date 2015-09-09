@@ -1,10 +1,13 @@
 ﻿using System;
 using UnityEngine;
 using System.Collections;
+using Utility;
 
 public class Platformer2DUserControlKeyboard : MonoBehaviour, IPlatformer2DUserControl
 {
     public PlayerData m_PlayerData { get; private set; }
+    [SerializeField]
+    private PlayerIDs m_PlayerID;
     [SerializeField] 
     private KeyCode _m_jump = KeyCode.Space;
     public bool m_Jump { get; private set; }
@@ -40,6 +43,11 @@ public class Platformer2DUserControlKeyboard : MonoBehaviour, IPlatformer2DUserC
     {
         get { return _mFacingRight; }
         set { _mFacingRight = value; }
+    }
+
+    void Start()
+    {
+        m_PlayerData = Utilities.GetPlayerData(m_PlayerID);
     }
 
     void Update()

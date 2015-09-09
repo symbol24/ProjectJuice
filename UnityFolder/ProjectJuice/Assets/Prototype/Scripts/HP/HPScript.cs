@@ -145,7 +145,7 @@ public class HPScript : ExtendedMonobehaviour
             checkDamaging.Consumed();
             if (checkDamaging.AddImpactForce)
             {
-                StartCoroutine(AddForceCoroutine(checkDamaging.ImpactForce, checkDamaging.TimeToApplyForce));
+                StartCoroutine(AddForceCoroutine(checkDamaging.ImpactForceSettings));
             }
 
             var e = new ImpactEventArgs
@@ -171,19 +171,51 @@ public class HPScript : ExtendedMonobehaviour
 
     }
 
-    IEnumerator AddForceCoroutine(Vector2 forceToAdd, float timeToApplyForce)
+    IEnumerator AddForceCoroutine(ImpactForceSettings impactForceSettings)
     {
         float currentTime = 0f;
-        while (currentTime < timeToApplyForce)
+        float currentMultiplier = 1;
+        while (currentTime < impactForceSettings.TimeToApplyForce)
         {
-            print(currentTime);
-            _mainRigidbody.velocity = forceToAdd;
+            //print(_mainRigidbody.velocity);
+            _mainRigidbody.velocity = addPositiveForceTo(impactForceSettings.ImpactForce, currentMultiplier, _mainRigidbody.velocity);
             currentTime += Time.deltaTime;
+            currentMultiplier *= impactForceSettings.DuringImpactSpeedMitigator;
             yield return null;
         }
-        _mainRigidbody.velocity = Vector2.zero;
         yield return null;
+        StartCoroutine(AddAfterForce(impactForceSettings));
         //_mainRigidbody.AddForce(forceToAdd, ForceMode2D.Impulse);
     }
+
+    IEnumerator AddAfterForce(ImpactForceSettings impactForceSettings)
+    {
+        float currentTime = 0f;
+        float currentMultiplier = 1;
+        while (currentTime < impactForceSettings.TimeToApplyForceAfterMainForce)
+        {
+            //print(currentTime);
+            _mainRigidbody.velocity = addPositiveForceTo(impactForceSettings.ImpactForce, currentMultiplier, _mainRigidbody.velocity);
+            currentTime += Time.deltaTime;
+            currentMultiplier *= impactForceSettings.AfterImpactSpeedMitigator;
+            yield return null;
+        }
+        if (impactForceSettings.ZeroVelocityAtEnd) _mainRigidbody.velocity = Vector2.zero;
+    }
+
+    private Vector2 addPositiveForceTo(Vector2 reference, float multiplier, Vector2 checkForY)
+    {
+        Vector2 ret;
+        if (checkForY.y >= 0)
+        {
+            ret = reference*multiplier;
+        }
+        else
+        {
+            ret = new Vector2(reference.x * multiplier, checkForY.y);
+        }
+        return ret;
+    }
+
 
 }

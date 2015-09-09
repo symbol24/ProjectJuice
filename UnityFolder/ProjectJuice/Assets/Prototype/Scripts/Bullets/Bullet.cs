@@ -33,12 +33,10 @@ public class Bullet : MonoBehaviour, IDamaging {
         private set { _addImpactForce = value; }
     }
 
-    public Vector2 ImpactForce { get; private set; }
-
-    public float TimeToApplyForce
+    public ImpactForceSettings ImpactForceSettings
     {
-        get { return _timeToApplyForce; }
-        private set { _timeToApplyForce = value; }
+        get { return _impactForceSettings; }
+        private set { _impactForceSettings = value; }
     }
 
     private Stack<HPScript> _immuneTargets = new Stack<HPScript>();
@@ -55,13 +53,13 @@ public class Bullet : MonoBehaviour, IDamaging {
 
     public LayerMask m_WhatIsGround; // A mask determining what is ground 
     [SerializeField]
-    private float _timeToApplyForce;
-    [SerializeField]
     private bool _addImpactForce = false;
     [SerializeField]
     private bool _hasPreferredImpactPoint = false;
     [SerializeField]
     private Vector3 _preferredImpactPoint;
+    [SerializeField]
+    private ImpactForceSettings _impactForceSettings;
 
     void Start()
     {
