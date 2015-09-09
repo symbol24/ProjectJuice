@@ -10,6 +10,7 @@ public class HPScript : ExtendedMonobehaviour
 {
     [SerializeField] private float _maxHp;
     private float _currentHp;
+    private IPlatformer2DUserControl _inputController;
 
     public float MaxHp
     {
@@ -62,6 +63,7 @@ public class HPScript : ExtendedMonobehaviour
         CurrentHp = MaxHp;
         if (_centerOfReferenceForJuice == null) _centerOfReferenceForJuice = transform;
         if (_mainRigidbody == null) _mainRigidbody = GetComponent<Rigidbody2D>();
+        if (_inputController == null) _inputController = GetComponent<IPlatformer2DUserControl>();
     }
 
     // Update is called once per frame
@@ -175,29 +177,29 @@ public class HPScript : ExtendedMonobehaviour
     {
         float currentTime = 0f;
         float currentMultiplier = 1;
-        while (currentTime < impactForceSettings.TimeToApplyForce)
+        while (currentTime < impactForceSettings.FirstCycleTime)
         {
             //print(_mainRigidbody.velocity);
-            _mainRigidbody.velocity = addPositiveForceTo(impactForceSettings.ImpactForce, currentMultiplier, _mainRigidbody.velocity);
+            _mainRigidbody.velocity = (impactForceSettings.DirectionComingForm == Direction2D.Right ? 1 : -1) *addPositiveForceTo(impactForceSettings.ImpactForce, currentMultiplier, _mainRigidbody.velocity);
             currentTime += Time.deltaTime;
-            currentMultiplier *= impactForceSettings.DuringImpactSpeedMitigator;
+            currentMultiplier *= impactForceSettings.FirstCycleSpeedMitigator;
             yield return null;
         }
         yield return null;
-        StartCoroutine(AddAfterForce(impactForceSettings));
+        StartCoroutine(AddAfterForce(impactForceSettings, _mainRigidbody.velocity));
         //_mainRigidbody.AddForce(forceToAdd, ForceMode2D.Impulse);
     }
 
-    IEnumerator AddAfterForce(ImpactForceSettings impactForceSettings)
+    IEnumerator AddAfterForce(ImpactForceSettings impactForceSettings, Vector2 cumulativeForce)
     {
         float currentTime = 0f;
         float currentMultiplier = 1;
-        while (currentTime < impactForceSettings.TimeToApplyForceAfterMainForce)
+        while (currentTime < impactForceSettings.SecondCycleTime)
         {
             //print(currentTime);
-            _mainRigidbody.velocity = addPositiveForceTo(impactForceSettings.ImpactForce, currentMultiplier, _mainRigidbody.velocity);
+            _mainRigidbody.velocity = (impactForceSettings.DirectionComingForm == Direction2D.Right ? 1 : -1) * addPositiveForceTo(cumulativeForce, currentMultiplier, _mainRigidbody.velocity);
             currentTime += Time.deltaTime;
-            currentMultiplier *= impactForceSettings.AfterImpactSpeedMitigator;
+            currentMultiplier *= impactForceSettings.SecondCycleSpeedMitigator;
             yield return null;
         }
         if (impactForceSettings.ZeroVelocityAtEnd) _mainRigidbody.velocity = Vector2.zero;
