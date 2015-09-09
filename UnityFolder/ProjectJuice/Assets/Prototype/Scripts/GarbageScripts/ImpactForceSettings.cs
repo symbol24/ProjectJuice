@@ -6,30 +6,30 @@ using System.Collections;
 public class ImpactForceSettings
 {
     [SerializeField]
-    private float _timeToApplyForce;
+    private float _firstCycleTime = 0.5f;
     [SerializeField]
-    private float _timeToApplyForceAfterMainForce;
+    private float _secondCycleTime;
     [SerializeField]
-    private Vector2 _impactForce;
+    private Vector2 _impactForce = new Vector2(20, 5);
     [Range(0, 1)]
     [SerializeField]
-    private float _duringImpactSpeedMitigator = 1;
+    private float _firstCycleSpeedMitigator = 0.95f;
     [Range(0,1)]
     [SerializeField]
-    private float _afterImpactSpeedMitigator = 1;
+    private float _secondCycleSpeedMitigator = 0.9f;
     [SerializeField]
     private bool _zeroVelocityAtEnd;
 
-    public float TimeToApplyForce
+    public float FirstCycleTime
     {
-        get { return _timeToApplyForce; }
-        set { _timeToApplyForce = value; }
+        get { return _firstCycleTime; }
+        set { _firstCycleTime = value; }
     }
 
-    public float TimeToApplyForceAfterMainForce
+    public float SecondCycleTime
     {
-        get { return _timeToApplyForceAfterMainForce; }
-        set { _timeToApplyForceAfterMainForce = value; }
+        get { return _secondCycleTime; }
+        set { _secondCycleTime = value; }
     }
 
     public Vector2 ImpactForce
@@ -38,16 +38,16 @@ public class ImpactForceSettings
         set { _impactForce = value; }
     }
 
-    public float DuringImpactSpeedMitigator
+    public float FirstCycleSpeedMitigator
     {
-        get { return _duringImpactSpeedMitigator; }
-        set { _duringImpactSpeedMitigator = value; }
+        get { return _firstCycleSpeedMitigator; }
+        set { _firstCycleSpeedMitigator = value; }
     }
 
-    public float AfterImpactSpeedMitigator
+    public float SecondCycleSpeedMitigator
     {
-        get { return _afterImpactSpeedMitigator; }
-        set { _afterImpactSpeedMitigator = value; }
+        get { return _secondCycleSpeedMitigator; }
+        set { _secondCycleSpeedMitigator = value; }
     }
 
     public bool ZeroVelocityAtEnd
@@ -55,4 +55,5 @@ public class ImpactForceSettings
         get { return _zeroVelocityAtEnd; }
         set { _zeroVelocityAtEnd = value; }
     }
+    public Direction2D DirectionComingForm { get; set; }
 }
