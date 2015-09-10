@@ -51,7 +51,7 @@ public class MeleeAttack : ExtendedMonobehaviour
         {
             _flipReference.transform.localScale = _flipReference.transform.localScale.SetX(-1);
         }
-         _impactForceSettings.DirectionComingForm = _inputManager.m_FacingRight ? Direction2D.Right : Direction2D.Left;
+        _impactForceSettings.DirectionComingForm = _inputManager.m_FacingRight ? Direction2D.Left : Direction2D.Right;
     }
 
     private bool _isSwingingAnimationOnGoing = false;

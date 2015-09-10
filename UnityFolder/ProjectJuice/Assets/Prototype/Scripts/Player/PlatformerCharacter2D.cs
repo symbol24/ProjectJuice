@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace UnityStandardAssets._2D
 {
-    public class PlatformerCharacter2D : MonoBehaviour
+    public class PlatformerCharacter2D : ExtendedMonobehaviour
     {
         private IPlatformer2DUserControl m_Controller;
 
@@ -208,10 +208,18 @@ namespace UnityStandardAssets._2D
 
                 //set values for cooldown
                 m_DashTimer = Time.time + m_DashDelay;
-                StartCoroutine(DashDragReset());
+                StartCoroutine(DashDragReset(m_DashDragRemove, m_Rigidbody2D));
             }
         }
-
+        protected IEnumerator DashDragReset(float timer, Rigidbody2D toCheckDrag)
+        {
+            yield return new WaitForSeconds(timer);
+            CheckDrag(toCheckDrag);
+        }
+        private void CheckDrag(Rigidbody2D toCheck)
+        {
+            if (toCheck.drag != 0) toCheck.drag = 0;
+        }
         private void CheckDrag()
         {
             if (m_Rigidbody2D.drag != 0) m_Rigidbody2D.drag = 0;
