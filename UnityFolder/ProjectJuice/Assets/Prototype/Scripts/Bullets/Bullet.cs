@@ -2,7 +2,6 @@
 using System.Linq;
 using UnityEngine;
 using System.Collections;
-using System;
 
 public class Bullet : MonoBehaviour, IDamaging {
     [SerializeField] private float m_baseSpeed;
@@ -62,10 +61,14 @@ public class Bullet : MonoBehaviour, IDamaging {
     [SerializeField]
     private ImpactForceSettings _impactForceSettings;
 
-    void Start()
+    void Awake()
     {
         m_RigidBody = GetComponent<Rigidbody2D>();
-        m_RigidBody.AddForce(transform.up * m_baseSpeed);
+    }
+
+    void Start()
+    {
+        //ShootBullet(m_baseSpeed);
     }
 
 	// Update is called once per frame
@@ -84,7 +87,7 @@ public class Bullet : MonoBehaviour, IDamaging {
     {
         if (LayerChecker.IsInLayerMask(collision.gameObject, m_WhatIsGround))
         {
-            print("hitting ground");
+           // print("hitting ground");
             Consumed();
         }
     }
@@ -92,6 +95,23 @@ public class Bullet : MonoBehaviour, IDamaging {
     public void AddImmuneTarget(HPScript hpScript)
     {
         _immuneTargets.Push(hpScript);
+    }
+
+    public void RemoveImmuneTarget()
+    {
+        _immuneTargets.Pop();
+    }
+
+    public void ShootBullet()
+    {
+        m_RigidBody.AddForce(transform.up * m_baseSpeed);
+    }
+
+    public void ShootBullet(float speed)
+    {
+        if (speed < 1)
+            speed = m_baseSpeed * Random.Range(speed,1);
+        m_RigidBody.AddForce(transform.up * speed);
     }
 
 }

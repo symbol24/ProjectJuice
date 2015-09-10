@@ -12,7 +12,7 @@ public class ArcShooting : Gun
     private float m_BurstTimer;
     private bool m_CanFire = true;
 
-    new void Update() {
+    protected override void Update() {
         base.Update();
 
         RotateGun(m_Controller.m_XAxis, m_Controller.m_YAxis);

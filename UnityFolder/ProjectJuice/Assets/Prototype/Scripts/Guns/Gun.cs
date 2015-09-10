@@ -14,20 +14,21 @@ public class Gun : ExtendedMonobehaviour {
     public GameObject m_GunProperties { get { return m_Gun; } }
     [SerializeField] private Bullet m_BulletPrefab;
     public Bullet m_Bullet { get { return m_BulletPrefab; } }
-    [SerializeField] private float m_ShotDelay = 0.1f;
+    [Range(0,5)][SerializeField] private float m_ShotDelay = 0.1f;
     public float m_Delay { get { return m_ShotDelay; } }
     [SerializeField] private HPScript m_HpScript;
+    public HPScript m_HpScp { get { return m_HpScript; } }
 
 
-    protected void Awake()
+    protected virtual void Start()
     {
         m_Controller = GetComponent<IPlatformer2DUserControl>();
         m_DelayManager = GetComponent<DelayManager>();
         if(m_HpScript == null) m_HpScript = GetComponent<HPScript>();
     }
-	
-	// Update is called once per frame
-	protected void Update ()
+
+    // Update is called once per frame
+    protected virtual void Update ()
     {
         if (m_Controller.m_Shoot && m_DelayManager.m_CanShoot)
         {
@@ -45,6 +46,7 @@ public class Gun : ExtendedMonobehaviour {
     public void FireOneBullet()
     {
         Bullet newBullet = Instantiate(m_BulletPrefab, m_GunReference.transform.position, m_GunReference.transform.rotation) as Bullet;
+        newBullet.ShootBullet();
         newBullet.AddImmuneTarget(m_HpScript);
     }
 }
