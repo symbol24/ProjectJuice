@@ -147,7 +147,12 @@ public class HPScript : ExtendedMonobehaviour
             checkDamaging.Consumed();
             if (checkDamaging.AddImpactForce)
             {
-                StartCoroutine(AddForceCoroutine(checkDamaging.ImpactForceSettings));
+                //StartCoroutine(AddForceCoroutine(checkDamaging.ImpactForceSettings));
+                _mainRigidbody.drag = 5;
+                var force = checkDamaging.ImpactForceSettings.ImpactForce.normalized*
+                            checkDamaging.ImpactForceSettings.SecondCycleTime;
+                _mainRigidbody.AddForce(force, ForceMode2D.Impulse);
+                StartCoroutine(DashDragReset(checkDamaging.ImpactForceSettings.FirstCycleTime, _mainRigidbody));
             }
 
             var e = new ImpactEventArgs
@@ -173,51 +178,66 @@ public class HPScript : ExtendedMonobehaviour
 
     }
 
+
+    
     IEnumerator AddForceCoroutine(ImpactForceSettings impactForceSettings)
     {
         float currentTime = 0f;
         float currentMultiplier = 1;
+        _mainRigidbody.drag = 5;
+        int counter = 1;
+        Vector2 velocityExpected = Vector2.zero;
+        _mainRigidbody.velocity = impactForceSettings.ImpactForce;
+        yield return null;
         while (currentTime < impactForceSettings.FirstCycleTime)
         {
-            //print(_mainRigidbody.velocity);
-            _mainRigidbody.velocity = addPositiveForceTo(impactForceSettings.ImpactForce, currentMultiplier, _mainRigidbody.velocity, impactForceSettings.DirectionComingForm);
+            print(_mainRigidbody.velocity);
+            velocityExpected = AddPositiveForceTo(_mainRigidbody.velocity,impactForceSettings);
+            _mainRigidbody.velocity = velocityExpected;// + Physics2D.gravity;//*counter;
             currentTime += Time.deltaTime;
             currentMultiplier *= impactForceSettings.FirstCycleSpeedMitigator;
+            counter++;
+            if (currentMultiplier <= 0.01f) currentTime = float.MaxValue;
+
             yield return null;
         }
-        yield return null;
-        StartCoroutine(AddAfterForce(impactForceSettings, _mainRigidbody.velocity));
+        _mainRigidbody.drag = 0;
+        StartCoroutine(AddAfterForce(impactForceSettings, velocityExpected));
         //_mainRigidbody.AddForce(forceToAdd, ForceMode2D.Impulse);
     }
 
-    IEnumerator AddAfterForce(ImpactForceSettings impactForceSettings, Vector2 cumulativeForce)
+    IEnumerator AddAfterForce(ImpactForceSettings impactForceSettings, Vector2 previousVelocity)
     {
         float currentTime = 0f;
-        float currentMultiplier = 1;
-        while (currentTime < impactForceSettings.SecondCycleTime)
+        int counter = 1;
+        while (currentTime < impactForceSettings.SecondCycleTime && Math.Abs(_inputController.m_XAxis) < 0.01f)
         {
-            //print(currentTime);
-            _mainRigidbody.velocity = addPositiveForceTo(cumulativeForce, currentMultiplier, _mainRigidbody.velocity, impactForceSettings.DirectionComingForm);
-            currentTime += Time.deltaTime;
-            currentMultiplier *= impactForceSettings.SecondCycleSpeedMitigator;
+            if (Mathf.Abs(previousVelocity.x) > 0.01f)
+            {
+                _mainRigidbody.velocity =
+                    new Vector2(previousVelocity.x* Mathf.Pow(impactForceSettings.SecondCycleSpeedMitigator, counter),
+                        _mainRigidbody.velocity.y);
+            }
+            counter++;
             yield return null;
         }
         if (impactForceSettings.ZeroVelocityAtEnd) _mainRigidbody.velocity = Vector2.zero;
     }
 
-    private Vector2 addPositiveForceTo(Vector2 reference, float multiplier, Vector2 checkForY, Direction2D rightOrLeft)
+    private Vector2 previousVector;
+    private int counterForAddRelativeForce = 1;
+    private Vector2 AddPositiveForceTo(Vector2 reference, ImpactForceSettings forceSettings)
     {
+        
         Vector2 ignoringY;
-        if (checkForY.y >= 0)
-        {
-            ignoringY = reference*multiplier;
-        }
-        else
-        {
-            ignoringY = new Vector2(reference.x * multiplier, checkForY.y);
-        }
-        var ret = new Vector2(ignoringY.x*(rightOrLeft == Direction2D.Right ? 1 : -1), ignoringY.y);
-        return ret;
+        float xVector = forceSettings.ImpactForce.x * forceSettings.FirstCycleSpeedMitigator * counterForAddRelativeForce;
+        xVector = Mathf.Abs(xVector);
+        if (forceSettings.DirectionComingForm == Direction2D.Right) xVector *= -1;
+        float yVector = reference.y*counterForAddRelativeForce;
+        
+
+
+        return new Vector2(xVector, yVector);
     }
 
 

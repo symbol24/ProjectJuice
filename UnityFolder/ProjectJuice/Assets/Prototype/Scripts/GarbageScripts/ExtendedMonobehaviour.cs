@@ -30,4 +30,13 @@ public abstract class ExtendedMonobehaviour : MonoBehaviour, IGameObject {
         return checkComponents.Any(c => c == toCheck);
     }
 
+    protected IEnumerator DashDragReset(float timer, Rigidbody2D toCheckDrag)
+    {
+        yield return new WaitForSeconds(timer);
+        CheckDrag(toCheckDrag);
+    }
+    private void CheckDrag(Rigidbody2D toCheck)
+    {
+        if (toCheck.drag != 0) toCheck.drag = 0;
+    }
 }
