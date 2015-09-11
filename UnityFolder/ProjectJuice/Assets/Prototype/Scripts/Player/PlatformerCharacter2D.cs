@@ -167,15 +167,16 @@ namespace UnityStandardAssets._2D
             {
                 m_AirControl = true;
                 m_UsedDoubleJump = false;
-
+                
                 if(m_CanDash)
                     CheckDrag();
+                    
             }
 
             return isGrounded;
         }
 
-        private void PhysicsDash()
+        public void PhysicsDash()
         {
             if (m_CanDash)
             {
@@ -211,15 +212,37 @@ namespace UnityStandardAssets._2D
                 StartCoroutine(DashDragReset(m_DashDragRemove, m_Rigidbody2D));
             }
         }
-        protected IEnumerator DashDragReset(float timer, Rigidbody2D toCheckDrag)
+
+        public void AddKnockBack(IDamaging impact)
         {
-            yield return new WaitForSeconds(timer);
-            CheckDrag(toCheckDrag);
+            if (m_CanDash)
+            {
+                m_DashTimer = float.MaxValue;
+                m_CanDash = false;
+                m_AirControl = false;
+                m_Rigidbody2D.drag = impact.ImpactForceSettings.ImpactDrag;
+
+                Vector2 angle = impact.ImpactForceSettings.ImpactAngle;
+
+                // if grounded force y to positive
+                if (m_Grounded && angle.y < 0) angle.y = 0f;
+
+                // if not facing right force x negative
+                if (!m_Controller.m_FacingRight && angle.x > 0) angle.x = -angle.x;
+
+                //print(angle);
+
+                // normalize and add impulse value
+                angle = angle.normalized * impact.ImpactForceSettings.ImpactForce;
+                m_Rigidbody2D.velocity = Vector2.zero;
+                m_Rigidbody2D.AddForce(angle, m_DashType);
+
+                //set values for cooldown
+                m_DashTimer = Time.time + impact.ImpactForceSettings.ImpactDragTimer;
+                StartCoroutine(DashDragReset(m_DashDragRemove, m_Rigidbody2D));
+            }
         }
-        private void CheckDrag(Rigidbody2D toCheck)
-        {
-            if (toCheck.drag != 0) toCheck.drag = 0;
-        }
+        
         private void CheckDrag()
         {
             if (m_Rigidbody2D.drag != 0) m_Rigidbody2D.drag = 0;

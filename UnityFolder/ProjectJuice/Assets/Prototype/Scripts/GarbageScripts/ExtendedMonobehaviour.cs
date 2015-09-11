@@ -39,4 +39,15 @@ public abstract class ExtendedMonobehaviour : MonoBehaviour, IGameObject {
     {
         if (toCheck.drag != 0) toCheck.drag = 0;
     }
+
+    protected IEnumerator PrintObject(Rigidbody2D toPrint, float timer)
+    {
+        float currentTimer = 0;
+        while(currentTimer < timer)
+        {
+            print(toPrint.velocity);
+            currentTimer += Time.deltaTime;
+            yield return null;
+        }
+    }
 }
