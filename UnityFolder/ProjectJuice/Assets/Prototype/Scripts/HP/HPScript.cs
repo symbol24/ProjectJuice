@@ -5,12 +5,14 @@ using UnityEditor;
 using UnityEngine;
 using System.Collections;
 using UnityEngine.EventSystems;
+using UnityStandardAssets._2D;
 
 public class HPScript : ExtendedMonobehaviour
 {
     [SerializeField] private float _maxHp;
     private float _currentHp;
     private IPlatformer2DUserControl _inputController;
+    private PlatformerCharacter2D _character;
 
     public float MaxHp
     {
@@ -64,6 +66,7 @@ public class HPScript : ExtendedMonobehaviour
         if (_centerOfReferenceForJuice == null) _centerOfReferenceForJuice = transform;
         if (_mainRigidbody == null) _mainRigidbody = GetComponent<Rigidbody2D>();
         if (_inputController == null) _inputController = GetComponent<IPlatformer2DUserControl>();
+        if (_character == null) _character = GetComponent<PlatformerCharacter2D>();
     }
 
     // Update is called once per frame
@@ -113,46 +116,15 @@ public class HPScript : ExtendedMonobehaviour
         //If it is not damaging, dont bother with calculations
         if (checkDamaging != null && CheckIfIDamagableIsActive(checkDamaging))
         {
-            var othersPosition = collider.gameObject.transform.position - _centerOfReferenceForJuice.position;
-            RaycastHit2D hit = default(RaycastHit2D);
-            Vector2 pointOfCollision;
-            #region DetectImpact
+           
+            Vector2 pointOfCollision = GetPointOfImpact(checkDamaging, collider);
 
-            if (checkDamaging.HasPreferredImpactPoint)
-            {
-                pointOfCollision = checkDamaging.PreferredImpactPoint;
-            }
-            else
-            {
-                for (int i = 0; i < _raycastIterationsToFindTarget; i++)
-                {
-                    var firstTarget = new Vector3(othersPosition.x + _raycastVariationPerTry*i,
-                        othersPosition.y + _raycastVariationPerTry*i, othersPosition.z);
-                    hit = Physics2D.Raycast(_centerOfReferenceForJuice.position, firstTarget, float.MaxValue);
-                    if (hit.collider == collider) break;
-                    //Testing where raycast went
-                    //Debug.DrawRay(_centerOfReferenceForJuice.position, firstTarget, Color.green);
-                    //EditorApplication.isPaused = true;
-                    var secondTarget = new Vector3(othersPosition.x - _raycastVariationPerTry*i,
-                        othersPosition.y - _raycastVariationPerTry*i, othersPosition.z);
-                    hit = Physics2D.Raycast(_centerOfReferenceForJuice.position, secondTarget, float.MaxValue);
-                    if (hit.collider == collider) break;
-                    //Debug.DrawRay(_centerOfReferenceForJuice.position, secondTarget, Color.red);
-                }
-                pointOfCollision = hit.point;
-            }
-
-            #endregion DetectImpact
             CurrentHp -= checkDamaging.Damage;
             checkDamaging.Consumed();
+
             if (checkDamaging.AddImpactForce)
             {
-                //StartCoroutine(AddForceCoroutine(checkDamaging.ImpactForceSettings));
-                _mainRigidbody.drag = 5;
-                var force = checkDamaging.ImpactForceSettings.ImpactForce.normalized*
-                            checkDamaging.ImpactForceSettings.SecondCycleTime;
-                _mainRigidbody.AddForce(force, ForceMode2D.Impulse);
-                StartCoroutine(DashDragReset(checkDamaging.ImpactForceSettings.FirstCycleTime, _mainRigidbody));
+                _character.AddKnockBack(checkDamaging);
             }
 
             var e = new ImpactEventArgs
@@ -178,7 +150,38 @@ public class HPScript : ExtendedMonobehaviour
 
     }
 
+    private Vector2 GetPointOfImpact(IDamaging chkDamaging, Collider2D collider)
+    {
+        Vector2 ret = new Vector2();
+        var othersPosition = collider.gameObject.transform.position - _centerOfReferenceForJuice.position;
+        RaycastHit2D hit = default(RaycastHit2D);
+        if (chkDamaging.HasPreferredImpactPoint)
+        {
+            ret = chkDamaging.PreferredImpactPoint;
+        }
+        else
+        {
+            for (int i = 0; i < _raycastIterationsToFindTarget; i++)
+            {
+                var firstTarget = new Vector3(othersPosition.x + _raycastVariationPerTry * i,
+                    othersPosition.y + _raycastVariationPerTry * i, othersPosition.z);
+                hit = Physics2D.Raycast(_centerOfReferenceForJuice.position, firstTarget, float.MaxValue);
+                if (hit.collider == collider) break;
+                //Testing where raycast went
+                //Debug.DrawRay(_centerOfReferenceForJuice.position, firstTarget, Color.green);
+                //EditorApplication.isPaused = true;
+                var secondTarget = new Vector3(othersPosition.x - _raycastVariationPerTry * i,
+                    othersPosition.y - _raycastVariationPerTry * i, othersPosition.z);
+                hit = Physics2D.Raycast(_centerOfReferenceForJuice.position, secondTarget, float.MaxValue);
+                if (hit.collider == collider) break;
+                //Debug.DrawRay(_centerOfReferenceForJuice.position, secondTarget, Color.red);
+            }
+            ret = hit.point;
+        }
 
+
+        return ret;
+    }
     
     IEnumerator AddForceCoroutine(ImpactForceSettings impactForceSettings)
     {
@@ -187,9 +190,9 @@ public class HPScript : ExtendedMonobehaviour
         _mainRigidbody.drag = 5;
         int counter = 1;
         Vector2 velocityExpected = Vector2.zero;
-        _mainRigidbody.velocity = impactForceSettings.ImpactForce;
+        _mainRigidbody.velocity = impactForceSettings.ImpactAngle;
         yield return null;
-        while (currentTime < impactForceSettings.FirstCycleTime)
+        while (currentTime < impactForceSettings.ImpactDrag)
         {
             print(_mainRigidbody.velocity);
             velocityExpected = AddPositiveForceTo(_mainRigidbody.velocity,impactForceSettings);
@@ -210,7 +213,7 @@ public class HPScript : ExtendedMonobehaviour
     {
         float currentTime = 0f;
         int counter = 1;
-        while (currentTime < impactForceSettings.SecondCycleTime && Math.Abs(_inputController.m_XAxis) < 0.01f)
+        while (currentTime < impactForceSettings.ImpactForce && Math.Abs(_inputController.m_XAxis) < 0.01f)
         {
             if (Mathf.Abs(previousVelocity.x) > 0.01f)
             {
@@ -230,7 +233,7 @@ public class HPScript : ExtendedMonobehaviour
     {
         
         Vector2 ignoringY;
-        float xVector = forceSettings.ImpactForce.x * forceSettings.FirstCycleSpeedMitigator * counterForAddRelativeForce;
+        float xVector = forceSettings.ImpactAngle.x * forceSettings.FirstCycleSpeedMitigator * counterForAddRelativeForce;
         xVector = Mathf.Abs(xVector);
         if (forceSettings.DirectionComingForm == Direction2D.Right) xVector *= -1;
         float yVector = reference.y*counterForAddRelativeForce;
