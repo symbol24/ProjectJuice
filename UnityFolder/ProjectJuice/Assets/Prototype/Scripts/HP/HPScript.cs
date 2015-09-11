@@ -71,8 +71,8 @@ public class HPScript : ExtendedMonobehaviour
     {
 
     }
-    
-    private void OnTriggerEnter2D(Collider2D collider)
+
+    public void RouteOnTriggerEnter2D(Collider2D collider)
     {
         //Debug.Log("OnTriggerEnter in " + gameObject.name);
 
@@ -80,7 +80,7 @@ public class HPScript : ExtendedMonobehaviour
         CheckForPowerUp(collider);
 
     }
-    private void OnCollisionEnter2D(Collision2D collision)
+    public void RouteOnCollisionEnter2D(Collision2D collision)
     {
         Collider2D collider = collision.collider;
 
