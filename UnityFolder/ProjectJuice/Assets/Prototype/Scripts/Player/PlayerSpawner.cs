@@ -24,9 +24,36 @@ public class PlayerSpawner : MonoBehaviour {
         {
             GameObject temp = Instantiate(m_PlayerPrefab, m_Spawners[i].transform.position, m_Spawners[i].transform.rotation) as GameObject;
             temp.GetComponent<Platformer2DUserControl>().PlayerID = p;
+            SetAbility(temp, pd);
             m_Players.Add(temp);
             i++;
             p++;
+        }
+    }
+
+    void SetAbility(GameObject toAbilitize, PlayerData pd)
+    {
+        Abilities myAbility = pd.PlayerAbility;
+
+        shield leShield = toAbilitize.GetComponent<shield>();
+        leShield.enabled = false;
+
+        switch (myAbility)
+        {
+            case Abilities.AbsorbShield:
+                leShield.enabled = true;
+                break;
+            case Abilities.DoubleJump:
+                break;
+            case Abilities.GrapplingHook:
+
+                break;
+            case Abilities.Melee:
+
+                break;
+            case Abilities.None:
+
+                break;
         }
     }
 }
