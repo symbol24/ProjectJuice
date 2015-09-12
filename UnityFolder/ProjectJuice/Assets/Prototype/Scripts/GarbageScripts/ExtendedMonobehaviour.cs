@@ -50,4 +50,18 @@ public abstract class ExtendedMonobehaviour : MonoBehaviour, IGameObject {
             yield return null;
         }
     }
+
+    protected Vector3 GetRotation(IPlatformer2DUserControl controller)
+    {
+        float xAxis = controller.m_XAxis;
+        float yAxis = controller.m_YAxis;
+        if (!controller.m_FacingRight && xAxis > 0) xAxis = -xAxis;
+        if (!controller.m_FacingRight && xAxis == 0 && yAxis == 0) xAxis = -1f;
+
+        float zAngle = Mathf.Atan2(yAxis, xAxis) * Mathf.Rad2Deg;
+        float xAngle = 0f;
+        float yAngle = 0f;
+        return new Vector3(xAngle, yAngle, zAngle);
+    }
+
 }

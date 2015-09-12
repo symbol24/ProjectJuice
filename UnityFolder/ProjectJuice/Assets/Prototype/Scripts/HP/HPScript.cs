@@ -21,7 +21,7 @@ public class HPScript : ExtendedMonobehaviour
     public float CurrentHp
     {
         get { return _currentHp; }
-        private set
+        set
         {
             if (_currentHp != value)
             {
@@ -231,15 +231,10 @@ public class HPScript : ExtendedMonobehaviour
     private int counterForAddRelativeForce = 1;
     private Vector2 AddPositiveForceTo(Vector2 reference, ImpactForceSettings forceSettings)
     {
-        
-        Vector2 ignoringY;
         float xVector = forceSettings.ImpactAngle.x * forceSettings.FirstCycleSpeedMitigator * counterForAddRelativeForce;
         xVector = Mathf.Abs(xVector);
         if (forceSettings.DirectionComingForm == Direction2D.Right) xVector *= -1;
         float yVector = reference.y*counterForAddRelativeForce;
-        
-
-
         return new Vector2(xVector, yVector);
     }
 
