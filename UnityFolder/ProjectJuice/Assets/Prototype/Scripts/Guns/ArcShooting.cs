@@ -27,7 +27,7 @@ public class ArcShooting : Gun
         float xAngle = 0f;
         float yAngle = 0f;
         
-        m_GunProperties.transform.eulerAngles = new Vector3(xAngle, yAngle, zAngle);
+        m_Gun.transform.eulerAngles = new Vector3(xAngle, yAngle, zAngle);
     }
 
     public override void Fire()

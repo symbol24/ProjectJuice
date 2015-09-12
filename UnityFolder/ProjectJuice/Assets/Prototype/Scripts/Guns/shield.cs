@@ -16,7 +16,7 @@ public class shield : Gun {
     protected override void Start()
     {
         base.Start();
-        m_GunProperties.SetActive(false);
+        m_Gun.SetActive(false);
     }
 
     // Update is called once per frame
@@ -47,7 +47,7 @@ public class shield : Gun {
 
     private void ActivateShield()
     {
-        m_GunProperties.SetActive(true);
+        m_Gun.SetActive(true);
         if (m_CanShootBack) Fire();
         m_DelayManager.AddShieldDelay(m_ActiveTime);
         m_DelayManager.AddDelay(m_ActiveTime);
@@ -56,7 +56,7 @@ public class shield : Gun {
 
     private void DeactivateShield()
     {
-        m_GunProperties.SetActive(false);
+        m_Gun.SetActive(false);
         m_DelayManager.AddShieldDelay(m_Delay);
         m_IsActive = false;
     }
@@ -82,9 +82,9 @@ public class shield : Gun {
 
     private void FlipPosition()
     {
-        Vector3 thePosition = m_GunProperties.transform.localPosition;
+        Vector3 thePosition = m_Gun.transform.localPosition;
         thePosition.x *= -1;
-        m_GunProperties.transform.localPosition = thePosition;
+        m_Gun.transform.localPosition = thePosition;
 
         thePosition = m_GunRef.transform.localPosition;
         thePosition.x *= -1;
