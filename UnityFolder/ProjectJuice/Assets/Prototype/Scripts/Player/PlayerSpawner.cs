@@ -36,7 +36,21 @@ public class PlayerSpawner : MonoBehaviour {
         Abilities myAbility = pd.PlayerAbility;
 
         shield leShield = toAbilitize.GetComponent<shield>();
+        leShield.ChangeVisibilty(leShield.m_Gun);
         leShield.enabled = false;
+
+        SappingDartGun leDart = toAbilitize.GetComponent<SappingDartGun>();
+        leDart.enabled = false;
+
+        MeleeAttack[] leMelees = toAbilitize.GetComponents<MeleeAttack>();
+        MeleeAttack abilityMelee = null;
+        MeleeAttack normalMelee = null;
+        foreach(MeleeAttack ma in leMelees)
+        {
+            if (ma.isAbility) abilityMelee = ma;
+            else normalMelee = ma;
+        }
+        if (abilityMelee != null) abilityMelee.enabled = false;
 
         switch (myAbility)
         {
@@ -45,14 +59,14 @@ public class PlayerSpawner : MonoBehaviour {
                 break;
             case Abilities.DoubleJump:
                 break;
-            case Abilities.GrapplingHook:
-
+            case Abilities.Dart:
+                leDart.enabled = true;
                 break;
             case Abilities.Melee:
-
+                normalMelee.enabled = false;
+                abilityMelee.enabled = true;
                 break;
             case Abilities.None:
-
                 break;
         }
     }

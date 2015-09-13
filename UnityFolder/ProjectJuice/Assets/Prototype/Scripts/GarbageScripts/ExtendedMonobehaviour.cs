@@ -64,4 +64,10 @@ public abstract class ExtendedMonobehaviour : MonoBehaviour, IGameObject {
         return new Vector3(xAngle, yAngle, zAngle);
     }
 
+
+    public void ChangeVisibilty(GameObject toChange)
+    {
+        if (toChange.activeInHierarchy) toChange.SetActive(true);
+        else toChange.SetActive(false);
+    }
 }
