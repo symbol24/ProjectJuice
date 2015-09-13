@@ -3,65 +3,63 @@ using System.Collections;
 using System;
 
 public class SappingDartGun : ExtendedMonobehaviour {
+    [SerializeField]
+    private Dart _dartPrefab;
+    [SerializeField]
+    private GameObject _dartSpawnPoint;
+    //[SerializeField]
+    //private DartChain _dartChainPrefab;
 
-    [SerializeField]
     HPScript _hpScript;
-    [SerializeField]
-    GameObject _dartPrefab;
-    [SerializeField]
-    GameObject _dartSpawnPoint;
-    [SerializeField]
-    float _dartSpeed = 10;
+    [SerializeField] 
+    private float _dartSpeed;
     [SerializeField]
     bool _isContiniousSucking = true;
     [SerializeField]
     float _suckingInterval = 0.4f;
     [SerializeField]
-    float _hpSuckedPerSecond = 100f;
+    float _hpToSuckPerSecond = 100f;
     [SerializeField]
     float _dartCollTimerDisappear = 0f;
+
+    [SerializeField] private float _lifetimeSinceHit = 1f;
 
     DelayManager _delayManager;
     IPlatformer2DUserControl _inputManager;
 
-    // Use this for initialization
     void Start()
     {
-        if (_hpScript == null) _hpScript = GetComponent<HPScript>();
-        if (_hpScript == null) _hpScript = GetComponentInParent<HPScript>();
-        if (_hpScript == null) Debug.LogError("No HPScriptFound");
-        if (_inputManager == null) _inputManager = GetComponent<IPlatformer2DUserControl>();
-        if (_inputManager == null) _inputManager = GetComponentInParent<IPlatformer2DUserControl>();
-        if (_inputManager == null) Debug.LogError("No IPlatformer2DUserControl Found");
-        if (_delayManager == null) _delayManager = GetComponent<DelayManager>();
-        if (_delayManager == null) _delayManager = GetComponentInParent<DelayManager>();
-        if (_delayManager == null) Debug.LogError("NoDelayManagerFound");
+        _delayManager = GetComponent<DelayManager>();
+        _inputManager = GetComponent<IPlatformer2DUserControl>();
+        _hpScript = GetComponent<HPScript>();
 
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (_inputManager.m_Special)
+        if (_inputManager.m_Special && _delayManager.m_CanShoot)
         {
-            FireDart(GetRotation(_inputManager));
+            FireDart();
         }
     }
 
-    private void FireDart(Vector2 _direction)
+    private void FireDart()
     {
-        var dartGameObject = (GameObject)Instantiate(_dartPrefab, _dartSpawnPoint.transform.position, _dartSpawnPoint.transform.rotation);
+        var dartGameObject = (Dart)Instantiate(_dartPrefab, _dartSpawnPoint.transform.position, _dartSpawnPoint.transform.rotation);
         var dart = dartGameObject.GetComponent<Dart>();
-        dart.Speed = _dartSpeed;
-        dart.Angle = _direction;
         dart.IsContiniousSucking = _isContiniousSucking;
         dart.SuckingInterval = _suckingInterval;
-        dart.HpSuckedPerSecond = _hpSuckedPerSecond;
+        dart.HpSuckedPerSecond = _hpToSuckPerSecond;
         dart.DartCollTimerDisappear = _dartCollTimerDisappear;
+        dart.LifetimeSinceHit = _lifetimeSinceHit;
 
+        //SubscribeToEvents
         dart.JuiceSucked += Dart_JuiceSucked;
         dart.DartDestroyed += Dart_DartDestroyed;
         dart.DartCollision += Dart_DartCollision;
+
+        dart.ShootBullet(_dartSpeed);
         _delayManager.AddDelay(float.MaxValue);
     }
 
