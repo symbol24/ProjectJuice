@@ -6,17 +6,19 @@ using System;
 
 public class Dart : ExtendedMonobehaviour
 {
+    [SerializeField] private DartChain _crosssectionPrefab;
+
     public bool IsContiniousSucking { get; set; }
     public float SuckingInterval { get; set; }
     public float HpSuckedPerSecond { get; set; }
     public float DartCollTimerDisappear { get; set; }
+    public float LifetimeSinceHit { get; set; }
 
     private HPScript _targetHpScript;
     private float currentIntervalTimer = 0f;
     private bool _hitAWall = false;
     private float destroyTimer;
     private Rigidbody2D _mainRigidbody;
-
     private Rigidbody2D MainRigidbody2D
     {
         get
@@ -28,11 +30,11 @@ public class Dart : ExtendedMonobehaviour
             return _mainRigidbody;
         }
     }
-
-    public float LifetimeSinceHit { get; set; }
     private float _currentLifetimeAfterHit = 0f;
-    // Update is called once per frame
-	void Update ()
+    private Transform _sourceTransform;
+
+
+    void Update ()
     {
         if(_hitAWall)
         {
@@ -71,16 +73,18 @@ public class Dart : ExtendedMonobehaviour
 	}
 
 
-    public void ShootBullet(float force)
+    public void ShootBullet(float force, Transform sourceTransform)
     {
         if (force < 1f) force = 1;
         MainRigidbody2D.AddForce(transform.up * force);
+        _sourceTransform = sourceTransform;
     }
 
     #region CollisionChecking
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        if(!CheckForHPCollision(collider.gameObject))
+        CheckForHPCollision(collider.gameObject);
+        if(_targetHpScript == null)
         {
             CheckForWall(collider.gameObject);
         }

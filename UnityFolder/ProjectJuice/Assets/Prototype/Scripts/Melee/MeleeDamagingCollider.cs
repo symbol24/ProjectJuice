@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using System.Collections;
 
@@ -15,6 +16,10 @@ public class MeleeDamagingCollider : MonoBehaviour, IDamaging
 	void Start ()
 	{
 	    _rigidbody = GetComponent<Rigidbody2D>();
+	    if (!_meleeAttack.enabled)
+	    {
+	        _meleeAttack = _meleeAttack.gameObject.GetComponents<MeleeAttack>().First(c => c.enabled);
+	    }
 	}
 	
 	// Update is called once per frame
