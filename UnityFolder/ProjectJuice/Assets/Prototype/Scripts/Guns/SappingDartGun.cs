@@ -59,7 +59,7 @@ public class SappingDartGun : ExtendedMonobehaviour {
         dart.DartDestroyed += Dart_DartDestroyed;
         dart.DartCollision += Dart_DartCollision;
 
-        dart.ShootBullet(_dartSpeed);
+        dart.ShootBullet(_dartSpeed, _dartSpawnPoint.transform);
         _delayManager.AddDelay(float.MaxValue);
     }
 

@@ -28,6 +28,10 @@ public class HPCollider : MonoBehaviour
         _hpScript.RouteOnCollisionEnter2D(collision);
     }
 
+    private void OnTriggerStay2D(Collider2D collider)
+    {
+        _hpScript.RouteOnTriggerEnter2D(collider);
+    }
 
 
 }

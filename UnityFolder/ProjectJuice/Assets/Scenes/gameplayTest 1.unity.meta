@@ -1,6 +1,11 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:UnityFolder/ProjectJuice/Assets/Scenes/gameplayTest 1.unity.meta
+guid: 88ae29c70c7c38f47aaebbec8b114b4e
+timeCreated: 1441754921
+=======
 guid: a6f52e41f62187e44be905a1abe9cf52
 timeCreated: 1441760070
+>>>>>>> origin/master:UnityFolder/ProjectJuice/Assets/Scenes/gameplayTest 1.unity.meta
 licenseType: Free
 DefaultImporter:
   userData: 
