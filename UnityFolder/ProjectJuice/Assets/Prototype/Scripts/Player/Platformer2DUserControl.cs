@@ -11,6 +11,7 @@ namespace UnityStandardAssets._2D
     {
         public PlayerData m_PlayerData { get; private set; }
         [SerializeField] private PlayerIDs m_PlayerID;
+        public PlayerIDs PlayerID { get { return m_PlayerID; } set { m_PlayerID = value; } }
 
         private bool _m_facingRight = true;
 

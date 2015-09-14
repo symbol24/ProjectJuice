@@ -5,12 +5,15 @@ using System.Collections;
 [Serializable]
 public class ImpactForceSettings
 {
+    [Range(0,10)][SerializeField]
+    private int _impactDrag = 5;
     [SerializeField]
-    private float _firstCycleTime = 0.5f;
+    private float _impactForce = 250f;
     [SerializeField]
-    private float _secondCycleTime;
-    [SerializeField]
-    private Vector2 _impactForce = new Vector2(20, 5);
+    private Vector2 _impactAngle = new Vector2(1, 1);
+    [Range(0,1)][SerializeField] private float _impactDragTimer = 0.1f;
+
+
     [Range(0, 1)]
     [SerializeField]
     private float _firstCycleSpeedMitigator = 0.95f;
@@ -20,23 +23,25 @@ public class ImpactForceSettings
     [SerializeField]
     private bool _zeroVelocityAtEnd;
 
-    public float FirstCycleTime
+    public int ImpactDrag
     {
-        get { return _firstCycleTime; }
-        set { _firstCycleTime = value; }
+        get { return _impactDrag; }
+        set { _impactDrag = value; }
     }
 
-    public float SecondCycleTime
-    {
-        get { return _secondCycleTime; }
-        set { _secondCycleTime = value; }
-    }
-
-    public Vector2 ImpactForce
+    public float ImpactForce
     {
         get { return _impactForce; }
         set { _impactForce = value; }
     }
+
+    public Vector2 ImpactAngle
+    {
+        get { return _impactAngle; }
+        set { _impactAngle = value; }
+    }
+
+    public float ImpactDragTimer { get { return _impactDragTimer; } set { _impactDragTimer = value; } }
 
     public float FirstCycleSpeedMitigator
     {

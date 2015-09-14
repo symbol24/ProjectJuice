@@ -8,16 +8,13 @@ public class MeleeAttack : ExtendedMonobehaviour
 {
     public IPlatformer2DUserControl InputManager { get { return _inputManager; } }
     private IPlatformer2DUserControl _inputManager;
-    [SerializeField] 
-    private GameObject _swingerCollider;
-
+    [SerializeField] private bool _isAbility = false; //for spawner
+    public bool isAbility { get { return _isAbility; } }
+    [SerializeField] private GameObject _swingerCollider;
     [SerializeField] private GameObject _flipReference;
-    [SerializeField]
-    private DelayManager _delayManager;
-    [SerializeField]
-    private float _damage = 80;
-    [SerializeField]
-    private bool _addImpactForce = true;
+    [SerializeField] private DelayManager _delayManager;
+    [SerializeField] private float _damage = 80;
+    [SerializeField] private bool _addImpactForce = true;
 
     public ImpactForceSettings _impactForceSettings;
 
@@ -51,7 +48,7 @@ public class MeleeAttack : ExtendedMonobehaviour
         {
             _flipReference.transform.localScale = _flipReference.transform.localScale.SetX(-1);
         }
-         _impactForceSettings.DirectionComingForm = _inputManager.m_FacingRight ? Direction2D.Right : Direction2D.Left;
+        _impactForceSettings.DirectionComingForm = _inputManager.m_FacingRight ? Direction2D.Left : Direction2D.Right;
     }
 
     private bool _isSwingingAnimationOnGoing = false;
