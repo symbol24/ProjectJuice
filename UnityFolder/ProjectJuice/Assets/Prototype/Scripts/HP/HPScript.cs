@@ -81,7 +81,6 @@ public class HPScript : ExtendedMonobehaviour
 
         CheckForDamage(collider);
         CheckForPowerUp(collider);
-
     }
     public void RouteOnCollisionEnter2D(Collision2D collision)
     {
