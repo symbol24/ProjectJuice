@@ -111,6 +111,7 @@ namespace UnityStandardAssets._2D
 
         private void CheckPassThrough()
         {
+            
             Collider2D[] ceillingCheck = Physics2D.OverlapCircleAll(m_CeilingCheck.position, k_CeilingRadius, m_WhatIsGround);
 
             foreach (Collider2D c2d in ceillingCheck) {

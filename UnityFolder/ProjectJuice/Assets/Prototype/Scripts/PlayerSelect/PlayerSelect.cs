@@ -10,6 +10,7 @@ public class PlayerSelect : MonoBehaviour {
     private List<PlayerData> m_ListofPlayers = new List<PlayerData>();
     private int m_PlayerCount = 0;
     [SerializeField] private Text[] m_PlayerTexts; 
+    [SerializeField] private GameObject[] m_PlayerSelectPanels;
 
 	// Use this for initialization
 	void Start () {
@@ -38,19 +39,23 @@ public class PlayerSelect : MonoBehaviour {
             {
                 case 0:
                     player.playerID = PlayerIDs.A;
-                    m_PlayerTexts[m_PlayerCount].text = "Press Start to continue";
+                    m_PlayerTexts[m_PlayerCount].text = "Select your Sponsor!";
+                    ActivateScreen(player, 0);
                     break;
                 case 1:
                     player.playerID = PlayerIDs.B;
                     m_PlayerTexts[m_PlayerCount].text = "Press Start to continue";
+                    ActivateScreen(player, 1);
                     break;
                 case 2:
                     player.playerID = PlayerIDs.C;
                     m_PlayerTexts[m_PlayerCount].text = "Press Start to continue";
+                    ActivateScreen(player, 2);
                     break;
                 case 3:
                     player.playerID = PlayerIDs.D;
                     m_PlayerTexts[m_PlayerCount].text = "Press Start to continue";
+                    ActivateScreen(player, 3);
                     break;
             }
 
@@ -68,4 +73,8 @@ public class PlayerSelect : MonoBehaviour {
         Application.LoadLevel("gameplayTest");
     }
 
+    private void ActivateScreen(PlayerData player, int panel)
+    {
+        m_PlayerSelectPanels[panel].SetActive(true);
+    }
 }
