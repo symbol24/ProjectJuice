@@ -7,4 +7,9 @@ public class LayerChecker : MonoBehaviour {
     {
         return ((mask.value & (1 << obj.layer)) > 0);
     }
+
+    public static int GetLayerMaskInt(LayerMask layer)
+    {
+        return (layer.value);
+    }
 }
