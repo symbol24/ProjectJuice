@@ -27,11 +27,15 @@ namespace UnityStandardAssets._2D
 
         //grounding and ceiling
         [SerializeField] private LayerMask m_WhatIsGround;                  // A mask determining what is ground to the character
+        [SerializeField] private string m_WhatIsPassThrough;
+        [SerializeField] private string m_WhatIsPlayer;
         private Transform m_GroundCheck;    // A position marking where to check if the player is grounded.
         const float k_GroundedRadius = .2f; // Radius of the overlap circle to determine if grounded
         private bool m_Grounded;            // Whether or not the player is grounded.
         private Transform m_CeilingCheck;   // A position marking where to check for ceilings
         const float k_CeilingRadius = .01f; // Radius of the overlap circle to determine if the player can stand up
+        [Range(0, 1)][SerializeField] private float m_TriggerResetDelay = 0.1f; // To reset the ground when passing through
+        private bool m_IsPassing = false;
 
         private Animator m_Anim;            // Reference to the player's animator component.
         private Rigidbody2D m_Rigidbody2D;
@@ -66,15 +70,7 @@ namespace UnityStandardAssets._2D
 
         public void Move(float move, bool dash, bool jump, bool imobile)
         {
-            // If crouching, check to see if the character can stand up
-            if (!dash && m_Anim.GetBool("Crouch"))
-            {
-                // If the character has a ceiling preventing them from standing up, keep them crouching
-                if (Physics2D.OverlapCircle(m_CeilingCheck.position, k_CeilingRadius, m_WhatIsGround))
-                {
-                    dash = true;
-                }
-            }
+            CheckPassThrough();
 
             if (m_DashTimer < Time.time && !m_CanDash && m_Grounded)
             {
@@ -111,6 +107,24 @@ namespace UnityStandardAssets._2D
             // If the player should dash
             if (m_CanDash && dash)
                 PhysicsDash();
+        }
+
+        private void CheckPassThrough()
+        {
+            Collider2D[] ceillingCheck = Physics2D.OverlapCircleAll(m_CeilingCheck.position, k_CeilingRadius, m_WhatIsGround);
+
+            foreach (Collider2D c2d in ceillingCheck) {
+                if (c2d)
+                {
+                    Ground ground = c2d.GetComponent<Ground>();
+                    if (ground != null && ground.IsPassThrough)
+                    {
+                        print("Enter!");
+                        gameObject.layer = LayerMask.NameToLayer(m_WhatIsPassThrough);
+                        m_IsPassing = true;
+                    }
+                }
+            }
         }
 
 
@@ -174,6 +188,15 @@ namespace UnityStandardAssets._2D
             }
 
             return isGrounded;
+        }
+
+        private IEnumerator ResetGroundTrigger(float delay, Collider2D toReset)
+        {
+            float timer = Time.time + delay;
+            while (Time.time < timer)
+                yield return 0;
+
+            toReset.isTrigger = !toReset.isTrigger;
         }
 
         public void PhysicsDash()
@@ -265,6 +288,17 @@ namespace UnityStandardAssets._2D
         {
             yield return new WaitForSeconds(m_DashDragRemove);
             CheckDrag();
+        }
+
+        void OnTriggerExit2D(Collider2D collider)
+        {
+            Ground ground = collider.GetComponent<Ground>();
+            if (ground != null && ground.IsPassThrough && m_IsPassing)
+            {
+                print("Exit!");
+                gameObject.layer = LayerMask.NameToLayer(m_WhatIsPlayer);
+                m_IsPassing = false;
+            }
         }
     }
 }
