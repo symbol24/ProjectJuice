@@ -52,14 +52,14 @@ public class Bullet : MonoBehaviour, IDamaging {
     }
 
     public LayerMask m_WhatIsGround; // A mask determining what is ground 
-    [SerializeField]
-    private bool _addImpactForce = false;
-    [SerializeField]
-    private bool _hasPreferredImpactPoint = false;
-    [SerializeField]
-    private Vector3 _preferredImpactPoint;
-    [SerializeField]
-    private ImpactForceSettings _impactForceSettings;
+    [SerializeField] private string m_WhatIsPassThrough;
+    private int m_StartingLayer;
+    private bool m_IsPassing = false;
+    [SerializeField] private bool _addImpactForce = false;
+    [SerializeField] private bool _hasPreferredImpactPoint = false;
+    [SerializeField] private Vector3 _preferredImpactPoint;
+    [SerializeField] private ImpactForceSettings _impactForceSettings;
+    
 
     void Awake()
     {
@@ -68,7 +68,7 @@ public class Bullet : MonoBehaviour, IDamaging {
 
     void Start()
     {
-        //ShootBullet(m_baseSpeed);
+        m_StartingLayer = gameObject.layer;
     }
 
 	// Update is called once per frame
@@ -83,13 +83,11 @@ public class Bullet : MonoBehaviour, IDamaging {
         Destroy(gameObject);
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
+    void OnTriggerEnter2D(Collider2D collision)
     {
-        if (LayerChecker.IsInLayerMask(collision.gameObject, m_WhatIsGround))
-        {
-           // print("hitting ground");
-            Consumed();
-        }
+            Ground ground = collision.gameObject.GetComponent<Ground>();
+            if (ground != null && !ground.IsPassThrough)
+                Consumed();
     }
 
     public void AddImmuneTarget(HPScript hpScript)

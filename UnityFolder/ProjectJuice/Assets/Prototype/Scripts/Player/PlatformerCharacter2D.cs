@@ -119,7 +119,6 @@ namespace UnityStandardAssets._2D
                     Ground ground = c2d.GetComponent<Ground>();
                     if (ground != null && ground.IsPassThrough)
                     {
-                        print("Enter!");
                         gameObject.layer = LayerMask.NameToLayer(m_WhatIsPassThrough);
                         m_IsPassing = true;
                     }
@@ -295,7 +294,6 @@ namespace UnityStandardAssets._2D
             Ground ground = collider.GetComponent<Ground>();
             if (ground != null && ground.IsPassThrough && m_IsPassing)
             {
-                print("Exit!");
                 gameObject.layer = LayerMask.NameToLayer(m_WhatIsPlayer);
                 m_IsPassing = false;
             }
