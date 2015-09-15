@@ -15,9 +15,11 @@ public class MeleeAttack : ExtendedMonobehaviour
     [SerializeField] private DelayManager _delayManager;
     [SerializeField] private float _damage = 80;
     [SerializeField] private bool _addImpactForce = true;
+    [SerializeField] private PlatformerCharacter2D _physicsManager;
+    [SerializeField] private GameObject _clashingEffectPrefab;
 
     public ImpactForceSettings _impactForceSettings;
-
+    
 
     public float rotationSpeed = 100f;
     public float startingRotation = -45;
@@ -30,6 +32,7 @@ public class MeleeAttack : ExtendedMonobehaviour
         if (_delayManager == null) _delayManager = GetComponent<DelayManager>();
         if (_inputManager == null) _inputManager = GetComponent<IPlatformer2DUserControl>();
         _swingerCollider.gameObject.SetRotationEulerZ(startingRotation);
+        if (_physicsManager == null) _physicsManager = GetComponent<PlatformerCharacter2D>();
     }
 
     // Update is called once per frame
@@ -107,4 +110,20 @@ public class MeleeAttack : ExtendedMonobehaviour
     public IEnumerable<HPScript> ImmuneTargets { get { return _immuneTargets; } }
     public bool HasImmuneTargets { get { return false; }}
     public ImpactForceSettings ImpactForceSettings { get { return _impactForceSettings; } }
+
+    public void ClashedWithOtherMelee(MeleeDamagingCollider otherMelee)
+    {
+        _physicsManager.AddKnockBack(otherMelee);
+
+        GameObject particles = null;
+        if (otherMelee.HasPreferredImpactPoint)
+        {
+            particles = (GameObject)Instantiate(_clashingEffectPrefab, otherMelee.PreferredImpactPoint, otherMelee.transform.rotation);
+        }
+        else
+        {
+            particles = (GameObject)Instantiate(_clashingEffectPrefab);
+        }
+        particles.transform.parent = transform;
+    }
 }
