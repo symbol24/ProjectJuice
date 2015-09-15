@@ -48,29 +48,8 @@ public class MeleeDamagingCollider : MonoBehaviour, IDamaging
         var checkForOtherMelee = collider.gameObject.GetComponent<MeleeDamagingCollider>();
         if (checkForOtherMelee != null)
         {
-            if (!_isClashingOnGoing)
-            {
-                _clashingCoroutine = ClashingCoroutine();
-                StartCoroutine(_clashingCoroutine);
-            }
+            _meleeAttack.ClashedWithOtherMelee(checkForOtherMelee);
         }
-    }
-
-    private bool _isClashingOnGoing = false;
-    private IEnumerator _clashingCoroutine;
-    IEnumerator ClashingCoroutine()
-    {
-        _isClashingOnGoing = true;
-        float currentTimer = 0f;
-        while (currentTimer < _timeOfClashing)
-        {
-            var direction = _directionOfClashing.normalized*(_meleeAttack.InputManager.m_FacingRight ? 1 : -1);
-            var force = direction*_magnitudeOfClashing;
-            _rigidbody.velocity = force*_deacceleration;
-            currentTimer += Time.deltaTime;
-            yield return null;
-        }
-        _isClashingOnGoing = false;
     }
 
 }
