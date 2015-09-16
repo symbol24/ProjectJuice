@@ -11,6 +11,8 @@ public class PlayerSelect : MonoBehaviour {
     private int m_PlayerCount = 0;
     [SerializeField] private Text[] m_PlayerTexts; 
     [SerializeField] private GameObject[] m_PlayerSelectPanels;
+    [SerializeField] private string m_SponsorMessage = "Select your Sponsor!";
+    [SerializeField] private string m_AbilityMessage = "Select your Ability!";
 
 	// Use this for initialization
 	void Start () {
@@ -24,7 +26,7 @@ public class PlayerSelect : MonoBehaviour {
             if (m_PlayerCount < 4 && GamePad.GetButtonDown(GamePad.Button.A, pd.GamepadIndex))
                 ActivatePlayer(pd);
 
-            if (m_PlayerCount > 0 && GamePad.GetButtonDown(GamePad.Button.Start, pd.GamepadIndex))
+            if (m_PlayerCount > 1 && GamePad.GetButtonDown(GamePad.Button.Start, pd.GamepadIndex))
                 NextScene();
         }
 	}
@@ -39,22 +41,22 @@ public class PlayerSelect : MonoBehaviour {
             {
                 case 0:
                     player.playerID = PlayerIDs.A;
-                    m_PlayerTexts[m_PlayerCount].text = "Select your Sponsor!";
+                    m_PlayerTexts[m_PlayerCount].text = m_SponsorMessage;
                     ActivateScreen(player, 0);
                     break;
                 case 1:
                     player.playerID = PlayerIDs.B;
-                    m_PlayerTexts[m_PlayerCount].text = "Press Start to continue";
+                    m_PlayerTexts[m_PlayerCount].text = m_SponsorMessage;
                     ActivateScreen(player, 1);
                     break;
                 case 2:
                     player.playerID = PlayerIDs.C;
-                    m_PlayerTexts[m_PlayerCount].text = "Press Start to continue";
+                    m_PlayerTexts[m_PlayerCount].text = m_SponsorMessage;
                     ActivateScreen(player, 2);
                     break;
                 case 3:
                     player.playerID = PlayerIDs.D;
-                    m_PlayerTexts[m_PlayerCount].text = "Press Start to continue";
+                    m_PlayerTexts[m_PlayerCount].text = m_SponsorMessage;
                     ActivateScreen(player, 3);
                     break;
             }

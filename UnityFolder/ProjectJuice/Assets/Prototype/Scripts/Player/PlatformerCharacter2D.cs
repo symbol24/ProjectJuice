@@ -9,33 +9,34 @@ namespace UnityStandardAssets._2D
         private IPlatformer2DUserControl m_Controller;
 
         //jump and double jump
-        [SerializeField] private float m_MaxSpeed = 10f;                    // The fastest the player can travel in the x axis.
-        [SerializeField] private float m_JumpForce = 400f;                  // Amount of force added when the player jumps.
-        [SerializeField] private bool m_AirControl = false;                 // Whether or not a player can steer while jumping;
-        [Range(0, 1)] [SerializeField] private float m_AirSpeed = 0.25f;    // Percentage of speed in the air from controller input
+        [SerializeField]private float m_MaxSpeed = 10f;                    // The fastest the player can travel in the x axis.
+        [SerializeField]private float m_JumpForce = 400f;                  // Amount of force added when the player jumps.
+        [SerializeField]private bool m_AirControl = false;                 // Whether or not a player can steer while jumping;
+        [Range(0, 1)][SerializeField]private float m_AirSpeed = 0.25f;    // Percentage of speed in the air from controller input
         private bool m_HasDoubleJump = false;                               // Determines if has special second jump
         private bool m_UsedDoubleJump = false;
 
         //dash
         private bool m_CanDash = false;                                     // Whether the player can dash. Restes on timer on ground, landing or double jump.
-        [SerializeField] private ForceMode2D m_DashType = ForceMode2D.Force;
-        [SerializeField] private float m_DashForce;
-        [Range(0, 1)][SerializeField] private float m_DashDelay = 0.5f;      // Delay before dashing again
+        [SerializeField]private ForceMode2D m_DashType = ForceMode2D.Force;
+        [SerializeField]private float m_DashForce;
+        [Range(0, 1)][SerializeField]private float m_DashDelay = 0.5f;      // Delay before dashing again
         private float m_DashTimer = 0.0f;
-        [Range(0, 10)][SerializeField] private int m_DashDrag = 5;
-        [Range(0, 1)][SerializeField] private float m_DashDragRemove = 0.12f;
+        [Range(0, 10)][SerializeField]private int m_DashDrag = 5;
+        [Range(0, 1)][SerializeField]private float m_DashDragRemove = 0.12f;
 
         //grounding and ceiling
-        [SerializeField] private LayerMask m_WhatIsGround;                  // A mask determining what is ground to the character
-        [SerializeField] private string m_WhatIsPassThrough;
-        [SerializeField] private string m_WhatIsPlayer;
+        [SerializeField]private LayerMask m_WhatIsGround;                  // A mask determining what is ground to the character
+        [SerializeField]private string m_WhatIsPassThrough;
+        [SerializeField]private string m_WhatIsPlayer;
         private Transform m_GroundCheck;    // A position marking where to check if the player is grounded.
         const float k_GroundedRadius = .2f; // Radius of the overlap circle to determine if grounded
         private bool m_Grounded;            // Whether or not the player is grounded.
         private Transform m_CeilingCheck;   // A position marking where to check for ceilings
         const float k_CeilingRadius = .01f; // Radius of the overlap circle to determine if the player can stand up
-        [Range(0, 1)][SerializeField] private float m_TriggerResetDelay = 0.1f; // To reset the ground when passing through
+        [Range(0, 1)][SerializeField]private float m_TriggerResetDelay = 0.1f; // To reset the ground when passing through
         private bool m_IsPassing = false;
+        private bool m_ConfirmPassing = false;
 
         private Animator m_Anim;            // Reference to the player's animator component.
         private Rigidbody2D m_Rigidbody2D;
@@ -64,7 +65,7 @@ namespace UnityStandardAssets._2D
             // Set the vertical animation
             m_Anim.SetFloat("vSpeed", m_Rigidbody2D.velocity.y);
 
-            
+
             Move(m_Controller.m_XAxis, m_Controller.m_Dash, m_Controller.m_Jump, m_Controller.m_Imobilize);
         }
 
@@ -111,17 +112,21 @@ namespace UnityStandardAssets._2D
 
         private void CheckPassThrough()
         {
-            
-            Collider2D[] ceillingCheck = Physics2D.OverlapCircleAll(m_CeilingCheck.position, k_CeilingRadius, m_WhatIsGround);
+            if (!m_IsPassing) {
+                Collider2D[] ceillingCheck = Physics2D.OverlapCircleAll(m_CeilingCheck.position, k_CeilingRadius, m_WhatIsGround);
 
-            foreach (Collider2D c2d in ceillingCheck) {
-                if (c2d)
+                foreach (Collider2D c2d in ceillingCheck)
                 {
-                    Ground ground = c2d.GetComponent<Ground>();
-                    if (ground != null && ground.IsPassThrough)
+                    if (c2d)
                     {
-                        gameObject.layer = LayerMask.NameToLayer(m_WhatIsPassThrough);
-                        m_IsPassing = true;
+                        Ground ground = c2d.GetComponent<Ground>();
+                        if (ground != null && ground.IsPassThrough)
+                        {
+                            gameObject.layer = LayerMask.NameToLayer(m_WhatIsPassThrough);
+                            m_IsPassing = true;
+                            m_ConfirmPassing = false;
+                            StartCoroutine(ConfirmPassing(0.2f));
+                        }
                     }
                 }
             }
@@ -181,10 +186,15 @@ namespace UnityStandardAssets._2D
             {
                 m_AirControl = true;
                 m_UsedDoubleJump = false;
-                
-                if(m_CanDash)
+
+                if (m_CanDash)
                     CheckDrag();
-                    
+
+                if(m_IsPassing && !m_ConfirmPassing)
+                {
+                    gameObject.layer = LayerMask.NameToLayer(m_WhatIsPlayer);
+                    m_IsPassing = false;
+                }
             }
 
             return isGrounded;
@@ -252,7 +262,7 @@ namespace UnityStandardAssets._2D
 
                 // if not facing right force x negative
                 //if (!m_Controller.m_FacingRight && angle.x > 0) angle.x = -angle.x;
-                if(impact.ImpactForceSettings.DirectionComingForm == Direction2D.Right) angle.x = -angle.x;
+                if (impact.ImpactForceSettings.DirectionComingForm == Direction2D.Right) angle.x = -angle.x;
 
 
                 //print(angle);
@@ -267,7 +277,7 @@ namespace UnityStandardAssets._2D
                 StartCoroutine(DashDragReset(m_DashDragRemove, m_Rigidbody2D));
             }
         }
-        
+
         private void CheckDrag()
         {
             if (m_Rigidbody2D.drag != 0) m_Rigidbody2D.drag = 0;
@@ -293,7 +303,41 @@ namespace UnityStandardAssets._2D
         void OnTriggerExit2D(Collider2D collider)
         {
             Ground ground = collider.GetComponent<Ground>();
+            if (ground != null && m_IsPassing)
+            {
+                gameObject.layer = LayerMask.NameToLayer(m_WhatIsPlayer);
+                m_IsPassing = false;
+            }
+        }
+        
+        void OnTriggerEnter2D(Collider2D collider)
+        {
+            Ground ground = collider.GetComponent<Ground>();
             if (ground != null && ground.IsPassThrough && m_IsPassing)
+            {
+                m_Grounded = SetGrounded(m_Grounded);
+                print(m_Grounded);
+                if (m_Grounded)
+                {
+                    gameObject.layer = LayerMask.NameToLayer(m_WhatIsPlayer);
+                    m_IsPassing = false;
+
+                }else
+                {
+                    m_ConfirmPassing = true;
+                }
+            }
+            else if (ground != null && !ground.IsPassThrough && m_IsPassing)
+            {
+                gameObject.layer = LayerMask.NameToLayer(m_WhatIsPlayer);
+                m_IsPassing = false;
+            }
+        }
+
+        IEnumerator ConfirmPassing(float timer)
+        {
+            yield return new WaitForSeconds(timer);
+            if (!m_ConfirmPassing)
             {
                 gameObject.layer = LayerMask.NameToLayer(m_WhatIsPlayer);
                 m_IsPassing = false;
