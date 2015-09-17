@@ -10,14 +10,16 @@ public class MenuControls : MonoBehaviour {
     [SerializeField] public GamePad.Button m_ConfirmButton = GamePad.Button.A;
     [SerializeField] public GamePad.Button m_CancelButton = GamePad.Button.B;
     [SerializeField] public GamePad.Button m_StartButton = GamePad.Button.Start;
-    [SerializeField] public GamePad.Axis m_DirectionalButton = GamePad.Axis.LeftStick;
+    [SerializeField] public GamePad.Axis m_DirectionJoystic = GamePad.Axis.LeftStick;
 
 
-    public List<bool> m_Confirm = new List<bool>();
-    public List<bool> m_Cancel = new List<bool>();
-    public List<bool> m_Start = new List<bool>();
-    public List<float> m_X = new List<float>();
-    public List<float> m_Y = new List<float>();
+    private List<bool> m_Confirm = new List<bool>();
+    private List<bool> m_Cancel = new List<bool>();
+    private List<bool> m_Start = new List<bool>();
+    private List<float> m_X = new List<float>();
+    private List<float> m_Y = new List<float>();
+
+    public List<bool> Confirm { get { return m_Confirm; } }
 
     // Use this for initialization
     void Start () {
@@ -45,6 +47,10 @@ public class MenuControls : MonoBehaviour {
 
     void ReadInputs(int id)
     {
-        //m_Confirm[i] = GamePad.GetButtonDown(GamePad.Button.A, m_ListofPlayers.)
+        m_Confirm[id] = GamePad.GetButtonDown(m_ConfirmButton, m_ListofPlayers[id].GamepadIndex);
+        m_Cancel[id] = GamePad.GetButtonDown(m_CancelButton, m_ListofPlayers[id].GamepadIndex);
+        m_Start[id] = GamePad.GetButtonDown(m_StartButton, m_ListofPlayers[id].GamepadIndex);
+        m_X[id] = GamePad.GetAxis(m_DirectionJoystic, m_ListofPlayers[id].GamepadIndex).x;
+        m_Y[id] = GamePad.GetAxis(m_DirectionJoystic, m_ListofPlayers[id].GamepadIndex).y;
     }
 }

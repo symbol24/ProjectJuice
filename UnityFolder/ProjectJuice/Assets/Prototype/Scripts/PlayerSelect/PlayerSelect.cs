@@ -6,28 +6,30 @@ using UnityEngine.UI;
 using Utility;
 
 public class PlayerSelect : MonoBehaviour {
-
+    private MenuControls m_Controls;
     private List<PlayerData> m_ListofPlayers = new List<PlayerData>();
     private int m_PlayerCount = 0;
     [SerializeField] private Text[] m_PlayerTexts; 
     [SerializeField] private GameObject[] m_PlayerSelectPanels;
     [SerializeField] private string m_SponsorMessage = "Select your Sponsor!";
     [SerializeField] private string m_AbilityMessage = "Select your Ability!";
+    private bool[,] m_SponsorValidate;
+    private int m_AmountofColors = 4;
 
 	// Use this for initialization
 	void Start () {
         m_ListofPlayers = Utilities.GetAllPlayerData();
+        m_Controls = FindObjectOfType<MenuControls>();
+        int i = System.Enum.GetValues(typeof(Sponsors)).Length;
+        m_SponsorValidate = new bool[i,m_AmountofColors];
     }
 	
 	// Update is called once per frame
 	void Update () {
-        foreach (PlayerData pd in m_ListofPlayers)
+        for(int i = 0; i < m_ListofPlayers.Count; i++)
         {
-            if (m_PlayerCount < 4 && GamePad.GetButtonDown(GamePad.Button.A, pd.GamepadIndex))
-                ActivatePlayer(pd);
-
-            if (m_PlayerCount > 1 && GamePad.GetButtonDown(GamePad.Button.Start, pd.GamepadIndex))
-                NextScene();
+            if (m_PlayerCount < 4 && m_Controls.Confirm[i])
+                ActivatePlayer(m_ListofPlayers[i]);
         }
 	}
 
@@ -78,5 +80,7 @@ public class PlayerSelect : MonoBehaviour {
     private void ActivateScreen(PlayerData player, int panel)
     {
         m_PlayerSelectPanels[panel].SetActive(true);
+        SelectorMenu menu = m_PlayerSelectPanels[panel].GetComponent<SelectorMenu>();
+        menu.SetPlayer(player, this);
     }
 }
