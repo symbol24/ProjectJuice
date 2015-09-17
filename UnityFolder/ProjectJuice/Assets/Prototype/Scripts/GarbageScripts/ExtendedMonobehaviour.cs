@@ -70,4 +70,37 @@ public abstract class ExtendedMonobehaviour : MonoBehaviour, IGameObject {
         if (toChange.activeInHierarchy) toChange.SetActive(true);
         else toChange.SetActive(false);
     }
+
+    protected Vector2 GetPointOfImpact(IDamaging chkDamaging, Collider2D targetCollider,Transform sourceReference, int raycastIterationsToFindTarget = 5, float raycastVariationPerTry = 0.1f)
+    {
+        Vector2 ret = new Vector2();
+        var othersPosition = targetCollider.gameObject.transform.position - sourceReference.position;
+        RaycastHit2D hit = default(RaycastHit2D);
+        if (chkDamaging.HasPreferredImpactPoint)
+        {
+            ret = chkDamaging.PreferredImpactPoint;
+        }
+        else
+        {
+            for (int i = 0; i < raycastIterationsToFindTarget; i++)
+            {
+                var firstTarget = new Vector3(othersPosition.x + raycastVariationPerTry * i,
+                    othersPosition.y + raycastVariationPerTry * i, othersPosition.z);
+                hit = Physics2D.Raycast(sourceReference.position, firstTarget, float.MaxValue);
+                if (hit.collider == targetCollider) break;
+                //Testing where raycast went
+                //Debug.DrawRay(_centerOfReferenceForJuice.position, firstTarget, Color.green);
+                //EditorApplication.isPaused = true;
+                var secondTarget = new Vector3(othersPosition.x - raycastVariationPerTry * i,
+                    othersPosition.y - raycastVariationPerTry * i, othersPosition.z);
+                hit = Physics2D.Raycast(sourceReference.position, secondTarget, float.MaxValue);
+                if (hit.collider == targetCollider) break;
+                //Debug.DrawRay(_centerOfReferenceForJuice.position, secondTarget, Color.red);
+            }
+            ret = hit.point;
+        }
+
+
+        return ret;
+    }
 }
