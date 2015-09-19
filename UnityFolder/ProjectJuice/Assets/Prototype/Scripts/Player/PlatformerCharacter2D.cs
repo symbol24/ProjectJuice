@@ -125,13 +125,12 @@ namespace UnityStandardAssets._2D
                             gameObject.layer = LayerMask.NameToLayer(m_WhatIsPassThrough);
                             m_IsPassing = true;
                             m_ConfirmPassing = false;
-                            StartCoroutine(ConfirmPassing(0.2f));
+                            StartCoroutine(ConfirmPassing(m_TriggerResetDelay));
                         }
                     }
                 }
             }
         }
-
 
         private void Flip()
         {
@@ -216,7 +215,7 @@ namespace UnityStandardAssets._2D
                 m_DashTimer = float.MaxValue;
                 m_CanDash = false;
                 m_AirControl = false;
-                m_Rigidbody2D.drag = 5;
+                m_Rigidbody2D.drag = m_DashDrag;
 
                 Vector2 angle = new Vector2(m_Controller.m_XAxis, m_Controller.m_YAxis); //get dash angle from x axis
 

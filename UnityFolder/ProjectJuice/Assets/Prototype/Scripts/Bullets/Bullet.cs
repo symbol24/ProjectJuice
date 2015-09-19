@@ -52,9 +52,6 @@ public class Bullet : MonoBehaviour, IDamaging {
     }
 
     public LayerMask m_WhatIsGround; // A mask determining what is ground 
-    [SerializeField] private string m_WhatIsPassThrough;
-    private int m_StartingLayer;
-    private bool m_IsPassing = false;
     [SerializeField] private bool _addImpactForce = false;
     [SerializeField] private bool _hasPreferredImpactPoint = false;
     [SerializeField] private Vector3 _preferredImpactPoint;
@@ -68,7 +65,6 @@ public class Bullet : MonoBehaviour, IDamaging {
 
     void Start()
     {
-        m_StartingLayer = gameObject.layer;
     }
 
 	// Update is called once per frame

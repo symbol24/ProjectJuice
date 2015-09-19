@@ -7,11 +7,10 @@ using Utility;
 public class MenuControls : MonoBehaviour {
     private List<PlayerData> m_ListofPlayers = new List<PlayerData>();
 
-    [SerializeField] public GamePad.Button m_ConfirmButton = GamePad.Button.A;
-    [SerializeField] public GamePad.Button m_CancelButton = GamePad.Button.B;
-    [SerializeField] public GamePad.Button m_StartButton = GamePad.Button.Start;
-    [SerializeField] public GamePad.Axis m_DirectionJoystic = GamePad.Axis.LeftStick;
-
+    [SerializeField] private GamePad.Button m_ConfirmButton = GamePad.Button.A;
+    [SerializeField] private GamePad.Button m_CancelButton = GamePad.Button.B;
+    [SerializeField] private GamePad.Button m_StartButton = GamePad.Button.Start;
+    [SerializeField] private GamePad.Axis m_DirectionJoystic = GamePad.Axis.LeftStick;
 
     private List<bool> m_Confirm = new List<bool>();
     private List<bool> m_Cancel = new List<bool>();
@@ -39,7 +38,7 @@ public class MenuControls : MonoBehaviour {
 
     void SetInputs()
     {
-        foreach(PlayerData pd in m_ListofPlayers)
+        for(int i = 0; i < m_ListofPlayers.Count; i++)
         {
             m_Confirm.Add(false);
             m_Cancel.Add(false);

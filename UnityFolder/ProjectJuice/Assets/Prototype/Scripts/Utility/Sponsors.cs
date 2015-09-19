@@ -1,1 +1,0 @@
-﻿public enum Sponsors { One, Two, Three, Four, Five, Six}
