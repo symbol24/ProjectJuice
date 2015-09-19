@@ -20,6 +20,10 @@ public class MenuControls : MonoBehaviour {
     private List<float> m_Y = new List<float>();
 
     public List<bool> Confirm { get { return m_Confirm; } }
+    public List<bool> Cancel { get { return m_Cancel; } }
+    public List<bool> _Start { get { return m_Start; } }
+    public List<float> X { get { return m_X; } }
+    public List<float> Y { get { return m_Y; } }
 
     // Use this for initialization
     void Start () {

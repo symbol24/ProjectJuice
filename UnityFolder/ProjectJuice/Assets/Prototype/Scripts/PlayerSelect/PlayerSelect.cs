@@ -29,11 +29,11 @@ public class PlayerSelect : MonoBehaviour {
         for(int i = 0; i < m_ListofPlayers.Count; i++)
         {
             if (m_PlayerCount < 4 && m_Controls.Confirm[i])
-                ActivatePlayer(m_ListofPlayers[i]);
+                ActivatePlayer(m_ListofPlayers[i], i);
         }
 	}
 
-    void ActivatePlayer(PlayerData player)
+    void ActivatePlayer(PlayerData player, int controllerID)
     {
         if (!player.isActivated)
         {
@@ -44,22 +44,22 @@ public class PlayerSelect : MonoBehaviour {
                 case 0:
                     player.playerID = PlayerIDs.A;
                     m_PlayerTexts[m_PlayerCount].text = m_SponsorMessage;
-                    ActivateScreen(player, 0);
+                    ActivateScreen(player, 0, controllerID);
                     break;
                 case 1:
                     player.playerID = PlayerIDs.B;
                     m_PlayerTexts[m_PlayerCount].text = m_SponsorMessage;
-                    ActivateScreen(player, 1);
+                    ActivateScreen(player, 1, controllerID);
                     break;
                 case 2:
                     player.playerID = PlayerIDs.C;
                     m_PlayerTexts[m_PlayerCount].text = m_SponsorMessage;
-                    ActivateScreen(player, 2);
+                    ActivateScreen(player, 2, controllerID);
                     break;
                 case 3:
                     player.playerID = PlayerIDs.D;
                     m_PlayerTexts[m_PlayerCount].text = m_SponsorMessage;
-                    ActivateScreen(player, 3);
+                    ActivateScreen(player, 3, controllerID);
                     break;
             }
 
@@ -77,10 +77,10 @@ public class PlayerSelect : MonoBehaviour {
         Application.LoadLevel("gameplayTest");
     }
 
-    private void ActivateScreen(PlayerData player, int panel)
+    private void ActivateScreen(PlayerData player, int panel, int ID)
     {
         m_PlayerSelectPanels[panel].SetActive(true);
         SelectorMenu menu = m_PlayerSelectPanels[panel].GetComponent<SelectorMenu>();
-        menu.SetPlayer(player, this);
+        menu.SetPlayer(player, this, ID);
     }
 }
