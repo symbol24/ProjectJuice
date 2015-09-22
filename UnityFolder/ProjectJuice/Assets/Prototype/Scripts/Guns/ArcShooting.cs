@@ -10,7 +10,6 @@ public class ArcShooting : Gun
     [Range(0, 10)][SerializeField] int m_burstAmmount = 3;
 
     private float m_BurstTimer;
-    private bool m_CanFire = true;
 
     protected override void Update() {
         base.Update();
@@ -25,7 +24,6 @@ public class ArcShooting : Gun
 
     IEnumerator BurstFire()
     {
-        m_CanFire = false;
         for (int i = m_burstAmmount; i >= 0; i--)
         {
             if (i > 0)
@@ -38,8 +36,6 @@ public class ArcShooting : Gun
 
             yield return new WaitForSeconds(m_BurstDelay);
         }
-
-        m_CanFire = true;
     }
 
 }

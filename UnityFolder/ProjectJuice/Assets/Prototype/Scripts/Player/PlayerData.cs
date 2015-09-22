@@ -33,8 +33,8 @@ public class PlayerData : MonoBehaviour {
     [SerializeField] private Abilities m_PlayerAbility = Abilities.None;
     public Abilities PlayerAbility { get { return m_PlayerAbility; } set { m_PlayerAbility = value; } }
 
-    [SerializeField] private Sponsors m_PlayerSponsor = Sponsors.One;
-    public Sponsors PlayerSponsor { get { return m_PlayerSponsor; } set { m_PlayerSponsor = value; } }
+    [SerializeField] private Sponsor m_PlayerSponsor;
+    public Sponsor PlayerSponsor { get { return m_PlayerSponsor; } set { m_PlayerSponsor = value; } }
 
     void Awake()
     {
@@ -46,7 +46,6 @@ public class PlayerData : MonoBehaviour {
         if(!m_PlayerActivated)
             Destroy(this.gameObject);
     }
-
 }
 
 
