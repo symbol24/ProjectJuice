@@ -20,15 +20,19 @@ public class shield : Gun {
     }
 
     // Update is called once per frame
-    protected override void Update () {
-        if (m_Controller.m_Special && !m_IsActive && m_DelayManager.m_CanShield)
-            ActivateShield();
+    protected override void Update ()
+    {
+        if (!isPaused)
+        {
+            if (m_Controller.m_Special && !m_IsActive && m_DelayManager.m_CanShield)
+                ActivateShield();
 
-        if (m_IsActive && m_DelayManager.m_CanShield)
-            DeactivateShield();
+            if (m_IsActive && m_DelayManager.m_CanShield)
+                DeactivateShield();
 
 
-        if (m_Controller.m_FacingRight != m_FacingRight) FlipPosition();
+            if (m_Controller.m_FacingRight != m_FacingRight) FlipPosition();
+        }
 	}
 
     void OnCollisionEnter2D(Collision2D collision)

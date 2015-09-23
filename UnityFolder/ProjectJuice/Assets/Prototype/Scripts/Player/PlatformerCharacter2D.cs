@@ -60,13 +60,16 @@ namespace UnityStandardAssets._2D
 
         private void Update()
         {
-            m_Grounded = SetGrounded(m_Grounded);
+            if (!isPaused)
+            {
+                m_Grounded = SetGrounded(m_Grounded);
 
-            // Set the vertical animation
-            m_Anim.SetFloat("vSpeed", m_Rigidbody2D.velocity.y);
+                // Set the vertical animation
+                m_Anim.SetFloat("vSpeed", m_Rigidbody2D.velocity.y);
 
 
-            Move(m_Controller.m_XAxis, m_Controller.m_Dash, m_Controller.m_Jump, m_Controller.m_Imobilize);
+                Move(m_Controller.m_XAxis, m_Controller.m_Dash, m_Controller.m_Jump, m_Controller.m_Imobilize);
+            }
         }
 
         public void Move(float move, bool dash, bool jump, bool imobile)
@@ -315,7 +318,6 @@ namespace UnityStandardAssets._2D
             if (ground != null && ground.IsPassThrough && m_IsPassing)
             {
                 m_Grounded = SetGrounded(m_Grounded);
-                print(m_Grounded);
                 if (m_Grounded)
                 {
                     gameObject.layer = LayerMask.NameToLayer(m_WhatIsPlayer);

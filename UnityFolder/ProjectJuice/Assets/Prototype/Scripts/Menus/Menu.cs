@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Menu : MonoBehaviour
+public class Menu : ExtendedMonobehaviour
 {
     protected MenuControls m_Controls;
 

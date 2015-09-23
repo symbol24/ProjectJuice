@@ -11,10 +11,14 @@ public class ArcShooting : Gun
 
     private float m_BurstTimer;
 
-    protected override void Update() {
-        base.Update();
+    protected override void Update()
+    {
+        if (!isPaused)
+        {
+            base.Update();
 
-        m_Gun.transform.eulerAngles = GetRotation(m_Controller);
+            m_Gun.transform.eulerAngles = GetRotation(m_Controller);
+        }
     }
 
     public override void Fire()

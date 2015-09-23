@@ -7,7 +7,7 @@ using Utility;
 namespace UnityStandardAssets._2D
 {
     [RequireComponent(typeof (PlatformerCharacter2D))]
-    public class Platformer2DUserControl : MonoBehaviour, IPlatformer2DUserControl
+    public class Platformer2DUserControl : ExtendedMonobehaviour, IPlatformer2DUserControl
     {
         public PlayerData m_PlayerData { get; private set; }
         [SerializeField] private PlayerIDs m_PlayerID;
@@ -50,23 +50,27 @@ namespace UnityStandardAssets._2D
             //controller = m_PlayerData.GamepadIndex; //Get the index of the gamepad from the playerdata.
         }
 
-        private void Start()
+        protected override void Start()
         {
+            base.Start();
             m_PlayerData = Utilities.GetPlayerData(m_PlayerID);
             controller = m_PlayerData.GamepadIndex; //Get the index of the gamepad from the playerdata.
         }
 
         private void Update()
         {
-            // Read the inputs.
-            m_Jump = GamePad.GetButtonDown(m_JumpButton, controller);
-            m_Dash = GamePad.GetButtonDown(m_DashButton, controller);
-            m_XAxis = GamePad.GetAxis(m_DirectionalButton, controller).x;
-            m_YAxis = GamePad.GetAxis(m_DirectionalButton, controller).y;
-            m_Shoot = GamePad.GetButtonDown(m_ShootButton, controller);
-            m_Melee = GamePad.GetButtonDown(m_MeleeButton, controller);
-            m_Special = GamePad.GetButtonDown(m_SpecialButton, controller);
-            m_Imobilize = GamePad.GetButton(m_ImobilizeButton, controller);
+            if (!isPaused)
+            {
+                // Read the inputs.
+                m_Jump = GamePad.GetButtonDown(m_JumpButton, controller);
+                m_Dash = GamePad.GetButtonDown(m_DashButton, controller);
+                m_XAxis = GamePad.GetAxis(m_DirectionalButton, controller).x;
+                m_YAxis = GamePad.GetAxis(m_DirectionalButton, controller).y;
+                m_Shoot = GamePad.GetButtonDown(m_ShootButton, controller);
+                m_Melee = GamePad.GetButtonDown(m_MeleeButton, controller);
+                m_Special = GamePad.GetButtonDown(m_SpecialButton, controller);
+                m_Imobilize = GamePad.GetButton(m_ImobilizeButton, controller);
+            }
         }
     }
 }

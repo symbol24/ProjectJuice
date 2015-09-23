@@ -33,4 +33,16 @@ public class DelayManager : MonoBehaviour {
         m_CurrentDelay = 0f;
         m_ShieldDelay = 0f;
     }
+
+    public void CoroutineDelay(float delay)
+    {
+        m_CurrentDelay = delay;
+        StartCoroutine(DelayTime(delay));
+    }
+
+    IEnumerator DelayTime(float timer)
+    {
+        yield return new WaitForSeconds(timer);
+        m_CurrentDelay = 0f;
+    }
 }
