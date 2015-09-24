@@ -42,6 +42,8 @@ namespace UnityStandardAssets._2D
         private Rigidbody2D m_Rigidbody2D;
         public GameObject m_Body;           //for sprite and animation
         private Collider2D[] m_MyColliders;
+        private Collider2D[] m_LastPassThrough;
+        private float m_Collidertimer = 1f;
 
         private void Awake()
         {
@@ -272,10 +274,12 @@ namespace UnityStandardAssets._2D
         
         public void CheckPassThrough(Collider2D collider)
         {
-            print("Collider2d = " + collider.name);
+            Ground ground = collider.GetComponent<Ground>();
+            //CheckLastPassedThrough();
+
             if (!m_IsPassing)
             {
-                Ground ground = collider.GetComponent<Ground>();
+                
                 if (ground != null && ground.IsPassThrough)
                 {
                     foreach (Collider2D gc2d in ground.Colliders)
@@ -284,9 +288,10 @@ namespace UnityStandardAssets._2D
                         {
                             Physics2D.IgnoreCollision(gc2d, myC2d, true);
                         }
-                        ground.SetPassing(m_MyColliders);
                     }
+                    m_LastPassThrough = ground.Colliders;
                     m_IsPassing = true;
+                    StartCoroutine(TimedCheckColliders(m_Collidertimer));
                 }
             }
         }
@@ -305,12 +310,36 @@ namespace UnityStandardAssets._2D
                         {
                             Physics2D.IgnoreCollision(gc2d, myC2d, false);
                         }
-                        ground.SetPassing(m_MyColliders);
                     }
                 }
 
                 m_IsPassing = false;
             }
+        }
+
+        private void CheckLastPassedThrough()
+        {
+            if (m_LastPassThrough != null)
+            {
+                foreach (Collider2D myc2d in m_MyColliders)
+                {
+                    foreach (Collider2D c2d in m_LastPassThrough)
+                    {
+                        if (Physics2D.GetIgnoreCollision(myc2d, c2d))
+                            Physics2D.IgnoreCollision(myc2d, c2d, false);
+                    }
+                }
+                m_LastPassThrough = null;
+                m_IsPassing = false;
+            }
+
+            
+        }
+
+        IEnumerator TimedCheckColliders(float timer)
+        {
+            yield return new WaitForSeconds(timer);
+            CheckLastPassedThrough();
         }
     }
 }
