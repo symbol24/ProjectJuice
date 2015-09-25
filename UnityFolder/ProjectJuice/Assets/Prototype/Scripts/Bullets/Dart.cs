@@ -214,4 +214,14 @@ public class Dart : ExtendedMonobehaviour
         Destroy(gameObject);
     }
     #endregion events
+
+    public void ListenToCrossSection(DartChainV2 brandNewCrossSection)
+    {
+        brandNewCrossSection.HitFloor += HitFloor;
+    }
+
+    private void HitFloor(object sender, EventArgs eventArgs)
+    {
+        OnDartDestroyed();
+    }
 }

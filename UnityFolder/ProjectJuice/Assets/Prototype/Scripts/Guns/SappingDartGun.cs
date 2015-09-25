@@ -134,12 +134,14 @@ public class SappingDartGun : ExtendedMonobehaviour {
 
     private DartChainV2 InstantiateChain(DartChainV2 toAttachTo, Dart dart = null)
     {
+        dart = dart ?? toAttachTo.CurrentDart;
         var brandNewCrossSection =
             (DartChainV2)
                 Instantiate(_dartChainPrefab, _dartSpawnPoint.transform.position, _dartSpawnPoint.transform.rotation);
         brandNewCrossSection.CurrentGun = this;
-        brandNewCrossSection.CurrentDart = dart ?? toAttachTo.CurrentDart;
+        brandNewCrossSection.CurrentDart = dart;
         brandNewCrossSection.NextChain = toAttachTo;
+        dart.ListenToCrossSection(brandNewCrossSection);
         return brandNewCrossSection;
     }
 

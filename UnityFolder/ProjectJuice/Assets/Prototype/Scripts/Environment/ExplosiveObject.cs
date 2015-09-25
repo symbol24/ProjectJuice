@@ -137,9 +137,16 @@ public class ExplosiveObject : HPBase
             var script = explosiveCollider.AddComponent<ExplosiveObjectCollider>();
             script._explosiveObject = this;
             _mainRigidbody.isKinematic = true;
+            StartCoroutine(DeleteNextUpdate(script));
         }
         var timer = gameObject.AddComponent<DestroyOnTimer>();
         timer.Timeout = _explosionDuration;
+    }
+
+    private IEnumerator DeleteNextUpdate(ExplosiveObjectCollider script)
+    {
+        yield return null;
+        Destroy(script);
     }
 
     public bool IsAvailableForConsumption
