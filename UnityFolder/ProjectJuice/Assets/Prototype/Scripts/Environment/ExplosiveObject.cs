@@ -65,12 +65,12 @@ public class ExplosiveObject : HPBase
         base.Update();
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    public void RouteOnCollisionEnter2D(Collision2D collision)
     {
         CheckForDamaging(collision.collider);
     }
 
-    private void OnTriggerEnter2D(Collider2D collider)
+    public void RouteOnTriggerEnter2D(Collider2D collider)
     {
         CheckForDamaging(collider);
     }
