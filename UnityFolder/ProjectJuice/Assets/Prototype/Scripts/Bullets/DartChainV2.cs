@@ -56,6 +56,7 @@ public class DartChainV2 : MonoBehaviour {
         get { return _mainHingeJoint ?? (_mainHingeJoint = GetComponent<HingeJoint2D>()); }
     }
 
+    public EventHandler HitFloor;
 
 	// Use this for initialization
 	void Start () {
@@ -87,4 +88,14 @@ public class DartChainV2 : MonoBehaviour {
     {
         Destroy(gameObject);
     }
+
+    private void OnTriggerEnter2D(Collider2D collider)
+    {
+        var groundCheck = collider.GetComponent<Ground>();
+        if (groundCheck != null && !groundCheck.IsPassThrough)
+        {
+            if (HitFloor != null) HitFloor(this, EventArgs.Empty);
+        }
+    }
+
 }
