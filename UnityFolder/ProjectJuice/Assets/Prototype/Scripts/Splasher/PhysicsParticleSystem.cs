@@ -65,6 +65,7 @@ public class PhysicsParticleSystem : ExtendedMonobehaviour
         _hpScript.HpImpactReceived += HpScriptOnHpImpactReceived;
     }
 
+
     private void HpScriptOnHpImpactReceived(object sender, ImpactEventArgs impactEventArgs)
     {
         var iterations = Mathf.CeilToInt(impactEventArgs.Damage/(float) PointsOfDamagePerParticle);

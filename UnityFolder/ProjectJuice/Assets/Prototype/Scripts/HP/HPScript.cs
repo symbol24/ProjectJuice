@@ -26,6 +26,9 @@ public class HPScript : HPBase
     {
         EventHandler handler = Dead;
         if (handler != null) handler(this, EventArgs.Empty);
+        Debug.Log("addDeath Animation");
+
+        Destroy(gameObject);
     }
     protected virtual void OnHpImpactReceived(ImpactEventArgs e)
     {
