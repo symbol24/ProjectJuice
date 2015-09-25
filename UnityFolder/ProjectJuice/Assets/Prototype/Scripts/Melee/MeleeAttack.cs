@@ -26,6 +26,13 @@ public class MeleeAttack : ExtendedMonobehaviour
     public float endingRotation = 45;
     public float _delayAfterSwing = 0.5f;
 
+    
+    [SerializeField] private Light m_GunLight;
+    [Range(0,3)][SerializeField] float m_LightOn = 0.1f;
+    [Range(0,3)][SerializeField] float m_LightOff = 0.1f;
+    [Range(0, 10)][SerializeField] private int m_AmountOfFlashes = 3;
+    protected bool m_HasDisplayed = true;
+
     // Use this for initialization
     private void Start()
     {
@@ -52,6 +59,8 @@ public class MeleeAttack : ExtendedMonobehaviour
             _flipReference.transform.localScale = _flipReference.transform.localScale.SetX(-1);
         }
         _impactForceSettings.DirectionComingForm = _inputManager.m_FacingRight ? Direction2D.Left : Direction2D.Right;
+
+        CheckLight();
     }
 
     private bool _isSwingingAnimationOnGoing = false;
@@ -62,6 +71,7 @@ public class MeleeAttack : ExtendedMonobehaviour
 
     private IEnumerator StartSwingingAnimation()
     {
+        m_HasDisplayed = false;
         _isSwingingAnimationOnGoing = true;
         _delayManager.AddDelay(100f);
         _swingerCollider.SetActive(true);
@@ -125,5 +135,22 @@ public class MeleeAttack : ExtendedMonobehaviour
             particles = (GameObject)Instantiate(_clashingEffectPrefab);
         }
         particles.transform.parent = transform;
+    }
+
+    private void CheckLight()
+    {
+        if (!m_HasDisplayed && _delayManager.m_CanShoot) StartCoroutine(DisplayGunLight());
+    }
+
+    IEnumerator DisplayGunLight()
+    {
+        m_HasDisplayed = true;
+        for (int i = 0; i < m_AmountOfFlashes; i++)
+        {
+            m_GunLight.enabled = true;
+            yield return new WaitForSeconds(m_LightOn);
+            m_GunLight.enabled = false;
+            yield return new WaitForSeconds(m_LightOff);
+        }
     }
 }

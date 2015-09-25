@@ -9,8 +9,6 @@ public class ArcShooting : Gun
     [SerializeField] private float m_BurstDelay = 0.1f;
     [Range(0, 10)][SerializeField] int m_burstAmmount = 3;
 
-    private float m_BurstTimer;
-
     protected override void Update()
     {
         if (!isPaused)
@@ -23,11 +21,13 @@ public class ArcShooting : Gun
 
     public override void Fire()
     {
+        m_HasDisplayed = false;
         StartCoroutine(BurstFire());
     }
 
     IEnumerator BurstFire()
     {
+        m_DelayManager.AddDelay(100f);
         for (int i = m_burstAmmount; i >= 0; i--)
         {
             if (i > 0)
@@ -40,6 +40,6 @@ public class ArcShooting : Gun
 
             yield return new WaitForSeconds(m_BurstDelay);
         }
+        m_DelayManager.Reset();
     }
-
 }

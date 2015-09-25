@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class shield : Gun {
-    private bool m_CanShootBack = false;
+    private bool m_CanShootBack { get { return m_CurrentCount >= m_MaxBullets; } }
     [Range(0,25)][SerializeField] private float m_ShotAngle = 10f;
     [Range(0,1)][SerializeField] private float m_ShotModifier = 0.9f;
     [Range(0,24)][SerializeField] private int m_MaxBullets = 9;
@@ -11,6 +11,7 @@ public class shield : Gun {
     private bool m_FacingRight = true;
     private bool m_IsActive = false;
     [Range(0,5)][SerializeField] private float m_ActiveTime = 1.0f;
+    [SerializeField] private Light m_Light;
 
 
     protected override void Start()
@@ -30,8 +31,9 @@ public class shield : Gun {
             if (m_IsActive && m_DelayManager.m_CanShield)
                 DeactivateShield();
 
-
             if (m_Controller.m_FacingRight != m_FacingRight) FlipPosition();
+
+            CheckLight();
         }
 	}
 
@@ -43,9 +45,21 @@ public class shield : Gun {
             bullet.Consumed();
             if (m_CurrentCount < m_MaxBullets) {
                 m_CurrentCount++;
-                if (m_CurrentCount == m_MaxBullets)
-                    m_CanShootBack = true;
            }
+        }
+    }
+
+    private void CheckLight()
+    {
+        if (m_CanShootBack)
+        {
+            if (!m_Light.enabled)
+                m_Light.enabled = true;
+        }
+        else
+        {
+            if(m_Light.enabled)
+               m_Light.enabled = false;
         }
     }
 
@@ -74,7 +88,6 @@ public class shield : Gun {
             FireOneBullet(newRot);
         }
         m_CurrentCount = 0;
-        m_CanShootBack = false;
     }
 
     public void FireOneBullet(Quaternion newRotation)

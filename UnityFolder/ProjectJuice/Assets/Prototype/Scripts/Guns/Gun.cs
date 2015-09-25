@@ -18,9 +18,13 @@ public class Gun : ExtendedMonobehaviour {
     public float m_Delay { get { return m_ShotDelay; } }
     [SerializeField] private HPScript m_HpScript;
     public HPScript m_HpScp { get { return m_HpScript; } }
+    [SerializeField] private Light m_GunLight;
+    [Range(0,3)][SerializeField] float m_LightOn = 0.1f;
+    [Range(0,3)][SerializeField] float m_LightOff = 0.1f;
+    [Range(0, 10)][SerializeField] private int m_AmountOfFlashes = 3;
+    protected bool m_HasDisplayed = true;
 
-
-    protected virtual void Start()
+    protected override void Start()
     {
         if (m_GunReference == null) m_GunReference = GetComponentInChildren<gunRef>().gameObject;
         m_Controller = GetComponent<IPlatformer2DUserControl>();
@@ -33,6 +37,9 @@ public class Gun : ExtendedMonobehaviour {
     {
         if (!isPaused)
         {
+
+            CheckLight();
+
             if (m_Controller.m_Shoot && m_DelayManager.m_CanShoot)
             {
                 Fire();
@@ -42,6 +49,7 @@ public class Gun : ExtendedMonobehaviour {
 
     public virtual void Fire()
     {
+        m_HasDisplayed = false;
         FireOneBullet();
 
         m_DelayManager.AddDelay(m_ShotDelay);
@@ -52,5 +60,22 @@ public class Gun : ExtendedMonobehaviour {
         Bullet newBullet = Instantiate(m_BulletPrefab, m_GunReference.transform.position, m_GunReference.transform.rotation) as Bullet;
         newBullet.ShootBullet();
         newBullet.AddImmuneTarget(m_HpScript);
+    }
+
+    private void CheckLight()
+    {
+        if (!m_HasDisplayed && m_DelayManager.m_CanShoot) StartCoroutine(DisplayGunLight());
+    }
+
+    IEnumerator DisplayGunLight()
+    {
+        m_HasDisplayed = true;
+        for (int i = 0; i < m_AmountOfFlashes; i++)
+        {
+            m_GunLight.enabled = true;
+            yield return new WaitForSeconds(m_LightOn);
+            m_GunLight.enabled = false;
+            yield return new WaitForSeconds(m_LightOff);
+        }
     }
 }
