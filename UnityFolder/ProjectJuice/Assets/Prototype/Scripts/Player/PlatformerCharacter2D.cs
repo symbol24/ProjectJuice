@@ -41,6 +41,9 @@ namespace UnityStandardAssets._2D
         private Animator m_Anim;            // Reference to the player's animator component.
         private Rigidbody2D m_Rigidbody2D;
         public GameObject m_Body;           //for sprite and animation
+        private Collider2D[] m_MyColliders;
+        private Collider2D[] m_LastPassThrough;
+        private float m_Collidertimer = 1f;
 
         private void Awake()
         {
@@ -51,27 +54,31 @@ namespace UnityStandardAssets._2D
             m_CeilingCheck = transform.FindChild("CeilingCheck");
             m_Anim = m_Body.GetComponent<Animator>();
             m_Rigidbody2D = GetComponent<Rigidbody2D>();
+            m_MyColliders = GetComponents<Collider2D>();
         }
 
-        private void Start()
+        protected override void Start()
         {
             m_HasDoubleJump = CheckifHasDoubleJump();
         }
 
         private void Update()
         {
-            m_Grounded = SetGrounded(m_Grounded);
+            if (!isPaused)
+            {
+                m_Grounded = SetGrounded(m_Grounded);
 
-            // Set the vertical animation
-            m_Anim.SetFloat("vSpeed", m_Rigidbody2D.velocity.y);
+                // Set the vertical animation
+                m_Anim.SetFloat("vSpeed", m_Rigidbody2D.velocity.y);
 
 
-            Move(m_Controller.m_XAxis, m_Controller.m_Dash, m_Controller.m_Jump, m_Controller.m_Imobilize);
+                Move(m_Controller.m_XAxis, m_Controller.m_Dash, m_Controller.m_Jump, m_Controller.m_Imobilize);
+            }
         }
 
         public void Move(float move, bool dash, bool jump, bool imobile)
         {
-            CheckPassThrough();
+            //CheckPassThrough();
 
             if (m_DashTimer < Time.time && !m_CanDash && m_Grounded)
             {
@@ -108,28 +115,6 @@ namespace UnityStandardAssets._2D
             // If the player should dash
             if (m_CanDash && dash)
                 PhysicsDash();
-        }
-
-        private void CheckPassThrough()
-        {
-            if (!m_IsPassing) {
-                Collider2D[] ceillingCheck = Physics2D.OverlapCircleAll(m_CeilingCheck.position, k_CeilingRadius, m_WhatIsGround);
-
-                foreach (Collider2D c2d in ceillingCheck)
-                {
-                    if (c2d)
-                    {
-                        Ground ground = c2d.GetComponent<Ground>();
-                        if (ground != null && ground.IsPassThrough)
-                        {
-                            gameObject.layer = LayerMask.NameToLayer(m_WhatIsPassThrough);
-                            m_IsPassing = true;
-                            m_ConfirmPassing = false;
-                            StartCoroutine(ConfirmPassing(m_TriggerResetDelay));
-                        }
-                    }
-                }
-            }
         }
 
         private void Flip()
@@ -188,24 +173,12 @@ namespace UnityStandardAssets._2D
 
                 if (m_CanDash)
                     CheckDrag();
+                
 
-                if(m_IsPassing && !m_ConfirmPassing)
-                {
-                    gameObject.layer = LayerMask.NameToLayer(m_WhatIsPlayer);
-                    m_IsPassing = false;
-                }
+               
             }
 
             return isGrounded;
-        }
-
-        private IEnumerator ResetGroundTrigger(float delay, Collider2D toReset)
-        {
-            float timer = Time.time + delay;
-            while (Time.time < timer)
-                yield return 0;
-
-            toReset.isTrigger = !toReset.isTrigger;
         }
 
         public void PhysicsDash()
@@ -298,49 +271,75 @@ namespace UnityStandardAssets._2D
             yield return new WaitForSeconds(m_DashDragRemove);
             CheckDrag();
         }
-
-        void OnTriggerExit2D(Collider2D collider)
-        {
-            Ground ground = collider.GetComponent<Ground>();
-            if (ground != null && m_IsPassing)
-            {
-                gameObject.layer = LayerMask.NameToLayer(m_WhatIsPlayer);
-                m_IsPassing = false;
-            }
-        }
         
-        void OnTriggerEnter2D(Collider2D collider)
+        public void CheckPassThrough(Collider2D collider)
         {
             Ground ground = collider.GetComponent<Ground>();
-            if (ground != null && ground.IsPassThrough && m_IsPassing)
-            {
-                m_Grounded = SetGrounded(m_Grounded);
-                print(m_Grounded);
-                if (m_Grounded)
-                {
-                    gameObject.layer = LayerMask.NameToLayer(m_WhatIsPlayer);
-                    m_IsPassing = false;
+            //CheckLastPassedThrough();
 
-                }else
+            if (!m_IsPassing)
+            {
+                
+                if (ground != null && ground.IsPassThrough)
                 {
-                    m_ConfirmPassing = true;
+                    foreach (Collider2D gc2d in ground.Colliders)
+                    {
+                        foreach (Collider2D myC2d in m_MyColliders)
+                        {
+                            Physics2D.IgnoreCollision(gc2d, myC2d, true);
+                        }
+                    }
+                    m_LastPassThrough = ground.Colliders;
+                    m_IsPassing = true;
+                    StartCoroutine(TimedCheckColliders(m_Collidertimer));
                 }
             }
-            else if (ground != null && !ground.IsPassThrough && m_IsPassing)
+        }
+
+        public void CheckifFeetPassed(Collider2D collider)
+        {
+            if (m_IsPassing)
             {
-                gameObject.layer = LayerMask.NameToLayer(m_WhatIsPlayer);
+
+                Ground ground = collider.GetComponent<Ground>();
+                if (ground != null && ground.IsPassThrough)
+                {
+                    foreach (Collider2D gc2d in ground.Colliders)
+                    {
+                        foreach (Collider2D myC2d in m_MyColliders)
+                        {
+                            Physics2D.IgnoreCollision(gc2d, myC2d, false);
+                        }
+                    }
+                }
+
                 m_IsPassing = false;
             }
         }
 
-        IEnumerator ConfirmPassing(float timer)
+        private void CheckLastPassedThrough()
         {
-            yield return new WaitForSeconds(timer);
-            if (!m_ConfirmPassing)
+            if (m_LastPassThrough != null)
             {
-                gameObject.layer = LayerMask.NameToLayer(m_WhatIsPlayer);
+                foreach (Collider2D myc2d in m_MyColliders)
+                {
+                    foreach (Collider2D c2d in m_LastPassThrough)
+                    {
+                        if (Physics2D.GetIgnoreCollision(myc2d, c2d))
+                            Physics2D.IgnoreCollision(myc2d, c2d, false);
+                    }
+                }
+                m_LastPassThrough = null;
                 m_IsPassing = false;
             }
+
+            
+        }
+
+        IEnumerator TimedCheckColliders(float timer)
+        {
+            yield return new WaitForSeconds(timer);
+            CheckLastPassedThrough();
         }
     }
 }

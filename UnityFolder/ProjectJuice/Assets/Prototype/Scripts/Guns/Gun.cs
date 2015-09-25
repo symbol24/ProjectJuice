@@ -31,9 +31,12 @@ public class Gun : ExtendedMonobehaviour {
     // Update is called once per frame
     protected virtual void Update ()
     {
-        if (m_Controller.m_Shoot && m_DelayManager.m_CanShoot)
+        if (!isPaused)
         {
-            Fire();
+            if (m_Controller.m_Shoot && m_DelayManager.m_CanShoot)
+            {
+                Fire();
+            }
         }
     }
 

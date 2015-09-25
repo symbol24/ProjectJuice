@@ -44,9 +44,12 @@ public class SappingDartGun : ExtendedMonobehaviour {
     // Update is called once per frame
     void Update()
     {
-        if (_inputManager.m_Special && _delayManager.m_CanShoot)
+        if (!isPaused)
         {
-            FireDart();
+            if (_inputManager.m_Special && _delayManager.m_CanShoot)
+            {
+                FireDart();
+            }
         }
     }
     

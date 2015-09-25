@@ -9,6 +9,7 @@ public class PlayerSpawner : MonoBehaviour {
     [SerializeField] GameObject m_PlayerPrefab;
     private List<PlayerData> m_ListofPlayers = new List<PlayerData>();
     private List<GameObject> m_Players = new List<GameObject>();
+    [SerializeField] private int[] m_PlayerLayerIDs = {15,16,17,18};
 
 	// Use this for initialization
 	void Start () {
@@ -24,6 +25,7 @@ public class PlayerSpawner : MonoBehaviour {
             GameObject temp = Instantiate(m_PlayerPrefab, m_Spawners[i].transform.position, m_Spawners[i].transform.rotation) as GameObject;
             temp.GetComponent<Platformer2DUserControl>().PlayerID = pd.playerID;
             SetAbility(temp, pd);
+            temp.layer = m_PlayerLayerIDs[i];
             m_Players.Add(temp);
             i++;
         }
