@@ -36,6 +36,9 @@ public class PlayerData : MonoBehaviour {
     [SerializeField] private Sponsor m_PlayerSponsor;
     public Sponsor PlayerSponsor { get { return m_PlayerSponsor; } set { m_PlayerSponsor = value; } }
 
+    private int m_Score = 0;
+    public int Score { get { return m_Score; } set { m_Score = value; } }
+
     void Awake()
     {
             DontDestroyOnLoad(this);
