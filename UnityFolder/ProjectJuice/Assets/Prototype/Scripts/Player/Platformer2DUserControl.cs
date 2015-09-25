@@ -10,6 +10,7 @@ namespace UnityStandardAssets._2D
     public class Platformer2DUserControl : MonoBehaviour, IPlatformer2DUserControl
     {
         public PlayerData m_PlayerData { get; private set; }
+        
         [SerializeField] private PlayerIDs m_PlayerID;
         public PlayerIDs PlayerID { get { return m_PlayerID; } set { m_PlayerID = value; } }
 
@@ -30,6 +31,7 @@ namespace UnityStandardAssets._2D
         public bool m_Melee { get; private set; }
         public bool m_Special { get; private set; }
         public bool m_Imobilize { get; private set; }
+        public bool m_SpecialStay { get; private set; }
 
         //Gamepad buttons used
         [SerializeField] private GamePad.Button m_JumpButton = GamePad.Button.A;
@@ -67,6 +69,7 @@ namespace UnityStandardAssets._2D
             m_Melee = GamePad.GetButtonDown(m_MeleeButton, controller);
             m_Special = GamePad.GetButtonDown(m_SpecialButton, controller);
             m_Imobilize = GamePad.GetButton(m_ImobilizeButton, controller);
+            m_SpecialStay = GamePad.GetButton(m_SpecialButton, controller);
         }
     }
 }

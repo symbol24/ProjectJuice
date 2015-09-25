@@ -23,9 +23,15 @@ public class SappingDartGun : ExtendedMonobehaviour {
     float _dartCollTimerDisappear = 0f;
 
     [SerializeField] private float _lifetimeSinceHit = 1f;
+    [SerializeField] private DartChainV2 _dartChainPrefab;
+    [SerializeField]
+    private float _crossSectionLength;
+
+    public float HoseCrossSectionLength { get { return _crossSectionLength; } }
 
     DelayManager _delayManager;
     IPlatformer2DUserControl _inputManager;
+    
 
     void Start()
     {
@@ -43,22 +49,35 @@ public class SappingDartGun : ExtendedMonobehaviour {
             FireDart();
         }
     }
+    
 
     private void FireDart()
     {
         var dartGameObject = (Dart)Instantiate(_dartPrefab, _dartSpawnPoint.transform.position, _dartSpawnPoint.transform.rotation);
         var dart = dartGameObject.GetComponent<Dart>();
+        #region SetProperties
         dart.IsContiniousSucking = _isContiniousSucking;
         dart.SuckingInterval = _suckingInterval;
         dart.HpSuckedPerSecond = _hpToSuckPerSecond;
         dart.DartCollTimerDisappear = _dartCollTimerDisappear;
         dart.LifetimeSinceHit = _lifetimeSinceHit;
-
-        //SubscribeToEvents
+        dart.InputManager = _inputManager;
+        dart.SourceHPScript = _hpScript;
+        #endregion SetProperties
+        #region SubscribeToEvents
         dart.JuiceSucked += Dart_JuiceSucked;
         dart.DartDestroyed += Dart_DartDestroyed;
         dart.DartCollision += Dart_DartCollision;
+        #endregion SubscribeToEvents
 
+
+
+        var currentCrossSection = InstantiateChain(dart.StaticCrossSection, dart);
+        _addCrossSection = AddCrossSection(currentCrossSection);
+        StartCoroutine(_addCrossSection);
+
+        
+        //Debug.Break();
         dart.ShootBullet(_dartSpeed, _dartSpawnPoint.transform);
         _delayManager.AddDelay(float.MaxValue);
     }
@@ -70,6 +89,7 @@ public class SappingDartGun : ExtendedMonobehaviour {
 
     private void Dart_DartDestroyed(object sender, EventArgs e)
     {
+        StopCoroutine(_addCrossSection);
         _delayManager.Reset();
     }
 
@@ -82,6 +102,42 @@ public class SappingDartGun : ExtendedMonobehaviour {
     {
         yield return new WaitForSeconds(timer);
         hpScript.CurrentHp += hpToAdd;
+    }
+
+
+    private IEnumerator _addCrossSection;
+    private IEnumerator AddCrossSection(DartChainV2 currentFirstChain)
+    {
+        //if (_inputManager.m_SpecialStay)
+        {
+            float distance = 0f;
+            while (distance <= _crossSectionLength)
+            {
+                distance = Vector3.Distance(currentFirstChain.transform.position, _dartSpawnPoint.transform.position);
+                yield return null;
+            }
+            var crossSectionsNeeded = distance / _crossSectionLength;
+            DartChainV2 lastDartChainAdded = currentFirstChain;
+            int numberOfIterations = Mathf.RoundToInt(crossSectionsNeeded);
+            for (int i = 0; i < numberOfIterations; i++)
+            {
+                lastDartChainAdded = InstantiateChain(lastDartChainAdded);
+            }
+
+            _addCrossSection = AddCrossSection(lastDartChainAdded);
+            StartCoroutine(_addCrossSection);
+        }
+    }
+
+    private DartChainV2 InstantiateChain(DartChainV2 toAttachTo, Dart dart = null)
+    {
+        var brandNewCrossSection =
+            (DartChainV2)
+                Instantiate(_dartChainPrefab, _dartSpawnPoint.transform.position, _dartSpawnPoint.transform.rotation);
+        brandNewCrossSection.CurrentGun = this;
+        brandNewCrossSection.CurrentDart = dart ?? toAttachTo.CurrentDart;
+        brandNewCrossSection.NextChain = toAttachTo;
+        return brandNewCrossSection;
     }
 
 }

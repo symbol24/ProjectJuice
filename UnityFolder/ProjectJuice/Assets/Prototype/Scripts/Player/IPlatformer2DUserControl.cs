@@ -13,4 +13,5 @@ public interface IPlatformer2DUserControl
     bool m_Imobilize { get; }
     bool m_FacingRight { get; set; }
     PlayerData m_PlayerData { get; }
+    bool m_SpecialStay { get; }
 }

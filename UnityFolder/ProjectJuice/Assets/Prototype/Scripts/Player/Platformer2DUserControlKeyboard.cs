@@ -6,6 +6,7 @@ using Utility;
 public class Platformer2DUserControlKeyboard : MonoBehaviour, IPlatformer2DUserControl
 {
     public PlayerData m_PlayerData { get; private set; }
+
     [SerializeField]
     private PlayerIDs m_PlayerID;
     [SerializeField] 
@@ -35,6 +36,8 @@ public class Platformer2DUserControlKeyboard : MonoBehaviour, IPlatformer2DUserC
     public bool m_Special { get; private set; }
     [SerializeField]
     private KeyCode _m_imobilize = KeyCode.LeftAlt;
+    
+    public bool m_SpecialStay { get; private set; }
 
     private bool _mFacingRight = true;
     public bool m_Imobilize { get; private set; }
@@ -60,6 +63,7 @@ public class Platformer2DUserControlKeyboard : MonoBehaviour, IPlatformer2DUserC
         m_Melee = Input.GetKeyDown(_m_melee);
         m_Special = Input.GetKeyDown(_m_special);
         m_Imobilize = Input.GetKeyDown(_m_imobilize);
+        m_SpecialStay = Input.GetKey(_m_special);
     }
 
 }
