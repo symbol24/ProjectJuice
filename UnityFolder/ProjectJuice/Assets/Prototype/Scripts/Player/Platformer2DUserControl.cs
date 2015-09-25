@@ -71,10 +71,7 @@ namespace UnityStandardAssets._2D
             m_Special = GamePad.GetButtonDown(m_SpecialButton, controller);
             m_Imobilize = GamePad.GetButton(m_ImobilizeButton, controller);
             m_SpecialStay = GamePad.GetButton(m_SpecialButton, controller);
-<<<<<<< HEAD
 
-=======
->>>>>>> aa94e57022c59d1f333ca05b0b08f0928f7697ad
             if (!isPaused)
             {
                 // Read the inputs.
