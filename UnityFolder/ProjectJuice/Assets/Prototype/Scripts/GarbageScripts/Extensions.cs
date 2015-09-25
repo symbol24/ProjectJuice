@@ -29,4 +29,11 @@ public static class Extensions
     {
         return new Vector2(toChange.x, toChange.y);
     }
+
+    public static Vector3 Midpoint(this Vector3 source, Vector3 otherVector)
+    {
+        var midlePoint = source/2 + otherVector/2;
+        return midlePoint;
+    }
+
 }

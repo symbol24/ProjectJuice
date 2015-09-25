@@ -3,16 +3,19 @@ using System.Timers;
 using UnityEngine;
 using System.Collections;
 using System;
+using UnityEngine.EventSystems;
 
 public class Dart : ExtendedMonobehaviour
 {
-    [SerializeField] private DartChain _crosssectionPrefab;
+    [SerializeField] private DartChainV2 _staticCrossSection;
+    public DartChainV2 StaticCrossSection { get { return _staticCrossSection; } }
 
     public bool IsContiniousSucking { get; set; }
     public float SuckingInterval { get; set; }
     public float HpSuckedPerSecond { get; set; }
     public float DartCollTimerDisappear { get; set; }
     public float LifetimeSinceHit { get; set; }
+    public HPScript SourceHPScript { get; set; }
 
     private HPScript _targetHpScript;
     private float currentIntervalTimer = 0f;
@@ -30,19 +33,29 @@ public class Dart : ExtendedMonobehaviour
             return _mainRigidbody;
         }
     }
+
+    public IPlatformer2DUserControl InputManager { get; set; }
+
     private float _currentLifetimeAfterHit = 0f;
     private Transform _sourceTransform;
+    private bool _ignoreWalls = false;
 
 
     void Update ()
     {
+        
+        if (!InputManager.m_SpecialStay)
+        {
+            OnDartDestroyed();
+        }
+
+
         if(_hitAWall)
         {
             destroyTimer += Time.deltaTime;
             if(destroyTimer >= DartCollTimerDisappear)
             {
                 OnDartDestroyed();
-                Destroy(this.gameObject);
             }
         }
         else if (_targetHpScript != null)
@@ -52,7 +65,6 @@ public class Dart : ExtendedMonobehaviour
             if (_currentLifetimeAfterHit >= LifetimeSinceHit)
             {
                 OnDartDestroyed();
-                Destroy(gameObject);
             }
 
             //ApplyDamage
@@ -72,6 +84,18 @@ public class Dart : ExtendedMonobehaviour
         }
 	}
 
+    void Start()
+    {
+        DartCollision += Dart_DartCollision;
+    }
+
+    void Dart_DartCollision(object sender, EventArgs e)
+    {
+        var hits = Physics2D.Raycast(transform.position, transform.position - SourceHPScript.transform.position,
+            Vector3.Distance(transform.position, SourceHPScript.transform.position));
+        
+    }
+
 
     public void ShootBullet(float force, Transform sourceTransform)
     {
@@ -86,7 +110,8 @@ public class Dart : ExtendedMonobehaviour
         CheckForHPCollision(collider.gameObject);
         if(_targetHpScript == null)
         {
-            CheckForWall(collider.gameObject);
+            if (_ignoreWalls) _ignoreWalls = !_ignoreWalls;
+            else CheckForWall(collider.gameObject);
         }
     }
     private void OnCollisionEnter2D(Collision2D collision)
@@ -124,6 +149,13 @@ public class Dart : ExtendedMonobehaviour
                     StickDart(toCheck);
                     OnDartCollision();
                 }
+            }
+
+
+            if (_targetHpScript == SourceHPScript)
+            {
+                _targetHpScript = null;
+                _ignoreWalls = true;
             }
 
             //Check if we got our hpScript
@@ -173,11 +205,13 @@ public class Dart : ExtendedMonobehaviour
     protected void OnDartCollision()
     {
         if (DartCollision != null) DartCollision(this, EventArgs.Empty);
+        
     }
     public event EventHandler DartDestroyed;
     protected void OnDartDestroyed()
     {
         if (DartDestroyed != null) DartDestroyed(this, EventArgs.Empty);
+        Destroy(gameObject);
     }
     #endregion events
 }

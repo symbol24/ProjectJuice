@@ -10,6 +10,7 @@ namespace UnityStandardAssets._2D
     public class Platformer2DUserControl : ExtendedMonobehaviour, IPlatformer2DUserControl
     {
         public PlayerData m_PlayerData { get; private set; }
+        
         [SerializeField] private PlayerIDs m_PlayerID;
         public PlayerIDs PlayerID { get { return m_PlayerID; } set { m_PlayerID = value; } }
 
@@ -30,6 +31,7 @@ namespace UnityStandardAssets._2D
         public bool m_Melee { get; private set; }
         public bool m_Special { get; private set; }
         public bool m_Imobilize { get; private set; }
+        public bool m_SpecialStay { get; private set; }
 
         //Gamepad buttons used
         [SerializeField] private GamePad.Button m_JumpButton = GamePad.Button.A;
@@ -59,6 +61,20 @@ namespace UnityStandardAssets._2D
 
         private void Update()
         {
+            // Read the inputs.
+            m_Jump = GamePad.GetButtonDown(m_JumpButton, controller);
+            m_Dash = GamePad.GetButtonDown(m_DashButton, controller);
+            m_XAxis = GamePad.GetAxis(m_DirectionalButton, controller).x;
+            m_YAxis = GamePad.GetAxis(m_DirectionalButton, controller).y;
+            m_Shoot = GamePad.GetButtonDown(m_ShootButton, controller);
+            m_Melee = GamePad.GetButtonDown(m_MeleeButton, controller);
+            m_Special = GamePad.GetButtonDown(m_SpecialButton, controller);
+            m_Imobilize = GamePad.GetButton(m_ImobilizeButton, controller);
+            m_SpecialStay = GamePad.GetButton(m_SpecialButton, controller);
+<<<<<<< HEAD
+=======
+
+>>>>>>> 9777ccc6097423fcab0df6093270b472c70f9072
             if (!isPaused)
             {
                 // Read the inputs.
