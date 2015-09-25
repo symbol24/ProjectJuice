@@ -61,7 +61,6 @@ namespace UnityStandardAssets._2D
 
         private void Update()
         {
-<<<<<<< HEAD
             // Read the inputs.
             m_Jump = GamePad.GetButtonDown(m_JumpButton, controller);
             m_Dash = GamePad.GetButtonDown(m_DashButton, controller);
@@ -72,7 +71,7 @@ namespace UnityStandardAssets._2D
             m_Special = GamePad.GetButtonDown(m_SpecialButton, controller);
             m_Imobilize = GamePad.GetButton(m_ImobilizeButton, controller);
             m_SpecialStay = GamePad.GetButton(m_SpecialButton, controller);
-=======
+
             if (!isPaused)
             {
                 // Read the inputs.
@@ -85,7 +84,6 @@ namespace UnityStandardAssets._2D
                 m_Special = GamePad.GetButtonDown(m_SpecialButton, controller);
                 m_Imobilize = GamePad.GetButton(m_ImobilizeButton, controller);
             }
->>>>>>> 6681b1b0c1e5c55da812974a4f45e8ab8c86701b
         }
     }
 }
