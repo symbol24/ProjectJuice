@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public interface IPlatformer2DUserControl
+public interface IPlatformer2DUserControl : IGameObject
 {
     bool m_Jump { get; }
     bool m_Dash { get; }
