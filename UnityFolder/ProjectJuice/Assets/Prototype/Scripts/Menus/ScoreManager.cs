@@ -31,6 +31,7 @@ public class ScoreManager : ExtendedMonobehaviour
     {
         var data = new ScoreData() {HpScript = hpScript, Platformer2DUserControl = control};
         data.HpScript.Dead += HpScript_Dead;
+        ScoreDatas.Add(data);
     }
     public event EventHandler<PlayerScoreEventArgs> PlayerScored;
 
