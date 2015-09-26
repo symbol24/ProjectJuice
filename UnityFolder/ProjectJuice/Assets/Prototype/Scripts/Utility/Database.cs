@@ -34,6 +34,9 @@ public class Database : MonoBehaviour
     List<string> m_GameTexts;
     public List<string> GameTexts { get { return m_GameTexts; } }
 
+    [SerializeField] private float m_MenuInputDelay = 0.4f;
+    public float MenuInputDelay { get { return m_MenuInputDelay; } }
+
     void Awake()
     {
         DontDestroyOnLoad(this);

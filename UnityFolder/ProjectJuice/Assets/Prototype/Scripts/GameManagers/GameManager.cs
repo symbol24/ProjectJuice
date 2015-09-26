@@ -72,6 +72,7 @@ public class GameManager : ExtendedMonobehaviour
 
     private void CheckEndOfRound(object sender, PlayerScoreEventArgs e)
     {
+        RoundMenu.instance.DisplayRoundMenu(true);
         if (e.IsThereAWinner) {
             if (CheckIfMatchWinner())
             {

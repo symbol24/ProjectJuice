@@ -34,15 +34,25 @@ public class DelayManager : MonoBehaviour {
         m_ShieldDelay = 0f;
     }
 
-    public void CoroutineDelay(float delay)
+    public void CoroutineDelay(float delay, bool isShoot)
     {
-        m_CurrentDelay = delay;
-        StartCoroutine(DelayTime(delay));
+        if (isShoot)
+            m_CurrentDelay = delay;
+        else
+            m_ShieldDelay = delay;
+        StartCoroutine(DelayTime(delay, isShoot));
     }
 
-    IEnumerator DelayTime(float timer)
+    IEnumerator DelayTime(float timer, bool isShoot)
     {
-        yield return new WaitForSeconds(timer);
-        m_CurrentDelay = 0f;
+        float endTiemr = Time.realtimeSinceStartup + timer;
+        while(endTiemr > Time.realtimeSinceStartup)
+        {
+            yield return 0;
+        }
+        if (isShoot)
+            m_CurrentDelay = 0f;
+        else
+            m_ShieldDelay = 0;
     }
 }
