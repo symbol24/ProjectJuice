@@ -96,17 +96,25 @@ public class ScoreManager : ExtendedMonobehaviour
 
     protected virtual void OnPlayerScored(PlayerScoreEventArgs e)
     {
-        var potentialPlayerWinning =
-            CurrentScores.SingleOrDefault(c => c.Player == e.Platformer2DUserControl.m_PlayerData);
-        if (potentialPlayerWinning != null)
+        if (e.IsThereAWinner)
         {
-            potentialPlayerWinning.CurrentScore++;
+            var potentialPlayerWinning =
+                CurrentScores.SingleOrDefault(c => c.Player == e.Platformer2DUserControl.m_PlayerData);
+            if (potentialPlayerWinning != null)
+            {
+                potentialPlayerWinning.CurrentScore++;
+            }
+            else
+            {
+                potentialPlayerWinning = new PlayerScoreTracker
+                {
+                    CurrentScore = 1,
+                    Player = e.Platformer2DUserControl.m_PlayerData
+                };
+                CurrentScores.Add(potentialPlayerWinning);
+            }
+            e.PlayerScore = potentialPlayerWinning.CurrentScore;
         }
-        else
-        {
-            CurrentScores.Add(new PlayerScoreTracker {CurrentScore = 1, Player = e.Platformer2DUserControl.m_PlayerData});
-        }
-
         EventHandler<PlayerScoreEventArgs> handler = PlayerScored;
         if (handler != null) handler(this, e);
     }
