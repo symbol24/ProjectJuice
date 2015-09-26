@@ -24,7 +24,7 @@ public class Gun : ExtendedMonobehaviour {
     [Range(0, 10)][SerializeField] private int m_AmountOfFlashes = 3;
     protected bool m_HasDisplayed = true;
 
-    protected override void Start()
+    void Start()
     {
         if (m_GunReference == null) m_GunReference = GetComponentInChildren<gunRef>().gameObject;
         m_Controller = GetComponent<IPlatformer2DUserControl>();
@@ -35,7 +35,7 @@ public class Gun : ExtendedMonobehaviour {
     // Update is called once per frame
     protected virtual void Update ()
     {
-        if (!isPaused)
+        if (GameManager.instance.CheckIfPlaying())
         {
 
             CheckLight();

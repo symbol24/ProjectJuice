@@ -44,7 +44,7 @@ public class SappingDartGun : ExtendedMonobehaviour {
     // Update is called once per frame
     void Update()
     {
-        if (!isPaused)
+        if (GameManager.instance.CheckIfPlaying())
         {
             if (_inputManager.m_Special && _delayManager.m_CanShoot)
             {

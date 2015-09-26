@@ -1,0 +1,1 @@
+﻿public enum GameState { Idle, Intro, CharacterSelect, Loading, Spawning, Playing, Paused, RoundEnd, MatchEnd}

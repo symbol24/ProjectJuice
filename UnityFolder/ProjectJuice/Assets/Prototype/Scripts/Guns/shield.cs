@@ -14,16 +14,15 @@ public class shield : Gun {
     [SerializeField] private Light m_Light;
 
 
-    protected override void Start()
+    void Start()
     {
-        base.Start();
         m_Gun.SetActive(false);
     }
 
     // Update is called once per frame
     protected override void Update ()
     {
-        if (!isPaused)
+        if (GameManager.instance.CheckIfPlaying())
         {
             if (m_Controller.m_Special && !m_IsActive && m_DelayManager.m_CanShield)
                 ActivateShield();

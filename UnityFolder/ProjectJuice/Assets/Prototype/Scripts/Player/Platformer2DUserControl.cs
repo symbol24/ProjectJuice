@@ -52,9 +52,8 @@ namespace UnityStandardAssets._2D
             //controller = m_PlayerData.GamepadIndex; //Get the index of the gamepad from the playerdata.
         }
 
-        protected override void Start()
+        void Start()
         {
-            base.Start();
             m_PlayerData = Utilities.GetPlayerData(m_PlayerID);
             controller = m_PlayerData.GamepadIndex; //Get the index of the gamepad from the playerdata.
         }
@@ -72,7 +71,7 @@ namespace UnityStandardAssets._2D
             m_Imobilize = GamePad.GetButton(m_ImobilizeButton, controller);
             m_SpecialStay = GamePad.GetButton(m_SpecialButton, controller);
 
-            if (!isPaused)
+            if (GameManager.instance.CheckIfPlaying())
             {
                 // Read the inputs.
                 m_Jump = GamePad.GetButtonDown(m_JumpButton, controller);
@@ -83,6 +82,7 @@ namespace UnityStandardAssets._2D
                 m_Melee = GamePad.GetButtonDown(m_MeleeButton, controller);
                 m_Special = GamePad.GetButtonDown(m_SpecialButton, controller);
                 m_Imobilize = GamePad.GetButton(m_ImobilizeButton, controller);
+                m_SpecialStay = GamePad.GetButton(m_SpecialButton, controller);
             }
         }
     }

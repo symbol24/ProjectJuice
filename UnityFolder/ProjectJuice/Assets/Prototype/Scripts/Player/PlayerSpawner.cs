@@ -5,10 +5,27 @@ using UnityStandardAssets._2D;
 using Utility;
 
 public class PlayerSpawner : MonoBehaviour {
+
+    #region Instance Stuffs
+    private static PlayerSpawner _instance;
+
+    public static PlayerSpawner instance
+    {
+        get
+        {
+            if (_instance == null)
+                _instance = FindObjectOfType<PlayerSpawner>();
+
+            return _instance;
+        }
+    }
+    #endregion
+
     [SerializeField] GameObject[] m_Spawners;
     [SerializeField] GameObject m_PlayerPrefab;
     private List<PlayerData> m_ListofPlayers = new List<PlayerData>();
     private List<GameObject> m_Players = new List<GameObject>();
+    public List<GameObject> Players { get { return m_Players; } }
     [SerializeField] private int[] m_PlayerLayerIDs = {15,16,17,18};
 
 	// Use this for initialization
