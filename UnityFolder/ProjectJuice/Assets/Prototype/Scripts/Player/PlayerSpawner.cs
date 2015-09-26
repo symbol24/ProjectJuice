@@ -40,12 +40,31 @@ public class PlayerSpawner : MonoBehaviour {
         foreach(PlayerData pd in m_ListofPlayers)
         {
             GameObject temp = Instantiate(m_PlayerPrefab, m_Spawners[i].transform.position, m_Spawners[i].transform.rotation) as GameObject;
-            temp.GetComponent<Platformer2DUserControl>().PlayerID = pd.playerID;
+            Platformer2DUserControl pUserControl = temp.GetComponent<Platformer2DUserControl>();
+            pUserControl.PlayerID = pd.playerID;
             SetAbility(temp, pd);
             temp.layer = m_PlayerLayerIDs[i];
+            ScoreManager.instance.FollowScoreOf(pUserControl);
             m_Players.Add(temp);
             i++;
         }
+    }
+
+    public void DestroySpawnedPlayers()
+    {
+        for(int i = 0; i < m_Players.Count; i++)
+        {
+            if(m_Players[i] != null)
+            {
+                Destroy(m_Players[i]);
+            }
+        }
+        m_Players.Clear();
+    }
+
+    public void RespawnPlayers()
+    {
+
     }
 
     void SetAbility(GameObject toAbilitize, PlayerData pd)

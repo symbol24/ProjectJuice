@@ -53,10 +53,12 @@ public class GameManager : ExtendedMonobehaviour {
         {
             m_PreviousState = m_CurrentState;
             m_CurrentState = GameState.Paused;
+            Time.timeScale = 0f;
         }
         else
         {
             m_CurrentState = m_PreviousState;
+            Time.timeScale = 1f;
         }
     }
 

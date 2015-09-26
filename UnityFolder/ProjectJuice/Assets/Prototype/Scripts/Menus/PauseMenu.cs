@@ -64,12 +64,10 @@ public class PauseMenu : Menu {
         if (m_isPaused)
         {
             m_ListOfButtones[m_currentSelection].Select();
-            Time.timeScale = 0f;
         }
         else
         {
             m_currentSelection = 0;
-            Time.timeScale = 1f;
         }
     }
 
