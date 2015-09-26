@@ -79,10 +79,11 @@ public class ScoreManager : ExtendedMonobehaviour
         if (ScoreDatas.Any())
         {
             //Check if we have a single player left
-            var possibleWinner = ScoreDatas.SingleOrDefault();
-            if (possibleWinner != null)
+            
+            if (ScoreDatas.Count == 1)
             {
                 //Clear and fire event
+                var possibleWinner = ScoreDatas.Single();
                 ScoreDatas.Clear();
                 OnPlayerScored(possibleWinner.GetEventArgs());
             }
