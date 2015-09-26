@@ -72,10 +72,37 @@ public class GameManager : ExtendedMonobehaviour
 
     private void CheckEndOfRound(object sender, PlayerScoreEventArgs e)
     {
-        print("trigger end round");
         if (e.IsThereAWinner) {
-            //print("winner is " + e.Platformer2DUserControl.m_PlayerData.playerID);
-
+            if (CheckIfMatchWinner())
+            {
+                m_CurrentState = GameState.MatchEnd;
+                print("Match winner is " + e.Platformer2DUserControl.m_PlayerData.playerID);
+            }
+            else
+            {
+                m_CurrentState = GameState.RoundEnd;
+                print("round winner is " + e.Platformer2DUserControl.m_PlayerData.playerID);
+            }
         }
+        else
+        {
+            m_CurrentState = GameState.RoundEnd;
+            print("no winners this round");
+        }
+
+        
+    }
+
+    private bool CheckIfMatchWinner()
+    {
+        bool ret = false;
+
+        foreach(PlayerScoreTracker score in ScoreManager.instance.PlayerScores)
+        {
+            if (score.CurrentScore == AmountOfRoundsToWin)
+                ret = false;
+        }
+
+        return ret;
     }
 }
