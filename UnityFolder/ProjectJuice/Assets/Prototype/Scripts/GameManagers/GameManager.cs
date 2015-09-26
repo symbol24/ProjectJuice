@@ -35,7 +35,8 @@ public class GameManager : ExtendedMonobehaviour
     protected static GameState m_PreviousState;
     public GameState PreviousState { get { return m_PreviousState; } }
 
-    [SerializeField] private int AmountOfRoundsToWin = 5;
+    [SerializeField] private int m_AmountOfRoundsToWin = 5;
+    public int AmountOfRoundsToWin { get { return m_AmountOfRoundsToWin; } }
 
 
     // Use this for initialization
@@ -100,7 +101,7 @@ public class GameManager : ExtendedMonobehaviour
 
         foreach(PlayerScoreTracker score in ScoreManager.instance.PlayerScores)
         {
-            if (score.CurrentScore == AmountOfRoundsToWin)
+            if (score.CurrentScore == m_AmountOfRoundsToWin)
                 ret = false;
         }
 

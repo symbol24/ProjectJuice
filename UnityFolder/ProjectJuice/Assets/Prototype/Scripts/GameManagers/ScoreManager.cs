@@ -32,7 +32,7 @@ public class ScoreManager : ExtendedMonobehaviour
     
     
     //Public Methods/Properties Available
-    public IEnumerable<PlayerScoreTracker> PlayerScores
+    public List<PlayerScoreTracker> PlayerScores
     {
         get { return CurrentScores; }
     }
