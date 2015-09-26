@@ -2,7 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class GameManager : ExtendedMonobehaviour {
+public class GameManager : ExtendedMonobehaviour
+{
 
     #region singleton Stuffs
     private static GameManager _instance;
@@ -28,24 +29,26 @@ public class GameManager : ExtendedMonobehaviour {
     }
     #endregion
 
-    [SerializeField] private PlayerSpawner m_SpawnManager;
-
     protected static GameState m_CurrentState;
     public GameState CurrentState { get { return m_CurrentState; } }
 
     protected static GameState m_PreviousState;
     public GameState PreviousState { get { return m_PreviousState; } }
 
+    [SerializeField] private int AmountOfRoundsToWin = 5;
+
 
     // Use this for initialization
-    void Start () {
-        
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+    void Start()
+    {
+        m_CurrentState = GameState.Playing;
+        ScoreManager.instance.PlayerScored += CheckEndOfRound;
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+    }
 
     public void SetPaused(bool isPaused)
     {
@@ -65,5 +68,14 @@ public class GameManager : ExtendedMonobehaviour {
     public bool CheckIfPlaying()
     {
         return m_CurrentState == GameState.Playing;
+    }
+
+    private void CheckEndOfRound(object sender, PlayerScoreEventArgs e)
+    {
+        print("trigger end round");
+        if (e.IsThereAWinner) {
+            //print("winner is " + e.Platformer2DUserControl.m_PlayerData.playerID);
+
+        }
     }
 }

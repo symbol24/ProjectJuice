@@ -50,7 +50,7 @@ public class PlayerSpawner : MonoBehaviour {
         }
     }
 
-    public void DestroySpawnedPlayers()
+    public void DestroyRemainingSpawnedPlayers()
     {
         for(int i = 0; i < m_Players.Count; i++)
         {
@@ -63,6 +63,11 @@ public class PlayerSpawner : MonoBehaviour {
     }
 
     public void RespawnPlayers()
+    {
+
+    }
+
+    public void RemovePlayer(PlayerData player)
     {
 
     }
