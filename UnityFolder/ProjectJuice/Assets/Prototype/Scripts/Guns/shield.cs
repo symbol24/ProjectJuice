@@ -14,8 +14,9 @@ public class shield : Gun {
     [SerializeField] private Light m_Light;
 
 
-    void Start()
+    protected override void Start()
     {
+        base.Start();
         m_Gun.SetActive(false);
     }
 

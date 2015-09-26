@@ -6,6 +6,21 @@ using System.Collections;
 
 public class ScoreManager : ExtendedMonobehaviour 
 {
+    #region instance Stuffs
+    private static ScoreManager _instance;
+
+    public static ScoreManager instance
+    {
+        get
+        {
+            if (_instance == null)
+                _instance = FindObjectOfType<ScoreManager>();
+            
+            return _instance;
+        }
+    }
+    #endregion
+
     private List<ScoreData> _scoreDatas;
     [SerializeField] private float _delayToCheckIfDraw;
     private List<ScoreData> ScoreDatas { get { return _scoreDatas ?? (_scoreDatas = new List<ScoreData>()); } }
@@ -21,18 +36,20 @@ public class ScoreManager : ExtendedMonobehaviour
     {
         get { return CurrentScores; }
     }
+
     public void FollowScoreOf(IPlatformer2DUserControl control)
     {
         var checkHpScript = control.gameObject.GetComponent<HPScript>();
         if(checkHpScript == null) Debug.LogError("CannotFindHpScript");
         FollowScoreOf(control, checkHpScript);
     }
+
     public void FollowScoreOf(IPlatformer2DUserControl control, HPScript hpScript)
     {
         var data = new ScoreData() {HpScript = hpScript, Platformer2DUserControl = control};
         data.HpScript.Dead += HpScript_Dead;
-        ScoreDatas.Add(data);
     }
+
     public event EventHandler<PlayerScoreEventArgs> PlayerScored;
 
 

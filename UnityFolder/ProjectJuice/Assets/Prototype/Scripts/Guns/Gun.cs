@@ -24,7 +24,7 @@ public class Gun : ExtendedMonobehaviour {
     [Range(0, 10)][SerializeField] private int m_AmountOfFlashes = 3;
     protected bool m_HasDisplayed = true;
 
-    void Start()
+    protected virtual void Start()
     {
         if (m_GunReference == null) m_GunReference = GetComponentInChildren<gunRef>().gameObject;
         m_Controller = GetComponent<IPlatformer2DUserControl>();
