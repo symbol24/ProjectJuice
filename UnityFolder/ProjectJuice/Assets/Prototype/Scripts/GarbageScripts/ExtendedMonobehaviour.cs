@@ -2,17 +2,7 @@
 using UnityEngine;
 using System.Collections;
 
-public abstract class ExtendedMonobehaviour : MonoBehaviour, IGameObject {
-
-    protected static bool m_isPaused = false;
-    public bool isPaused { get { return m_isPaused; } }
-
-    protected PauseMenu m_PauseManager;
-
-    protected virtual void Start()
-    {
-        m_PauseManager = FindObjectOfType<PauseMenu>();
-    }
+public abstract class ExtendedMonobehaviour : MonoBehaviour, IGameObject { 
 
     protected void SetRotationEulerX(float xValue)
     {

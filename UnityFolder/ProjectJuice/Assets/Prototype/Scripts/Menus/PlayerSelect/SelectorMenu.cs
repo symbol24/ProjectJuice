@@ -12,7 +12,7 @@ public class SelectorMenu : Menu {
     private int m_MaxSponsorSelection = 0;
     private int m_AbilitySelection = 0;
     private int m_MaxAbilitySelection = 0;
-    private SelectionState m_CurrentState = SelectionState.Preselection;
+    private SelectionState m_CurrentSelectionState = SelectionState.Preselection;
     enum SelectionState { Preselection, Sponsor, Ability, Confirmed}
     private DelayManager m_DelayManager;
     [SerializeField] private int m_PanelId = -1;
@@ -38,7 +38,7 @@ public class SelectorMenu : Menu {
     protected override void Update () {
         if (m_DelayManager.m_CanShoot)
         {
-            if (m_CurrentState == SelectionState.Sponsor)
+            if (m_CurrentSelectionState == SelectionState.Sponsor)
             {
                 if (m_Controls.X[m_ControllerID] > 0)
                     m_SponsorSelection = MoveSelection(m_SponsorSelection, m_MaxSponsorSelection, true);
@@ -46,7 +46,7 @@ public class SelectorMenu : Menu {
                     m_SponsorSelection = MoveSelection(m_SponsorSelection, m_MaxSponsorSelection, false);
             }
 
-            if (m_CurrentState == SelectionState.Ability)
+            if (m_CurrentSelectionState == SelectionState.Ability)
             {
                 if (m_Controls.X[m_ControllerID] > 0)
                     m_AbilitySelection = MoveSelection(m_AbilitySelection, m_MaxAbilitySelection, true);
@@ -54,7 +54,7 @@ public class SelectorMenu : Menu {
                     m_AbilitySelection = MoveSelection(m_AbilitySelection, m_MaxAbilitySelection, false);
             }
 
-            if (m_CurrentState != SelectionState.Confirmed && m_CurrentState != SelectionState.Preselection)
+            if (m_CurrentSelectionState != SelectionState.Confirmed && m_CurrentSelectionState != SelectionState.Preselection)
             {
                 if (m_Controls.Confirm[m_ControllerID])
                     ConfirmSelection();
@@ -64,14 +64,14 @@ public class SelectorMenu : Menu {
                 BackTrack();
         }
 
-        if (m_CurrentState == SelectionState.Confirmed) CheckReady();
+        if (m_CurrentSelectionState == SelectionState.Confirmed) CheckReady();
     }
 
     public void SetPlayer(PlayerData player, PlayerSelect parent, int controllerID)
     {
         m_Player = player;
         m_ParentMenu = parent;
-        m_CurrentState = SelectionState.Sponsor;
+        m_CurrentSelectionState = SelectionState.Sponsor;
         m_ControllerID = controllerID;
         tempImages.color = Database.instance.ListofSponsrs[m_SponsorSelection].SponsorColor;
         m_SelectionName.text = Database.instance.ListofSponsrs[m_SponsorSelection].SponsorName;
@@ -90,7 +90,7 @@ public class SelectorMenu : Menu {
             if (selection < 0) selection = max - 1;
         }
 
-        if (m_CurrentState == SelectionState.Sponsor){
+        if (m_CurrentSelectionState == SelectionState.Sponsor){
             tempImages.color = Database.instance.ListofSponsrs[selection].SponsorColor;
 
             Color temp = tempImages.color;
@@ -101,7 +101,7 @@ public class SelectorMenu : Menu {
             m_SelectionName.text = Database.instance.ListofSponsrs[selection].SponsorName;
         }
 
-        if(m_CurrentState == SelectionState.Ability)
+        if(m_CurrentSelectionState == SelectionState.Ability)
         {
             m_SelectionName.text = Database.instance.ListofAbilities[selection].AbilityName;
         }
@@ -114,25 +114,25 @@ public class SelectorMenu : Menu {
     private void ConfirmSelection()
     {
 
-        if (m_CurrentState == SelectionState.Ability)
+        if (m_CurrentSelectionState == SelectionState.Ability)
         {
             m_Player.PlayerAbility = Database.instance.ListofAbilities[m_AbilitySelection].AbilityEnum;
-            m_CurrentState = SetStateAndTexts(5, m_AbilitySelection, 3, true);
+            m_CurrentSelectionState = SetStateAndTexts(5, m_AbilitySelection, 3, true);
             m_ParentMenu.ReadyUp(true);
             m_ConfirmedOverlay.enabled = true;
             CheckReady();
         }
-        else if (m_CurrentState == SelectionState.Sponsor)
+        else if (m_CurrentSelectionState == SelectionState.Sponsor)
         {
             m_Player.PlayerSponsor = Database.instance.ListofSponsrs[m_SponsorSelection];
-            m_CurrentState = SetStateAndTexts(2, m_SponsorSelection, 3, true);
+            m_CurrentSelectionState = SetStateAndTexts(2, m_SponsorSelection, 3, true);
             
         }
     }
 
     private void BackTrack()
     {
-        switch (m_CurrentState)
+        switch (m_CurrentSelectionState)
         {
             case SelectionState.Preselection:
 
@@ -140,17 +140,17 @@ public class SelectorMenu : Menu {
             case SelectionState.Sponsor:
                 m_Player.PlayerSponsor = null;
                 m_SponsorSelection = 0;
-                m_CurrentState = SetStateAndTexts(0, 0, 3, false);
+                m_CurrentSelectionState = SetStateAndTexts(0, 0, 3, false);
                 m_ParentMenu.DeactivateScreen(m_PanelId, m_Player);
                 break;
             case SelectionState.Ability:
                 m_Player.PlayerAbility = Abilities.None;
                 m_AbilitySelection = 0;
-                m_CurrentState = SetStateAndTexts(1, m_SponsorSelection, 3, false);
+                m_CurrentSelectionState = SetStateAndTexts(1, m_SponsorSelection, 3, false);
                 break;
             case SelectionState.Confirmed:
                 m_ParentMenu.ReadyUp(false);
-                m_CurrentState = SetStateAndTexts(2, m_AbilitySelection, 3, false);
+                m_CurrentSelectionState = SetStateAndTexts(2, m_AbilitySelection, 3, false);
                 m_ConfirmedOverlay.enabled = false;
                 break;
         }
@@ -170,7 +170,7 @@ public class SelectorMenu : Menu {
     {
         m_ParentMenu.HeaderText[m_PanelId].text = Database.instance.GameTexts[header];
 
-        SelectionState temp = m_CurrentState;
+        SelectionState temp = m_CurrentSelectionState;
 
         if (isForward) temp++;
         else temp--;

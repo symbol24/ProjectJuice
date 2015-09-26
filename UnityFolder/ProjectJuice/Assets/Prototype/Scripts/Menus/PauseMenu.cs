@@ -16,6 +16,8 @@ public class PauseMenu : Menu {
     private DelayManager m_DelayManager;
     [SerializeField] float m_DelayForInput = 0.3f;
 
+    protected static bool m_isPaused = false;
+
     // Use this for initialization
     protected override void Start ()
     {
@@ -28,7 +30,7 @@ public class PauseMenu : Menu {
 
     // Update is called once per frame
     protected override void Update () {
-        if (!m_isPaused)
+        if (GameManager.instance.CheckIfPlaying())
         {
             for (int i = 0; i < m_ListofPlayers.Count; i++)
             {
@@ -39,7 +41,7 @@ public class PauseMenu : Menu {
                 }
             }
         }
-        else
+        else if(GameManager.instance.CheckIfPlaying())
         {
             if (m_Controls._Start[m_ControllingPlayer] && m_DelayManager.m_CanShoot)
             {
@@ -57,6 +59,7 @@ public class PauseMenu : Menu {
     public void SwitchPauseState()
     {
         m_isPaused = !m_isPaused;
+        GameManager.instance.SetPaused(m_isPaused);
         m_PausePanel.SetActive(m_isPaused);
         if (m_isPaused)
         {

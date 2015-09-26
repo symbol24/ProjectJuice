@@ -57,14 +57,14 @@ namespace UnityStandardAssets._2D
             m_MyColliders = GetComponents<Collider2D>();
         }
 
-        protected override void Start()
+        void Start()
         {
             m_HasDoubleJump = CheckifHasDoubleJump();
         }
 
         private void Update()
         {
-            if (!isPaused)
+            if (GameManager.instance.CheckIfPlaying())
             {
                 m_Grounded = SetGrounded(m_Grounded);
 
