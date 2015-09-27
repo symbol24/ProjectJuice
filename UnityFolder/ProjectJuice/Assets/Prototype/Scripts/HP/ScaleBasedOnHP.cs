@@ -11,7 +11,6 @@ public class ScaleBasedOnHP : MonoBehaviour
     void Awake()
     {
         m_Sprite = GetComponent<SpriteRenderer>();
-        PlayerSpawner.instance.ChangeColor += Scaler_ChangeColor;
     }
 
 	// Use this for initialization
@@ -22,11 +21,6 @@ public class ScaleBasedOnHP : MonoBehaviour
         _gameObjectToScale.transform.localScale = _gameObjectToScale.transform.localScale.SetX(1);
 	}
 
-    private void Scaler_ChangeColor(object sender, PlayerColorEventArgs e)
-    {
-        if(_hpScript.inputController.m_PlayerData.playerID == e.player.playerID)
-            SetColor(e.player.PlayerSponsor.SponsorColor);
-    }
 
     private void HpScriptOnHpChanged(object sender, HpChangedEventArgs hpChangedEventArgs)
     {
@@ -39,9 +33,4 @@ public class ScaleBasedOnHP : MonoBehaviour
 	void Update () {
 	
 	}
-
-    private void SetColor(Color color)
-    {
-        m_Sprite.color = color;
-    }
 }

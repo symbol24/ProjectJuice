@@ -58,20 +58,8 @@ public class PlayerSpawner : MonoBehaviour {
             temp.layer = m_PlayerLayerIDs[i];
             ScoreManager.instance.FollowScoreOf(pUserControl);
             m_Players.Add(temp);
-            StartCoroutine(DelayedEvent(0.2f, pd));
             i++;
         }
-    }
-
-    public event EventHandler<PlayerColorEventArgs> ChangeColor;
-
-    protected virtual void OnChangeColor(PlayerData player)
-    {
-        PlayerColorEventArgs e = new PlayerColorEventArgs();
-        e.player = player;
-
-        EventHandler<PlayerColorEventArgs> handler = ChangeColor;
-        if (handler != null) handler(this, e);
     }
 
     public void DestroyRemainingSpawnedPlayers()
@@ -91,13 +79,6 @@ public class PlayerSpawner : MonoBehaviour {
         DestroyRemainingSpawnedPlayers();
         SpawnPlayers();
     }
-
-    IEnumerator DelayedEvent(float timer, PlayerData pd)
-    {
-        yield return new WaitForSeconds(timer);
-        OnChangeColor(pd);
-    }
-
 
     void SetAbility(GameObject toAbilitize, PlayerData pd)
     {

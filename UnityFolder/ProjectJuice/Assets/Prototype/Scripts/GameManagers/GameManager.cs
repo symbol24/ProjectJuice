@@ -38,11 +38,14 @@ public class GameManager : ExtendedMonobehaviour
     [SerializeField] private int m_AmountOfRoundsToWin = 5;
     public int AmountOfRoundsToWin { get { return m_AmountOfRoundsToWin; } }
 
+    [SerializeField] private bool ForVictorTesting = false;
+
 
     // Use this for initialization
     void Start()
     {
-        
+        if (ForVictorTesting)
+            m_CurrentState = GameState.Playing;
     }
 
     public void SubscribeToEndRound()
