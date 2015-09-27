@@ -42,7 +42,7 @@ public class PlayerData : MonoBehaviour {
         List<PlayerData> allData = Utility.Utilities.GetAllPlayerData();
         foreach(PlayerData pd in allData)
         {
-            if (pd.playerID == m_PlayerID)
+            if (pd.GamepadIndex == GamepadIndex && this != pd)
                 Destroy(gameObject);
         }
 
