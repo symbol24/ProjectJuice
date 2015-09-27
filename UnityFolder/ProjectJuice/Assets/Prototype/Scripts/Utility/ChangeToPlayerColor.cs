@@ -19,10 +19,15 @@ public class ChangeToPlayerColor : MonoBehaviour
         {
             if (value != null)
             {
-                if (_character.m_PlayerData == null || _character.m_PlayerData.GetInstanceID() != value.m_PlayerData.GetInstanceID())
+                if (value.m_PlayerData == null) StartCoroutine(DelaySetterAFrame(value));
+                else if (value.m_PlayerData != null ||
+                         _character.m_PlayerData.GetInstanceID() != value.m_PlayerData.GetInstanceID())
                 {
-                    _character = value;
-                    ChangeColour();
+                    if (_character != value)
+                    {
+                        _character = value;
+                        ChangeColour();
+                    }
                 }
             }
             else
@@ -43,11 +48,19 @@ public class ChangeToPlayerColor : MonoBehaviour
 	    if (_spriteRenderer == null) _spriteRenderer = GetComponent<SpriteRenderer>();
 	    if (_spriteRenderer == null) Debug.LogError("SpriteRenderer not found");
 
-	    if (_platformer2DUserControl != null) _character = _platformer2DUserControl;
+	    if (_platformer2DUserControl != null) Character = _platformer2DUserControl;
 	}
 	
 	// Update is called once per frame
 	void Update () {
 	
 	}
+
+
+    IEnumerator DelaySetterAFrame(IPlatformer2DUserControl controller)
+    {
+        //yield return new WaitForEndOfFrame();
+        yield return null;
+        Character = controller;
+    }
 }
