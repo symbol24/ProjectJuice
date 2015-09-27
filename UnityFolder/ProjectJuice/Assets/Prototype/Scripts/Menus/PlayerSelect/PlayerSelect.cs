@@ -30,7 +30,6 @@ public class PlayerSelect : Menu {
 
     private void M_Fader_FadeDone(object sender, System.EventArgs e)
     {
-        print("PlayerSelect.M_Fader_FadeDone");
         m_ListofPlayers = Utilities.GetAllPlayerData();
         foreach (PlayerData pd in m_ListofPlayers)
         {

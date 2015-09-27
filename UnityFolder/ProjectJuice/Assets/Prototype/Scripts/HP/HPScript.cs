@@ -11,6 +11,7 @@ public class HPScript : HPBase
 {
     
     private IPlatformer2DUserControl _inputController;
+    public IPlatformer2DUserControl inputController { get { return _inputController; } }
     private PlatformerCharacter2D _character;
 
     [SerializeField] private float _raycastVariationPerTry = 0.1f;
@@ -61,11 +62,6 @@ public class HPScript : HPBase
         CheckForDamage(collider);
         CheckForPowerUp(collider);
     }
-    /*
-    private void OnTriggerStay2D(Collider2D collider)
-    {
-        CheckForDamage(collider);
-    }*/
 
     private void CheckForPowerUp(Collider2D collider)
     {
@@ -74,8 +70,11 @@ public class HPScript : HPBase
         {
             if (checkPowerUp.IsAvailableForConsumption)
             {
-                CurrentHp += checkPowerUp.HPRecov;
-                checkPowerUp.Consumed();
+                if (CurrentHp < MaxHp)
+                {
+                    CurrentHp += checkPowerUp.HPRecov;
+                    checkPowerUp.Consumed();
+                }
             }
         }
     }
@@ -100,7 +99,8 @@ public class HPScript : HPBase
             var e = new ImpactEventArgs
             {
                 Damage = checkDamaging.Damage,
-                PointOfCollision = pointOfCollision
+                PointOfCollision = pointOfCollision,
+                color = _inputController.m_PlayerData.PlayerSponsor.SponsorColor
             };
             OnHpImpactReceived(e);
 

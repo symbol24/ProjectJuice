@@ -20,7 +20,6 @@ public class FadeOut : MonoBehaviour {
 
     protected virtual void OnFadeDone()
     {
-        print("OnFadeDone");
         EventHandler handler = FadeDone;
         if (handler != null) handler(this, EventArgs.Empty);
     }

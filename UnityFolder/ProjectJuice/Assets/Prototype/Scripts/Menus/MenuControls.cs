@@ -34,7 +34,6 @@ public class MenuControls : MonoBehaviour {
 
     private void M_Fader_FadeDone(object sender, System.EventArgs e)
     {
-        print("MEnuControl.M_Fader_FadeDone");
         m_ListofPlayers = Utilities.GetAllPlayerData();
     }
 

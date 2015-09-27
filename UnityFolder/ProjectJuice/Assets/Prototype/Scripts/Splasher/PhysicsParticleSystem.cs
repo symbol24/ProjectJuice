@@ -73,6 +73,8 @@ public class PhysicsParticleSystem : ExtendedMonobehaviour
         {
             var singleParticle =
                 Instantiate(SingleParticle, impactEventArgs.PointOfCollision, Quaternion.identity) as GameObject;
+            var spriteRenderer = singleParticle.GetComponent<SpriteRenderer>();
+            spriteRenderer.color = impactEventArgs.color;
             var particleScript = singleParticle.GetComponent<PhysicsSingleParticle>();
             if (_overrideProbabilityToParticles) particleScript.ProbabilityOfHealthPickup = _probabilityOfPickup;
             if (_overrideHealthAmountPerParticle) particleScript.HpRecovered = _healthRecoveredPerParticle;
