@@ -23,7 +23,8 @@ public class PlayerSpawner : MonoBehaviour {
 
     [SerializeField] GameObject[] m_Spawners;
     [SerializeField] GameObject m_PlayerPrefab;
-    private List<PlayerData> m_ListofPlayers = new List<PlayerData>();
+    [SerializeField] private List<PlayerData> m_ListofPlayers = new List<PlayerData>();
+    public List<PlayerData> ListOfPlayerDatas { get { return m_ListofPlayers; } }
     private List<GameObject> m_Players = new List<GameObject>();
     public List<GameObject> Players { get { return m_Players; } }
     [SerializeField] private int[] m_PlayerLayerIDs = {15,16,17,18};
@@ -64,7 +65,8 @@ public class PlayerSpawner : MonoBehaviour {
 
     public void RespawnPlayers()
     {
-
+        DestroyRemainingSpawnedPlayers();
+        SpawnPlayers();
     }
 
     public void RemovePlayer(PlayerData player)

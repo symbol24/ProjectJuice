@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using GamepadInput;
 
 public class PlayerData : MonoBehaviour {
@@ -38,6 +39,13 @@ public class PlayerData : MonoBehaviour {
 
     void Awake()
     {
+        List<PlayerData> allData = Utility.Utilities.GetAllPlayerData();
+        foreach(PlayerData pd in allData)
+        {
+            if (pd.playerID == m_PlayerID)
+                Destroy(gameObject);
+        }
+
             DontDestroyOnLoad(this);
     }
 

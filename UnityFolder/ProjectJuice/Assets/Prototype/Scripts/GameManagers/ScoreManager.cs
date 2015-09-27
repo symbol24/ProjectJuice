@@ -120,6 +120,18 @@ public class ScoreManager : ExtendedMonobehaviour
         if (handler != null) handler(this, e);
     }
 
+    public PlayerScoreTracker GetScoreData(PlayerData player)
+    {
+        PlayerScoreTracker ret = null;
+
+        foreach(PlayerScoreTracker pst in PlayerScores)
+        {
+            if (player == pst.Player)
+                ret = pst;
+        }
+        return ret;
+    }
+
     //InternalDataClass
     private class ScoreData
     {

@@ -73,23 +73,23 @@ public class GameManager : ExtendedMonobehaviour
 
     private void CheckEndOfRound(object sender, PlayerScoreEventArgs e)
     {
-        RoundMenu.instance.DisplayRoundMenu(true);
+        
         if (e.IsThereAWinner) {
             if (CheckIfMatchWinner())
             {
+                RoundMenu.instance.DisplayRoundMenu(true, true, e.Platformer2DUserControl.m_PlayerData.PlayerSponsor.SponsorName);
                 m_CurrentState = GameState.MatchEnd;
-                print("Match winner is " + e.Platformer2DUserControl.m_PlayerData.playerID);
             }
             else
             {
+                RoundMenu.instance.DisplayRoundMenu(true, false, e.Platformer2DUserControl.m_PlayerData.PlayerSponsor.SponsorName);
                 m_CurrentState = GameState.RoundEnd;
-                print("round winner is " + e.Platformer2DUserControl.m_PlayerData.playerID);
             }
         }
         else
         {
+            RoundMenu.instance.DisplayRoundMenu(true, false, Database.instance.GameTexts[15]);
             m_CurrentState = GameState.RoundEnd;
-            print("no winners this round");
         }
 
         
@@ -102,9 +102,15 @@ public class GameManager : ExtendedMonobehaviour
         foreach(PlayerScoreTracker score in ScoreManager.instance.PlayerScores)
         {
             if (score.CurrentScore == m_AmountOfRoundsToWin)
-                ret = false;
+                ret = true;
         }
 
         return ret;
+    }
+
+    public void StartNextRound()
+    {
+        PlayerSpawner.instance.RespawnPlayers();
+        m_CurrentState = GameState.Playing;
     }
 }
