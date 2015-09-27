@@ -14,11 +14,30 @@ public class PlayerSelect : Menu {
     [SerializeField] private Text[] m_PlayerTexts;
     public Text[] HeaderText { get { return m_PlayerTexts; } set { m_PlayerTexts = value; } }
     [SerializeField] private GameObject[] m_PlayerSelectPanels;
+    FadeOut m_Fader;
+
+    void Awake()
+    {
+        m_Fader = FindObjectOfType<FadeOut>();
+        m_Fader.FadeDone += M_Fader_FadeDone;
+    }
 
 	// Use this for initialization
 	protected override void Start () {
         base.Start();
+        GameManager.instance.SetGameState(GameState.CharacterSelect);
+    }
+
+    private void M_Fader_FadeDone(object sender, System.EventArgs e)
+    {
+        print("PlayerSelect.M_Fader_FadeDone");
         m_ListofPlayers = Utilities.GetAllPlayerData();
+        foreach (PlayerData pd in m_ListofPlayers)
+        {
+            if (pd.isActivated)
+                pd.isActivated = false;
+        }
+            
     }
 
     // Update is called once per frame

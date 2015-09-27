@@ -27,7 +27,7 @@ public class SelectorMenu : Menu {
     protected override void Start()
     {
         base.Start();
-        m_MaxSponsorSelection = Database.instance.ListofSponsrs.Count;
+        m_MaxSponsorSelection = Database.instance.ListofSponsors.Count;
         m_MaxAbilitySelection = Database.instance.ListofAbilities.Count;
         m_DelayManager = GetComponent<DelayManager>();
         m_DelayManager.Reset();
@@ -73,8 +73,7 @@ public class SelectorMenu : Menu {
         m_ParentMenu = parent;
         m_CurrentSelectionState = SelectionState.Sponsor;
         m_ControllerID = controllerID;
-        tempImages.color = Database.instance.ListofSponsrs[m_SponsorSelection].SponsorColor;
-        m_SelectionName.text = Database.instance.ListofSponsrs[m_SponsorSelection].SponsorName;
+        DisplaySponsor(m_SponsorSelection);
     }
 
     private int MoveSelection(int selection, int max, bool isRight)
@@ -91,14 +90,7 @@ public class SelectorMenu : Menu {
         }
 
         if (m_CurrentSelectionState == SelectionState.Sponsor){
-            tempImages.color = Database.instance.ListofSponsrs[selection].SponsorColor;
-
-            Color temp = tempImages.color;
-            temp.a = 0.75f;
-
-            if (Database.instance.ListofSponsrs[selection].isTaken) tempImages.color = temp;
-
-            m_SelectionName.text = Database.instance.ListofSponsrs[selection].SponsorName;
+            DisplaySponsor(selection);
         }
 
         if(m_CurrentSelectionState == SelectionState.Ability)
@@ -109,6 +101,20 @@ public class SelectorMenu : Menu {
         m_DelayManager.AddDelay(m_NavigationDelay);
 
         return selection;
+    }
+
+    private void DisplaySponsor(int selection)
+    {
+        tempImages.color = Database.instance.ListofSponsors[selection].SponsorColor;
+
+        m_SelectionName.text = Database.instance.ListofSponsors[selection].SponsorName;
+        m_SelectionName.color = Database.instance.NormalTextColor;
+
+        if (Database.instance.ListofSponsors[selection].isTaken)
+        {
+            tempImages.color = Database.instance.TakenColor;
+            m_SelectionName.color = Database.instance.TakenColor;
+        }
     }
 
     private void ConfirmSelection()
@@ -124,9 +130,12 @@ public class SelectorMenu : Menu {
         }
         else if (m_CurrentSelectionState == SelectionState.Sponsor)
         {
-            m_Player.PlayerSponsor = Database.instance.ListofSponsrs[m_SponsorSelection];
-            m_CurrentSelectionState = SetStateAndTexts(2, m_SponsorSelection, 3, true);
-            
+            if (!Database.instance.ListofSponsors[m_SponsorSelection].isTaken)
+            {
+                m_Player.PlayerSponsor = Database.instance.ListofSponsors[m_SponsorSelection];
+                Database.instance.ListofSponsors[m_SponsorSelection].TakeSponsor();
+                m_CurrentSelectionState = SetStateAndTexts(2, m_SponsorSelection, 3, true);
+            }
         }
     }
 
@@ -146,6 +155,7 @@ public class SelectorMenu : Menu {
             case SelectionState.Ability:
                 m_Player.PlayerAbility = Abilities.None;
                 m_AbilitySelection = 0;
+                Database.instance.ListofSponsors[m_SponsorSelection].ReleaseSponsor();
                 m_CurrentSelectionState = SetStateAndTexts(1, m_SponsorSelection, 3, false);
                 break;
             case SelectionState.Confirmed:
@@ -178,7 +188,7 @@ public class SelectorMenu : Menu {
         switch (temp)
         {
             case SelectionState.Sponsor:
-                m_SelectionName.text = Database.instance.ListofSponsrs[selection].SponsorName;
+                m_SelectionName.text = Database.instance.ListofSponsors[selection].SponsorName;
                 break;
             case SelectionState.Ability:
                 m_SelectionName.text = Database.instance.ListofAbilities[m_AbilitySelection].AbilityName;

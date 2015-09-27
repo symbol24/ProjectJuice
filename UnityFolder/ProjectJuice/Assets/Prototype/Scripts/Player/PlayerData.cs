@@ -11,7 +11,7 @@ public class PlayerData : MonoBehaviour {
     {
         get
         {
-            if(_instance == null)
+            if (_instance == null)
             {
                 _instance = FindObjectOfType<PlayerData>();
 
@@ -39,14 +39,17 @@ public class PlayerData : MonoBehaviour {
 
     void Awake()
     {
-        List<PlayerData> allData = Utility.Utilities.GetAllPlayerData();
-        foreach(PlayerData pd in allData)
+        List<PlayerData> all = Utility.Utilities.GetAllPlayerData();
+        int x = 0;
+        foreach (PlayerData pd in all)
         {
-            if (pd.GamepadIndex == GamepadIndex && this != pd)
-                Destroy(gameObject);
+            if (pd.GamepadIndex == m_PlayerGamepad)
+                x++;
         }
-
-            DontDestroyOnLoad(this);
+        if (x > 1)
+            Destroy(gameObject);
+        else
+            DontDestroyOnLoad(gameObject);
     }
 
     public void CheckActivated()

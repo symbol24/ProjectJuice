@@ -28,9 +28,20 @@ public class PlayerSpawner : MonoBehaviour {
     private List<GameObject> m_Players = new List<GameObject>();
     public List<GameObject> Players { get { return m_Players; } }
     [SerializeField] private int[] m_PlayerLayerIDs = {15,16,17,18};
+    private FadeOut m_Fader;
 
 	// Use this for initialization
 	void Start () {
+        GameManager.instance.SetGameState(GameState.Loading);
+        m_Fader = FindObjectOfType<FadeOut>();
+        m_Fader.FadeDone += M_Fader_FadeDone;
+    }
+
+    private void M_Fader_FadeDone(object sender, System.EventArgs e)
+    {
+        print("M_Fader_FadeDone");
+        GameManager.instance.SetGameState(GameState.Playing);
+
         m_ListofPlayers = Utilities.GetAllPlayerData();
         SpawnPlayers();
     }

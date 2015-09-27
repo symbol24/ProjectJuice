@@ -1,10 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.EventSystems;
+using System;
 
 public class FadeOut : MonoBehaviour {
     [Range(0,5)][SerializeField] float m_FadeInTime = 2f;
     Color m_SpriteColor;
     SpriteRenderer m_Sprite;
+    private bool m_IsDone = false;
+    public bool IsDone { get { return m_IsDone; } }
     // Use this for initialization
     void Start () {
         m_Sprite = GetComponent<SpriteRenderer>();
@@ -12,6 +16,14 @@ public class FadeOut : MonoBehaviour {
         StartCoroutine(Fade());
 	}
 
+    public event EventHandler FadeDone;
+
+    protected virtual void OnFadeDone()
+    {
+        print("OnFadeDone");
+        EventHandler handler = FadeDone;
+        if (handler != null) handler(this, EventArgs.Empty);
+    }
 
     private IEnumerator Fade()
     {
@@ -23,5 +35,6 @@ public class FadeOut : MonoBehaviour {
             m_SpriteColor.a = t;
             m_Sprite.color = m_SpriteColor;
         }
+        OnFadeDone();
     }
 }

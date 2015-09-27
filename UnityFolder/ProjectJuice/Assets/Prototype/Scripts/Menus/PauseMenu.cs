@@ -81,6 +81,7 @@ public class PauseMenu : Menu {
 
     public void ReturnToMainMenu()
     {
+        SwitchPauseState();
         Application.LoadLevel("multipadTest");
     }
 

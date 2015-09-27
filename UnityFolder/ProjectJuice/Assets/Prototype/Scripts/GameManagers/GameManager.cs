@@ -42,8 +42,13 @@ public class GameManager : ExtendedMonobehaviour
     // Use this for initialization
     void Start()
     {
-        m_CurrentState = GameState.Playing;
-        ScoreManager.instance.PlayerScored += CheckEndOfRound;
+        
+    }
+
+    public void SubscribeToEndRound()
+    {
+        if (ScoreManager.instance != null)
+            ScoreManager.instance.PlayerScored += CheckEndOfRound;
     }
 
     // Update is called once per frame
@@ -112,5 +117,10 @@ public class GameManager : ExtendedMonobehaviour
     {
         PlayerSpawner.instance.RespawnPlayers();
         m_CurrentState = GameState.Playing;
+    }
+
+    public void SetGameState(GameState newState)
+    {
+        m_CurrentState = newState;
     }
 }

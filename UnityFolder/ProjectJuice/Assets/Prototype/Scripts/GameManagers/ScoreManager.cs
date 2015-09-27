@@ -30,6 +30,10 @@ public class ScoreManager : ExtendedMonobehaviour
         get { return _currentScores ?? (_currentScores = new List<PlayerScoreTracker>()); }
     }
     
+    void Start()
+    {
+        GameManager.instance.SubscribeToEndRound();
+    }
     
     //Public Methods/Properties Available
     public List<PlayerScoreTracker> PlayerScores

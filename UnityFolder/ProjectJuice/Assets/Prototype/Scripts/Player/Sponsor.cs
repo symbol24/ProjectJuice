@@ -22,4 +22,9 @@ public class Sponsor : MonoBehaviour {
         if (!m_IsTaken)
             m_IsTaken = true;
     }
+
+    public void ReleaseSponsor()
+    {
+        m_IsTaken = false;
+    }
 }

@@ -24,7 +24,7 @@ public class Database : MonoBehaviour
 
     [SerializeField]
     List<Sponsor> m_ListofSponsors;
-    public List<Sponsor> ListofSponsrs { get { return m_ListofSponsors; } }
+    public List<Sponsor> ListofSponsors { get { return m_ListofSponsors; } }
 
     [SerializeField]
     List<Ability> m_ListofAbilities;
@@ -37,8 +37,25 @@ public class Database : MonoBehaviour
     [SerializeField] private float m_MenuInputDelay = 0.4f;
     public float MenuInputDelay { get { return m_MenuInputDelay; } }
 
+    [SerializeField] Color m_TakenColorForMenu;
+    public Color TakenColor { get { return m_TakenColorForMenu; } }
+
+    [SerializeField] Color m_NormalTextColorForMenu;
+    public Color NormalTextColor { get { return m_TakenColorForMenu; } }
+
     void Awake()
     {
         DontDestroyOnLoad(this);
+    }
+
+    void Start()
+    {
+        CleanSponsors();
+    }
+
+    private void CleanSponsors()
+    {
+        foreach (Sponsor sp in m_ListofSponsors)
+            sp.ReleaseSponsor();
     }
 }

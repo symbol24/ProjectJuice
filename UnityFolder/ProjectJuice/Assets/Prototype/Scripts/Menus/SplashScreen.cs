@@ -11,6 +11,7 @@ public class SplashScreen : MonoBehaviour {
 	void Start () {
         m_MenuControls = FindObjectOfType<MenuControls>();
         m_AllDatas = Utilities.GetAllPlayerData();
+        GameManager.instance.SetGameState(GameState.Intro);
 	}
 	
 	// Update is called once per frame

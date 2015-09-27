@@ -24,6 +24,20 @@ public class MenuControls : MonoBehaviour {
     public List<float> X { get { return m_X; } }
     public List<float> Y { get { return m_Y; } }
 
+    private FadeOut m_Fader;
+
+    void Awake()
+    {
+        m_Fader = FindObjectOfType<FadeOut>();
+        m_Fader.FadeDone += M_Fader_FadeDone;
+    }
+
+    private void M_Fader_FadeDone(object sender, System.EventArgs e)
+    {
+        print("MEnuControl.M_Fader_FadeDone");
+        m_ListofPlayers = Utilities.GetAllPlayerData();
+    }
+
     // Use this for initialization
     void Start () {
         m_ListofPlayers = Utilities.GetAllPlayerData();
