@@ -23,7 +23,7 @@ public class shield : Gun {
     // Update is called once per frame
     protected override void Update ()
     {
-        if (GameManager.instance.CheckIfPlaying())
+        if (GameManager.instance.IsPlaying)
         {
             if (m_Controller.m_Special && !m_IsActive && m_DelayManager.m_CanShield)
                 ActivateShield();

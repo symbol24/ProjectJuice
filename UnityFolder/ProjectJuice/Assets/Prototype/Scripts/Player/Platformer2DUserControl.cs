@@ -61,7 +61,7 @@ namespace UnityStandardAssets._2D
         private void Update()
         {
             // Read the inputs.
-            m_Jump = GamePad.GetButtonDown(m_JumpButton, controller);
+            /*m_Jump = GamePad.GetButtonDown(m_JumpButton, controller);
             m_Dash = GamePad.GetButtonDown(m_DashButton, controller);
             m_XAxis = GamePad.GetAxis(m_DirectionalButton, controller).x;
             m_YAxis = GamePad.GetAxis(m_DirectionalButton, controller).y;
@@ -70,8 +70,8 @@ namespace UnityStandardAssets._2D
             m_Special = GamePad.GetButtonDown(m_SpecialButton, controller);
             m_Imobilize = GamePad.GetButton(m_ImobilizeButton, controller);
             m_SpecialStay = GamePad.GetButton(m_SpecialButton, controller);
-
-            if (GameManager.instance.CheckIfPlaying())
+            */
+            if (GameManager.instance.IsPlaying)
             {
                 // Read the inputs.
                 m_Jump = GamePad.GetButtonDown(m_JumpButton, controller);

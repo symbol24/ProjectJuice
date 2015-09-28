@@ -35,7 +35,7 @@ public class Gun : ExtendedMonobehaviour {
     // Update is called once per frame
     protected virtual void Update ()
     {
-        if (GameManager.instance.CheckIfPlaying())
+        if (GameManager.instance.IsPlaying)
         {
 
             CheckLight();

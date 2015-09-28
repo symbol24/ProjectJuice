@@ -30,7 +30,7 @@ public class PauseMenu : Menu {
 
     // Update is called once per frame
     protected override void Update () {
-        if (GameManager.instance.CheckIfPlaying())
+        if (GameManager.instance.IsPlaying)
         {
             for (int i = 0; i < m_ListofPlayers.Count; i++)
             {
@@ -42,7 +42,7 @@ public class PauseMenu : Menu {
                 }
             }
         }
-        else if(!GameManager.instance.CheckIfPlaying())
+        else if(!GameManager.instance.IsPlaying)
         {
             if (m_Controls._Start[m_ControllingPlayer] && m_DelayManager.m_CanShoot)
             {

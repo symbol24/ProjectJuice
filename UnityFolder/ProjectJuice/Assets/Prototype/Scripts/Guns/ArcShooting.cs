@@ -11,7 +11,7 @@ public class ArcShooting : Gun
 
     protected override void Update()
     {
-        if (GameManager.instance.CheckIfPlaying())
+        if (GameManager.instance.IsPlaying)
         {
             base.Update();
 

@@ -74,9 +74,9 @@ public class GameManager : ExtendedMonobehaviour
         }
     }
 
-    public bool CheckIfPlaying()
+    public bool IsPlaying
     {
-        return m_CurrentState == GameState.Playing;
+        get { return m_CurrentState == GameState.Playing; }
     }
 
     private void CheckEndOfRound(object sender, PlayerScoreEventArgs e)

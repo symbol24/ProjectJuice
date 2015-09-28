@@ -64,7 +64,7 @@ namespace UnityStandardAssets._2D
 
         private void Update()
         {
-            if (GameManager.instance.CheckIfPlaying())
+            if (GameManager.instance.IsPlaying)
             {
                 m_Grounded = SetGrounded(m_Grounded);
 
