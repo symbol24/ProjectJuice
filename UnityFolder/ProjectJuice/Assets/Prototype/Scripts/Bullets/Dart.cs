@@ -9,6 +9,7 @@ public class Dart : ExtendedMonobehaviour
 {
     [SerializeField] private DartChainV2 _staticCrossSection;
     public DartChainV2 StaticCrossSection { get { return _staticCrossSection; } }
+    public bool _debugInvencible = false;
 
     public bool IsContiniousSucking { get; set; }
     public float SuckingInterval { get; set; }
@@ -44,7 +45,7 @@ public class Dart : ExtendedMonobehaviour
     void Update ()
     {
         
-        if (!InputManager.m_SpecialStay)
+        if (!InputManager.m_SpecialStay && !_debugInvencible)
         {
             OnDartDestroyed();
         }
@@ -161,6 +162,7 @@ public class Dart : ExtendedMonobehaviour
             //Check if we got our hpScript
             if (_targetHpScript != null)
             {
+                _targetHpScript.Dead += TargetHpScriptOnDead;
                 OnDartCollision();
                 ret = true;
                 StickDart(toCheck);
@@ -168,6 +170,12 @@ public class Dart : ExtendedMonobehaviour
         }
         return ret;
     }
+
+    private void TargetHpScriptOnDead(object sender, EventArgs eventArgs)
+    {
+        OnDartDestroyed();
+    }
+
     private void SuckHP()
     {
         
@@ -189,6 +197,7 @@ public class Dart : ExtendedMonobehaviour
     {
         gameObject.transform.parent = toUseAsParent.transform;
         MainRigidbody2D.velocity = Vector3.zero;
+        MainRigidbody2D.isKinematic = true;
     }
 
 

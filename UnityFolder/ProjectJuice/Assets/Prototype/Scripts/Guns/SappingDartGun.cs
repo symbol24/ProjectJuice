@@ -25,7 +25,7 @@ public class SappingDartGun : ExtendedMonobehaviour {
     [SerializeField] private float _lifetimeSinceHit = 1f;
     [SerializeField] private DartChainV2 _dartChainPrefab;
     [SerializeField]
-    private float _crossSectionLength;
+    private float _crossSectionLength = 0.1f;
 
     public float HoseCrossSectionLength { get { return _crossSectionLength; } }
 

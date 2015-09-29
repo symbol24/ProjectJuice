@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Remoting.Messaging;
 //using UnityEditor;
@@ -18,6 +19,7 @@ public class HPScript : HPBase
     [SerializeField] private int _raycastIterationsToFindTarget = 5;
     [SerializeField] private Transform _centerOfReferenceForJuice;
     [SerializeField] private Rigidbody2D _mainRigidbody;
+
 
     #region EventsAvailable
     public event EventHandler<ImpactEventArgs> HpImpactReceived;
@@ -46,6 +48,18 @@ public class HPScript : HPBase
         if (_mainRigidbody == null) _mainRigidbody = GetComponent<Rigidbody2D>();
         if (_inputController == null) _inputController = GetComponent<IPlatformer2DUserControl>();
         if (_character == null) _character = GetComponent<PlatformerCharacter2D>();
+        HpChanged += OnHpChanged;
+    }
+
+    private void OnHpChanged(object sender, HpChangedEventArgs hpChangedEventArgs)
+    {
+        if (CurrentHp <= 0) StartCoroutine(DestroyNextFrame());
+    }
+
+    private IEnumerator DestroyNextFrame()
+    {
+        yield return null;
+        OnDead();
     }
 
     public void RouteOnTriggerEnter2D(Collider2D collider)
@@ -103,8 +117,6 @@ public class HPScript : HPBase
                 color = _inputController.m_PlayerData.PlayerSponsor.SponsorColor
             };
             OnHpImpactReceived(e);
-
-            if (CurrentHp <= 0) OnDead();
         }
     }
 
