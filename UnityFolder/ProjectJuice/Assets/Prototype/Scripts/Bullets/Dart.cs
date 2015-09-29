@@ -139,7 +139,7 @@ public class Dart : ExtendedMonobehaviour
             _targetHpScript = toCheck.GetComponent<HPScript>();
             if (_targetHpScript == null)
             {
-                var checkShield = toCheck.GetComponent<shield>();
+                var checkShield = toCheck.GetComponent<ShieldReRouter>();
                 if (checkShield == null)
                 {
                     _targetHpScript = toCheck.GetComponentInParent<HPScript>();
@@ -220,7 +220,8 @@ public class Dart : ExtendedMonobehaviour
     protected void OnDartDestroyed()
     {
         if (DartDestroyed != null) DartDestroyed(this, EventArgs.Empty);
-        Destroy(gameObject);
+        try { Destroy(gameObject); }
+        catch(Exception ex) { Debug.Log("Remove this catch"); }
     }
     #endregion events
 

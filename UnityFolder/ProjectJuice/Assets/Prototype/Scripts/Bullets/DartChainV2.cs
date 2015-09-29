@@ -58,12 +58,12 @@ public class DartChainV2 : MonoBehaviour {
 
     public EventHandler HitFloor;
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
+    // Use this for initialization
+    void Start() {
+
+    }
+
+    // Update is called once per frame
     private void Update()
     {
         if (!_isStaticChain)
@@ -77,7 +77,7 @@ public class DartChainV2 : MonoBehaviour {
                     checkDistance - CurrentGun.HoseCrossSectionLength);
                 transform.position = (correctedPosition);
                 //Debug.Log("detectingTooFar");
-                
+
             }
         }
     }
@@ -86,8 +86,12 @@ public class DartChainV2 : MonoBehaviour {
 
     private void CurrentDartOnDartDestroyed(object sender, EventArgs eventArgs)
     {
-        Destroy(gameObject);
+        try {
+            Destroy(gameObject);
+        }
+        catch (Exception ex) { Debug.Log("Remove this catch"); }
     }
+
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
