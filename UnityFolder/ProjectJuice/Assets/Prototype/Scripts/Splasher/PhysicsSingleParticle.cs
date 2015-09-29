@@ -11,6 +11,12 @@ public class PhysicsSingleParticle : MonoBehaviour {
         set { _probabilityOfHealthPickup = value; }
     }
 
+    public float ProbablityOfHealthStayOnGround
+    {
+        get { return _probablityOfHealthStayOnGround; }
+        set { _probablityOfHealthStayOnGround = value; }
+    }
+
     public float HpRecovered
     {
         get { return _hpRecovered; }
@@ -19,13 +25,14 @@ public class PhysicsSingleParticle : MonoBehaviour {
 
     private Vector3 _lastPosition = Vector3.zero;
     private bool _triggered = false;
-    [SerializeField] private float _probabilityOfHealthPickup = 0.1f;
+    [Range(0,1)][SerializeField] private float _probabilityOfHealthPickup = 0.1f;
+    [Range(0,1)][SerializeField] private float _probablityOfHealthStayOnGround = 0.2f;
     [SerializeField] private float _hpRecovered = 5;
     [SerializeField] private bool _arePickupsToDisapear = false;
-    [SerializeField] private float _timeoutBeforeDisapearingForPickups = 2f;
+    [Range(0,5)][SerializeField] private float _timeoutBeforeDisapearingForPickups = 2f;
 
-    public float _minDestroyTime = 1f;
-    public float _masDestroyTime = 5f;
+    [Range(0, 5)] public float _minDestroyTime = 1f;
+    [Range(0, 5)] public float _masDestroyTime = 5f;
     private float RandomDestroyTime
     {
         get
@@ -43,20 +50,6 @@ public class PhysicsSingleParticle : MonoBehaviour {
         TriggerHpRecov();
 
     }
-	
-	// Update is called once per frame
-	void FixedUpdate () 
-    {
-        /*
-	    if ((_lastPosition == transform.position) && !_triggered)
-	    {
-            TriggerHpRecov();
-	        _triggered = true;
-	    }
-	    _lastPosition = transform.position;
-        */
-    }
-
 
     private void TriggerHpRecov()
     {
@@ -64,7 +57,7 @@ public class PhysicsSingleParticle : MonoBehaviour {
         {
             var recov = gameObject.AddComponent<HPRecovery>();
             recov.HPRecov = HpRecovered;
-            if (_arePickupsToDisapear)
+            if (_arePickupsToDisapear && Random.value > _probablityOfHealthStayOnGround)
             {
                 var timer = gameObject.AddComponent<DestroyOnTimer>();
                 timer.Timeout = _timeoutBeforeDisapearingForPickups;
@@ -76,5 +69,4 @@ public class PhysicsSingleParticle : MonoBehaviour {
             timer.Timeout = RandomDestroyTime;
         }
     }
-
 }

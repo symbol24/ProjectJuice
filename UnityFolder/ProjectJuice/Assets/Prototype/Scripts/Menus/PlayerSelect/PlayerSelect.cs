@@ -15,6 +15,7 @@ public class PlayerSelect : Menu {
     public Text[] HeaderText { get { return m_PlayerTexts; } set { m_PlayerTexts = value; } }
     [SerializeField] private GameObject[] m_PlayerSelectPanels;
     FadeOut m_Fader;
+    [SerializeField] string m_NextScene;
 
     void Awake()
     {
@@ -104,7 +105,7 @@ public class PlayerSelect : Menu {
             pd.CheckActivated();
         }
 
-        Application.LoadLevel("gameplayTest");
+        Application.LoadLevel(m_NextScene);
     }
 
     private void ActivateScreen(PlayerData player, int panel, int ID)

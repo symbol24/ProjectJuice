@@ -27,8 +27,6 @@ namespace UnityStandardAssets._2D
 
         //grounding and ceiling
         [SerializeField]private LayerMask m_WhatIsGround;                  // A mask determining what is ground to the character
-        [SerializeField]private string m_WhatIsPassThrough;
-        [SerializeField]private string m_WhatIsPlayer;
         private Transform m_GroundCheck;    // A position marking where to check if the player is grounded.
         const float k_GroundedRadius = .2f; // Radius of the overlap circle to determine if grounded
         private bool m_Grounded;            // Whether or not the player is grounded.
