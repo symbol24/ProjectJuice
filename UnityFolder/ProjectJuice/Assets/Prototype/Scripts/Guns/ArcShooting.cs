@@ -6,7 +6,7 @@ using GamepadInput;
 
 public class ArcShooting : Gun
 {
-    [SerializeField] private float m_BurstDelay = 0.1f;
+    [Range(0, 3)][SerializeField] private float m_BurstDelay = 0.1f;
     [Range(0, 10)][SerializeField] int m_burstAmmount = 3;
 
     protected override void Update()
