@@ -26,6 +26,7 @@ public class SappingDartGun : ExtendedMonobehaviour {
     [SerializeField] private DartChainV2 _dartChainPrefab;
     [SerializeField]
     private float _crossSectionLength = 0.1f;
+    [SerializeField] private int _crossSectionsLimit = 100;
 
     public float HoseCrossSectionLength { get { return _crossSectionLength; } }
 
@@ -76,6 +77,7 @@ public class SappingDartGun : ExtendedMonobehaviour {
 
 
         var currentCrossSection = InstantiateChain(dart.StaticCrossSection, dart);
+        _currentCount = 0;
         _addCrossSection = AddCrossSection(currentCrossSection);
         StartCoroutine(_addCrossSection);
 
@@ -93,6 +95,7 @@ public class SappingDartGun : ExtendedMonobehaviour {
     private void Dart_DartDestroyed(object sender, EventArgs e)
     {
         StopCoroutine(_addCrossSection);
+        if(_moveLastChainToRefPoint != null) StopCoroutine(_moveLastChainToRefPoint);
         _delayManager.Reset();
     }
 
@@ -108,6 +111,7 @@ public class SappingDartGun : ExtendedMonobehaviour {
     }
 
 
+    private int _currentCount;
     private IEnumerator _addCrossSection;
     private IEnumerator AddCrossSection(DartChainV2 currentFirstChain)
     {
@@ -128,7 +132,24 @@ public class SappingDartGun : ExtendedMonobehaviour {
             }
 
             _addCrossSection = AddCrossSection(lastDartChainAdded);
-            StartCoroutine(_addCrossSection);
+            _currentCount ++;
+            if(_currentCount < _crossSectionsLimit) StartCoroutine(_addCrossSection);
+            else
+            {
+                lastDartChainAdded.transform.parent = _dartSpawnPoint.transform;
+                lastDartChainAdded.MainRigidbody.isKinematic = true;
+                _moveLastChainToRefPoint = MoveLastChainToRefPoint(lastDartChainAdded);
+                StartCoroutine(_moveLastChainToRefPoint);
+            }
+        }
+    }
+    private IEnumerator _moveLastChainToRefPoint;
+    private IEnumerator MoveLastChainToRefPoint(DartChainV2 lastDartChainAdded)
+    {
+        while (true)
+        {
+            lastDartChainAdded.transform.position = _dartSpawnPoint.transform.position;
+            yield return null;
         }
     }
 

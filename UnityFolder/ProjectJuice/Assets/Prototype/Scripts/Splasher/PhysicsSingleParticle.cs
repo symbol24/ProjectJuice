@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Linq;
+using UnityEngine;
 using System.Collections;
 
 public class PhysicsSingleParticle : MonoBehaviour {
@@ -33,6 +34,10 @@ public class PhysicsSingleParticle : MonoBehaviour {
 
     [Range(0, 5)] public float _minDestroyTime = 1f;
     [Range(0, 5)] public float _masDestroyTime = 5f;
+    [SerializeField] private float circleRadius;
+    [SerializeField] private LayerMask _whatIsPlayers;
+    private bool _waitToExitCollider = false;
+
     private float RandomDestroyTime
     {
         get
@@ -47,8 +52,29 @@ public class PhysicsSingleParticle : MonoBehaviour {
     // Use this for initialization
     void Start ()
 	{
-        TriggerHpRecov();
 
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, circleRadius, _whatIsPlayers);
+        if(colliders.Any(c => c.GetComponent<HPScript>() != null))
+        {
+            _waitToExitCollider = true;
+        }
+        else
+	    {
+            TriggerHpRecov();
+	    }
+	}
+
+    void Update()
+    {
+        if (_waitToExitCollider)
+        {
+            Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, circleRadius, _whatIsPlayers);
+            if (colliders.Any(c => c.gameObject.GetComponent<HPScript>() != null))
+            {
+                _waitToExitCollider = false;
+                TriggerHpRecov();
+            }
+        }
     }
 
     private void TriggerHpRecov()
@@ -69,4 +95,5 @@ public class PhysicsSingleParticle : MonoBehaviour {
             timer.Timeout = RandomDestroyTime;
         }
     }
+
 }
