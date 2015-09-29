@@ -124,7 +124,8 @@ public class MeleeAttack : ExtendedMonobehaviour
     public void ClashedWithOtherMelee(MeleeDamagingCollider otherMelee)
     {
         _physicsManager.AddKnockBack(otherMelee);
-
+        otherMelee.Consumed();
+        
         GameObject particles = null;
         if (otherMelee.HasPreferredImpactPoint)
         {
