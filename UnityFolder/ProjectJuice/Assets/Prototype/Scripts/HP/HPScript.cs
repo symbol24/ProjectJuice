@@ -70,11 +70,8 @@ public class HPScript : HPBase
         {
             if (checkPowerUp.IsAvailableForConsumption)
             {
-                if (CurrentHp < MaxHp)
-                {
-                    CurrentHp += checkPowerUp.HPRecov;
-                    checkPowerUp.Consumed();
-                }
+                CurrentHp += checkPowerUp.HPRecov;
+                checkPowerUp.Consumed();
             }
         }
     }

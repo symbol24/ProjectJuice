@@ -78,8 +78,8 @@ namespace UnityStandardAssets._2D
                 m_Dash = GamePad.GetButtonDown(m_DashButton, controller);
                 m_XAxis = GamePad.GetAxis(m_DirectionalButton, controller).x;
                 m_YAxis = GamePad.GetAxis(m_DirectionalButton, controller).y;
-                m_Shoot = GamePad.GetButtonDown(m_ShootButton, controller);
-                m_Melee = GamePad.GetButtonDown(m_MeleeButton, controller);
+                m_Shoot = GamePad.GetButton(m_ShootButton, controller);
+                m_Melee = GamePad.GetButton(m_MeleeButton, controller);
                 m_Special = GamePad.GetButtonDown(m_SpecialButton, controller);
                 m_Imobilize = GamePad.GetButton(m_ImobilizeButton, controller);
                 m_SpecialStay = GamePad.GetButton(m_SpecialButton, controller);
