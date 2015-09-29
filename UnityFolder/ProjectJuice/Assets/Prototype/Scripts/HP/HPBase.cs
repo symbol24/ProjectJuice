@@ -13,6 +13,7 @@ public abstract class HPBase : ExtendedMonobehaviour {
     public float MaxHp
     {
         get { return _maxHp; }
+        protected set { _maxHp = value; }
     }
     public float CurrentHp
     {

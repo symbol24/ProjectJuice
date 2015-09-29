@@ -43,6 +43,7 @@ public class HPScript : HPBase
     // Use this for initialization
     protected override void Start()
     {
+        MaxHp = Database.instance.PlayerBaseHP;
         base.Start();
         if (_centerOfReferenceForJuice == null) _centerOfReferenceForJuice = transform;
         if (_mainRigidbody == null) _mainRigidbody = GetComponent<Rigidbody2D>();

@@ -62,7 +62,7 @@ public class SappingDartGun : ExtendedMonobehaviour {
         #region SetProperties
         dart.IsContiniousSucking = _isContiniousSucking;
         dart.SuckingInterval = _suckingInterval;
-        dart.HpSuckedPerSecond = _hpToSuckPerSecond;
+        dart.HpSuckedPerSecond = Database.instance.DartBaseDmgPerSecond;
         dart.DartCollTimerDisappear = _dartCollTimerDisappear;
         dart.LifetimeSinceHit = _lifetimeSinceHit;
         dart.InputManager = _inputManager;

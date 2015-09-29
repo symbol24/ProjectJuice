@@ -108,7 +108,12 @@ public class MeleeAttack : ExtendedMonobehaviour
 
     public float Damage
     {
-        get { return _damage; }
+        get {
+            if (isAbility)
+                return Database.instance.MeleeAbilityDamage;
+            else
+                return Database.instance.MeleeBaseDamage;
+        }
     }
 
     public bool AddImpactForce

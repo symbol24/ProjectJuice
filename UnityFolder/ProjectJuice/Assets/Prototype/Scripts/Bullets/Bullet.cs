@@ -11,7 +11,7 @@ public class Bullet : MonoBehaviour, IDamaging {
     {
         get
         {
-            return m_Damage;
+            return Database.instance.BulletBaseDamage;
         }
     }
 
