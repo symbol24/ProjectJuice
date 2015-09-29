@@ -90,10 +90,12 @@ public class ExplosiveObject : HPBase
                 : toCheck.transform.position;
             //Debug.DrawRay(transform.position, contactPoint);
             //Debug.Break();
-            var particleObject = (GameObject) Instantiate(ExplosionPrefab, contactPoint, Quaternion.identity);
-            var destroyer = particleObject.AddComponent<DestroyOnTimer>();
-            destroyer.Timeout = _explosionDestroyTimeout;
-            
+            if (ExplosionPrefab != null)
+            {
+                var particleObject = (GameObject) Instantiate(ExplosionPrefab, contactPoint, Quaternion.identity);
+                var destroyer = particleObject.AddComponent<DestroyOnTimer>();
+                destroyer.Timeout = _explosionDestroyTimeout;
+            }
         }
     }
 
