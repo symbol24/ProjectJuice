@@ -53,7 +53,7 @@ public class RoundMenu : Menu {
         {
             for (int i = 0; i < PlayerSpawner.instance.ListOfPlayerDatas.Count; i++)
             {
-                if (m_Controls.Confirm[i])
+                if (m_RoundMenu.activeInHierarchy && m_Controls.Confirm[i])
                 {
                     GoToNextRound();
                 }
@@ -63,19 +63,22 @@ public class RoundMenu : Menu {
         {
             for (int i = 0; i < PlayerSpawner.instance.ListOfPlayerDatas.Count; i++)
             {
-                if(m_Controls.X[i] != 0 && m_DelayManager.m_CanShield && !m_inConfirm)
+                if (m_MatchMenu.activeInHierarchy)
                 {
-                    SetNextActive(m_Controls.X[i]);
-                }
+                    if (m_Controls.X[i] != 0 && m_DelayManager.m_CanShield && !m_inConfirm)
+                    {
+                        SetNextActive(m_Controls.X[i]);
+                    }
 
-                if(m_Controls.Confirm[i] && m_DelayManager.m_CanShoot)
-                {
-                    Activate();
-                }
+                    if (m_Controls.Confirm[i] && m_DelayManager.m_CanShoot)
+                    {
+                        Activate();
+                    }
 
-                if (m_Controls.Cancel[i] && m_DelayManager.m_CanShoot && m_inConfirm)
-                {
-                    CancelConfirm();
+                    if (m_Controls.Cancel[i] && m_DelayManager.m_CanShoot && m_inConfirm)
+                    {
+                        CancelConfirm();
+                    }
                 }
             }
         }
