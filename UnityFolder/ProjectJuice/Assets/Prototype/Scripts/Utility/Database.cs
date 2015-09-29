@@ -43,6 +43,9 @@ public class Database : MonoBehaviour
     [SerializeField] Color m_NormalTextColorForMenu;
     public Color NormalTextColor { get { return m_TakenColorForMenu; } }
 
+    [SerializeField] Font m_BaseFont;
+    public Font BaseFont { get { return m_BaseFont; } }
+
     void Awake()
     {
         DontDestroyOnLoad(this);

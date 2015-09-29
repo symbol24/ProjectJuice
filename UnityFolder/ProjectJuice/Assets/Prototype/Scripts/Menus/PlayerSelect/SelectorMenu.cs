@@ -19,6 +19,8 @@ public class SelectorMenu : Menu {
     public int PanelId { get { return m_PanelId; } }
     [SerializeField] private float m_NavigationDelay = 0.3f;
     [SerializeField] private Text m_SelectionName;
+    [SerializeField] private Image m_SelectionContainer;
+    private Color m_SelectionContainerColor;
     [SerializeField] private Text m_Ledger;
     [SerializeField] private Image m_ConfirmedOverlay;
     [SerializeField] Image tempImages;
@@ -32,6 +34,7 @@ public class SelectorMenu : Menu {
         m_DelayManager = GetComponent<DelayManager>();
         m_DelayManager.Reset();
         m_ConfirmedOverlay.enabled = false;
+        m_SelectionContainerColor = m_SelectionContainer.color;
     }
 
     // Update is called once per frame
@@ -108,12 +111,13 @@ public class SelectorMenu : Menu {
         tempImages.color = Database.instance.ListofSponsors[selection].SponsorColor;
 
         m_SelectionName.text = Database.instance.ListofSponsors[selection].SponsorName;
-        m_SelectionName.color = Database.instance.NormalTextColor;
+        //m_SelectionName.color = Database.instance.NormalTextColor;
+        m_SelectionContainer.color = m_SelectionContainerColor;
 
         if (Database.instance.ListofSponsors[selection].isTaken)
         {
             tempImages.color = Database.instance.TakenColor;
-            m_SelectionName.color = Database.instance.TakenColor;
+            m_SelectionContainer.color = Database.instance.TakenColor;
         }
     }
 
