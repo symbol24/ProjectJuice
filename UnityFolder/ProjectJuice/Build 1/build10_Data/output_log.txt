@@ -1,0 +1,54 @@
+Initialize engine version: 5.1.2f1 (afd2369b692a)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.0]
+    Renderer: AMD Radeon HD 7640G (ID=0x9903)
+    Vendor:   ATI
+    VRAM:     479 MB
+Begin MonoManager ReloadAssembly
+Platform assembly: C:\Users\Roberto\Documents\Juice\UnityFolder\ProjectJuice\Build 1\build10_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading C:\Users\Roberto\Documents\Juice\UnityFolder\ProjectJuice\Build 1\build10_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: C:\Users\Roberto\Documents\Juice\UnityFolder\ProjectJuice\Build 1\build10_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading C:\Users\Roberto\Documents\Juice\UnityFolder\ProjectJuice\Build 1\build10_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: C:\Users\Roberto\Documents\Juice\UnityFolder\ProjectJuice\Build 1\build10_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading C:\Users\Roberto\Documents\Juice\UnityFolder\ProjectJuice\Build 1\build10_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: C:\Users\Roberto\Documents\Juice\UnityFolder\ProjectJuice\Build 1\build10_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading C:\Users\Roberto\Documents\Juice\UnityFolder\ProjectJuice\Build 1\build10_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+Platform assembly: C:\Users\Roberto\Documents\Juice\UnityFolder\ProjectJuice\Build 1\build10_Data\Managed\UnityEngine.Analytics.dll (this message is harmless)
+Loading C:\Users\Roberto\Documents\Juice\UnityFolder\ProjectJuice\Build 1\build10_Data\Managed\UnityEngine.Analytics.dll into Unity Child Domain
+- Completed reload, in  0.252 seconds
+desktop: 1366x768 60Hz; virtual: 1366x768 at 0,0
+<RI> Initializing input.
+<RI> Input initialized.
+<RI> Initialized touch support.
+Platform assembly: C:\Users\Roberto\Documents\Juice\UnityFolder\ProjectJuice\Build 1\build10_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: C:\Users\Roberto\Documents\Juice\UnityFolder\ProjectJuice\Build 1\build10_Data\Managed\System.dll (this message is harmless)
+Unloading 2 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.595028 ms
+
+Unloading 4 unused Assets to reduce memory usage. Loaded Objects now: 332.
+Total: 0.270516 ms (FindLiveObjects: 0.027537 ms CreateObjectMapping: 0.021598 ms MarkObjects: 0.207882 ms  DeleteObjects: 0.012418 ms)
+
+Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 3.444362 ms
+
+Unloading 3 unused Assets to reduce memory usage. Loaded Objects now: 649.
+Total: 0.492977 ms (FindLiveObjects: 0.106370 ms CreateObjectMapping: 0.031857 ms MarkObjects: 0.336930 ms  DeleteObjects: 0.015658 ms)
+
+Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 1.793724 ms
+
+Unloading 1 unused Assets to reduce memory usage. Loaded Objects now: 2000.
+Total: 1.032390 ms (FindLiveObjects: 0.139847 ms CreateObjectMapping: 0.089632 ms MarkObjects: 0.788331 ms  DeleteObjects: 0.012958 ms)
+
+addDeath Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at GameManager.CheckEndOfRound (System.Object sender, .PlayerScoreEventArgs e) [0x00000] in <filename unknown>:0 
+  at ScoreManager.OnPlayerScored (.PlayerScoreEventArgs e) [0x00000] in <filename unknown>:0 
+  at ScoreManager+<AnounceWinner>c__Iterator5.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
