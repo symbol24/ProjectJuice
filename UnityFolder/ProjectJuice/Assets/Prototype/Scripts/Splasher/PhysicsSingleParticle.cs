@@ -69,7 +69,7 @@ public class PhysicsSingleParticle : MonoBehaviour {
         if (_waitToExitCollider)
         {
             Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, circleRadius, _whatIsPlayers);
-            if (colliders.Any(c => c.gameObject.GetComponent<HPScript>() != null))
+            if (colliders.All(c => c.gameObject.GetComponent<HPScript>() == null))
             {
                 _waitToExitCollider = false;
                 TriggerHpRecov();
