@@ -94,10 +94,10 @@ namespace UnityStandardAssets._2D
             {
                 // Reduce the speed in air by the airSpeed multiplier
                 float toMove = (!m_Grounded ? move * m_AirSpeed : move);
-
-                if (imobile && m_Grounded) toMove = 0;
                 
                 toMove = (isShooting && m_Grounded ? move * m_ShootingSpeed : move);
+
+                if (imobile && m_Grounded) toMove = 0;
 
                 // The Speed animator parameter is set to the absolute value of the horizontal input.
                 m_Anim.SetFloat("Speed", Mathf.Abs(toMove));
