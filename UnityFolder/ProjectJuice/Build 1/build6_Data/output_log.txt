@@ -1,0 +1,77 @@
+Initialize engine version: 5.1.2f1 (afd2369b692a)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.0]
+    Renderer: AMD Radeon HD 7640G (ID=0x9903)
+    Vendor:   ATI
+    VRAM:     479 MB
+Begin MonoManager ReloadAssembly
+Platform assembly: C:\Users\Roberto\Documents\Juice\UnityFolder\ProjectJuice\Build 1\build6_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading C:\Users\Roberto\Documents\Juice\UnityFolder\ProjectJuice\Build 1\build6_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: C:\Users\Roberto\Documents\Juice\UnityFolder\ProjectJuice\Build 1\build6_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading C:\Users\Roberto\Documents\Juice\UnityFolder\ProjectJuice\Build 1\build6_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: C:\Users\Roberto\Documents\Juice\UnityFolder\ProjectJuice\Build 1\build6_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading C:\Users\Roberto\Documents\Juice\UnityFolder\ProjectJuice\Build 1\build6_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: C:\Users\Roberto\Documents\Juice\UnityFolder\ProjectJuice\Build 1\build6_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading C:\Users\Roberto\Documents\Juice\UnityFolder\ProjectJuice\Build 1\build6_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+Platform assembly: C:\Users\Roberto\Documents\Juice\UnityFolder\ProjectJuice\Build 1\build6_Data\Managed\UnityEngine.Analytics.dll (this message is harmless)
+Loading C:\Users\Roberto\Documents\Juice\UnityFolder\ProjectJuice\Build 1\build6_Data\Managed\UnityEngine.Analytics.dll into Unity Child Domain
+- Completed reload, in  0.246 seconds
+desktop: 1366x768 60Hz; virtual: 1366x768 at 0,0
+<RI> Initializing input.
+<RI> Input initialized.
+<RI> Initialized touch support.
+Platform assembly: C:\Users\Roberto\Documents\Juice\UnityFolder\ProjectJuice\Build 1\build6_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: C:\Users\Roberto\Documents\Juice\UnityFolder\ProjectJuice\Build 1\build6_Data\Managed\System.dll (this message is harmless)
+Unloading 2 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.619866 ms
+
+Unloading 4 unused Assets to reduce memory usage. Loaded Objects now: 331.
+Total: 0.293194 ms (FindLiveObjects: 0.034557 ms CreateObjectMapping: 0.025917 ms MarkObjects: 0.217601 ms  DeleteObjects: 0.013498 ms)
+
+Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 3.892523 ms
+
+Unloading 3 unused Assets to reduce memory usage. Loaded Objects now: 648.
+Total: 0.588009 ms (FindLiveObjects: 0.093951 ms CreateObjectMapping: 0.038336 ms MarkObjects: 0.426563 ms  DeleteObjects: 0.025917 ms)
+
+Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 1.711651 ms
+
+Unloading 1 unused Assets to reduce memory usage. Loaded Objects now: 1998.
+Total: 1.039950 ms (FindLiveObjects: 0.140927 ms CreateObjectMapping: 0.086932 ms MarkObjects: 0.798590 ms  DeleteObjects: 0.011878 ms)
+
+need to add some kind of combustion here
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+ArgumentException: The thing you want to instantiate is null.
+  at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
+  at UnityEngine.Object.Instantiate (UnityEngine.Object original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
+  at ExplosiveObject.CheckForDamaging (UnityEngine.Collider2D toCheck) [0x00000] in <filename unknown>:0 
+  at ExplosiveObject.RouteOnTriggerEnter2D (UnityEngine.Collider2D collider) [0x00000] in <filename unknown>:0 
+  at ExplosiveObjectDamagableCollider.OnTriggerEnter2D (UnityEngine.Collider2D collider) [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentException: The thing you want to instantiate is null.
+  at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
+  at UnityEngine.Object.Instantiate (UnityEngine.Object original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
+  at ExplosiveObject.CheckForDamaging (UnityEngine.Collider2D toCheck) [0x00000] in <filename unknown>:0 
+  at ExplosiveObject.RouteOnTriggerEnter2D (UnityEngine.Collider2D collider) [0x00000] in <filename unknown>:0 
+  at ExplosiveObjectDamagableCollider.OnTriggerEnter2D (UnityEngine.Collider2D collider) [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+need to add fireworks here
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+Joystick disconnected ("Controller (XBOX 360 For Windows)").
+ 
+(Filename:  Line: 714)
+
+Joystick reconnected ("Controller (XBOX 360 For Windows)").
+ 
+(Filename:  Line: 1325)
+

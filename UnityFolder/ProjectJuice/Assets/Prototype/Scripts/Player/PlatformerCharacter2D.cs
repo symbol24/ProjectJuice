@@ -15,6 +15,7 @@ namespace UnityStandardAssets._2D
         [Range(0, 1)][SerializeField]private float m_AirSpeed = 0.25f;    // Percentage of speed in the air from controller input
         private bool m_HasDoubleJump = false;                               // Determines if has special second jump
         private bool m_UsedDoubleJump = false;
+        [Range(0, 1)][SerializeField]private float m_ShootingSpeed = 0.25f;
 
         //dash
         private bool m_CanDash = false;                                     // Whether the player can dash. Restes on timer on ground, landing or double jump.
@@ -70,11 +71,11 @@ namespace UnityStandardAssets._2D
                 m_Anim.SetFloat("vSpeed", m_Rigidbody2D.velocity.y);
 
 
-                Move(m_Controller.m_XAxis, m_Controller.m_Dash, m_Controller.m_Jump, m_Controller.m_Imobilize);
+                Move(m_Controller.m_XAxis, m_Controller.m_Dash, m_Controller.m_Jump, m_Controller.m_Imobilize, m_Controller.m_Shoot);
             }
         }
 
-        public void Move(float move, bool dash, bool jump, bool imobile)
+        public void Move(float move, bool dash, bool jump, bool imobile, bool isShooting)
         {
             //CheckPassThrough();
 
@@ -93,6 +94,8 @@ namespace UnityStandardAssets._2D
             {
                 // Reduce the speed in air by the airSpeed multiplier
                 float toMove = (!m_Grounded ? move * m_AirSpeed : move);
+                
+                toMove = (isShooting && m_Grounded ? move * m_ShootingSpeed : move);
 
                 if (imobile && m_Grounded) toMove = 0;
 

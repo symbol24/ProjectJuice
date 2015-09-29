@@ -37,7 +37,7 @@ public class shield : Gun {
         }
 	}
 
-    void OnTriggerEnter2D(Collider2D collision)
+    public void RoutedTriggerEnter(Collider2D collision)
     {
         Bullet bullet = collision.gameObject.GetComponent<Bullet>();
         if (bullet != null)
