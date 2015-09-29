@@ -1,0 +1,98 @@
+Initialize engine version: 5.1.2f1 (afd2369b692a)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.0]
+    Renderer: AMD Radeon HD 7640G (ID=0x9903)
+    Vendor:   ATI
+    VRAM:     479 MB
+Begin MonoManager ReloadAssembly
+Platform assembly: C:\Users\Roberto\Documents\Juice\UnityFolder\ProjectJuice\Build 1\build11_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading C:\Users\Roberto\Documents\Juice\UnityFolder\ProjectJuice\Build 1\build11_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: C:\Users\Roberto\Documents\Juice\UnityFolder\ProjectJuice\Build 1\build11_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading C:\Users\Roberto\Documents\Juice\UnityFolder\ProjectJuice\Build 1\build11_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: C:\Users\Roberto\Documents\Juice\UnityFolder\ProjectJuice\Build 1\build11_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading C:\Users\Roberto\Documents\Juice\UnityFolder\ProjectJuice\Build 1\build11_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: C:\Users\Roberto\Documents\Juice\UnityFolder\ProjectJuice\Build 1\build11_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading C:\Users\Roberto\Documents\Juice\UnityFolder\ProjectJuice\Build 1\build11_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+Platform assembly: C:\Users\Roberto\Documents\Juice\UnityFolder\ProjectJuice\Build 1\build11_Data\Managed\UnityEngine.Analytics.dll (this message is harmless)
+Loading C:\Users\Roberto\Documents\Juice\UnityFolder\ProjectJuice\Build 1\build11_Data\Managed\UnityEngine.Analytics.dll into Unity Child Domain
+- Completed reload, in  0.238 seconds
+desktop: 1366x768 60Hz; virtual: 1366x768 at 0,0
+<RI> Initializing input.
+<RI> Input initialized.
+<RI> Initialized touch support.
+Platform assembly: C:\Users\Roberto\Documents\Juice\UnityFolder\ProjectJuice\Build 1\build11_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: C:\Users\Roberto\Documents\Juice\UnityFolder\ProjectJuice\Build 1\build11_Data\Managed\System.dll (this message is harmless)
+Unloading 2 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.568570 ms
+
+Unloading 4 unused Assets to reduce memory usage. Loaded Objects now: 333.
+Total: 0.311553 ms (FindLiveObjects: 0.030777 ms CreateObjectMapping: 0.026457 ms MarkObjects: 0.238119 ms  DeleteObjects: 0.014578 ms)
+
+Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 3.434642 ms
+
+Unloading 3 unused Assets to reduce memory usage. Loaded Objects now: 650.
+Total: 0.477318 ms (FindLiveObjects: 0.069653 ms CreateObjectMapping: 0.032937 ms MarkObjects: 0.356369 ms  DeleteObjects: 0.016198 ms)
+
+Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 1.867158 ms
+
+Unloading 1 unused Assets to reduce memory usage. Loaded Objects now: 2001.
+Total: 0.969756 ms (FindLiveObjects: 0.149567 ms CreateObjectMapping: 0.072353 ms MarkObjects: 0.718137 ms  DeleteObjects: 0.014038 ms)
+
+need to add some kind of combustion here
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+ArgumentException: The thing you want to instantiate is null.
+  at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
+  at UnityEngine.Object.Instantiate (UnityEngine.Object original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
+  at ExplosiveObject.CheckForDamaging (UnityEngine.Collider2D toCheck) [0x00000] in <filename unknown>:0 
+  at ExplosiveObject.RouteOnTriggerEnter2D (UnityEngine.Collider2D collider) [0x00000] in <filename unknown>:0 
+  at ExplosiveObjectDamagableCollider.OnTriggerEnter2D (UnityEngine.Collider2D collider) [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentException: The thing you want to instantiate is null.
+  at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
+  at UnityEngine.Object.Instantiate (UnityEngine.Object original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
+  at ExplosiveObject.CheckForDamaging (UnityEngine.Collider2D toCheck) [0x00000] in <filename unknown>:0 
+  at ExplosiveObject.RouteOnTriggerEnter2D (UnityEngine.Collider2D collider) [0x00000] in <filename unknown>:0 
+  at ExplosiveObjectDamagableCollider.OnTriggerEnter2D (UnityEngine.Collider2D collider) [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentException: The thing you want to instantiate is null.
+  at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
+  at UnityEngine.Object.Instantiate (UnityEngine.Object original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
+  at ExplosiveObject.CheckForDamaging (UnityEngine.Collider2D toCheck) [0x00000] in <filename unknown>:0 
+  at ExplosiveObject.RouteOnTriggerEnter2D (UnityEngine.Collider2D collider) [0x00000] in <filename unknown>:0 
+  at ExplosiveObjectDamagableCollider.OnTriggerEnter2D (UnityEngine.Collider2D collider) [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentException: The thing you want to instantiate is null.
+  at UnityEngine.Object.CheckNullArgument (System.Object arg, System.String message) [0x00000] in <filename unknown>:0 
+  at UnityEngine.Object.Instantiate (UnityEngine.Object original, Vector3 position, Quaternion rotation) [0x00000] in <filename unknown>:0 
+  at ExplosiveObject.CheckForDamaging (UnityEngine.Collider2D toCheck) [0x00000] in <filename unknown>:0 
+  at ExplosiveObject.RouteOnTriggerEnter2D (UnityEngine.Collider2D collider) [0x00000] in <filename unknown>:0 
+  at ExplosiveObjectDamagableCollider.OnTriggerEnter2D (UnityEngine.Collider2D collider) [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+need to add fireworks here
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+addDeath Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at GameManager.CheckEndOfRound (System.Object sender, .PlayerScoreEventArgs e) [0x00000] in <filename unknown>:0 
+  at ScoreManager.OnPlayerScored (.PlayerScoreEventArgs e) [0x00000] in <filename unknown>:0 
+  at ScoreManager+<AnounceWinner>c__Iterator5.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
