@@ -10,6 +10,7 @@ public class PhysicsParticleSystem : ExtendedMonobehaviour
     [SerializeField] private bool _overrideProbabilityToParticles = true;
     [SerializeField] private bool _overrideHealthAmountPerParticle = true;
     [SerializeField] private float _healthRecoveredPerParticle = 5f;
+    [SerializeField] private bool _isLegacyCode = false;
     public float _minXSpeed = 1f;
     public float _maxXSpeed = 5f;
     private float RandomXSpeed
@@ -34,8 +35,12 @@ public class PhysicsParticleSystem : ExtendedMonobehaviour
         }
     }
     public bool _allowPositiveYForce = true;
-    public int PointsOfDamagePerParticle = 2;
 
+    [SerializeField] private float _percentAmountOfParticles = 1f;
+    public float PercentAmountOfParticles
+    {
+        get { return _percentAmountOfParticles; }
+    }
     public HPScript _hpScript;
 
     [SerializeField]
@@ -68,7 +73,8 @@ public class PhysicsParticleSystem : ExtendedMonobehaviour
 
     private void HpScriptOnHpImpactReceived(object sender, ImpactEventArgs impactEventArgs)
     {
-        var iterations = Mathf.CeilToInt(impactEventArgs.Damage/(float) PointsOfDamagePerParticle);
+        var iterations = Mathf.CeilToInt(impactEventArgs.Damage *  PercentAmountOfParticles);
+        var amountToPickup = Mathf.RoundToInt(iterations * _probabilityOfPickup);
         for (int i = 0; i < iterations; i++)
         {
             var singleParticle =
@@ -76,8 +82,23 @@ public class PhysicsParticleSystem : ExtendedMonobehaviour
             var spriteRenderer = singleParticle.GetComponent<SpriteRenderer>();
             spriteRenderer.color = impactEventArgs.color;
             var particleScript = singleParticle.GetComponent<PhysicsSingleParticle>();
+            if (_isLegacyCode) { 
             if (_overrideProbabilityToParticles) particleScript.ProbabilityOfHealthPickup = _probabilityOfPickup;
             if (_overrideHealthAmountPerParticle) particleScript.HpRecovered = _healthRecoveredPerParticle;
+            }
+            else
+            {
+                if (i < amountToPickup)
+                {
+                    particleScript.ProbabilityOfHealthPickup = 1f;
+                }
+                else
+                {
+                    particleScript.ProbabilityOfHealthPickup = 0f;
+                }
+
+                if (_overrideHealthAmountPerParticle) particleScript.HpRecovered = _healthRecoveredPerParticle;
+            }
             var particleRigidBody = particleScript.gameObject.GetComponent<Rigidbody2D>();
             var forceDirection =
                 new Vector2(

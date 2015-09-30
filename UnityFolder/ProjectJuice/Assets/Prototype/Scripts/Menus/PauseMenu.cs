@@ -96,13 +96,14 @@ public class PauseMenu : Menu {
         m_ListOfButtones[m_currentSelection].onClick.RemoveAllListeners();
         Text buttonText = m_ListOfButtones[m_currentSelection].GetComponentInChildren<Text>();
         buttonText.text = Database.instance.GameTexts[8];
+        Debug.Break();
         if (closeApp)
         {
-            m_ListOfButtones[m_currentSelection].onClick.AddListener(() => CloseApp());
+            m_ListOfButtones[m_currentSelection].onClick.AddListener(() => this.CloseApp());
         }
         else
         {
-            m_ListOfButtones[m_currentSelection].onClick.AddListener(() => ReturnToMainMenu());
+            m_ListOfButtones[m_currentSelection].onClick.AddListener(() => this.ReturnToMainMenu());
         }
         m_DelayManager.CoroutineDelay(Database.instance.MenuInputDelay, false);
     }
@@ -119,7 +120,7 @@ public class PauseMenu : Menu {
         Text buttonText = m_ListOfButtones[m_currentSelection].GetComponentInChildren<Text>();
         buttonText.text = Database.instance.GameTexts[textID];
         m_ListOfButtones[m_currentSelection].onClick.RemoveAllListeners();
-        m_ListOfButtones[m_currentSelection].onClick.AddListener(() => Confirm(isCloseApp));
+        m_ListOfButtones[m_currentSelection].onClick.AddListener(() => this.Confirm(isCloseApp));
         m_inConfirm = false;
         m_DelayManager.CoroutineDelay(Database.instance.MenuInputDelay, false);
     }

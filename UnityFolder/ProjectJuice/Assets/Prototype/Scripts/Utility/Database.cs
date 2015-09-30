@@ -46,20 +46,20 @@ public class Database : MonoBehaviour
     [SerializeField] Font m_BaseFont;
     public Font BaseFont { get { return m_BaseFont; } }
 
-    [SerializeField] int m_PlayerBaseHP;
-    public int PlayerBaseHP { get { return m_PlayerBaseHP; } }
+    [SerializeField] float m_PlayerBaseHP;
+    public float PlayerBaseHP { get { return m_PlayerBaseHP; } }
 
-    [SerializeField] int m_BulletBaseDamage;
-    public int BulletBaseDamage { get { return m_BulletBaseDamage; } }
+    [SerializeField] float m_BulletBaseDamage;
+    public float BulletBaseDamage { get { return m_BulletBaseDamage; } }
 
-    [SerializeField] int m_DartBaseDmgPerSecond;
-    public int DartBaseDmgPerSecond { get { return m_DartBaseDmgPerSecond; } }
+    [SerializeField] float m_DartBaseDmgPerSecond;
+    public float DartBaseDmgPerSecond { get { return m_DartBaseDmgPerSecond; } }
 
-    [SerializeField] int m_MeleeBaseDamage;
-    public int MeleeBaseDamage { get { return m_MeleeBaseDamage; } }
+    [SerializeField] float m_MeleeBaseDamage;
+    public float MeleeBaseDamage { get { return m_MeleeBaseDamage; } }
 
-    [SerializeField] int m_MeleeAbilityDamage;
-    public int MeleeAbilityDamage { get { return m_MeleeAbilityDamage; } }
+    [SerializeField] float m_MeleeAbilityDamage;
+    public float MeleeAbilityDamage { get { return m_MeleeAbilityDamage; } }
 
     
 

@@ -208,19 +208,20 @@ public class RoundMenu : Menu {
         m_DelayManager.CoroutineDelay(Database.instance.MenuInputDelay, false);
     }
 
-    public void Confirm(bool closeApp)
+    public void RoundConfirm(bool closeApp)
     {
         m_inConfirm = true;
         m_ListOfButtones[m_currentSelection].onClick.RemoveAllListeners();
         Text buttonText = m_ListOfButtones[m_currentSelection].GetComponentInChildren<Text>();
         buttonText.text = Database.instance.GameTexts[8];
+        Debug.Break();
         if (closeApp)
         {
-            m_ListOfButtones[m_currentSelection].onClick.AddListener(() => CloseApp());
+            m_ListOfButtones[m_currentSelection].onClick.AddListener(() => RoundCloseApp());
         }
         else
         {
-            m_ListOfButtones[m_currentSelection].onClick.AddListener(() => ReturnToMainMenu());
+            m_ListOfButtones[m_currentSelection].onClick.AddListener(() => RoundReturnToMainMenu());
         }
         m_DelayManager.CoroutineDelay(Database.instance.MenuInputDelay, false);
     }
@@ -238,17 +239,17 @@ public class RoundMenu : Menu {
         Text buttonText = m_ListOfButtones[m_currentSelection].GetComponentInChildren<Text>();
         buttonText.text = Database.instance.GameTexts[textID];
         m_ListOfButtones[m_currentSelection].onClick.RemoveAllListeners();
-        m_ListOfButtones[m_currentSelection].onClick.AddListener(() => Confirm(isCloseApp));
+        m_ListOfButtones[m_currentSelection].onClick.AddListener(() => RoundConfirm(isCloseApp));
         m_inConfirm = false;
         m_DelayManager.CoroutineDelay(Database.instance.MenuInputDelay, false);
     }
 
-    public void ReturnToMainMenu()
+    public void RoundReturnToMainMenu()
     {
         Application.LoadLevel("multipadTest");
     }
 
-    public void CloseApp()
+    public void RoundCloseApp()
     {
         Application.Quit();
     }
