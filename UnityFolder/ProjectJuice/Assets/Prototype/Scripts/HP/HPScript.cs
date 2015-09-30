@@ -63,19 +63,21 @@ public class HPScript : HPBase
         OnDead();
     }
 
-    public void RouteOnTriggerEnter2D(Collider2D collider)
+    public void RouteOnTriggerEnter2D(Collider2D collider, bool isBackCollider)
     {
         //Debug.Log("OnTriggerEnter in " + gameObject.name);
 
-        CheckForDamage(collider);
-        CheckForPowerUp(collider);
+        CheckForDamage(collider, isBackCollider);
+        if(!isBackCollider)
+            CheckForPowerUp(collider);
     }
-    public void RouteOnCollisionEnter2D(Collision2D collision)
+    public void RouteOnCollisionEnter2D(Collision2D collision, bool isBackCollider)
     {
         Collider2D collider = collision.collider;
 
-        CheckForDamage(collider);
-        CheckForPowerUp(collider);
+        CheckForDamage(collider, isBackCollider);
+        if (!isBackCollider)
+            CheckForPowerUp(collider);
     }
 
     private void CheckForPowerUp(Collider2D collider)
@@ -118,8 +120,36 @@ public class HPScript : HPBase
         }
     }
 
-    
-    
+    private void CheckForDamage(Collider2D collider, bool isBack)
+    {
+        var checkDamaging = collider.gameObject.GetComponent<IDamaging>();
+
+        //If it is not damaging, dont bother with calculations
+        if (checkDamaging != null && CheckIfIDamagableIsActive(checkDamaging))
+        {
+            Vector2 pointOfCollision = GetPointOfImpact(checkDamaging, collider, _centerOfReferenceForJuice, _raycastIterationsToFindTarget, _raycastVariationPerTry);
+
+            float mulitpliedDmg = checkDamaging.Damage;
+            if (isBack) mulitpliedDmg = Database.instance.BackDamageMultiplier * checkDamaging.Damage;
+
+            CurrentHp -= mulitpliedDmg;
+            checkDamaging.Consumed();
+
+            if (checkDamaging.AddImpactForce)
+            {
+                _character.AddKnockBack(checkDamaging);
+            }
+
+            var e = new ImpactEventArgs
+            {
+                Damage = checkDamaging.Damage,
+                PointOfCollision = pointOfCollision,
+                color = _inputController.m_PlayerData.PlayerSponsor.SponsorColor
+            };
+            OnHpImpactReceived(e);
+        }
+    }
+
 
 
 }

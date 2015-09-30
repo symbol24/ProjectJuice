@@ -64,7 +64,8 @@ public class Database : MonoBehaviour
     [SerializeField] float m_MeleeAbilityDamage;
     public float MeleeAbilityDamage { get { return m_MeleeAbilityDamage; } }
 
-    
+    [Range(0,10)][SerializeField] float m_BackDamageMultiplier = 1.4f;
+    public float BackDamageMultiplier { get { return m_BackDamageMultiplier; } }
 
     void Awake()
     {
