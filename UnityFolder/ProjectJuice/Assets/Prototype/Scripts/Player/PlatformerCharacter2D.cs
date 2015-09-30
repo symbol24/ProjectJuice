@@ -175,15 +175,18 @@ namespace UnityStandardAssets._2D
             Collider2D[] colliders = Physics2D.OverlapCircleAll(m_GroundCheck.position, k_GroundedRadius, m_WhatIsGround);
             for (int i = 0; i < colliders.Length; i++)
             {
-                if (colliders[i].gameObject != gameObject)
+                if (colliders[i].gameObject.layer != gameObject.layer)
                     isGrounded = true;
             }
             m_Anim.SetBool("Ground", isGrounded);
 
             if (isGrounded)
             {
-                m_AirControl = true;
-                m_UsedDoubleJump = false;
+                if(!m_AirControl)
+                    m_AirControl = true;
+
+                if(m_UsedDoubleJump)
+                    m_UsedDoubleJump = false;
 
                 if (m_CanDash)
                     CheckDrag();
