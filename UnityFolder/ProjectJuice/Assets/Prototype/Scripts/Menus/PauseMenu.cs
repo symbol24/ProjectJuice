@@ -42,25 +42,25 @@ public class PauseMenu : Menu {
                 }
             }
         }
-        else if(!GameManager.instance.IsPlaying)
+        else if(GameManager.instance.IsPaused)
         {
-            if (m_Controls._Start[m_ControllingPlayer] && m_DelayManager.m_CanShoot)
+            if (m_DelayManager.m_CanShoot && m_Controls._Start[m_ControllingPlayer])
             {
                 SwitchPauseState();
                 m_ControllingPlayer = 0;
             }
 
-            if(m_Controls.Y[m_ControllingPlayer] != 0 && m_DelayManager.m_CanShield && !m_inConfirm)
+            if(m_DelayManager.m_CanShield && !m_inConfirm && m_Controls.Y[m_ControllingPlayer] != 0)
             {
                 SetNextActive(m_Controls.Y[m_ControllingPlayer]);
             }
 
-            if(m_Controls.Confirm[m_ControllingPlayer] && m_DelayManager.m_CanShoot)
+            if (m_DelayManager.m_CanShoot && m_Controls.Confirm[m_ControllingPlayer])
             {
                 Activate();
             }
 
-            if(m_Controls.Cancel[m_ControllingPlayer] && m_DelayManager.m_CanShoot && m_inConfirm)
+            if(m_DelayManager.m_CanShoot && m_inConfirm && m_Controls.Cancel[m_ControllingPlayer])
             {
                 CancelConfirm();
             }
@@ -76,12 +76,14 @@ public class PauseMenu : Menu {
         {
             m_currentSelection = 0;
             m_ListOfButtones[m_currentSelection].Select();
+            m_DelayManager.AddDelay(Database.instance.LongMenuInputDelay);
         }
     }
 
     public void ReturnToMainMenu()
     {
-        SwitchPauseState();
+        if(m_isPaused)
+            SwitchPauseState();
         Application.LoadLevel("multipadTest");
     }
 
@@ -99,11 +101,11 @@ public class PauseMenu : Menu {
         Debug.Break();
         if (closeApp)
         {
-            m_ListOfButtones[m_currentSelection].onClick.AddListener(() => this.CloseApp());
+            m_ListOfButtones[m_currentSelection].onClick.AddListener(() => CloseApp());
         }
         else
         {
-            m_ListOfButtones[m_currentSelection].onClick.AddListener(() => this.ReturnToMainMenu());
+            m_ListOfButtones[m_currentSelection].onClick.AddListener(() => ReturnToMainMenu());
         }
         m_DelayManager.CoroutineDelay(Database.instance.MenuInputDelay, false);
     }
@@ -120,7 +122,7 @@ public class PauseMenu : Menu {
         Text buttonText = m_ListOfButtones[m_currentSelection].GetComponentInChildren<Text>();
         buttonText.text = Database.instance.GameTexts[textID];
         m_ListOfButtones[m_currentSelection].onClick.RemoveAllListeners();
-        m_ListOfButtones[m_currentSelection].onClick.AddListener(() => this.Confirm(isCloseApp));
+        m_ListOfButtones[m_currentSelection].onClick.AddListener(() => Confirm(isCloseApp));
         m_inConfirm = false;
         m_DelayManager.CoroutineDelay(Database.instance.MenuInputDelay, false);
     }

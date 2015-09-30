@@ -70,6 +70,7 @@ public class GameManager : ExtendedMonobehaviour
         else
         {
             m_CurrentState = m_PreviousState;
+            PlayerSpawner.instance.FlushAlivePlayerInputs();
             Time.timeScale = 1f;
         }
     }
@@ -79,25 +80,27 @@ public class GameManager : ExtendedMonobehaviour
         get { return m_CurrentState == GameState.Playing; }
     }
 
+    public bool IsPaused { get { return m_CurrentState == GameState.Paused; } }
+
     private void CheckEndOfRound(object sender, PlayerScoreEventArgs e)
     {
         
         if (e.IsThereAWinner) {
             if (CheckIfMatchWinner())
             {
-                RoundMenu.instance.DisplayRoundMenu(true, true, e.Platformer2DUserControl.m_PlayerData.PlayerSponsor.SponsorName);
-                m_CurrentState = GameState.MatchEnd;
+                RoundMenu.instance.DisplayRoundMenu(true, true, e.Platformer2DUserControl.m_PlayerData.PlayerSponsor.SponsorName, GameState.MatchEnd);
+                m_CurrentState = GameState.PreMatchEnd;
             }
             else
             {
-                RoundMenu.instance.DisplayRoundMenu(true, false, e.Platformer2DUserControl.m_PlayerData.PlayerSponsor.SponsorName);
-                m_CurrentState = GameState.RoundEnd;
+                RoundMenu.instance.DisplayRoundMenu(true, false, e.Platformer2DUserControl.m_PlayerData.PlayerSponsor.SponsorName, GameState.RoundEnd);
+                m_CurrentState = GameState.PreRoundEnd;
             }
         }
         else
         {
-            RoundMenu.instance.DisplayRoundMenu(true, false, Database.instance.GameTexts[15]);
-            m_CurrentState = GameState.RoundEnd;
+            RoundMenu.instance.DisplayRoundMenu(true, false, Database.instance.GameTexts[15], GameState.RoundEnd);
+            m_CurrentState = GameState.PreRoundEnd;
         }
 
         

@@ -23,7 +23,7 @@ public class RoundMenu : Menu {
     [SerializeField] GameObject m_RoundPanel;
     private DelayManager m_DelayManager;
 
-    [SerializeField] private float m_DelayBeforeDisplay = 0.5f;
+    [Range(0,3)][SerializeField] private float m_DelayBeforeDisplay = 0.5f;
 
     [SerializeField] List<Sprite> m_Circles;
     [SerializeField] List<GameObject> m_ListOfPlayerLines;
@@ -53,7 +53,7 @@ public class RoundMenu : Menu {
         {
             for (int i = 0; i < PlayerSpawner.instance.ListOfPlayerDatas.Count; i++)
             {
-                if (m_RoundMenu.activeInHierarchy && m_Controls.Confirm[i])
+                if (m_RoundMenu.activeInHierarchy && m_DelayManager.m_CanShoot && m_Controls.Confirm[i])
                 {
                     GoToNextRound();
                 }
@@ -65,17 +65,17 @@ public class RoundMenu : Menu {
             {
                 if (m_MatchMenu.activeInHierarchy)
                 {
-                    if (m_Controls.X[i] != 0 && m_DelayManager.m_CanShield && !m_inConfirm)
+                    if (m_DelayManager.m_CanShield && !m_inConfirm && m_Controls.X[i] != 0)
                     {
                         SetNextActive(m_Controls.X[i]);
                     }
 
-                    if (m_Controls.Confirm[i] && m_DelayManager.m_CanShoot)
+                    if (m_DelayManager.m_CanShoot && m_Controls.Confirm[i])
                     {
-                        Activate();
+                        RoundActivate();
                     }
 
-                    if (m_Controls.Cancel[i] && m_DelayManager.m_CanShoot && m_inConfirm)
+                    if (m_DelayManager.m_CanShoot && m_inConfirm && m_Controls.Cancel[i])
                     {
                         CancelConfirm();
                     }
@@ -84,19 +84,24 @@ public class RoundMenu : Menu {
         }
 	}
 
-    public void DisplayRoundMenu(bool active, bool isMatchOver, string winnerName)
+    public void DisplayRoundMenu(bool active, bool isMatchOver, string winnerName, GameState nextGameState)
     {
         if (active)
-            StartCoroutine(DelayBeforeActive(active, m_DelayBeforeDisplay, isMatchOver, winnerName));
+            StartCoroutine(DelayBeforeActive(active, m_DelayBeforeDisplay, isMatchOver, winnerName, nextGameState));
         else
             m_RoundPanel.SetActive(active);
     }
 
-    private IEnumerator DelayBeforeActive(bool active, float timer, bool isMatchOver, string winnerName)
+    private IEnumerator DelayBeforeActive(bool active, float timer, bool isMatchOver, string winnerName, GameState nextState)
     {
+        m_DelayManager.AddDelay(float.MaxValue);
+        PlayerSpawner.instance.FlushAlivePlayerInputs();
         yield return new WaitForSeconds(timer);
-        m_RoundPanel.SetActive(active);
         DisplayPlayers(isMatchOver, winnerName);
+        m_RoundPanel.SetActive(active);
+        GameManager.instance.SetGameState(nextState);
+        m_DelayManager.Reset();
+        m_DelayManager.AddDelay(Database.instance.LongMenuInputDelay);
     }
 
     private void DisplayPlayers(bool isMatchOver, string winnerName)
@@ -180,12 +185,12 @@ public class RoundMenu : Menu {
         m_RoundPanel.SetActive(false);
     }
 
-    public void Rematch()
+    public void RoundRematch()
     {
         Application.LoadLevel(Application.loadedLevel);
     }
 
-    private void Activate()
+    private void RoundActivate()
     {
         m_ListOfButtones[m_currentSelection].onClick.Invoke();
         m_DelayManager.CoroutineDelay(Database.instance.MenuInputDelay, false);

@@ -37,6 +37,9 @@ public class Database : MonoBehaviour
     [SerializeField] private float m_MenuInputDelay = 0.4f;
     public float MenuInputDelay { get { return m_MenuInputDelay; } }
 
+    [SerializeField] private float m_LongMenuInputDelay = 1.5f;
+    public float LongMenuInputDelay { get { return m_LongMenuInputDelay; } }
+
     [SerializeField] Color m_TakenColorForMenu;
     public Color TakenColor { get { return m_TakenColorForMenu; } }
 

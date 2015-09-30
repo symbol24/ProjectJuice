@@ -5,7 +5,8 @@ using UnityStandardAssets._2D;
 using Utility;
 using System;
 
-public class PlayerSpawner : MonoBehaviour {
+public class PlayerSpawner : MonoBehaviour
+{
 
     #region Instance Stuffs
     private static PlayerSpawner _instance;
@@ -22,17 +23,22 @@ public class PlayerSpawner : MonoBehaviour {
     }
     #endregion
 
-    [SerializeField] GameObject[] m_Spawners;
-    [SerializeField] GameObject m_PlayerPrefab;
-    [SerializeField] private List<PlayerData> m_ListofPlayers = new List<PlayerData>();
+    [SerializeField]
+    GameObject[] m_Spawners;
+    [SerializeField]
+    GameObject m_PlayerPrefab;
+    [SerializeField]
+    private List<PlayerData> m_ListofPlayers = new List<PlayerData>();
     public List<PlayerData> ListOfPlayerDatas { get { return m_ListofPlayers; } }
     private List<GameObject> m_Players = new List<GameObject>();
     public List<GameObject> Players { get { return m_Players; } }
-    [SerializeField] private int[] m_PlayerLayerIDs = {15,16,17,18};
+    [SerializeField]
+    private int[] m_PlayerLayerIDs = { 15, 16, 17, 18 };
     private FadeOut m_Fader;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start()
+    {
         GameManager.instance.SetGameState(GameState.Loading);
         m_Fader = FindObjectOfType<FadeOut>();
         m_Fader.FadeDone += M_Fader_FadeDone;
@@ -49,7 +55,7 @@ public class PlayerSpawner : MonoBehaviour {
     void SpawnPlayers()
     {
         int i = 0;
-        foreach(PlayerData pd in m_ListofPlayers)
+        foreach (PlayerData pd in m_ListofPlayers)
         {
             GameObject temp = Instantiate(m_PlayerPrefab, m_Spawners[i].transform.position, m_Spawners[i].transform.rotation) as GameObject;
             Platformer2DUserControl pUserControl = temp.GetComponent<Platformer2DUserControl>();
@@ -64,9 +70,9 @@ public class PlayerSpawner : MonoBehaviour {
 
     public void DestroyRemainingSpawnedPlayers()
     {
-        for(int i = 0; i < m_Players.Count; i++)
+        for (int i = 0; i < m_Players.Count; i++)
         {
-            if(m_Players[i] != null)
+            if (m_Players[i] != null)
             {
                 Destroy(m_Players[i]);
             }
@@ -94,7 +100,7 @@ public class PlayerSpawner : MonoBehaviour {
         MeleeAttack[] leMelees = toAbilitize.GetComponents<MeleeAttack>();
         MeleeAttack abilityMelee = null;
         MeleeAttack normalMelee = null;
-        foreach(MeleeAttack ma in leMelees)
+        foreach (MeleeAttack ma in leMelees)
         {
             if (ma.isAbility) abilityMelee = ma;
             else normalMelee = ma;
@@ -117,6 +123,30 @@ public class PlayerSpawner : MonoBehaviour {
                 break;
             case Abilities.None:
                 break;
+        }
+    }
+
+    public void FlushAlivePlayerInputs()
+    {
+        foreach (GameObject pg in m_Players)
+        {
+            if (pg != null)
+            {
+                Platformer2DUserControl controls = pg.GetComponent<Platformer2DUserControl>();
+                if (controls != null)
+                    controls.FlushInputs();
+
+                PlatformerCharacter2D charac = pg.GetComponent<PlatformerCharacter2D>();
+                if (charac != null)
+                    charac.FlushAnimState();
+
+                DelayManager dm = pg.GetComponent<DelayManager>();
+                if (dm != null)
+                {
+                    dm.AddDelay(Database.instance.MenuInputDelay);
+                    dm.AddShieldDelay(Database.instance.MenuInputDelay);
+                }
+            }
         }
     }
 }

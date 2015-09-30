@@ -85,5 +85,18 @@ namespace UnityStandardAssets._2D
                 m_SpecialStay = GamePad.GetButton(m_SpecialButton, controller);
             }
         }
+
+        public void FlushInputs()
+        {
+            m_Jump = false;
+            m_Dash = false;
+            m_XAxis = 0.0f;
+            m_YAxis = 0.0f;
+            m_Shoot = false;
+            m_Melee = false;
+            m_Special = false;
+            m_Imobilize = false;
+            m_SpecialStay = false;
+        }
     }
 }

@@ -342,5 +342,10 @@ namespace UnityStandardAssets._2D
             yield return new WaitForSeconds(timer);
             CheckLastPassedThrough();
         }
+
+        public void FlushAnimState()
+        {
+            m_Anim.SetFloat("Speed", 0f);
+        }
     }
 }
