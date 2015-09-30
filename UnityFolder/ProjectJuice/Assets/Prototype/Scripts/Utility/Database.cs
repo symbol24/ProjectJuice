@@ -64,6 +64,9 @@ public class Database : MonoBehaviour
     [SerializeField] float m_MeleeAbilityDamage;
     public float MeleeAbilityDamage { get { return m_MeleeAbilityDamage; } }
 
+    [SerializeField] float m_ExplosionBaseDamage;
+    public float ExplosionBaseDamage { get { return m_ExplosionBaseDamage; } }
+
     [Range(0,10)][SerializeField] float m_BackDamageMultiplier = 1.4f;
     public float BackDamageMultiplier { get { return m_BackDamageMultiplier; } }
 

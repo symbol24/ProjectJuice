@@ -59,6 +59,14 @@ public class ExplosiveObject : HPBase
         HpChanged += OnHpChanged;
     }
 
+    private void SwitchCollidersOnOff()
+    {
+        foreach(GameObject expl in _explosiveColliders)
+        {
+            expl.SetActive(!expl.activeInHierarchy);
+        }
+    }
+
     // Update is called once per frame
     protected override void Update()
     {
@@ -128,6 +136,7 @@ public class ExplosiveObject : HPBase
     private void Kaboom()
     {
         print("need to add fireworks here");
+        SwitchCollidersOnOff();
         foreach (var ragdollParticlePrefab in _ragdollParticles)
         {
             var particle = (GameObject) Instantiate(ragdollParticlePrefab, transform.position, Quaternion.identity);
@@ -161,7 +170,7 @@ public class ExplosiveObject : HPBase
     }
     public float Damage
     {
-        get { return _damage; }
+        get { return Database.instance.ExplosionBaseDamage; }
     }
     public bool HasPreferredImpactPoint { get; private set; }
     public Vector3 PreferredImpactPoint { get; private set; }
