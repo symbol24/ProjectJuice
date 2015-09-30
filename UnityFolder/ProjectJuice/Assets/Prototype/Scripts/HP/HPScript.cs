@@ -15,8 +15,8 @@ public class HPScript : HPBase
     public IPlatformer2DUserControl inputController { get { return _inputController; } }
     private PlatformerCharacter2D _character;
 
-    [SerializeField] private float _raycastVariationPerTry = 0.1f;
-    [SerializeField] private int _raycastIterationsToFindTarget = 5;
+    [Range(0,3)][SerializeField] private float _raycastVariationPerTry = 0.1f;
+    [Range(0,20)][SerializeField] private int _raycastIterationsToFindTarget = 5;
     [SerializeField] private Transform _centerOfReferenceForJuice;
     [SerializeField] private Rigidbody2D _mainRigidbody;
 

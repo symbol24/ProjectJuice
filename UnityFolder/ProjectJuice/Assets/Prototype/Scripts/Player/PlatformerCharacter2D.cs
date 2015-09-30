@@ -9,7 +9,7 @@ namespace UnityStandardAssets._2D
         private IPlatformer2DUserControl m_Controller;
 
         //jump and double jump
-        [SerializeField]private float m_MaxSpeed = 10f;                    // The fastest the player can travel in the x axis.
+        [Range(0,20)][SerializeField]private float m_MaxSpeed = 10f;                    // The fastest the player can travel in the x axis.
         [SerializeField]private float m_JumpForce = 400f;                  // Amount of force added when the player jumps.
         [SerializeField]private bool m_AirControl = false;                 // Whether or not a player can steer while jumping;
         [Range(0, 1)][SerializeField]private float m_AirSpeed = 0.25f;    // Percentage of speed in the air from controller input

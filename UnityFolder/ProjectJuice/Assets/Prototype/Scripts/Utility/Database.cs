@@ -34,10 +34,10 @@ public class Database : MonoBehaviour
     List<string> m_GameTexts;
     public List<string> GameTexts { get { return m_GameTexts; } }
 
-    [SerializeField] private float m_MenuInputDelay = 0.4f;
+    [Range(0,2)][SerializeField] private float m_MenuInputDelay = 0.4f;
     public float MenuInputDelay { get { return m_MenuInputDelay; } }
 
-    [SerializeField] private float m_LongMenuInputDelay = 1.5f;
+    [Range(0,5)][SerializeField] private float m_LongMenuInputDelay = 1.5f;
     public float LongMenuInputDelay { get { return m_LongMenuInputDelay; } }
 
     [SerializeField] Color m_TakenColorForMenu;

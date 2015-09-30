@@ -38,7 +38,7 @@ public class Gun : ExtendedMonobehaviour {
         if (GameManager.instance.IsPlaying)
         {
 
-            CheckLight();
+            //CheckLight();
 
             if (m_Controller.m_Shoot && m_DelayManager.m_CanShoot)
             {
@@ -67,8 +67,9 @@ public class Gun : ExtendedMonobehaviour {
         if (!m_HasDisplayed && m_DelayManager.m_CanShoot) StartCoroutine(DisplayGunLight());
     }
 
-    IEnumerator DisplayGunLight()
+    protected IEnumerator DisplayGunLight()
     {
+        yield return new WaitForSeconds(m_ShotDelay);
         m_HasDisplayed = true;
         for (int i = 0; i < m_AmountOfFlashes; i++)
         {
@@ -77,5 +78,6 @@ public class Gun : ExtendedMonobehaviour {
             m_GunLight.enabled = false;
             yield return new WaitForSeconds(m_LightOff);
         }
+        m_DelayManager.Reset();
     }
 }

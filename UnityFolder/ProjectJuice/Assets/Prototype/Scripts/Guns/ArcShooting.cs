@@ -40,6 +40,6 @@ public class ArcShooting : Gun
 
             yield return new WaitForSeconds(m_BurstDelay);
         }
-        m_DelayManager.Reset();
+        StartCoroutine(DisplayGunLight());
     }
 }

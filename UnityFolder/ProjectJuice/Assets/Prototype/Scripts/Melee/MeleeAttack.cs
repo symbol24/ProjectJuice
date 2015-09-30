@@ -24,7 +24,7 @@ public class MeleeAttack : ExtendedMonobehaviour
     public float rotationSpeed = 100f;
     public float startingRotation = -45;
     public float endingRotation = 45;
-    public float _delayAfterSwing = 0.5f;
+    [Range(0,3)]public float _delayAfterSwing = 0.5f;
 
     
     [SerializeField] private Light m_GunLight;

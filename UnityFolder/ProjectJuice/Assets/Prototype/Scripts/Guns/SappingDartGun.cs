@@ -15,16 +15,16 @@ public class SappingDartGun : ExtendedMonobehaviour {
     private float _dartSpeed;
     [SerializeField]
     bool _isContiniousSucking = true;
-    [SerializeField]
+    [Range(0,5)][SerializeField]
     float _suckingInterval = 0.4f;
     [SerializeField]
     float _hpToSuckPerSecond = 100f;
-    [SerializeField]
+    [Range(0,5)][SerializeField]
     float _dartCollTimerDisappear = 0f;
 
-    [SerializeField] private float _lifetimeSinceHit = 1f;
+    [Range(0,5)][SerializeField] private float _lifetimeSinceHit = 1f;
     [SerializeField] private DartChainV2 _dartChainPrefab;
-    [SerializeField]
+    [Range(0,5)][SerializeField]
     private float _crossSectionLength = 0.1f;
     [SerializeField] private int _crossSectionsLimit = 100;
 
