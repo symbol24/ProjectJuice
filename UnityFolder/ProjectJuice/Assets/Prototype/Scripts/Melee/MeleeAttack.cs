@@ -31,7 +31,7 @@ public class MeleeAttack : ExtendedMonobehaviour
     [Range(0,3)][SerializeField] float m_LightOn = 0.1f;
     [Range(0,3)][SerializeField] float m_LightOff = 0.1f;
     [Range(0, 10)][SerializeField] private int m_AmountOfFlashes = 3;
-    protected bool m_HasDisplayed = true;
+    protected bool m_HasFeedbackDisplayed = true;
 
     // Use this for initialization
     private void Start()
@@ -45,7 +45,8 @@ public class MeleeAttack : ExtendedMonobehaviour
     // Update is called once per frame
      void Update()
     {
-        if (_inputManager.m_Melee && !_isSwingingAnimationOnGoing)
+
+        if (_delayManager.m_CanShoot && _inputManager.m_Melee)
         {
             _swingingAnimation = StartSwingingAnimation();
             StartCoroutine(_swingingAnimation);
@@ -60,7 +61,7 @@ public class MeleeAttack : ExtendedMonobehaviour
         }
         _impactForceSettings.DirectionComingForm = _inputManager.m_FacingRight ? Direction2D.Left : Direction2D.Right;
 
-        CheckLight();
+        
     }
 
     private bool _isSwingingAnimationOnGoing = false;
@@ -71,9 +72,9 @@ public class MeleeAttack : ExtendedMonobehaviour
 
     private IEnumerator StartSwingingAnimation()
     {
-        m_HasDisplayed = false;
-        _isSwingingAnimationOnGoing = true;
         _delayManager.AddDelay(100f);
+        m_HasFeedbackDisplayed = false;
+        _isSwingingAnimationOnGoing = true;
         _swingerCollider.SetActive(true);
         yield return null;
         while (_swingerCollider.transform.rotation.eulerAngles.z.ToNormalizedAngle() <= endingRotation)
@@ -87,8 +88,9 @@ public class MeleeAttack : ExtendedMonobehaviour
         _swingerCollider.gameObject.SetRotationEulerZ(startingRotation);
         yield return new WaitForSeconds(_delayAfterSwing);
         _wasConsumedDuringThisAnimation = false;
-        _delayManager.Reset();
         _isSwingingAnimationOnGoing = false;
+
+        StartCoroutine(DisplayGunLight());
     }
 
 
@@ -145,12 +147,11 @@ public class MeleeAttack : ExtendedMonobehaviour
 
     private void CheckLight()
     {
-        if (!m_HasDisplayed && _delayManager.m_CanShoot) StartCoroutine(DisplayGunLight());
+        if (!m_HasFeedbackDisplayed && _delayManager.m_CanShoot) StartCoroutine(DisplayGunLight());
     }
 
     IEnumerator DisplayGunLight()
     {
-        m_HasDisplayed = true;
         for (int i = 0; i < m_AmountOfFlashes; i++)
         {
             m_GunLight.enabled = true;
@@ -158,5 +159,7 @@ public class MeleeAttack : ExtendedMonobehaviour
             m_GunLight.enabled = false;
             yield return new WaitForSeconds(m_LightOff);
         }
+        m_HasFeedbackDisplayed = true;
+        _delayManager.Reset();
     }
 }
