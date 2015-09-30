@@ -12,7 +12,7 @@ public class MeleeAttack : ExtendedMonobehaviour
     private PlatformerCharacter2D _mouvementManager;
     [SerializeField] private bool _isAbility = false; //for spawner
     public bool isAbility { get { return _isAbility; } }
-    [SerializeField] private bool _abilityHasSpikeAttach = false;
+    [SerializeField] private bool _abilityHasSpike = false;
     [SerializeField] private float _DashForce = 450f;
     private bool _completedAerialAttack = true;
     [SerializeField] private GameObject _swingerCollider;
@@ -92,7 +92,7 @@ public class MeleeAttack : ExtendedMonobehaviour
         if (isAbility)
         {
             _mouvementManager.ChangeCanFlip();
-            if (_abilityHasSpikeAttach &&  !isGroundedAtStart)
+            if (_abilityHasSpike &&  !isGroundedAtStart)
                 _completedAerialAttack = false;
         }
 
@@ -114,7 +114,7 @@ public class MeleeAttack : ExtendedMonobehaviour
         if (isAbility)
         {
             _mouvementManager.ChangeCanFlip();
-            if(_abilityHasSpikeAttach && !isGroundedAtStart)
+            if(_abilityHasSpike && !isGroundedAtStart)
             {
                 _completedAerialAttack = true;
                 _swingerCollider.SetActive(true);
