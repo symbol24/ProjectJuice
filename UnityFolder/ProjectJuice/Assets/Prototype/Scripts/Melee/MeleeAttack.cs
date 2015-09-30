@@ -8,8 +8,12 @@ public class MeleeAttack : ExtendedMonobehaviour
 {
     public IPlatformer2DUserControl InputManager { get { return _inputManager; } }
     private IPlatformer2DUserControl _inputManager;
+    public PlatformerCharacter2D MovementManager { get { return _mouvementManager; } }
+    private PlatformerCharacter2D _mouvementManager;
     [SerializeField] private bool _isAbility = false; //for spawner
     public bool isAbility { get { return _isAbility; } }
+    [SerializeField] private float _DashForce = 450f;
+    private bool _completedAerialAttack = true;
     [SerializeField] private GameObject _swingerCollider;
     [SerializeField] private GameObject _flipReference;
     [SerializeField] private DelayManager _delayManager;
@@ -20,7 +24,7 @@ public class MeleeAttack : ExtendedMonobehaviour
 
     public ImpactForceSettings _impactForceSettings;
     
-
+    
     public float rotationSpeed = 100f;
     public float startingRotation = -45;
     public float endingRotation = 45;
@@ -38,6 +42,7 @@ public class MeleeAttack : ExtendedMonobehaviour
     {
         if (_delayManager == null) _delayManager = GetComponent<DelayManager>();
         if (_inputManager == null) _inputManager = GetComponent<IPlatformer2DUserControl>();
+        if (_mouvementManager == null) _mouvementManager = GetComponent<PlatformerCharacter2D>();
         _swingerCollider.gameObject.SetRotationEulerZ(startingRotation);
         if (_physicsManager == null) _physicsManager = GetComponent<PlatformerCharacter2D>();
     }
@@ -48,8 +53,17 @@ public class MeleeAttack : ExtendedMonobehaviour
 
         if (_delayManager.m_CanShoot && _inputManager.m_Melee)
         {
-            _swingingAnimation = StartSwingingAnimation();
-            StartCoroutine(_swingingAnimation);
+            if (isAbility && !_mouvementManager.isGrounded)
+            {
+                _swingingAnimation = StartSwingingAnimation();
+                StartCoroutine(_swingingAnimation);
+                //need its own special thing here for airial ability melee, for now we can do it in the swing anim
+            }
+            else
+            {
+                _swingingAnimation = StartSwingingAnimation();
+                StartCoroutine(_swingingAnimation);
+            }
         }
         if (_inputManager.m_FacingRight)
         {
@@ -61,7 +75,8 @@ public class MeleeAttack : ExtendedMonobehaviour
         }
         _impactForceSettings.DirectionComingForm = _inputManager.m_FacingRight ? Direction2D.Left : Direction2D.Right;
 
-        
+        if (!_isSwingingAnimationOnGoing && _completedAerialAttack && _mouvementManager.MeleeDownDashComplete && _swingerCollider.activeInHierarchy)
+            _swingerCollider.SetActive(false);
     }
 
     private bool _isSwingingAnimationOnGoing = false;
@@ -72,6 +87,14 @@ public class MeleeAttack : ExtendedMonobehaviour
 
     private IEnumerator StartSwingingAnimation()
     {
+        bool isGroundedAtStart = _mouvementManager.isGrounded;
+        if (isAbility)
+        {
+            _mouvementManager.ChangeCanFlip();
+            if (!isGroundedAtStart)
+                _completedAerialAttack = false;
+        }
+
         _delayManager.AddDelay(100f);
         m_HasFeedbackDisplayed = false;
         _isSwingingAnimationOnGoing = true;
@@ -86,6 +109,19 @@ public class MeleeAttack : ExtendedMonobehaviour
         _swingerCollider.SetActive(false);
         yield return null;
         _swingerCollider.gameObject.SetRotationEulerZ(startingRotation);
+
+        if (isAbility)
+        {
+            _mouvementManager.ChangeCanFlip();
+            if(!isGroundedAtStart)
+            {
+                _completedAerialAttack = true;
+                _swingerCollider.SetActive(true);
+                _mouvementManager.PhysicsDashForMeleeAbility(_DashForce);
+            }
+        }
+
+
         yield return new WaitForSeconds(_delayAfterSwing);
         _wasConsumedDuringThisAnimation = false;
         _isSwingingAnimationOnGoing = false;

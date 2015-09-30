@@ -31,6 +31,7 @@ namespace UnityStandardAssets._2D
         private Transform m_GroundCheck;    // A position marking where to check if the player is grounded.
         const float k_GroundedRadius = .2f; // Radius of the overlap circle to determine if grounded
         private bool m_Grounded;            // Whether or not the player is grounded.
+        public bool isGrounded { get { return m_Grounded; } }
         private Transform m_CeilingCheck;   // A position marking where to check for ceilings
         const float k_CeilingRadius = .01f; // Radius of the overlap circle to determine if the player can stand up
         [Range(0, 1)][SerializeField]private float m_TriggerResetDelay = 0.1f; // To reset the ground when passing through
@@ -43,6 +44,10 @@ namespace UnityStandardAssets._2D
         private Collider2D[] m_MyColliders;
         private Collider2D[] m_LastPassThrough;
         private float m_Collidertimer = 1f;
+
+        private bool m_CanFlip = true;
+        private bool m_MeleeDownDashComplete = true;
+        public bool MeleeDownDashComplete { get { return m_MeleeDownDashComplete; } }
 
         private void Awake()
         {
@@ -120,13 +125,21 @@ namespace UnityStandardAssets._2D
 
         private void Flip()
         {
-            // Switch the way the player is labelled as facing.
-            m_Controller.m_FacingRight = !m_Controller.m_FacingRight;
+            if (m_CanFlip)
+            {
+                // Switch the way the player is labelled as facing.
+                m_Controller.m_FacingRight = !m_Controller.m_FacingRight;
 
-            // Multiply the player's x local scale by -1.
-            Vector3 theScale = m_Body.transform.localScale;
-            theScale.x *= -1;
-            m_Body.transform.localScale = theScale;
+                // Multiply the player's x local scale by -1.
+                Vector3 theScale = m_Body.transform.localScale;
+                theScale.x *= -1;
+                m_Body.transform.localScale = theScale;
+            }
+        }
+
+        public void ChangeCanFlip()
+        {
+            m_CanFlip = !m_CanFlip;
         }
 
         private void Jump()
@@ -174,10 +187,12 @@ namespace UnityStandardAssets._2D
 
                 if (m_CanDash)
                     CheckDrag();
-                
 
-               
+
+                if (!m_MeleeDownDashComplete)
+                    m_MeleeDownDashComplete = true;
             }
+
 
             return isGrounded;
         }
@@ -210,6 +225,29 @@ namespace UnityStandardAssets._2D
 
                 // normalize and add impulse value
                 angle = angle.normalized * m_DashForce;
+                m_Rigidbody2D.velocity = Vector2.zero;
+                m_Rigidbody2D.AddForce(angle, m_DashType);
+
+                //set values for cooldown
+                m_DashTimer = Time.time + m_DashDelay;
+                StartCoroutine(DashDragReset(m_DashDragRemove, m_Rigidbody2D));
+            }
+        }
+
+        public void PhysicsDashForMeleeAbility(float force)
+        {
+            if (m_CanDash)
+            {
+                m_MeleeDownDashComplete = false;
+                m_DashTimer = float.MaxValue;
+                m_CanDash = false;
+                m_AirControl = false;
+                m_Rigidbody2D.drag = m_DashDrag;
+
+                Vector2 angle = new Vector2(0,-1); //get dash angle from x axis
+
+                // normalize and add impulse value
+                angle = angle.normalized * force;
                 m_Rigidbody2D.velocity = Vector2.zero;
                 m_Rigidbody2D.AddForce(angle, m_DashType);
 
