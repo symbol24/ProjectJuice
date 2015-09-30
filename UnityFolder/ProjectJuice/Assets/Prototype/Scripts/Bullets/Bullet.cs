@@ -108,4 +108,8 @@ public class Bullet : MonoBehaviour, IDamaging {
         m_RigidBody.AddForce(transform.up * speed);
     }
 
+    public void UpdateImpactForceSetting(ImpactForceSettings toUpdate)
+    {
+        ImpactForceSettings = toUpdate;
+    }
 }

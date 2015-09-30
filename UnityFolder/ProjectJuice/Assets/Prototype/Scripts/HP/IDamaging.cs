@@ -13,4 +13,5 @@ public interface IDamaging : IConsumable
     //float TimeToApplyForce { get; }
     IEnumerable<HPScript> ImmuneTargets { get; }
     bool HasImmuneTargets { get; }
+    void UpdateImpactForceSetting(ImpactForceSettings toUpdate);
 }

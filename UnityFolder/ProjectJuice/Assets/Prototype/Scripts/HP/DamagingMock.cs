@@ -33,6 +33,11 @@ public class DamagingMock : MonoBehaviour, IDamaging {
     {
     }
 
+    public void UpdateImpactForceSetting(ImpactForceSettings toUpdate)
+    {
+        ImpactForceSettings = toUpdate;
+    }
+
     public float Damage
     {
         get { return _damage; }

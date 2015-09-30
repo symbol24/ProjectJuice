@@ -65,8 +65,7 @@ public class HPScript : HPBase
 
     public void RouteOnTriggerEnter2D(Collider2D collider, bool isBackCollider)
     {
-        //Debug.Log("OnTriggerEnter in " + gameObject.name);
-
+        
         CheckForDamage(collider, isBackCollider);
         if(!isBackCollider)
             CheckForPowerUp(collider);
@@ -137,6 +136,8 @@ public class HPScript : HPBase
 
             if (checkDamaging.AddImpactForce)
             {
+                checkDamaging.UpdateImpactForceSetting(GetDirectionFromImpact(collider, checkDamaging.ImpactForceSettings));
+
                 _character.AddKnockBack(checkDamaging);
             }
 

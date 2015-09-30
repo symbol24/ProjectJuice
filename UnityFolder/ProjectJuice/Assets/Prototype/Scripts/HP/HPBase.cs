@@ -61,4 +61,23 @@ public abstract class HPBase : ExtendedMonobehaviour {
         return ret;
 
     }
+
+    protected ImpactForceSettings GetDirectionFromImpact(Collider2D collider, ImpactForceSettings toUpdate)
+    {
+        //if its a bullet we get the side on which we are getting hit and applying the addimpactforce in that direction
+        Bullet bullet = collider.GetComponent<Bullet>();
+        if (bullet != null)
+        {
+            Vector3 dir = (collider.gameObject.transform.position - gameObject.transform.position).normalized;
+            if (Mathf.Abs(dir.z) < 0.05f)
+            {
+                if (dir.x > 0)
+                    toUpdate.DirectionComingForm = Direction2D.Right;
+                else if (dir.x < 0)
+                    toUpdate.DirectionComingForm = Direction2D.Left;
+            }
+        }
+
+        return toUpdate;
+    }
 }

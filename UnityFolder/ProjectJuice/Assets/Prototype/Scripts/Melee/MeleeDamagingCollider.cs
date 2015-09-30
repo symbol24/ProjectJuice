@@ -52,4 +52,7 @@ public class MeleeDamagingCollider : MonoBehaviour, IDamaging
         }
     }
 
+    public void UpdateImpactForceSetting(ImpactForceSettings toUpdate)
+    {
+    }
 }

@@ -13,9 +13,11 @@ public class ExplosiveObject : HPBase
     [SerializeField] private float _damage = 100;
     [SerializeField] private bool _addImpactForce = true;
     [SerializeField] private ImpactForceSettings _impactForceSettings;
+    [SerializeField] private float _DragResetDelay;
+    [SerializeField] private float _impactForceModifier = 100f;
     [SerializeField] private float _massAdditionWhenIgnited = -10;
     [SerializeField] private float _explosionDuration = 0.2f;
-
+    [SerializeField]private ForceMode2D m_ForceType = ForceMode2D.Force;
     [SerializeField] private float _XMinForce = 1f;
     [SerializeField] private float _XMaxForce = 1f;
     private float RandomXSpeed
@@ -92,8 +94,17 @@ public class ExplosiveObject : HPBase
             CurrentHp -= damaging.Damage;
             damaging.Consumed();
 
-            //Instantiate Explosion
-            var contactPoint = damaging.HasPreferredImpactPoint
+            if (damaging.AddImpactForce)
+            {
+                print("should apply impact");
+                damaging.UpdateImpactForceSetting(GetDirectionFromImpact(toCheck, damaging.ImpactForceSettings));
+
+                AddKnockBack(damaging);
+
+            }
+
+                //Instantiate Explosion
+                var contactPoint = damaging.HasPreferredImpactPoint
                 ? damaging.PreferredImpactPoint
                 : toCheck.transform.position;
             //Debug.DrawRay(transform.position, contactPoint);
@@ -125,6 +136,7 @@ public class ExplosiveObject : HPBase
     }
 
     private bool _waitingForExplosionNoReturn = false;
+
     private IEnumerator TimerForExplosion()
     {
         _waitingForExplosionNoReturn = true;
@@ -186,5 +198,36 @@ public class ExplosiveObject : HPBase
     public bool HasImmuneTargets
     {
         get { return false; }
+    }
+
+    public void AddKnockBack(IDamaging impact)
+    {
+    
+        //_mainRigidbody.drag = impact.ImpactForceSettings.ImpactDrag;
+
+        Vector2 angle = impact.ImpactForceSettings.ImpactAngle;
+
+        if (impact.ImpactForceSettings.DirectionComingForm == Direction2D.Right) angle.x = -angle.x;
+
+        // normalize and add impulse value
+        angle = angle.normalized * impact.ImpactForceSettings.ImpactForce * _impactForceModifier;
+        _mainRigidbody.velocity = Vector2.zero;
+        _mainRigidbody.AddForce(angle, m_ForceType);
+
+        //set values for cooldown
+        _DragResetDelay = impact.ImpactForceSettings.ImpactDragTimer;
+        StartCoroutine(DashDragReset(_DragResetDelay, _mainRigidbody));
+        
+    }
+
+    private void CheckDrag()
+    {
+        if (_mainRigidbody.drag != 0) _mainRigidbody.drag = 0;
+    }
+
+    IEnumerator DashDragReset()
+    {
+        yield return new WaitForSeconds(_DragResetDelay);
+        CheckDrag();
     }
 }

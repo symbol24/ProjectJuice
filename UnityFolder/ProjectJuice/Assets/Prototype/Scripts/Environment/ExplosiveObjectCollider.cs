@@ -15,6 +15,12 @@ public class ExplosiveObjectCollider : ExtendedMonobehaviour, IDamaging
     {
         _explosiveObject.Consumed();
     }
+
+    public void UpdateImpactForceSetting(ImpactForceSettings toUpdate)
+    {
+        
+    }
+
     public float Damage
     {
         get { return _explosiveObject.Damage; }
