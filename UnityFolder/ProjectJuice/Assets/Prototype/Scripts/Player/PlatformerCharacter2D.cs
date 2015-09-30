@@ -204,7 +204,7 @@ namespace UnityStandardAssets._2D
                 if (m_Grounded && angle.y < 0) angle.y = 0f;
 
                 // if not facing right force x negative
-                if (!m_Controller.m_FacingRight && angle.x > 0) angle.x = -angle.x;
+                //if (!m_Controller.m_FacingRight && angle.x > 0) angle.x = -angle.x;
 
                 //print(angle);
 

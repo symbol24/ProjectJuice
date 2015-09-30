@@ -55,7 +55,7 @@ public abstract class ExtendedMonobehaviour : MonoBehaviour, IGameObject {
     {
         float xAxis = controller.m_XAxis;
         float yAxis = controller.m_YAxis;
-        if (!controller.m_FacingRight && xAxis > 0) xAxis = -xAxis;
+        //if (!controller.m_FacingRight && xAxis > 0) xAxis = -xAxis; //This causes rotatation to stop when dashing left
         if (!controller.m_FacingRight && xAxis == 0 && yAxis == 0) xAxis = -1f;
 
         float zAngle = Mathf.Atan2(yAxis, xAxis) * Mathf.Rad2Deg;
