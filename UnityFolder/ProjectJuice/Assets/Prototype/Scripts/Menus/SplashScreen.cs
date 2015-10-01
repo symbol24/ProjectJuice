@@ -19,7 +19,10 @@ public class SplashScreen : MonoBehaviour {
 	    for(int i = 0; i < m_AllDatas.Count; i++)
         {
             if (m_MenuControls.Confirm[i] || m_MenuControls._Start[i])
+            {
                 Application.LoadLevel(m_NextLevel);
+                GameManager.instance.SetGameState(GameState.Loading);
+            }
         }
 	}
 }

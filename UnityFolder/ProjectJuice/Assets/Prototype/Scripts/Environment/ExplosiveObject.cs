@@ -96,7 +96,6 @@ public class ExplosiveObject : HPBase
 
             if (damaging.AddImpactForce)
             {
-                print("should apply impact");
                 damaging.UpdateImpactForceSetting(GetDirectionFromImpact(toCheck, damaging.ImpactForceSettings));
 
                 AddKnockBack(damaging);

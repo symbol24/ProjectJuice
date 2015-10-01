@@ -89,7 +89,10 @@ public class DartChainV2 : MonoBehaviour {
         try {
             Destroy(gameObject);
         }
-        catch (Exception ex) { Debug.Log("Remove this catch"); }
+        catch (Exception ex)
+        {
+            Debug.Log(ex.Message);
+        }
     }
 
 
