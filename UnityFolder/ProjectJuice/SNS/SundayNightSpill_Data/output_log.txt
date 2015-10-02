@@ -1,10 +1,10 @@
-Initialize engine version: 5.1.3f1 (b0a23b31c3d8)
+Initialize engine version: 5.1.2f1 (afd2369b692a)
 GfxDevice: creating device client; threaded=1
 Direct3D:
     Version:  Direct3D 11.0 [level 11.0]
-    Renderer: NVIDIA GeForce GTX 560 SE (ID=0x1208)
-    Vendor:   NVIDIA
-    VRAM:     972 MB
+    Renderer: Intel(R) HD Graphics 5500 (ID=0x1616)
+    Vendor:   Intel
+    VRAM:     128 MB
 Begin MonoManager ReloadAssembly
 Platform assembly: C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\SNS\SundayNightSpill_Data\Managed\UnityEngine.dll (this message is harmless)
 Loading C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\SNS\SundayNightSpill_Data\Managed\UnityEngine.dll into Unity Child Domain
@@ -16,68 +16,22 @@ Platform assembly: C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJu
 Loading C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\SNS\SundayNightSpill_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
 Platform assembly: C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\SNS\SundayNightSpill_Data\Managed\UnityEngine.Analytics.dll (this message is harmless)
 Loading C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\SNS\SundayNightSpill_Data\Managed\UnityEngine.Analytics.dll into Unity Child Domain
-Platform assembly: C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\SNS\SundayNightSpill_Data\Managed\System.Core.dll (this message is harmless)
-- Completed reload, in  0.152 seconds
-desktop: 1920x1080 60Hz; virtual: 3360x1080 at -1440,0
+- Completed reload, in  0.166 seconds
+desktop: 1366x768 60Hz; virtual: 1366x768 at 0,0
 <RI> Initializing input.
 <RI> Input initialized.
 <RI> Initialized touch support.
+Platform assembly: C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\SNS\SundayNightSpill_Data\Managed\System.Core.dll (this message is harmless)
 Platform assembly: C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\SNS\SundayNightSpill_Data\Managed\System.dll (this message is harmless)
 Unloading 2 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 0.342913 ms
+UnloadTime: 0.393752 ms
 
-Unloading 4 unused Assets to reduce memory usage. Loaded Objects now: 329.
-Total: 0.175984 ms (FindLiveObjects: 0.031695 ms CreateObjectMapping: 0.026261 ms MarkObjects: 0.111386 ms  DeleteObjects: 0.006037 ms)
-
-OnFadeDone
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
-
-MEnuControl.M_Fader_FadeDone
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+Unloading 4 unused Assets to reduce memory usage. Loaded Objects now: 337.
+Total: 0.219269 ms (FindLiveObjects: 0.021926 ms CreateObjectMapping: 0.018661 ms MarkObjects: 0.167484 ms  DeleteObjects: 0.010730 ms)
 
 Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 4.270421 ms
+UnloadTime: 4.088680 ms
 
-Unloading 3 unused Assets to reduce memory usage. Loaded Objects now: 646.
-Total: 0.434679 ms (FindLiveObjects: 0.040147 ms CreateObjectMapping: 0.044977 ms MarkObjects: 0.334159 ms  DeleteObjects: 0.014791 ms)
-
-OnFadeDone
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
-
-PlayerSelect.M_Fader_FadeDone
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
-
-MEnuControl.M_Fader_FadeDone
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
-
-Unloading 3 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 0.848529 ms
-
-Unloading 1 unused Assets to reduce memory usage. Loaded Objects now: 1761.
-Total: 0.447961 ms (FindLiveObjects: 0.076370 ms CreateObjectMapping: 0.042562 ms MarkObjects: 0.322990 ms  DeleteObjects: 0.005735 ms)
-
-OnFadeDone
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
-
-MEnuControl.M_Fader_FadeDone
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
-
-M_Fader_FadeDone
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
-
-addDeath Animation
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
-
-addDeath Animation
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+Unloading 3 unused Assets to reduce memory usage. Loaded Objects now: 639.
+Total: 0.463732 ms (FindLiveObjects: 0.051318 ms CreateObjectMapping: 0.045253 ms MarkObjects: 0.350831 ms  DeleteObjects: 0.015395 ms)
 
