@@ -2,13 +2,17 @@
 using UnityEngine;
 using System.Collections;
 
-public class DartChainV2 : MonoBehaviour {
+public class DartChainV2 : ExtendedMonobehaviour {
     [SerializeField]
     private Rigidbody2D _mainRigidbody;
     [SerializeField]
-    private HingeJoint2D _mainHingeJoint;
+    private DistanceJoint2D _mainHingeJoint;
     [SerializeField]
     private bool _isStaticChain = false;
+    [SerializeField]
+    private bool _enableScriptTranslation = true;
+
+    [SerializeField] private float _maxForce = 5f;
 
     public SappingDartGun CurrentGun { get; set; }
     private Dart _currentDart;
@@ -21,6 +25,7 @@ public class DartChainV2 : MonoBehaviour {
             if (!_isStaticChain)
             {
                 _currentDart.DartDestroyed += CurrentDartOnDartDestroyed;
+                _currentDart.DartCollision += CurrentDart_DartCollision;
             }
 
         }
@@ -51,33 +56,74 @@ public class DartChainV2 : MonoBehaviour {
     {
         get { return _mainRigidbody ?? (_mainRigidbody = GetComponent<Rigidbody2D>()); }
     }
-    public HingeJoint2D MainHingeJoint
+    public DistanceJoint2D MainHingeJoint
     {
-        get { return _mainHingeJoint ?? (_mainHingeJoint = GetComponent<HingeJoint2D>()); }
+        get { return _mainHingeJoint ?? (_mainHingeJoint = GetComponent<DistanceJoint2D>()); }
     }
 
+    public bool IgnoreFloor { get; set; }
+
     public EventHandler HitFloor;
+    private bool _collidedWithSomething = false;
+    
 
-    // Use this for initialization
-    void Start() {
-
+    void CurrentDart_DartCollision(object sender, EventArgs e)
+    {
+        _collidedWithSomething = true;
     }
 
     // Update is called once per frame
     private void Update()
     {
-        if (!_isStaticChain)
+
+        if (!_isStaticChain && !_collidedWithSomething && _enableScriptTranslation)
         {
             var checkDistance = Vector3.Distance(transform.position, NextChain.transform.position);
             if (checkDistance >= CurrentGun.HoseCrossSectionLength)
             {
-
-
                 var correctedPosition = Vector3.MoveTowards(transform.position, NextChain.transform.position,
                     checkDistance - CurrentGun.HoseCrossSectionLength);
                 transform.position = (correctedPosition);
                 //Debug.Log("detectingTooFar");
 
+            }
+        }
+        else if (_collidedWithSomething)
+        {
+            var distanceToDart = Vector3.Distance(transform.position, CurrentDart.transform.position);
+            var distanceToGun = Vector3.Distance(transform.position, CurrentGun.transform.position);
+            if (distanceToDart < distanceToGun)
+            {
+                
+                var direction = CurrentDart.transform.position - transform.position;
+                MainRigidbody.AddForce(direction.normalized * Mathf.Sqrt(distanceToGun) * Mathf.Pow(_maxForce / (distanceToDart + distanceToGun), 3));
+                /*if (NextChain != null)
+                {
+                    var direction = NextChain.transform.position - transform.position;
+                    MainRigidbody.AddForce(direction.normalized*distanceToGun*
+                                           (_maxForce/(distanceToDart + distanceToGun)));
+                }*/
+            }
+            else
+            {
+                var direction = CurrentGun.transform.position - transform.position;
+                MainRigidbody.AddForce(direction.normalized * Mathf.Sqrt(distanceToDart) * Mathf.Pow(_maxForce / (distanceToDart + distanceToGun), 3));
+                /*if (PreviousChain != null)
+                {
+                    var direction = PreviousChain.transform.position - transform.position;
+                    MainRigidbody.AddForce(direction.normalized*distanceToDart*
+                                           (_maxForce/(distanceToDart + distanceToGun)));
+                }*/
+
+            }
+
+            if (!IgnoreFloor && Vector3.Distance(transform.position, NextChain.transform.position) >
+                (CurrentGun.HoseCrossSectionLength*4))
+            {
+                //Debug.Break();
+                Debug.Log(transform.position);
+                Debug.Log("distance is " + Vector3.Distance(transform.position, NextChain.transform.position));
+                //if (HitFloor != null) HitFloor(this, EventArgs.Empty);
             }
         }
     }
@@ -86,12 +132,14 @@ public class DartChainV2 : MonoBehaviour {
 
     private void CurrentDartOnDartDestroyed(object sender, EventArgs eventArgs)
     {
-        try {
-            Destroy(gameObject);
-        }
-        catch (Exception ex)
+        if (gameObject != null)
         {
-            Debug.Log(ex.Message);
+            Destroy(gameObject);
+            
+        }
+        else
+        {
+            Debug.Log("NeedToLook at this");
         }
     }
 
