@@ -225,7 +225,15 @@ public class Dart : ExtendedMonobehaviour
     protected void OnDartDestroyed()
     {
         if (DartDestroyed != null) DartDestroyed(this, EventArgs.Empty);
-        Destroy(gameObject); 
+        if (gameObject != null)
+        {
+            Destroy(gameObject);
+
+        }
+        else
+        {
+            Debug.Log("NeedToLook at this");
+        }
     }
     #endregion events
 

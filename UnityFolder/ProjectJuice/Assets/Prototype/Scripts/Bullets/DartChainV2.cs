@@ -132,17 +132,15 @@ public class DartChainV2 : ExtendedMonobehaviour {
 
     private void CurrentDartOnDartDestroyed(object sender, EventArgs eventArgs)
     {
-<<<<<<< HEAD
-        Destroy(gameObject);
-=======
-        try {
-            Destroy(gameObject);
-        }
-        catch (Exception ex)
+        if (gameObject != null)
         {
-            Debug.Log(ex.Message);
+            Destroy(gameObject);
+            
         }
->>>>>>> 0ca7e737836ec74b29f1fd5229b541a391e9c889
+        else
+        {
+            Debug.Log("NeedToLook at this");
+        }
     }
 
 
