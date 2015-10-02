@@ -19,11 +19,12 @@ public class SappingDartGun : ExtendedMonobehaviour {
     float _suckingInterval = 0.4f;
     [SerializeField]
     float _hpToSuckPerSecond = 100f;
-    [Range(0,5)][SerializeField]
+    [Range(0,20)][SerializeField]
     float _dartCollTimerDisappear = 0f;
 
     [Range(0,5)][SerializeField] private float _lifetimeSinceHit = 1f;
     [SerializeField] private DartChainV2 _dartChainPrefab;
+    [SerializeField] private DartChainV2 _dartChainStatic;
     [Range(0,5)][SerializeField]
     private float _crossSectionLength = 0.1f;
     [SerializeField] private int _crossSectionsLimit = 100;
@@ -77,6 +78,7 @@ public class SappingDartGun : ExtendedMonobehaviour {
 
 
         var currentCrossSection = InstantiateChain(dart.StaticCrossSection, dart);
+        currentCrossSection.IgnoreFloor = true;
         _currentCount = 0;
         _addCrossSection = AddCrossSection(currentCrossSection);
         StartCoroutine(_addCrossSection);
@@ -89,7 +91,11 @@ public class SappingDartGun : ExtendedMonobehaviour {
 
     private void Dart_DartCollision(object sender, EventArgs e)
     {
-        //throw new NotImplementedException();
+        StopCoroutine(_addCrossSection);
+        lastDartChainAdded.transform.position = transform.position;
+        lastDartChainAdded.transform.parent = transform;
+        lastDartChainAdded.MainRigidbody.isKinematic = true;
+        lastDartChainAdded.IgnoreFloor = true;
     }
 
     private void Dart_DartDestroyed(object sender, EventArgs e)
@@ -113,6 +119,7 @@ public class SappingDartGun : ExtendedMonobehaviour {
 
     private int _currentCount;
     private IEnumerator _addCrossSection;
+    private DartChainV2 lastDartChainAdded;
     private IEnumerator AddCrossSection(DartChainV2 currentFirstChain)
     {
         //if (_inputManager.m_SpecialStay)
@@ -124,7 +131,7 @@ public class SappingDartGun : ExtendedMonobehaviour {
                 yield return null;
             }
             var crossSectionsNeeded = distance / _crossSectionLength;
-            DartChainV2 lastDartChainAdded = currentFirstChain;
+            lastDartChainAdded = currentFirstChain;
             int numberOfIterations = Mathf.RoundToInt(crossSectionsNeeded);
             for (int i = 0; i < numberOfIterations; i++)
             {
@@ -162,6 +169,7 @@ public class SappingDartGun : ExtendedMonobehaviour {
         brandNewCrossSection.CurrentGun = this;
         brandNewCrossSection.CurrentDart = dart;
         brandNewCrossSection.NextChain = toAttachTo;
+        brandNewCrossSection.transform.parent = dart.transform;
         dart.ListenToCrossSection(brandNewCrossSection);
         return brandNewCrossSection;
     }

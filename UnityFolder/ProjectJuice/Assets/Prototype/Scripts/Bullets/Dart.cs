@@ -88,8 +88,13 @@ public class Dart : ExtendedMonobehaviour
     void Start()
     {
         DartCollision += Dart_DartCollision;
+        SourceHPScript.Dead += SourceHpScriptOnDead;
     }
 
+    private void SourceHpScriptOnDead(object sender, EventArgs eventArgs)
+    {
+        OnDartDestroyed();
+    }
     void Dart_DartCollision(object sender, EventArgs e)
     {
         var hits = Physics2D.Raycast(transform.position, transform.position - SourceHPScript.transform.position,
@@ -220,8 +225,7 @@ public class Dart : ExtendedMonobehaviour
     protected void OnDartDestroyed()
     {
         if (DartDestroyed != null) DartDestroyed(this, EventArgs.Empty);
-        try { Destroy(gameObject); }
-        catch(Exception ex) { Debug.Log("Remove this catch"); }
+        Destroy(gameObject); 
     }
     #endregion events
 
