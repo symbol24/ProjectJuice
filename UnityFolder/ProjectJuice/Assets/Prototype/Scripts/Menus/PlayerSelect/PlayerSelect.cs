@@ -21,12 +21,16 @@ public class PlayerSelect : Menu {
     {
         m_Fader = FindObjectOfType<FadeOut>();
         m_Fader.FadeDone += M_Fader_FadeDone;
+        m_Fader.LoadDone += M_Fader_LoadDone;
     }
 
-	// Use this for initialization
-	protected override void Start () {
+    private void M_Fader_LoadDone(object sender, System.EventArgs e)
+    {
+    }
+
+    // Use this for initialization
+    protected override void Start () {
         base.Start();
-        GameManager.instance.SetGameState(GameState.CharacterSelect);
     }
 
     private void M_Fader_FadeDone(object sender, System.EventArgs e)
@@ -37,17 +41,17 @@ public class PlayerSelect : Menu {
             if (pd.isActivated)
                 pd.isActivated = false;
         }
-            
+        GameManager.instance.SetGameState(GameState.CharacterSelect);
     }
 
     // Update is called once per frame
     protected override void Update () {
         for(int i = 0; i < m_ListofPlayers.Count; i++)
         {
-            if (m_PlayerCount < 4 && m_Controls.Confirm[i])
+            if (GameManager.instance.IsCharacterSelect && m_PlayerCount < 4 && m_Controls.Confirm[i])
                 ActivatePlayer(m_ListofPlayers[i], i);
 
-            if (m_PlayerCount > 1 && m_PlayerCount == m_ReadyCount && m_Controls._Start[i])
+            if (GameManager.instance.IsCharacterSelect &&  m_PlayerCount > 1 && m_PlayerCount == m_ReadyCount && m_Controls._Start[i])
                 NextScene();
         }
 	}
@@ -104,7 +108,7 @@ public class PlayerSelect : Menu {
         {
             pd.CheckActivated();
         }
-
+        GameManager.instance.SetGameState(GameState.Loading);
         Application.LoadLevel(m_NextScene);
     }
 

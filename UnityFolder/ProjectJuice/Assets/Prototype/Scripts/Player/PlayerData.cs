@@ -55,7 +55,7 @@ public class PlayerData : MonoBehaviour {
     public void CheckActivated()
     {
         if(!m_PlayerActivated)
-            Destroy(this.gameObject);
+            Destroy(gameObject);
     }
 }
 

@@ -37,19 +37,23 @@ public class PlayerSpawner : MonoBehaviour
     private FadeOut m_Fader;
 
     // Use this for initialization
-    void Start()
+    void Awake()
     {
         GameManager.instance.SetGameState(GameState.Loading);
         m_Fader = FindObjectOfType<FadeOut>();
         m_Fader.FadeDone += M_Fader_FadeDone;
+        m_Fader.LoadDone += M_Fader_LoadDone;
+    }
+
+    private void M_Fader_LoadDone(object sender, EventArgs e)
+    {
+        m_ListofPlayers = Utilities.GetAllPlayerData();
+        SpawnPlayers();
     }
 
     private void M_Fader_FadeDone(object sender, EventArgs e)
     {
         GameManager.instance.SetGameState(GameState.Playing);
-
-        m_ListofPlayers = Utilities.GetAllPlayerData();
-        SpawnPlayers();
     }
 
     void SpawnPlayers()

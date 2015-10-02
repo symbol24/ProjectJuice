@@ -76,7 +76,7 @@ public class PauseMenu : Menu {
         {
             m_currentSelection = 0;
             m_ListOfButtones[m_currentSelection].Select();
-            m_DelayManager.AddDelay(Database.instance.LongMenuInputDelay);
+            m_DelayManager.CoroutineDelay(Database.instance.LongMenuInputDelay, true);
         }
     }
 

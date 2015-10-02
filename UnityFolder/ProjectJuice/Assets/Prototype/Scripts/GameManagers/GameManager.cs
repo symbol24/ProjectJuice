@@ -82,6 +82,8 @@ public class GameManager : ExtendedMonobehaviour
 
     public bool IsPaused { get { return m_CurrentState == GameState.Paused; } }
 
+    public bool IsCharacterSelect { get { return m_CurrentState == GameState.CharacterSelect; } }
+
     private void CheckEndOfRound(object sender, PlayerScoreEventArgs e)
     {
         
