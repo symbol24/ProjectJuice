@@ -53,7 +53,16 @@ public class PlayerSpawner : MonoBehaviour
 
     private void M_Fader_FadeDone(object sender, EventArgs e)
     {
-        GameManager.instance.SetGameState(GameState.Playing);
+        //GameManager.instance.SetGameState(GameState.Playing);
+    }
+
+    public event EventHandler SpawnDone;
+
+    protected virtual void OnSpawnDone()
+    {
+        EventHandler handler = SpawnDone;
+        if (handler != null) handler(this, EventArgs.Empty);
+        print("OnSpawnDone");
     }
 
     void SpawnPlayers()
@@ -70,6 +79,7 @@ public class PlayerSpawner : MonoBehaviour
             m_Players.Add(temp);
             i++;
         }
+        OnSpawnDone();
     }
 
     public void DestroyRemainingSpawnedPlayers()

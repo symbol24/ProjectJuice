@@ -40,6 +40,13 @@ public class GameManager : ExtendedMonobehaviour
 
     [SerializeField] private bool ForVictorTesting = false;
 
+    private RoundStartTimer m_startTimer;
+
+    public void InjectRoundStartTimer(RoundStartTimer startTimer)
+    {
+        m_startTimer = startTimer;
+    }
+
 
     // Use this for initialization
     void Start()
@@ -123,8 +130,12 @@ public class GameManager : ExtendedMonobehaviour
 
     public void StartNextRound()
     {
+        if (m_startTimer != null)
+        {
+            m_startTimer.gameObject.SetActive(true);
+            m_startTimer.Reset();
+        }
         PlayerSpawner.instance.RespawnPlayers();
-        m_CurrentState = GameState.Playing;
     }
 
     public void SetGameState(GameState newState)
