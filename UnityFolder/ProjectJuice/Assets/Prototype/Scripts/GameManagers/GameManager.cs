@@ -128,6 +128,15 @@ public class GameManager : ExtendedMonobehaviour
         return ret;
     }
 
+    public void DisplayStartTimer()
+    {
+        if (m_startTimer != null)
+        {
+            m_startTimer.gameObject.SetActive(true);
+            m_startTimer.Reset();
+        }
+    }
+
     public void StartNextRound()
     {
         if (m_startTimer != null)
