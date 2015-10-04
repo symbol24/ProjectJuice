@@ -42,6 +42,8 @@ public class GameManager : ExtendedMonobehaviour
 
     private RoundStartTimer m_startTimer;
 
+    private SoundConnection mySoundConnection;
+
     public void InjectRoundStartTimer(RoundStartTimer startTimer)
     {
         m_startTimer = startTimer;
@@ -70,12 +72,14 @@ public class GameManager : ExtendedMonobehaviour
     {
         if (isPaused)
         {
+            SoundManager.Pause();
             m_PreviousState = m_CurrentState;
             m_CurrentState = GameState.Paused;
             Time.timeScale = 0f;
         }
         else
         {
+            SoundManager.UnPause();
             m_CurrentState = m_PreviousState;
             PlayerSpawner.instance.FlushAlivePlayerInputs();
             Time.timeScale = 1f;
