@@ -38,6 +38,11 @@ public class RoundMenu : Menu {
     private int m_maxSelection = 0;
     private bool m_inConfirm = false;
 
+    [HideInInspector] public int VictoryID;
+    [HideInInspector] public string VictoryName;
+    [HideInInspector] public int DrawID;
+    [HideInInspector] public string DrawName;
+
     // Use this for initialization
     protected override void Start () {
         base.Start();
@@ -55,6 +60,7 @@ public class RoundMenu : Menu {
             {
                 if (m_RoundMenu.activeInHierarchy && m_DelayManager.m_CanShoot && m_Controls.Confirm[i])
                 {
+                    SoundManager.PlaySFX(Database.instance.MenuClickName);
                     GoToNextRound();
                 }
             }
@@ -192,6 +198,7 @@ public class RoundMenu : Menu {
 
     private void RoundActivate()
     {
+        SoundManager.PlaySFX(Database.instance.MenuClickName);
         m_ListOfButtones[m_currentSelection].onClick.Invoke();
         m_DelayManager.CoroutineDelay(Database.instance.MenuInputDelay, false);
     }
@@ -208,7 +215,7 @@ public class RoundMenu : Menu {
             m_currentSelection++;
             if (m_currentSelection == m_maxSelection) m_currentSelection = 0;
         }
-
+        SoundManager.PlaySFX(Database.instance.MenuSlideName);
         m_ListOfButtones[m_currentSelection].Select();
         m_DelayManager.CoroutineDelay(Database.instance.MenuInputDelay, false);
     }
@@ -246,12 +253,13 @@ public class RoundMenu : Menu {
         m_ListOfButtones[m_currentSelection].onClick.RemoveAllListeners();
         m_ListOfButtones[m_currentSelection].onClick.AddListener(() => RoundConfirm(isCloseApp));
         m_inConfirm = false;
+        SoundManager.PlaySFX(Database.instance.MenuCancelName);
         m_DelayManager.CoroutineDelay(Database.instance.MenuInputDelay, false);
     }
 
     public void RoundReturnToMainMenu()
     {
-        Application.LoadLevel("multipadTest");
+        Application.LoadLevel(Database.instance.MainMenuID);
     }
 
     public void RoundCloseApp()

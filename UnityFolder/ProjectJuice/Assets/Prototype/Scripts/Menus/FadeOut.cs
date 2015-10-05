@@ -38,7 +38,6 @@ public class FadeOut : MonoBehaviour {
     {
         EventHandler handler = LoadDone;
         if (handler != null) handler(this, EventArgs.Empty);
-        print("OnLoadDone");
     }
 
     public event EventHandler FadeDone;
@@ -47,7 +46,6 @@ public class FadeOut : MonoBehaviour {
     {
         EventHandler handler = FadeDone;
         if (handler != null) handler(this, EventArgs.Empty);
-        print("OnFadeDone");
     }
 
     private void M_spawner_SpawnDone(object sender, EventArgs e)

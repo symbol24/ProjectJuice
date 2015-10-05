@@ -4,6 +4,19 @@ using System.Collections;
 
 public abstract class ExtendedMonobehaviour : MonoBehaviour, IGameObject { 
 
+    protected SFXGroup GetGroupWithName(string name)
+    {
+        SFXGroup ret = null;
+
+        foreach(SFXGroup sfxg in SoundManager.Instance.sfxGroups)
+        {
+            if (sfxg.groupName == name)
+                ret = sfxg;
+        }
+
+        return ret;
+    }
+
     protected void SetRotationEulerX(float xValue)
     {
         transform.rotation = Quaternion.Euler(xValue, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z);

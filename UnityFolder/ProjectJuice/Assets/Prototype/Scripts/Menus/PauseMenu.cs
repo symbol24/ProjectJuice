@@ -18,6 +18,11 @@ public class PauseMenu : Menu {
     protected static bool m_isPaused = false;
     private bool m_inConfirm = false;
 
+    [HideInInspector] public int MenuOpenID;
+    [HideInInspector] public string MenuOpenName;
+    [HideInInspector] public int MenuCloseID;
+    [HideInInspector] public string MenuCloseName;
+
     // Use this for initialization
     protected override void Start ()
     {
@@ -74,17 +79,20 @@ public class PauseMenu : Menu {
         m_PausePanel.SetActive(m_isPaused);
         if (m_isPaused)
         {
+            SoundManager.PlaySFX(MenuOpenName);
             m_currentSelection = 0;
             m_ListOfButtones[m_currentSelection].Select();
             m_DelayManager.CoroutineDelay(Database.instance.LongMenuInputDelay, true);
         }
+        else
+            SoundManager.PlaySFX(MenuCloseName);
     }
 
     public void ReturnToMainMenu()
     {
         if(m_isPaused)
             SwitchPauseState();
-        Application.LoadLevel("multipadTest");
+        Application.LoadLevel(Database.instance.MainMenuID);
     }
 
     public void CloseApp()
@@ -98,7 +106,6 @@ public class PauseMenu : Menu {
         m_ListOfButtones[m_currentSelection].onClick.RemoveAllListeners();
         Text buttonText = m_ListOfButtones[m_currentSelection].GetComponentInChildren<Text>();
         buttonText.text = Database.instance.GameTexts[8];
-        Debug.Break();
         if (closeApp)
         {
             m_ListOfButtones[m_currentSelection].onClick.AddListener(() => CloseApp());
@@ -124,6 +131,8 @@ public class PauseMenu : Menu {
         m_ListOfButtones[m_currentSelection].onClick.RemoveAllListeners();
         m_ListOfButtones[m_currentSelection].onClick.AddListener(() => Confirm(isCloseApp));
         m_inConfirm = false;
+
+        SoundManager.PlaySFX(Database.instance.MenuCancelName);
         m_DelayManager.CoroutineDelay(Database.instance.MenuInputDelay, false);
     }
 
@@ -139,13 +148,14 @@ public class PauseMenu : Menu {
             m_currentSelection++;
             if (m_currentSelection == m_maxSelection) m_currentSelection = 0;
         }
-
+        SoundManager.PlaySFX(Database.instance.MenuSlideName);
         m_ListOfButtones[m_currentSelection].Select();
         m_DelayManager.CoroutineDelay(Database.instance.MenuInputDelay, false);
     }
 
     private void Activate()
     {
+        SoundManager.PlaySFX(Database.instance.MenuClickName);
         m_ListOfButtones[m_currentSelection].onClick.Invoke();
         m_DelayManager.CoroutineDelay(Database.instance.MenuInputDelay, false);
     }

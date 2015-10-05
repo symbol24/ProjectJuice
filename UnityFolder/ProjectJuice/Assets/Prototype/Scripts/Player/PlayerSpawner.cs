@@ -62,7 +62,6 @@ public class PlayerSpawner : MonoBehaviour
     {
         EventHandler handler = SpawnDone;
         if (handler != null) handler(this, EventArgs.Empty);
-        print("OnSpawnDone");
     }
 
     void SpawnPlayers()
