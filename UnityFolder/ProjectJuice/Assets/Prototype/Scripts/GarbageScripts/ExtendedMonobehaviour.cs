@@ -77,6 +77,14 @@ public abstract class ExtendedMonobehaviour : MonoBehaviour, IGameObject {
         return new Vector3(xAngle, yAngle, zAngle);
     }
 
+    protected float GetRotation(Vector3 center, Vector3 target)
+    {
+        var xAxis = center.x;
+        var yAxis = target.y;
+        var rotation = Mathf.Atan2(yAxis, xAxis)*Mathf.Rad2Deg;
+        return rotation;
+    }
+
 
     public void ChangeVisibilty(GameObject toChange)
     {

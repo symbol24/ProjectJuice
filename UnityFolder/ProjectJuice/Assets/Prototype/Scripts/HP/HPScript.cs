@@ -99,24 +99,49 @@ public class HPScript : HPBase
         //If it is not damaging, dont bother with calculations
         if (checkDamaging != null && CheckIfIDamagableIsActive(checkDamaging))
         {
-            Vector2 pointOfCollision = GetPointOfImpact(checkDamaging, collider, _centerOfReferenceForJuice, _raycastIterationsToFindTarget, _raycastVariationPerTry);
-
-            CurrentHp -= checkDamaging.Damage;
-            checkDamaging.Consumed();
-
-            if (checkDamaging.AddImpactForce)
+            float damage;
+            Vector2 pointOfCollision = GetPointOfImpact(checkDamaging, collider, _centerOfReferenceForJuice,
+                    _raycastIterationsToFindTarget, _raycastVariationPerTry);
+            if (DamagingDoesDamage(checkDamaging, pointOfCollision, out damage))
             {
-                _character.AddKnockBack(checkDamaging);
+                CurrentHp -= damage;
+
+                if (checkDamaging.AddImpactForce)
+                {
+                    _character.AddKnockBack(checkDamaging);
+                }
+
+                var e = new ImpactEventArgs
+                {
+                    Damage = checkDamaging.Damage,
+                    PointOfCollision = pointOfCollision,
+                    color = _inputController.m_PlayerData.PlayerSponsor.SponsorColor
+                };
+                OnHpImpactReceived(e);
             }
-
-            var e = new ImpactEventArgs
-            {
-                Damage = checkDamaging.Damage,
-                PointOfCollision = pointOfCollision,
-                color = _inputController.m_PlayerData.PlayerSponsor.SponsorColor
-            };
-            OnHpImpactReceived(e);
+            checkDamaging.Consumed();
         }
+    }
+
+    private bool DamagingDoesDamage(IDamaging checkDamaging, Vector2 pointOfCollision, out float damage)
+    {
+        bool ret = true;
+        damage = checkDamaging.Damage;
+        if (checkDamaging.ImpactForceSettings.IsFadeDmgOnDistance)
+        {
+            var distance = Vector2.Distance(pointOfCollision, transform.position);
+            if (distance <= checkDamaging.ImpactForceSettings.FadeMaxDmgDistance)
+            {
+                damage = damage*(checkDamaging.ImpactForceSettings.FadeMaxDmgDistance - distance)/
+                         checkDamaging.ImpactForceSettings.FadeMaxDmgDistance;
+            }
+            else
+            {
+                ret = false;
+            }
+        }
+        print(damage);
+        return ret;
     }
 
     private void CheckForDamage(Collider2D collider, bool isBack)

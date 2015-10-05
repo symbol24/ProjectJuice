@@ -10,7 +10,6 @@ public class ExplosiveObject : HPBase
     [SerializeField] private List<GameObject> _ragdollParticles;
     [SerializeField] private bool _enableTimerBeforeExplosion = false;
     [SerializeField] private float _timerBeforeExplosion;
-    [SerializeField] private float _damage = 100;
     [SerializeField] private bool _addImpactForce = true;
     [SerializeField] private ImpactForceSettings _impactForceSettings;
     [SerializeField] private float _DragResetDelay;
