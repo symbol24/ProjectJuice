@@ -5,8 +5,7 @@ using System;
 public class SappingDartGun : ExtendedMonobehaviour {
     [SerializeField]
     private Dart _dartPrefab;
-    [SerializeField]
-    private GameObject _dartSpawnPoint;
+    public GameObject _dartSpawnPoint;
     //[SerializeField]
     //private DartChain _dartChainPrefab;
 
@@ -27,9 +26,14 @@ public class SappingDartGun : ExtendedMonobehaviour {
     [SerializeField] private DartChainV2 _dartChainStatic;
     [Range(0,5)][SerializeField]
     private float _crossSectionLength = 0.1f;
+    [Range(0, 5)] [SerializeField] private float _crossSectionTolerance = 0.3f;
     [SerializeField] private int _crossSectionsLimit = 100;
-
+    [SerializeField]private float _shootDelay = 0.5f;
+    
     public float HoseCrossSectionLength { get { return _crossSectionLength; } }
+    [SerializeField]
+    private bool _enabledCrossSectionTolerance = false;
+    public float HoseCrossSectionLengthTolerance { get { return _enabledCrossSectionTolerance ? _crossSectionTolerance : float.MaxValue; } }
 
     DelayManager _delayManager;
     IPlatformer2DUserControl _inputManager;
@@ -92,10 +96,22 @@ public class SappingDartGun : ExtendedMonobehaviour {
     private void Dart_DartCollision(object sender, EventArgs e)
     {
         StopCoroutine(_addCrossSection);
-        lastDartChainAdded.transform.position = transform.position;
-        lastDartChainAdded.transform.parent = transform;
-        lastDartChainAdded.MainRigidbody.isKinematic = true;
-        lastDartChainAdded.IgnoreFloor = true;
+        var lastDartChainCandidate = lastDartChainAdded;
+        if (lastDartChainCandidate != null)
+        {
+            if (_dartChainStatic == null)
+            {
+                lastDartChainCandidate.transform.position = transform.position;
+                lastDartChainCandidate.transform.parent = transform;
+            }
+            else
+            {
+                lastDartChainCandidate.transform.position = _dartChainStatic.transform.position;
+                lastDartChainCandidate.transform.parent = _dartChainStatic.transform;
+                lastDartChainCandidate.PreviousChain = _dartChainStatic;
+            }
+            lastDartChainCandidate.IgnoreFloor = true;
+        }
     }
 
     private void Dart_DartDestroyed(object sender, EventArgs e)
@@ -103,6 +119,7 @@ public class SappingDartGun : ExtendedMonobehaviour {
         StopCoroutine(_addCrossSection);
         if(_moveLastChainToRefPoint != null) StopCoroutine(_moveLastChainToRefPoint);
         _delayManager.Reset();
+        _delayManager.AddDelay(_shootDelay);
     }
 
     private void Dart_JuiceSucked(object sender, JuiceSuckedEventArgs e)
@@ -120,37 +137,39 @@ public class SappingDartGun : ExtendedMonobehaviour {
     private int _currentCount;
     private IEnumerator _addCrossSection;
     private DartChainV2 lastDartChainAdded;
+
     private IEnumerator AddCrossSection(DartChainV2 currentFirstChain)
     {
-        //if (_inputManager.m_SpecialStay)
+        float distance = 0f;
+        while (distance <= _crossSectionLength)
         {
-            float distance = 0f;
-            while (distance <= _crossSectionLength)
-            {
-                distance = Vector3.Distance(currentFirstChain.transform.position, _dartSpawnPoint.transform.position);
-                yield return null;
-            }
-            var crossSectionsNeeded = distance / _crossSectionLength;
-            lastDartChainAdded = currentFirstChain;
-            int numberOfIterations = Mathf.RoundToInt(crossSectionsNeeded);
-            for (int i = 0; i < numberOfIterations; i++)
-            {
-                lastDartChainAdded = InstantiateChain(lastDartChainAdded);
-            }
-
-            _addCrossSection = AddCrossSection(lastDartChainAdded);
-            _currentCount ++;
-            if(_currentCount < _crossSectionsLimit) StartCoroutine(_addCrossSection);
-            else
-            {
-                lastDartChainAdded.transform.parent = _dartSpawnPoint.transform;
-                lastDartChainAdded.MainRigidbody.isKinematic = true;
-                _moveLastChainToRefPoint = MoveLastChainToRefPoint(lastDartChainAdded);
-                StartCoroutine(_moveLastChainToRefPoint);
-            }
+            distance = Vector3.Distance(currentFirstChain.transform.position, _dartSpawnPoint.transform.position);
+            yield return null;
         }
+        var crossSectionsNeeded = distance/_crossSectionLength;
+        lastDartChainAdded = currentFirstChain;
+        int numberOfIterations = Mathf.RoundToInt(crossSectionsNeeded);
+        for (int i = 0; i < numberOfIterations; i++)
+        {
+            lastDartChainAdded = InstantiateChain(lastDartChainAdded);
+        }
+
+        _addCrossSection = AddCrossSection(lastDartChainAdded);
+        _currentCount ++;
+        if (_currentCount < _crossSectionsLimit) StartCoroutine(_addCrossSection);
+        else
+        {
+            lastDartChainAdded.transform.parent = _dartSpawnPoint.transform;
+            lastDartChainAdded.MainRigidbody.isKinematic = true;
+            _moveLastChainToRefPoint = MoveLastChainToRefPoint(lastDartChainAdded);
+            StartCoroutine(_moveLastChainToRefPoint);
+        }
+
     }
+
     private IEnumerator _moveLastChainToRefPoint;
+    
+
     private IEnumerator MoveLastChainToRefPoint(DartChainV2 lastDartChainAdded)
     {
         while (true)

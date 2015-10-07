@@ -15,6 +15,11 @@ public class HPRecovery : ExtendedMonobehaviour, IPowerUp
 	}
 
     public bool IsAvailableForConsumption { get { return true; } }
+    bool IConsumable.IsAvailableForConsumption(object sender)
+    {
+        return IsAvailableForConsumption;
+    }
+
     public void Consumed()
     {
         var destroyer = gameObject.AddComponent<DestroyOnTimer>();

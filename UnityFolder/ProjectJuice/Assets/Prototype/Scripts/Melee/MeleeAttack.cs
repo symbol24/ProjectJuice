@@ -91,7 +91,7 @@ public class MeleeAttack : ExtendedMonobehaviour
         bool isGroundedAtStart = _mouvementManager.isGrounded;
         if (isAbility)
         {
-            _mouvementManager.ChangeCanFlip();
+            //_mouvementManager.ChangeCanFlip();
             if (_abilityHasSpike &&  !isGroundedAtStart)
                 _completedAerialAttack = false;
         }
@@ -104,8 +104,8 @@ public class MeleeAttack : ExtendedMonobehaviour
         while (_swingerCollider.transform.rotation.eulerAngles.z.ToNormalizedAngle() <= endingRotation)
         {
             _swingerCollider.transform.Rotate(Vector3.forward * Time.deltaTime * rotationSpeed);
-            
-            yield return new WaitForEndOfFrame();
+
+            yield return null;
         }
         _swingerCollider.SetActive(false);
         yield return null;
