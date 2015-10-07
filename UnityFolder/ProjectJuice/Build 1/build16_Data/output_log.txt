@@ -16,11 +16,7 @@ Platform assembly: C:\Users\Roberto\Documents\Juice\UnityFolder\ProjectJuice\Bui
 Loading C:\Users\Roberto\Documents\Juice\UnityFolder\ProjectJuice\Build 1\build16_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
 Platform assembly: C:\Users\Roberto\Documents\Juice\UnityFolder\ProjectJuice\Build 1\build16_Data\Managed\UnityEngine.Analytics.dll (this message is harmless)
 Loading C:\Users\Roberto\Documents\Juice\UnityFolder\ProjectJuice\Build 1\build16_Data\Managed\UnityEngine.Analytics.dll into Unity Child Domain
-Platform assembly: C:\Users\Roberto\Documents\Juice\UnityFolder\ProjectJuice\Build 1\build16_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
-Loading C:\Users\Roberto\Documents\Juice\UnityFolder\ProjectJuice\Build 1\build16_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
-Platform assembly: C:\Users\Roberto\Documents\Juice\UnityFolder\ProjectJuice\Build 1\build16_Data\Managed\UnityEngine.UI.dll (this message is harmless)
-Loading C:\Users\Roberto\Documents\Juice\UnityFolder\ProjectJuice\Build 1\build16_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
-- Completed reload, in  0.255 seconds
+- Completed reload, in  0.249 seconds
 desktop: 1366x768 60Hz; virtual: 1366x768 at 0,0
 <RI> Initializing input.
 <RI> Input initialized.
@@ -32,14 +28,198 @@ The SoundConnection for this level has no sounds to play.  Will cross out.
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
 
 Unloading 2 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 0.611767 ms
+UnloadTime: 0.664682 ms
 
 Unloading 4 unused Assets to reduce memory usage. Loaded Objects now: 386.
-Total: 0.382826 ms (FindLiveObjects: 0.032397 ms CreateObjectMapping: 0.028617 ms MarkObjects: 0.305073 ms  DeleteObjects: 0.015118 ms)
+Total: 0.395785 ms (FindLiveObjects: 0.034557 ms CreateObjectMapping: 0.028617 ms MarkObjects: 0.302373 ms  DeleteObjects: 0.029157 ms)
 
 Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 9.113871 ms
+UnloadTime: 9.686222 ms
 
 Unloading 3 unused Assets to reduce memory usage. Loaded Objects now: 688.
-Total: 0.578829 ms (FindLiveObjects: 0.062634 ms CreateObjectMapping: 0.041576 ms MarkObjects: 0.456800 ms  DeleteObjects: 0.016738 ms)
+Total: 0.643084 ms (FindLiveObjects: 0.068034 ms CreateObjectMapping: 0.058854 ms MarkObjects: 0.495137 ms  DeleteObjects: 0.018898 ms)
+
+Unloading 5 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 2.011326 ms
+
+Unloading 4 unused Assets to reduce memory usage. Loaded Objects now: 2382.
+Total: 1.325585 ms (FindLiveObjects: 0.208421 ms CreateObjectMapping: 0.093951 ms MarkObjects: 0.999453 ms  DeleteObjects: 0.021598 ms)
+
+need to add some kind of combustion here
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+need to add fireworks here
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+need to add some kind of combustion here
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+need to add fireworks here
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+addDeath Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+addDeath Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+need to add some kind of combustion here
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+need to add fireworks here
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+need to add some kind of combustion here
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+need to add fireworks here
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+addDeath Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+need to add some kind of combustion here
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+need to add fireworks here
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+need to add some kind of combustion here
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+need to add fireworks here
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+addDeath Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+addDeath Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+addDeath Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+addDeath Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+addDeath Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+addDeath Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+addDeath Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+Unloading 5 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 5.141975 ms
+
+Unloading 1 unused Assets to reduce memory usage. Loaded Objects now: 2402.
+Total: 1.691133 ms (FindLiveObjects: 0.208961 ms CreateObjectMapping: 0.101511 ms MarkObjects: 1.361222 ms  DeleteObjects: 0.018358 ms)
+
+need to add some kind of combustion here
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+need to add fireworks here
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+need to add some kind of combustion here
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+need to add fireworks here
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+addDeath Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+need to add some kind of combustion here
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+need to add fireworks here
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+addDeath Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+need to add some kind of combustion here
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+need to add fireworks here
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+need to add some kind of combustion here
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+need to add fireworks here
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+addDeath Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+addDeath Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+need to add some kind of combustion here
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+need to add fireworks here
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+addDeath Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+addDeath Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+addDeath Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+addDeath Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+addDeath Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
 
