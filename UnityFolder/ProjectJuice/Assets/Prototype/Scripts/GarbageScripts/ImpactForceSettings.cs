@@ -24,7 +24,6 @@ public class ImpactForceSettings
     private bool _zeroVelocityAtEnd;
 
     [SerializeField] private bool _isFadeDmgOnDistance = false;
-    [Range(0,1)][SerializeField] private float _fadeDmgFactor = 0.9f;
     [SerializeField]private float _fadeMaxDmgDistance = 50f;
 
 
@@ -67,7 +66,6 @@ public class ImpactForceSettings
     }
     public Direction2D DirectionComingForm { get; set; }
     public bool IsFadeDmgOnDistance { get { return _isFadeDmgOnDistance; } set { _isFadeDmgOnDistance = value; } }
-    public float FadeDmgDmgFactor { get { return _fadeDmgFactor; } set { _fadeDmgFactor = value; } }
 
     public float FadeMaxDmgDistance
     {

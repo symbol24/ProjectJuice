@@ -84,55 +84,26 @@ public class HPScript : HPBase
         var checkPowerUp = collider.gameObject.GetComponent<IPowerUp>();
         if (checkPowerUp != null)
         {
-            if (checkPowerUp.IsAvailableForConsumption)
+            if (checkPowerUp.IsAvailableForConsumption(this))
             {
                 CurrentHp += checkPowerUp.HPRecov;
                 checkPowerUp.Consumed();
             }
         }
     }
-
-    private void CheckForDamage(Collider2D collider)
-    {
-        var checkDamaging = collider.gameObject.GetComponent<IDamaging>();
-
-        //If it is not damaging, dont bother with calculations
-        if (checkDamaging != null && CheckIfIDamagableIsActive(checkDamaging))
-        {
-            float damage;
-            Vector2 pointOfCollision = GetPointOfImpact(checkDamaging, collider, _centerOfReferenceForJuice,
-                    _raycastIterationsToFindTarget, _raycastVariationPerTry);
-            if (DamagingDoesDamage(checkDamaging, pointOfCollision, out damage))
-            {
-                CurrentHp -= damage;
-
-                if (checkDamaging.AddImpactForce)
-                {
-                    _character.AddKnockBack(checkDamaging);
-                }
-
-                var e = new ImpactEventArgs
-                {
-                    Damage = checkDamaging.Damage,
-                    PointOfCollision = pointOfCollision,
-                    color = _inputController.m_PlayerData.PlayerSponsor.SponsorColor
-                };
-                OnHpImpactReceived(e);
-            }
-            checkDamaging.Consumed();
-        }
-    }
+    
 
     private bool DamagingDoesDamage(IDamaging checkDamaging, Vector2 pointOfCollision, out float damage)
     {
         bool ret = true;
         damage = checkDamaging.Damage;
+        Debug.Log("original Damage = " + damage);
         if (checkDamaging.ImpactForceSettings.IsFadeDmgOnDistance)
         {
-            var distance = Vector2.Distance(pointOfCollision, transform.position);
+            var distance = Vector2.Distance(checkDamaging.gameObject.transform.position, transform.position);
             if (distance <= checkDamaging.ImpactForceSettings.FadeMaxDmgDistance)
             {
-                damage = damage*(checkDamaging.ImpactForceSettings.FadeMaxDmgDistance - distance)/
+                damage = damage * (checkDamaging.ImpactForceSettings.FadeMaxDmgDistance - distance)/
                          checkDamaging.ImpactForceSettings.FadeMaxDmgDistance;
             }
             else
@@ -140,7 +111,7 @@ public class HPScript : HPBase
                 ret = false;
             }
         }
-        print(damage);
+        Debug.Log("afterCalc Damage = " + damage);
         return ret;
     }
 
@@ -151,28 +122,33 @@ public class HPScript : HPBase
         //If it is not damaging, dont bother with calculations
         if (checkDamaging != null && CheckIfIDamagableIsActive(checkDamaging))
         {
-            Vector2 pointOfCollision = GetPointOfImpact(checkDamaging, collider, _centerOfReferenceForJuice, _raycastIterationsToFindTarget, _raycastVariationPerTry);
-
-            float mulitpliedDmg = checkDamaging.Damage;
-            if (isBack) mulitpliedDmg = Database.instance.BackDamageMultiplier * checkDamaging.Damage;
-
-            CurrentHp -= mulitpliedDmg;
-            checkDamaging.Consumed();
-
-            if (checkDamaging.AddImpactForce)
+            Vector2 pointOfCollision = GetPointOfImpact(checkDamaging, collider, _centerOfReferenceForJuice,
+                _raycastIterationsToFindTarget, _raycastVariationPerTry);
+            float damage;
+            if (DamagingDoesDamage(checkDamaging, pointOfCollision, out damage))
             {
-                checkDamaging.UpdateImpactForceSetting(GetDirectionFromImpact(collider, checkDamaging.ImpactForceSettings));
+                float mulitpliedDmg = damage;
+                if (isBack) mulitpliedDmg = Database.instance.BackDamageMultiplier * damage;
 
-                _character.AddKnockBack(checkDamaging);
+                CurrentHp -= mulitpliedDmg;
+                checkDamaging.Consumed();
+
+                if (checkDamaging.AddImpactForce)
+                {
+                    checkDamaging.UpdateImpactForceSetting(GetDirectionFromImpact(collider,
+                        checkDamaging.ImpactForceSettings));
+
+                    _character.AddKnockBack(checkDamaging);
+                }
+
+                var e = new ImpactEventArgs
+                {
+                    Damage = damage,
+                    PointOfCollision = pointOfCollision,
+                    color = _inputController.m_PlayerData.PlayerSponsor.SponsorColor
+                };
+                OnHpImpactReceived(e);
             }
-
-            var e = new ImpactEventArgs
-            {
-                Damage = checkDamaging.Damage,
-                PointOfCollision = pointOfCollision,
-                color = _inputController.m_PlayerData.PlayerSponsor.SponsorColor
-            };
-            OnHpImpactReceived(e);
         }
     }
 

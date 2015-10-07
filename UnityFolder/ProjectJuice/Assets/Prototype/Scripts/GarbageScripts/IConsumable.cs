@@ -3,6 +3,6 @@ using System.Collections;
 
 public interface IConsumable : IGameObject
 {
-    bool IsAvailableForConsumption { get; }
+    bool IsAvailableForConsumption(object sender);
     void Consumed();
 }

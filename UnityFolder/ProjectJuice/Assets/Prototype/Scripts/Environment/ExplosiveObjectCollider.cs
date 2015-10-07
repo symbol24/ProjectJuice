@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using System.Collections;
 
@@ -7,9 +8,28 @@ public class ExplosiveObjectCollider : ExtendedMonobehaviour, IDamaging
 
     public ExplosiveObject _explosiveObject;
 
+
     public bool IsAvailableForConsumption
     {
         get { return _explosiveObject.IsAvailableForConsumption; }
+    }
+
+    void Start()
+    {
+        _consumerObjects = new List<Component>();
+    }
+
+    private List<Component> _consumerObjects;
+    bool IConsumable.IsAvailableForConsumption(object sender)
+    {
+        var mitigateRet = false;
+        var senderAsGameobject = sender as Component;
+        if (!_consumerObjects.Any(c => c.GetInstanceID() == senderAsGameobject.GetInstanceID()))
+        {
+            _consumerObjects.Add(senderAsGameobject);
+            mitigateRet = true;
+        }
+        return IsAvailableForConsumption && mitigateRet;
     }
     public void Consumed()
     {
@@ -25,6 +45,7 @@ public class ExplosiveObjectCollider : ExtendedMonobehaviour, IDamaging
     {
         get { return _explosiveObject.Damage; }
     }
+    
     public bool HasPreferredImpactPoint
     {
         get { return _explosiveObject.HasPreferredImpactPoint; }
