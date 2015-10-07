@@ -24,12 +24,29 @@ public class DartChainV2 : ExtendedMonobehaviour {
             _currentDart = value;
             if (!_isStaticChain)
             {
-                _currentDart.DartDestroyed += CurrentDartOnDartDestroyed;
-                _currentDart.DartCollision += CurrentDart_DartCollision;
+                SubscribeToDartEvents(true);
             }
 
         }
     }
+
+    private bool _isSubscribedToDartEvents = false;
+    private void SubscribeToDartEvents(bool isToSubscribe)
+    {
+        if (isToSubscribe && !_isSubscribedToDartEvents)
+        {
+            _currentDart.DartDestroyed += CurrentDartOnDartDestroyed;
+            _currentDart.DartCollision += CurrentDart_DartCollision;
+            _isSubscribedToDartEvents = true;
+        }
+        else if (!isToSubscribe && _isSubscribedToDartEvents)
+        {
+            _currentDart.DartDestroyed -= CurrentDartOnDartDestroyed;
+            _currentDart.DartCollision -= CurrentDart_DartCollision;
+            _isSubscribedToDartEvents = false;
+        }
+    }
+
     public DartChainV2 PreviousChain { get; set; }
     private DartChainV2 _nextChain;
     public DartChainV2 NextChain
@@ -223,8 +240,8 @@ public class DartChainV2 : ExtendedMonobehaviour {
     {
         if (gameObject != null)
         {
+            SubscribeToDartEvents(false);
             Destroy(gameObject);
-            
         }
         else
         {

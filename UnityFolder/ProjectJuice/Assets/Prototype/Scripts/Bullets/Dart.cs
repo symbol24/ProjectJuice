@@ -171,13 +171,29 @@ public class Dart : ExtendedMonobehaviour
             //Check if we got our hpScript
             if (_targetHpScript != null)
             {
-                _targetHpScript.Dead += TargetHpScriptOnDead;
+                SubscribeToTargetHPScript(true);
                 OnDartCollision();
                 ret = true;
                 StickDart(toCheck);
             }
         }
         return ret;
+    }
+
+    private bool _isSubscribedToTargetHPScript = false;
+    private void SubscribeToTargetHPScript(bool isToSubscribe)
+    {
+        if (isToSubscribe && !_isSubscribedToTargetHPScript)
+        {
+            _targetHpScript.Dead += TargetHpScriptOnDead;
+            _isSubscribedToTargetHPScript = true;
+        }
+        else if (!isToSubscribe && _isSubscribedToTargetHPScript)
+        {
+            _targetHpScript.Dead -= TargetHpScriptOnDead;
+            _isSubscribedToTargetHPScript = false;
+        }
+
     }
 
     private void TargetHpScriptOnDead(object sender, EventArgs eventArgs)
@@ -231,8 +247,8 @@ public class Dart : ExtendedMonobehaviour
         if (DartDestroyed != null) DartDestroyed(this, EventArgs.Empty);
         if (gameObject != null)
         {
+            SubscribeToTargetHPScript(false);
             Destroy(gameObject);
-
         }
         else
         {
