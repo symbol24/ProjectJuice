@@ -11,11 +11,9 @@ public class MeleeDamagingCollider : MonoBehaviour, IDamaging
     [Range(0,1)] public float _timeOfClashing;
     public MeleeAttack _meleeAttack;
     public Transform _preferredImpactPoint;
-    private Rigidbody2D _rigidbody;
 	// Use this for initialization
 	void Start ()
 	{
-	    _rigidbody = GetComponent<Rigidbody2D>();
 	    if (!_meleeAttack.enabled)
 	    {
 	        _meleeAttack = _meleeAttack.gameObject.GetComponents<MeleeAttack>().First(c => c.enabled);

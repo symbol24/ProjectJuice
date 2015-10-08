@@ -24,8 +24,6 @@ public class PhysicsSingleParticle : MonoBehaviour {
         set { _hpRecovered = value; }
     }
 
-    private Vector3 _lastPosition = Vector3.zero;
-    private bool _triggered = false;
     [Range(0,1)][SerializeField] private float _probabilityOfHealthPickup = 0.1f;
     [Range(0,1)][SerializeField] private float _probablityOfHealthStayOnGround = 0.2f;
     [SerializeField] private float _hpRecovered = 5;
