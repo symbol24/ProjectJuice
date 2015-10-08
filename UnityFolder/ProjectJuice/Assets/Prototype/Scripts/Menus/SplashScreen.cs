@@ -6,7 +6,7 @@ using Utility;
 public class SplashScreen : MonoBehaviour {
     MenuControls m_MenuControls;
     List<PlayerData> m_AllDatas;
-    [SerializeField] string m_NextLevel;
+    [HideInInspector] public int m_NextLevel;
 	// Use this for initialization
 	void Start () {
         m_MenuControls = FindObjectOfType<MenuControls>();

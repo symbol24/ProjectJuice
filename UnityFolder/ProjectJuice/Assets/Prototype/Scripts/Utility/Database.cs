@@ -70,13 +70,14 @@ public class Database : MonoBehaviour
     [Range(0,10)][SerializeField] float m_BackDamageMultiplier = 1.4f;
     public float BackDamageMultiplier { get { return m_BackDamageMultiplier; } }
 
+    [Range(0,1)][SerializeField] float m_MenuNavigationDeadZone = 0.5f;
+    public float MenuNavigationDeadZone { get { return m_MenuNavigationDeadZone; } }
+
     [HideInInspector] public int MainMenuID;
-    [HideInInspector] public int MenuSlideID;
     [HideInInspector] public string MenuSlideName;
-    [HideInInspector] public int MenuClickID;
     [HideInInspector] public string MenuClickName;
-    [HideInInspector] public int MenuCanceID;
     [HideInInspector] public string MenuCancelName;
+    [HideInInspector] public string MenuErrorName;
 
     void Awake()
     {

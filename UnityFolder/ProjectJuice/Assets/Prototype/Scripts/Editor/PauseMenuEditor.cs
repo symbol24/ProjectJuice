@@ -11,20 +11,17 @@ public class PauseMenuEditor : Editor {
 
     public override void OnInspectorGUI()
     {
-        _listOfClips = EditorUtilities.GetListOfAudioClipsFromGroup("Logo");
+        _listOfClips = EditorUtilities.GetListOfAudioClips();
         DrawDefaultInspector();
 
         var pauseMenu = target as PauseMenu;
-        
-        _soundsID[0] = pauseMenu.MenuOpenID;
-        _soundsID[1] = pauseMenu.MenuCloseID;
-        
+
+        _soundsID[0] = EditorUtilities.GetSelectedClip(_listOfClips, pauseMenu.MenuOpenName);
+        _soundsID[1] = EditorUtilities.GetSelectedClip(_listOfClips, pauseMenu.MenuCloseName);
+
         _soundsID[0] = EditorGUILayout.Popup("OnOpen Audio Clip", _soundsID[0], _listOfClips);
         _soundsID[1] = EditorGUILayout.Popup("OnClose Audio Clip", _soundsID[1], _listOfClips);
-        
 
-        pauseMenu.MenuOpenID = _soundsID[0];
-        pauseMenu.MenuCloseID = _soundsID[1];
         pauseMenu.MenuOpenName = SoundManager.Instance.storedSFXs[_soundsID[0]].name;
         pauseMenu.MenuCloseName = SoundManager.Instance.storedSFXs[_soundsID[1]].name;
 

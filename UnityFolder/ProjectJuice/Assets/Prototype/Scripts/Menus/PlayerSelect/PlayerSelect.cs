@@ -99,6 +99,7 @@ public class PlayerSelect : Menu {
 
                 m_PlayerCount++;
             }
+            SoundManager.PlaySFX(Database.instance.MenuClickName);
         }
     }
 

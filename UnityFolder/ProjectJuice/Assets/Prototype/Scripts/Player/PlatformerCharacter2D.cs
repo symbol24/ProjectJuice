@@ -32,11 +32,11 @@ namespace UnityStandardAssets._2D
         const float k_GroundedRadius = .2f; // Radius of the overlap circle to determine if grounded
         private bool m_Grounded;            // Whether or not the player is grounded.
         public bool isGrounded { get { return m_Grounded; } }
-        private Transform m_CeilingCheck;   // A position marking where to check for ceilings
+        //private Transform m_CeilingCheck;   // A position marking where to check for ceilings
         const float k_CeilingRadius = .01f; // Radius of the overlap circle to determine if the player can stand up
-        [Range(0, 1)][SerializeField]private float m_TriggerResetDelay = 0.1f; // To reset the ground when passing through
+        //[Range(0, 1)][SerializeField]private float m_TriggerResetDelay = 0.1f; // To reset the ground when passing through
         private bool m_IsPassing = false;
-        private bool m_ConfirmPassing = false;
+        //private bool m_ConfirmPassing = false;
 
         private Animator m_Anim;            // Reference to the player's animator component.
         private Rigidbody2D m_Rigidbody2D;
@@ -55,7 +55,7 @@ namespace UnityStandardAssets._2D
             m_Controller = GetComponent<IPlatformer2DUserControl>();
             if (m_Controller == null) print("NO Platformer2DUserControls on player");
             m_GroundCheck = transform.FindChild("GroundCheck");
-            m_CeilingCheck = transform.FindChild("CeilingCheck");
+            //m_CeilingCheck = transform.FindChild("CeilingCheck");
             m_Anim = m_Body.GetComponent<Animator>();
             m_Rigidbody2D = GetComponent<Rigidbody2D>();
             m_MyColliders = GetComponents<Collider2D>();
