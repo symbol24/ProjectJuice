@@ -71,7 +71,7 @@ public class SelectorMenu : Menu {
                 BackTrack();
         }
 
-        if (m_DelayManager.m_CanShield)
+        if (m_CurrentSelectionState == SelectionState.Selection && m_DelayManager.m_CanShield)
         {
 
             if (m_VerticalPosition == 0 && m_Controls.X[m_ControllerID] > Database.instance.MenuNavigationDeadZone)
@@ -232,7 +232,6 @@ public class SelectorMenu : Menu {
                 break;
             case SelectionState.Selection:
                 m_Player.PlayerSponsor = null;
-                Database.instance.ListofSponsors[m_SponsorSelection].ReleaseSponsor();
                 m_SponsorSelection = 0;
                 m_AbilitySelection = 0;
                 m_Player.PlayerAbility = Abilities.None;
@@ -240,6 +239,7 @@ public class SelectorMenu : Menu {
                 m_ParentMenu.DeactivateScreen(m_PanelId, m_Player);
                 break;
             case SelectionState.Confirmation:
+                Database.instance.ListofSponsors[m_SponsorSelection].ReleaseSponsor();
                 m_CurrentSelectionState = SetStateAndTexts(false);
                 m_ConfirmedOverlay.SetActive(false);
                 break;
