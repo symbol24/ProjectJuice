@@ -265,7 +265,7 @@ public class SelectorMenu : Menu {
 
     private SelectionState SetStateAndTexts(bool isForward) {
 
-        print("Old State " + m_CurrentSelectionState);
+        //print("Old State " + m_CurrentSelectionState);
         SelectionState temp = m_CurrentSelectionState;
 
         if (isForward) temp++;
@@ -292,7 +292,7 @@ public class SelectorMenu : Menu {
                 m_Ledger.text = Database.instance.GameTexts[m_ledgerConfirmedWaiting];
                 break;
         }
-        print("New State " + temp);
+        //print("New State " + temp);
         return temp;
     }
 }
