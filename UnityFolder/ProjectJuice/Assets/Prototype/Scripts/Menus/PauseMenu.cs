@@ -17,10 +17,8 @@ public class PauseMenu : Menu {
 
     protected static bool m_isPaused = false;
     private bool m_inConfirm = false;
-
-    [HideInInspector] public int MenuOpenID;
+    
     [HideInInspector] public string MenuOpenName;
-    [HideInInspector] public int MenuCloseID;
     [HideInInspector] public string MenuCloseName;
 
     // Use this for initialization

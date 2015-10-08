@@ -17,7 +17,7 @@ public static class EditorUtilities {
         return ret;
     }
 
-    public static string[] GetListOfAudioClipsFromGroup(string groupName)
+    public static string[] GetListOfAudioClips()
     {
 
         List<AudioClip> clips = SoundManager.Instance.storedSFXs;
@@ -32,6 +32,28 @@ public static class EditorUtilities {
                 ret[i] = clips[i].name;
             }
         }
+
+        return ret;
+    }
+
+    public static int GetSelectedClip(string[] clipList, string clip)
+    {
+        int ret = 0;
+
+        for(int i = 0; i < clipList.Length; i++)
+        {
+            if (clipList[i] == clip) ret = i;
+        }
+
+        return ret;
+    }
+
+    public static string[] ConvertToArray(List<string> listofstring)
+    {
+        string[] ret = new string[listofstring.Count];
+
+        for (int i = 0; i < listofstring.Count; i++)
+            ret[i] = listofstring[i];
 
         return ret;
     }

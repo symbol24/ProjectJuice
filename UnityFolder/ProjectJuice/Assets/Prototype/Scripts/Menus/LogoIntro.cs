@@ -7,7 +7,6 @@ public class LogoIntro : ExtendedMonobehaviour {
     [Range(0,5)][SerializeField] float m_FadeInTime = 2f;
     [Range(0,5)][SerializeField] float m_WaitForNextScene = 2f;
     [HideInInspector] public int NextScene;
-    [HideInInspector] public int Clip;
     [HideInInspector] public string ClipName;
     private bool m_clipPlayaed = false;
     private string m_clipName;

@@ -1,7 +1,13 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:UnityFolder/ProjectJuice/Assets/Prototype/Sounds/Sound_Effects/Jump_Dash.meta
 guid: 1fc972a4a5d610346819b9b883aae872
 folderAsset: yes
 timeCreated: 1444257862
+=======
+guid: aa368947b75808e46abc46632ef06966
+folderAsset: yes
+timeCreated: 1444260390
+>>>>>>> bbb1137fa4e3571f0d107673cc8186dab1d4ebe3:UnityFolder/ProjectJuice/Assets/Prototype/Sounds/Sound_Effects/Jump_Dash.meta
 licenseType: Free
 DefaultImporter:
   userData: 
