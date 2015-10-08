@@ -41,22 +41,20 @@ public class Dart : ExtendedMonobehaviour
     private Transform _sourceTransform;
     private bool _ignoreWalls = false;
 
+    
+
+
 
     void Update ()
     {
-        
-        if (!InputManager.m_SpecialStay && !_debugInvencible)
-        {
-            OnDartDestroyed();
-        }
-
+        bool dartToBeDestroyed = !InputManager.m_SpecialStay && !_debugInvencible;
 
         if(_hitAWall)
         {
             destroyTimer += Time.deltaTime;
             if(destroyTimer >= DartCollTimerDisappear)
             {
-                OnDartDestroyed();
+                dartToBeDestroyed = true;
             }
         }
         else if (_targetHpScript != null)
@@ -65,7 +63,7 @@ public class Dart : ExtendedMonobehaviour
             _currentLifetimeAfterHit += Time.deltaTime;
             if (_currentLifetimeAfterHit >= LifetimeSinceHit)
             {
-                OnDartDestroyed();
+                dartToBeDestroyed = true;
             }
 
             //ApplyDamage
@@ -83,7 +81,9 @@ public class Dart : ExtendedMonobehaviour
                 }
             }
         }
-	}
+
+        if (dartToBeDestroyed) OnDartDestroyed();
+    }
 
     void Start()
     {
@@ -131,11 +131,15 @@ public class Dart : ExtendedMonobehaviour
 
     private void CheckForWall(GameObject toCheckWall)
     {
-        //For now
-        _hitAWall = true;
-        StickDart(toCheckWall);
-        OnDartCollision();
+        var checkForPassthrough = toCheckWall.GetComponent<Ground>();
+        if (checkForPassthrough == null || !checkForPassthrough.IsPassThrough)
+        {
+            _hitAWall = true;
+            StickDart(toCheckWall);
+            OnDartCollision();
+        }
     }
+
     private bool CheckForHPCollision(GameObject toCheck)
     {
         var ret = false;
@@ -167,13 +171,29 @@ public class Dart : ExtendedMonobehaviour
             //Check if we got our hpScript
             if (_targetHpScript != null)
             {
-                _targetHpScript.Dead += TargetHpScriptOnDead;
+                SubscribeToTargetHPScript(true);
                 OnDartCollision();
                 ret = true;
                 StickDart(toCheck);
             }
         }
         return ret;
+    }
+
+    private bool _isSubscribedToTargetHPScript = false;
+    private void SubscribeToTargetHPScript(bool isToSubscribe)
+    {
+        if (isToSubscribe && !_isSubscribedToTargetHPScript)
+        {
+            _targetHpScript.Dead += TargetHpScriptOnDead;
+            _isSubscribedToTargetHPScript = true;
+        }
+        else if (!isToSubscribe && _isSubscribedToTargetHPScript)
+        {
+            _targetHpScript.Dead -= TargetHpScriptOnDead;
+            _isSubscribedToTargetHPScript = false;
+        }
+
     }
 
     private void TargetHpScriptOnDead(object sender, EventArgs eventArgs)
@@ -227,8 +247,8 @@ public class Dart : ExtendedMonobehaviour
         if (DartDestroyed != null) DartDestroyed(this, EventArgs.Empty);
         if (gameObject != null)
         {
+            SubscribeToTargetHPScript(false);
             Destroy(gameObject);
-
         }
         else
         {
@@ -240,10 +260,18 @@ public class Dart : ExtendedMonobehaviour
     public void ListenToCrossSection(DartChainV2 brandNewCrossSection)
     {
         brandNewCrossSection.HitFloor += HitFloor;
+        brandNewCrossSection.BrokenOnTolerance += BrokenOnTolerance;
+    }
+
+    private void BrokenOnTolerance(object sender, EventArgs eventArgs)
+    {
+        
+        OnDartDestroyed();
     }
 
     private void HitFloor(object sender, EventArgs eventArgs)
     {
+        Debug.Log("Dart Hit the Floor");
         OnDartDestroyed();
     }
 }

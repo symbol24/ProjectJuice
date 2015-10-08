@@ -77,6 +77,14 @@ public abstract class ExtendedMonobehaviour : MonoBehaviour, IGameObject {
         return new Vector3(xAngle, yAngle, zAngle);
     }
 
+    protected float GetRotation(Vector3 center, Vector3 target)
+    {
+        var xAxis = center.x;
+        var yAxis = target.y;
+        var rotation = Mathf.Atan2(yAxis, xAxis)*Mathf.Rad2Deg;
+        return rotation;
+    }
+
 
     public void ChangeVisibilty(GameObject toChange)
     {
@@ -84,6 +92,7 @@ public abstract class ExtendedMonobehaviour : MonoBehaviour, IGameObject {
         else toChange.SetActive(false);
     }
 
+    private readonly bool _legacyGetPointOfImpact = false;
     protected Vector2 GetPointOfImpact(IDamaging chkDamaging, Collider2D targetCollider,Transform sourceReference, int raycastIterationsToFindTarget = 5, float raycastVariationPerTry = 0.1f)
     {
         Vector2 ret = new Vector2();
@@ -95,22 +104,41 @@ public abstract class ExtendedMonobehaviour : MonoBehaviour, IGameObject {
         }
         else
         {
-            for (int i = 0; i < raycastIterationsToFindTarget; i++)
+            if (_legacyGetPointOfImpact)
             {
-                var firstTarget = new Vector3(othersPosition.x + raycastVariationPerTry * i,
-                    othersPosition.y + raycastVariationPerTry * i, othersPosition.z);
-                hit = Physics2D.Raycast(sourceReference.position, firstTarget, float.MaxValue);
-                if (hit.collider == targetCollider) break;
-                //Testing where raycast went
-                //Debug.DrawRay(_centerOfReferenceForJuice.position, firstTarget, Color.green);
-                //EditorApplication.isPaused = true;
-                var secondTarget = new Vector3(othersPosition.x - raycastVariationPerTry * i,
-                    othersPosition.y - raycastVariationPerTry * i, othersPosition.z);
-                hit = Physics2D.Raycast(sourceReference.position, secondTarget, float.MaxValue);
-                if (hit.collider == targetCollider) break;
-                //Debug.DrawRay(_centerOfReferenceForJuice.position, secondTarget, Color.red);
+                for (int i = 0; i < raycastIterationsToFindTarget; i++)
+                {
+                    var firstTarget = new Vector3(othersPosition.x + raycastVariationPerTry*i,
+                        othersPosition.y + raycastVariationPerTry*i, othersPosition.z);
+                    hit = Physics2D.Raycast(sourceReference.position, firstTarget, float.MaxValue);
+                    if (hit.collider == targetCollider) break;
+                    var secondTarget = new Vector3(othersPosition.x - raycastVariationPerTry*i,
+                        othersPosition.y - raycastVariationPerTry*i, othersPosition.z);
+                    hit = Physics2D.Raycast(sourceReference.position, secondTarget, float.MaxValue);
+                    if (hit.collider == targetCollider) break;
+                }
+                ret = hit.point;
             }
-            ret = hit.point;
+            else
+            {
+                RaycastHit2D[] hits;
+                hits = Physics2D.RaycastAll(sourceReference.position, othersPosition,
+                    Vector3.Distance(sourceReference.position, othersPosition));
+                //Debug.DrawRay(sourceReference.position, othersPosition, Color.green);
+                hit = hits.FirstOrDefault(c => c.collider == targetCollider);
+                ret = hit.point;
+                if (hit == default(RaycastHit2D))
+                {
+                    ret = sourceReference.transform.position;
+                }
+            }
+            
+            /*Debug.Log(hit.transform.gameObject.name);
+            Debug.DrawLine(transform.position, ret);
+            Debug.DrawLine(transform.position, hit.centroid, Color.yellow);
+            Debug.DrawLine(transform.position, hit.transform.position, Color.cyan);
+            Debug.DrawLine(transform.position, targetCollider.transform.position, Color.magenta);
+            Debug.Break();*/
         }
 
 

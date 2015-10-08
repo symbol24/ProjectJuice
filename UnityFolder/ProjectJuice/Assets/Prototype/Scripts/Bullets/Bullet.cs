@@ -50,6 +50,10 @@ public class Bullet : MonoBehaviour, IDamaging {
             return true;
         }
     }
+    bool IConsumable.IsAvailableForConsumption(object sender)
+    {
+        return IsAvailableForConsumption;
+    }
 
     public LayerMask m_WhatIsGround; // A mask determining what is ground 
     [SerializeField] private bool _addImpactForce = false;

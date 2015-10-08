@@ -23,6 +23,10 @@ public class ImpactForceSettings
     [SerializeField]
     private bool _zeroVelocityAtEnd;
 
+    [SerializeField] private bool _isFadeDmgOnDistance = false;
+    [SerializeField]private float _fadeMaxDmgDistance = 50f;
+
+
     public int ImpactDrag
     {
         get { return _impactDrag; }
@@ -61,4 +65,11 @@ public class ImpactForceSettings
         set { _zeroVelocityAtEnd = value; }
     }
     public Direction2D DirectionComingForm { get; set; }
+    public bool IsFadeDmgOnDistance { get { return _isFadeDmgOnDistance; } set { _isFadeDmgOnDistance = value; } }
+
+    public float FadeMaxDmgDistance
+    {
+        get { return _fadeMaxDmgDistance; }
+        set { _fadeMaxDmgDistance = value; }
+    }
 }

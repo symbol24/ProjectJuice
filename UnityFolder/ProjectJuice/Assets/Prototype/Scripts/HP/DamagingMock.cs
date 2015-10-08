@@ -29,6 +29,10 @@ public class DamagingMock : MonoBehaviour, IDamaging {
 	}
 
     public bool IsAvailableForConsumption { get { return true; }}
+    bool IConsumable.IsAvailableForConsumption(object sender)
+    {
+        return IsAvailableForConsumption;
+    }
     public void Consumed()
     {
     }

@@ -52,7 +52,7 @@ public abstract class HPBase : ExtendedMonobehaviour {
 
     protected bool CheckIfIDamagableIsActive(IDamaging checkDamaging)
     {
-        var ret = checkDamaging.IsAvailableForConsumption && !IsAChild(checkDamaging);
+        var ret = checkDamaging.IsAvailableForConsumption(this) && !IsAChild(checkDamaging);
         if (ret && checkDamaging.HasImmuneTargets)
         {
             //If it is not in the immunetargets collection, it should do damage
