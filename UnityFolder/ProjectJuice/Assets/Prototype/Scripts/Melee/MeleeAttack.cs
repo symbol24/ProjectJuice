@@ -18,7 +18,6 @@ public class MeleeAttack : ExtendedMonobehaviour
     [SerializeField] private GameObject _swingerCollider;
     [SerializeField] private GameObject _flipReference;
     [SerializeField] private DelayManager _delayManager;
-    [SerializeField] private float _damage = 80;
     [SerializeField] private bool _addImpactForce = true;
     [SerializeField] private PlatformerCharacter2D _physicsManager;
     [SerializeField] private GameObject _clashingEffectPrefab;
