@@ -194,16 +194,17 @@ public class SelectorMenu : Menu {
         switch (m_CurrentSelectionState)
         {
             case SelectionState.Selection:
-
-                SoundManager.PlaySFX(Database.instance.MenuClickName);
+                if (!Database.instance.ListofSponsors[m_SponsorSelection].isTaken)
+                {
+                    SoundManager.PlaySFX(Database.instance.MenuClickName);
                 m_CurrentSelectionState = SetStateAndTexts(true);
+                }
+                else
+                    SoundManager.PlaySFX(Database.instance.MenuErrorName);
+
                 break;
 
             case SelectionState.Confirmation:
-
-                if (!Database.instance.ListofSponsors[m_SponsorSelection].isTaken)
-                {
-
                     //sponsor
                     m_Player.PlayerSponsor = Database.instance.ListofSponsors[m_SponsorSelection];
                     Database.instance.ListofSponsors[m_SponsorSelection].TakeSponsor();
@@ -214,14 +215,9 @@ public class SelectorMenu : Menu {
                     m_ParentMenu.ReadyUp(true);
                     m_ConfirmedOverlay.SetActive(true);
 
-
                     SoundManager.PlaySFX(Database.instance.MenuClickName);
 
                     CheckReady();
-                }
-                else
-
-                    SoundManager.PlaySFX(Database.instance.MenuErrorName);
                 break;
         }
         m_DelayManager.AddDelay(Database.instance.MenuInputDelay);
