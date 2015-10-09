@@ -15,7 +15,9 @@ public class PlayerSelect : Menu {
     public Text[] HeaderText { get { return m_PlayerTexts; } set { m_PlayerTexts = value; } }
     [SerializeField] private GameObject[] m_PlayerSelectPanels;
     FadeOut m_Fader;
+    [Range(0,1)][SerializeField] private float m_delayTransition = 0.5f;
     [HideInInspector] public int NextScene;
+    [HideInInspector] public string StartSound;
 
     void Awake()
     {
@@ -52,7 +54,7 @@ public class PlayerSelect : Menu {
                 ActivatePlayer(m_ListofPlayers[i], i);
 
             if (GameManager.instance.IsCharacterSelect &&  m_PlayerCount > 1 && m_PlayerCount == m_ReadyCount && m_Controls._Start[i])
-                GoToNextScene();
+                StartCoroutine(GoToNextScene());
         }
 	}
 
@@ -103,13 +105,15 @@ public class PlayerSelect : Menu {
         }
     }
 
-    void GoToNextScene()
+    IEnumerator GoToNextScene()
     {
+        SoundManager.PlaySFX(StartSound);
         foreach(PlayerData pd in m_ListofPlayers)
         {
             pd.CheckActivated();
         }
         GameManager.instance.SetGameState(GameState.Loading);
+        yield return new WaitForSeconds(m_delayTransition);
         Application.LoadLevel(NextScene);
     }
 

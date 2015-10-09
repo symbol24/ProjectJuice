@@ -10,6 +10,7 @@ public class LogoEditor : Editor {
 
     string[] ListOfAudioClips;
     int _clipChoice = 0;
+    
 
     public override void OnInspectorGUI()
     {
