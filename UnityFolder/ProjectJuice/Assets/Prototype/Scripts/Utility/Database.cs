@@ -22,6 +22,14 @@ public class Database : MonoBehaviour
         }
     }
 
+    void Awake()
+    {
+        if (FindObjectsOfType<Database>().Length > 1)
+            Destroy(gameObject);
+        else
+            DontDestroyOnLoad(gameObject);
+    }
+
     [SerializeField]
     List<Sponsor> m_ListofSponsors;
     public List<Sponsor> ListofSponsors { get { return m_ListofSponsors; } }
@@ -78,11 +86,6 @@ public class Database : MonoBehaviour
     [HideInInspector] public string MenuClickName;
     [HideInInspector] public string MenuCancelName;
     [HideInInspector] public string MenuErrorName;
-
-    void Awake()
-    {
-        DontDestroyOnLoad(this);
-    }
 
     void Start()
     {

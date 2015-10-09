@@ -57,4 +57,18 @@ public static class EditorUtilities {
 
         return ret;
     }
+
+    public static string[] GetListOfSoundConnections()
+    {
+        string[] ret = new string[SoundManager.Instance.soundConnections.Count];
+
+        List<SoundConnection> temp = SoundManager.Instance.soundConnections;
+
+        for(int i = 0; i < ret.Length; i++)
+        {
+            ret[i] = temp[i].ToString();
+        }
+
+        return ret;
+    }
 }
