@@ -6,11 +6,11 @@ public class ScaleBasedOnHP : MonoBehaviour
 {
     public GameObject _gameObjectToScale;
     public HPScript _hpScript;
-    private SpriteRenderer m_Sprite;
+    //private SpriteRenderer m_Sprite;
     
     void Awake()
     {
-        m_Sprite = GetComponent<SpriteRenderer>();
+        //m_Sprite = GetComponent<SpriteRenderer>();
     }
 
 	// Use this for initialization

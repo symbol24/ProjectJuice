@@ -38,7 +38,6 @@ public class Dart : ExtendedMonobehaviour
     public IPlatformer2DUserControl InputManager { get; set; }
 
     private float _currentLifetimeAfterHit = 0f;
-    private Transform _sourceTransform;
     private bool _ignoreWalls = false;
 
     
@@ -97,9 +96,9 @@ public class Dart : ExtendedMonobehaviour
     }
     void Dart_DartCollision(object sender, EventArgs e)
     {
+        /*
         var hits = Physics2D.Raycast(transform.position, transform.position - SourceHPScript.transform.position,
-            Vector3.Distance(transform.position, SourceHPScript.transform.position));
-        
+            Vector3.Distance(transform.position, SourceHPScript.transform.position));*/
     }
 
 
@@ -107,7 +106,6 @@ public class Dart : ExtendedMonobehaviour
     {
         if (force < 1f) force = 1;
         MainRigidbody2D.AddForce(transform.up * force);
-        _sourceTransform = sourceTransform;
     }
 
     #region CollisionChecking

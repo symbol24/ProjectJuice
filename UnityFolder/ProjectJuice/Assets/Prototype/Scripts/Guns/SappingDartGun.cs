@@ -16,8 +16,6 @@ public class SappingDartGun : ExtendedMonobehaviour {
     bool _isContiniousSucking = true;
     [Range(0,5)][SerializeField]
     float _suckingInterval = 0.4f;
-    [SerializeField]
-    float _hpToSuckPerSecond = 100f;
     [Range(0,20)][SerializeField]
     float _dartCollTimerDisappear = 0f;
 

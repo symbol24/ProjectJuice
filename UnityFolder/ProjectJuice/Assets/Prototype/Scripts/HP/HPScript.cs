@@ -97,7 +97,7 @@ public class HPScript : HPBase
     {
         bool ret = true;
         damage = checkDamaging.Damage;
-        Debug.Log("original Damage = " + damage);
+        //Debug.Log("original Damage = " + damage);
         if (checkDamaging.ImpactForceSettings.IsFadeDmgOnDistance)
         {
             var distance = Vector2.Distance(checkDamaging.gameObject.transform.position, transform.position);
