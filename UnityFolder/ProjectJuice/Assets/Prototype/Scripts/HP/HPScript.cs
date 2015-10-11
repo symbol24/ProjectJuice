@@ -111,7 +111,7 @@ public class HPScript : HPBase
                 ret = false;
             }
         }
-        Debug.Log("afterCalc Damage = " + damage);
+        //Debug.Log("afterCalc Damage = " + damage);
         return ret;
     }
 

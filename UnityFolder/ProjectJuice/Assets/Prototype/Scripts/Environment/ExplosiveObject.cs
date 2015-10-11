@@ -50,6 +50,11 @@ public class ExplosiveObject : HPBase
     {
         get { return _explosionPrefab; }
     }
+    
+
+    [Range(0,10)] [SerializeField] private int m_BulletsToGiveShield = 3;
+    public int BulletsToGiveShield { get { return m_BulletsToGiveShield; } }
+
 
     // Use this for initialization
     protected override void Start()

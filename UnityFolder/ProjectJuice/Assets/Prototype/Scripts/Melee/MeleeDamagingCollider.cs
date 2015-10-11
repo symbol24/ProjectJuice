@@ -11,6 +11,10 @@ public class MeleeDamagingCollider : MonoBehaviour, IDamaging
     [Range(0,1)] public float _timeOfClashing;
     public MeleeAttack _meleeAttack;
     public Transform _preferredImpactPoint;
+
+    [Range(0,10)] [SerializeField] private int m_BulletsToGiveShield = 3;
+    public int BulletsToGiveShield { get { return m_BulletsToGiveShield; } }
+
 	// Use this for initialization
 	void Start ()
 	{

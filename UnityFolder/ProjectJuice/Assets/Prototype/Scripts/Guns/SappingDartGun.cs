@@ -26,7 +26,7 @@ public class SappingDartGun : ExtendedMonobehaviour {
     private float _crossSectionLength = 0.1f;
     [Range(0, 5)] [SerializeField] private float _crossSectionTolerance = 0.3f;
     [SerializeField] private int _crossSectionsLimit = 100;
-    [SerializeField]private float _shootDelay = 0.5f;
+    [Range(0, 5)] [SerializeField] private float _shootDelay = 0.5f;
     
     public float HoseCrossSectionLength { get { return _crossSectionLength; } }
     [SerializeField]
