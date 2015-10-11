@@ -15,7 +15,11 @@ namespace UnityStandardAssets._2D
         [Range(0, 1)][SerializeField]private float m_AirSpeed = 0.25f;    // Percentage of speed in the air from controller input
         private bool m_HasDoubleJump = false;                               // Determines if has special second jump
         private bool m_UsedDoubleJump = false;
+
+        //shooting slowdown
+        [Range(0,1)][SerializeField] private float m_ShootingDelayToSlow = 0.25f;
         [Range(0, 1)][SerializeField]private float m_ShootingSpeed = 0.25f;
+        private bool m_shootinDelayAdded = false;
 
         //dash
         private bool m_CanDash = false;                                     // Whether the player can dash. Restes on timer on ground, landing or double jump.
@@ -49,12 +53,15 @@ namespace UnityStandardAssets._2D
         private bool m_MeleeDownDashComplete = true;
         public bool MeleeDownDashComplete { get { return m_MeleeDownDashComplete; } }
 
+        private DelayManager m_delayManager;
+
         private void Awake()
         {
             // Setting up references.
             m_Controller = GetComponent<IPlatformer2DUserControl>();
             if (m_Controller == null) print("NO Platformer2DUserControls on player");
             m_GroundCheck = transform.FindChild("GroundCheck");
+            m_delayManager = GetComponent<DelayManager>();
             //m_CeilingCheck = transform.FindChild("CeilingCheck");
             m_Anim = m_Body.GetComponent<Animator>();
             m_Rigidbody2D = GetComponent<Rigidbody2D>();
@@ -99,8 +106,16 @@ namespace UnityStandardAssets._2D
             {
                 // Reduce the speed in air by the airSpeed multiplier
                 float toMove = (!m_Grounded ? move * m_AirSpeed : move);
+
+                if (isShooting && m_Grounded && !m_shootinDelayAdded)
+                {
+                    m_delayManager.AddOtherDelay(m_ShootingDelayToSlow);
+                    m_shootinDelayAdded = true;
+                }
                 
-                toMove = (isShooting && m_Grounded ? move * m_ShootingSpeed : move);
+                if (!isShooting && m_shootinDelayAdded) m_shootinDelayAdded = false;
+
+                toMove = (isShooting && m_Grounded && m_delayManager.m_OtherReady ? move * m_ShootingSpeed : move);
 
                 if (imobile && m_Grounded) toMove = 0;
 
