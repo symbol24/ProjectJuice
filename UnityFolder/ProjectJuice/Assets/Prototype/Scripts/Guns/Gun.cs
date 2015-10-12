@@ -78,6 +78,6 @@ public class Gun : ExtendedMonobehaviour {
             m_GunLight.enabled = false;
             yield return new WaitForSeconds(m_LightOff);
         }
-        m_DelayManager.Reset();
+        m_DelayManager.SetDelay(0);
     }
 }

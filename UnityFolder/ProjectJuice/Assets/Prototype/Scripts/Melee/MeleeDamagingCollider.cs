@@ -12,8 +12,12 @@ public class MeleeDamagingCollider : MonoBehaviour, IDamaging
     public MeleeAttack _meleeAttack;
     public Transform _preferredImpactPoint;
 
-    [Range(0,10)] [SerializeField] private int m_BulletsToGiveShield = 3;
-    public int BulletsToGiveShield { get { return m_BulletsToGiveShield; } }
+    [Range(0,10)][SerializeField] private int _bulletsToGive = 3;
+    public int BulletsToGiveShield
+    {
+        get { return _bulletsToGive; }
+        private set { _bulletsToGive = value; }
+    }
 
 	// Use this for initialization
 	void Start ()

@@ -195,6 +195,6 @@ public class MeleeAttack : ExtendedMonobehaviour
             yield return new WaitForSeconds(m_LightOff);
         }
         m_HasFeedbackDisplayed = true;
-        _delayManager.Reset();
+        _delayManager.SetDelay(0);
     }
 }

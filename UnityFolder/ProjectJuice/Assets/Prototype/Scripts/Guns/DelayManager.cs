@@ -33,9 +33,19 @@ public class DelayManager : MonoBehaviour {
         m_CurrentDelay += toAdd;
     }
 
+    public void SetDelay(float toSet)
+    {
+        m_CurrentDelay = toSet;
+    }
+
     public void AddShieldDelay(float toAdd)
     {
         m_ShieldDelay += toAdd;
+    }
+
+    public void SetShieldDelay(float toSet)
+    {
+        m_ShieldDelay = toSet;
     }
 
     public void AddShieldOffDelay(float toAdd)
@@ -53,7 +63,12 @@ public class DelayManager : MonoBehaviour {
         m_OtherDelay += toAdd;
     }
 
-    public void Reset()
+    public void SetOtherDelay(float toSet)
+    {
+        m_OtherDelay = toSet;
+    }
+
+    public void Reset() //use wisely as this resets ALL TIMERS!!!
     {
         m_CurrentDelay = 0f;
         m_ShieldDelay = 0f;

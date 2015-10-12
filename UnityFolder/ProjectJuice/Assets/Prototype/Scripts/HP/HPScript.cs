@@ -20,6 +20,13 @@ public class HPScript : HPBase
     [SerializeField] private Transform _centerOfReferenceForJuice;
     [SerializeField] private Rigidbody2D _mainRigidbody;
 
+    private bool m_ShieldImmunity = false;
+    public bool ShieldImunity { get { return m_ShieldImmunity; } }
+    public void SwitchShieldImunity()
+    {
+        m_ShieldImmunity = !m_ShieldImmunity;
+    }
+
 
     #region EventsAvailable
     public event EventHandler<ImpactEventArgs> HpImpactReceived;
@@ -65,18 +72,23 @@ public class HPScript : HPBase
 
     public void RouteOnTriggerEnter2D(Collider2D collider, bool isBackCollider)
     {
-        
-        CheckForDamage(collider, isBackCollider);
-        if(!isBackCollider)
-            CheckForPowerUp(collider);
+        if (!m_ShieldImmunity)
+        {
+            CheckForDamage(collider, isBackCollider);
+            if (!isBackCollider)
+                CheckForPowerUp(collider);
+        }
     }
     public void RouteOnCollisionEnter2D(Collision2D collision, bool isBackCollider)
     {
-        Collider2D collider = collision.collider;
+        if (!m_ShieldImmunity)
+        {
+            Collider2D collider = collision.collider;
 
-        CheckForDamage(collider, isBackCollider);
-        if (!isBackCollider)
-            CheckForPowerUp(collider);
+            CheckForDamage(collider, isBackCollider);
+            if (!isBackCollider)
+                CheckForPowerUp(collider);
+        }
     }
 
     private void CheckForPowerUp(Collider2D collider)

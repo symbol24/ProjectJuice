@@ -116,7 +116,7 @@ public class SappingDartGun : ExtendedMonobehaviour {
     {
         StopCoroutine(_addCrossSection);
         if(_moveLastChainToRefPoint != null) StopCoroutine(_moveLastChainToRefPoint);
-        _delayManager.Reset();
+        _delayManager.SetDelay(0);
         _delayManager.AddDelay(_shootDelay);
     }
 

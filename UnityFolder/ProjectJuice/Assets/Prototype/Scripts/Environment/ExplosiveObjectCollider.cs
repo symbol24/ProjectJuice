@@ -8,6 +8,11 @@ public class ExplosiveObjectCollider : ExtendedMonobehaviour, IDamaging
 
     public ExplosiveObject _explosiveObject;
 
+    
+    public int BulletsToGiveShield
+    {
+        get { return _explosiveObject._bulletsToGive; }
+    }
 
     public bool IsAvailableForConsumption
     {

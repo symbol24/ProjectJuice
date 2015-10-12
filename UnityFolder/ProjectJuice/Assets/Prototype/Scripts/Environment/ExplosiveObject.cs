@@ -6,19 +6,19 @@ using System.Collections;
 public class ExplosiveObject : HPBase
 {
     [SerializeField] private GameObject _explosionPrefab;
-    [SerializeField] private float _explosionDestroyTimeout = 3f;
+    [Range(0,10)][SerializeField] private float _explosionDestroyTimeout = 3f;
     [SerializeField] private List<GameObject> _ragdollParticles;
     [SerializeField] private bool _enableTimerBeforeExplosion = false;
-    [SerializeField] private float _timerBeforeExplosion;
+    [Range(0,10)][SerializeField] private float _timerBeforeExplosion;
     [SerializeField] private bool _addImpactForce = true;
     [SerializeField] private ImpactForceSettings _impactForceSettings;
-    [SerializeField] private float _DragResetDelay;
-    [SerializeField] private float _impactForceModifier = 100f;
-    [SerializeField] private float _massAdditionWhenIgnited = -10;
-    [SerializeField] private float _explosionDuration = 0.2f;
+    [Range(0,10)][SerializeField] private float _DragResetDelay;
+    [Range(0,500)][SerializeField] private float _impactForceModifier = 100f;
+    [Range(-50,50)][SerializeField] private float _massAdditionWhenIgnited = -10;
+    [Range(0,10)][SerializeField] private float _explosionDuration = 0.2f;
     [SerializeField]private ForceMode2D m_ForceType = ForceMode2D.Force;
-    [SerializeField] private float _XMinForce = 1f;
-    [SerializeField] private float _XMaxForce = 1f;
+    [Range(-10,10)][SerializeField] private float _XMinForce = 1f;
+    [Range(-10,10)][SerializeField] private float _XMaxForce = 1f;
     private float RandomXSpeed
     {
         get
@@ -28,8 +28,8 @@ public class ExplosiveObject : HPBase
             return ret * Mathf.Sign(UnityEngine.Random.value - 0.5f);
         }
     }
-    [SerializeField] private float _YMinForce = 1f;
-    [SerializeField] private float _YMaxForce = 1f;
+    [Range(-10,10)][SerializeField] private float _YMinForce = 1f;
+    [Range(-10,10)][SerializeField] private float _YMaxForce = 1f;
     private float RandomYSpeed
     {
         get
@@ -51,9 +51,7 @@ public class ExplosiveObject : HPBase
         get { return _explosionPrefab; }
     }
     
-
-    [Range(0,10)] [SerializeField] private int m_BulletsToGiveShield = 3;
-    public int BulletsToGiveShield { get { return m_BulletsToGiveShield; } }
+    [Range(0,10)][SerializeField] public int _bulletsToGive = 5;
 
 
     // Use this for initialization

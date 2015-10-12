@@ -35,7 +35,7 @@ public class shield : Gun {
             if (m_IsActive && !m_Controller.m_SpecialStay)
                 DeactivateShield();
 
-            //if (m_Controller.m_FacingRight != m_FacingRight) FlipPosition();
+            if (m_Controller.m_FacingRight != m_FacingRight) FlipPosition();
 
             CheckLight();
         }
@@ -45,19 +45,22 @@ public class shield : Gun {
     {
         Bullet bullet = collision.gameObject.GetComponent<Bullet>();
         MeleeDamagingCollider melee = collision.gameObject.GetComponent<MeleeDamagingCollider>();
+        var explosive = collision.gameObject.GetComponent<IDamaging>();
         if (bullet != null)
         {
             bullet.Consumed();
-            if (m_CurrentCount < m_MaxBullets) {
-                m_CurrentCount++;
-           }
+            if (m_CurrentCount < m_MaxBullets) m_CurrentCount += bullet.BulletsToGiveShield;
         }
 
         if(melee != null)
         {
-            print("melee hit detected");
-            m_CurrentCount += melee.BulletsToGiveShield;
+            if (m_CurrentCount < m_MaxBullets) m_CurrentCount += melee.BulletsToGiveShield;
             melee.Consumed();
+        }
+        if(explosive != null)
+        {
+            print("Explosion detected");
+            if (m_CurrentCount < m_MaxBullets) m_CurrentCount += explosive.BulletsToGiveShield;
         }
     }
 
@@ -101,15 +104,16 @@ public class shield : Gun {
             m_Gun.SetActive(true);
             if (m_CanShootBack) Fire();
             m_DelayManager.SetShieldOffDelay(m_DelayToShutOff);
+            if (!m_HpScp.ShieldImunity) m_HpScp.SwitchShieldImunity();
         }
     }
 
     private void DeactivateShield()
     {
-        m_DelayManager.Reset();
-        m_DelayManager.AddShieldDelay(m_Delay);
-        m_DelayManager.AddDelay(m_Delay);
+        m_DelayManager.SetShieldDelay(m_Delay);
+        m_DelayManager.SetDelay(m_Delay);
         m_IsActive = false;
+        if (m_HpScp.ShieldImunity) m_HpScp.SwitchShieldImunity();
         m_Gun.SetActive(false);
     }
 

@@ -39,6 +39,12 @@ public class Bullet : MonoBehaviour, IDamaging {
         private set { _impactForceSettings = value; }
     }
 
+    public int BulletsToGiveShield
+    {
+        get { return _bulletsToGive; }
+        private set { _bulletsToGive = value; }
+    }
+
     private Stack<HPScript> _immuneTargets = new Stack<HPScript>();
     public IEnumerable<HPScript> ImmuneTargets { get { return _immuneTargets; } }
     public bool HasImmuneTargets { get { return _immuneTargets.Any(); } }
@@ -60,6 +66,7 @@ public class Bullet : MonoBehaviour, IDamaging {
     [SerializeField] private bool _hasPreferredImpactPoint = false;
     [SerializeField] private Vector3 _preferredImpactPoint;
     [SerializeField] private ImpactForceSettings _impactForceSettings;
+    [Range(0,10)][SerializeField] private int _bulletsToGive = 1;
     
 
     void Awake()
