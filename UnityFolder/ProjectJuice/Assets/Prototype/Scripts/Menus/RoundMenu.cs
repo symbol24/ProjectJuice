@@ -46,9 +46,21 @@ public class RoundMenu : Menu {
     // Use this for initialization
     protected override void Start () {
         base.Start();
-        m_maxSelection = m_ListOfButtones.Length;
+        m_maxSelection = GetListOfActiveButtons();
         m_DelayManager = GetComponent<DelayManager>();
         m_DelayManager.Reset();
+        m_RoundMenu.SetActive(false);
+        m_MatchMenu.SetActive(false);
+        m_RoundPanel.SetActive(false);
+    }
+
+    private int GetListOfActiveButtons()
+    {
+        int ret = 0;
+
+        foreach (Button b in m_ListOfButtones) if (b.IsActive()) ret++;
+
+        return ret;
     }
 
     // Update is called once per frame

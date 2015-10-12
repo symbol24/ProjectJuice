@@ -87,8 +87,8 @@ public class DelayManager : MonoBehaviour {
 
     IEnumerator DelayTime(float timer, bool isShoot)
     {
-        float endTimer = Time.unscaledDeltaTime + timer;
-        while(endTimer > Time.unscaledDeltaTime)
+        float endTimer = Time.unscaledTime + timer;
+        while(endTimer > Time.unscaledTime)
         {
             yield return 0;
         }

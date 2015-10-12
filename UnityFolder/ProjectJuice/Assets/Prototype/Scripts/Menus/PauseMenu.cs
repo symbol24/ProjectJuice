@@ -26,9 +26,19 @@ public class PauseMenu : Menu {
     {
         base.Start();
         m_ListofPlayers = Utilities.GetAllPlayerData();
-        m_maxSelection = m_ListOfButtones.Length;
+        m_maxSelection = GetListOfActiveButtons();
         m_DelayManager = GetComponent<DelayManager>();
         m_DelayManager.Reset();
+        m_PausePanel.SetActive(false);
+    }
+
+    private int GetListOfActiveButtons()
+    {
+        int ret = 0;
+
+        foreach (Button b in m_ListOfButtones) if (b.IsActive()) ret++;
+
+        return ret;
     }
 
     // Update is called once per frame
@@ -41,12 +51,13 @@ public class PauseMenu : Menu {
                 {
                     SwitchPauseState();
                     m_ControllingPlayer = i;
-                    m_DelayManager.CoroutineDelay(Database.instance.MenuInputDelay, false);
+                    m_DelayManager.CoroutineDelay(Database.instance.MenuInputDelay, true);
                 }
             }
         }
         else if(GameManager.instance.IsPaused)
         {
+            print("Can shoot: " + m_DelayManager.m_CanShoot);
             if (m_DelayManager.m_CanShoot && m_Controls._Start[m_ControllingPlayer])
             {
                 SwitchPauseState();
