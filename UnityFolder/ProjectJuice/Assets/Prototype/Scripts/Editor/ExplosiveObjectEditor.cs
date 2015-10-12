@@ -37,10 +37,10 @@ public class ExplosiveObjectEditor : Editor {
         _choice[2] = EditorGUILayout.Popup("Damaging SFX", _choice[2], _listOfClips);
         _choice[3] = EditorGUILayout.Popup("Explosion SFX", _choice[3], _listOfClips);
 
-        _particle[0] = EditorGUILayout.Popup("Ground Scrapping FX", _particle[0], _listOFParticles);
-        _particle[1] = EditorGUILayout.Popup("Explosion FX", _particle[1], _listOFParticles);
-        _particle[2] = EditorGUILayout.Popup("Shockwave FX", _particle[2], _listOFParticles);
-        _particle[3] = EditorGUILayout.Popup("Chromatic Aberation FX", _particle[3], _listOFParticles);
+        _particle[0] = EditorGUILayout.Popup("Ground Scrapping Particle", _particle[0], _listOFParticles);
+        _particle[1] = EditorGUILayout.Popup("Explosion Particle", _particle[1], _listOFParticles);
+        _particle[2] = EditorGUILayout.Popup("Shockwave Particle", _particle[2], _listOFParticles);
+        _particle[3] = EditorGUILayout.Popup("Chromatic Aberation Particle", _particle[3], _listOFParticles);
 
         explosif.Pushing = _listOfClips[_choice[0]];
         explosif.GroundImpact = _listOfClips[_choice[1]];

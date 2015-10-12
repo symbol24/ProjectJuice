@@ -5,6 +5,7 @@ using System.Collections;
 
 public class ExplosiveObject : HPBase
 {
+    [SerializeField] private bool _IsExplosive = true;
     [SerializeField] private GameObject _explosionPrefab;
     [Range(0,10)][SerializeField] private float _explosionDestroyTimeout = 3f;
     [SerializeField] private List<GameObject> _ragdollParticles;
@@ -202,12 +203,15 @@ public class ExplosiveObject : HPBase
             var particleRigidbody = particle.GetComponent<Rigidbody2D>();
             particleRigidbody.AddForce(new Vector2(RandomXSpeed, RandomYSpeed));
         }
-        foreach (var explosiveCollider in _explosiveColliders)
+        if (_IsExplosive)
         {
-            var script = explosiveCollider.AddComponent<ExplosiveObjectCollider>();
-            script._explosiveObject = this;
-            _mainRigidbody.isKinematic = true;
-            //StartCoroutine(DeleteNextUpdate(script));
+            foreach (var explosiveCollider in _explosiveColliders)
+            {
+                var script = explosiveCollider.AddComponent<ExplosiveObjectCollider>();
+                script._explosiveObject = this;
+                _mainRigidbody.isKinematic = true;
+                //StartCoroutine(DeleteNextUpdate(script));
+            }
         }
         var timer = gameObject.AddComponent<DestroyOnTimer>();
         timer.Timeout = _explosionDuration;
