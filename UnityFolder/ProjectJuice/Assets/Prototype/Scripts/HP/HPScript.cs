@@ -36,7 +36,7 @@ public class HPScript : HPBase
         EventHandler handler = Dead;
         if (handler != null) handler(this, EventArgs.Empty);
         Debug.Log("addDeath Animation");
-        PlayDeathSounds();
+        PlayDeathFX();
         Destroy(gameObject);
     }
     protected virtual void OnHpImpactReceived(ImpactEventArgs e)
@@ -45,6 +45,10 @@ public class HPScript : HPBase
         if (handler != null) handler(this, e);
     }
     #endregion EventsAvailable
+
+    
+    [HideInInspector] public ParticleSystem _deathFlashes;
+    [Range(0,5)][SerializeField] private float _deathFlashesLength = 2f;
     
     // Use this for initialization
     protected override void Start()
@@ -106,8 +110,9 @@ public class HPScript : HPBase
         }
     }
     
-    private void PlayDeathSounds()
+    private void PlayDeathFX()
     {
+        InstatiateParticle(_deathFlashes, gameObject, false, _deathFlashesLength);
         SoundManager.PlaySFX(Database.instance.RobotDeath);
         SoundManager.PlaySFX(Database.instance.RobotDeathCrowd);
     }

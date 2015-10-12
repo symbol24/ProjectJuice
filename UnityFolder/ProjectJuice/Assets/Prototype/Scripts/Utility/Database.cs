@@ -81,6 +81,9 @@ public class Database : MonoBehaviour
     [Range(0,1)][SerializeField] float m_MenuNavigationDeadZone = 0.5f;
     public float MenuNavigationDeadZone { get { return m_MenuNavigationDeadZone; } }
 
+    [SerializeField] private ParticleSystem[] m_Particles;
+    public ParticleSystem[] Particles { get { return m_Particles; } }
+
     [HideInInspector] public int MainMenuID;
     [HideInInspector] public string MenuSlideName;
     [HideInInspector] public string MenuClickName;

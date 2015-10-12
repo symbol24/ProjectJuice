@@ -25,8 +25,6 @@ public class shield : Gun {
     [HideInInspector] public string CoolDown;
     [HideInInspector] public string AbrosbExplosion;
 
-
-
     protected override void Start()
     {
         base.Start();
@@ -154,6 +152,12 @@ public class shield : Gun {
             FireOneBullet(newRot);
         }
         m_CurrentCount = 0;
+        ShieldShotFX();
+    }
+
+    private void ShieldShotFX()
+    {
+        DisplayParticles();
         SoundManager.PlaySFX(ShootingBullets);
         SoundManager.PlaySFX(Ricochet);
     }

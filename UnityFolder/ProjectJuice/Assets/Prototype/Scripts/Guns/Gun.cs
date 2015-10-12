@@ -22,8 +22,10 @@ public class Gun : ExtendedMonobehaviour {
 
     [HideInInspector] public string GunShot;
 
-    [SerializeField] private ParticleSystem m_MuzzleFlash;
-    [SerializeField] private ParticleSystem m_MuzzleSmoke;
+    [HideInInspector] public ParticleSystem m_MuzzleFlash;
+    [Range(0, 5)][SerializeField] private float m_MuzzleFlashLifeTime = 0.1f;
+    [HideInInspector] public ParticleSystem m_MuzzleSmoke;
+    [Range(0, 5)][SerializeField] private float m_MuzzleSmokeLifeTime = 0.5f;
 
     protected LightFeedbackTemp _lightFeedback;
 
@@ -71,12 +73,16 @@ public class Gun : ExtendedMonobehaviour {
         newBullet.ShootBullet();
         newBullet.AddImmuneTarget(m_HpScript);
         SoundManager.PlaySFX(GunShot);
-        InstatiateParticle(m_MuzzleFlash, m_GunRef, true);
-        InstatiateParticle(m_MuzzleSmoke, m_GunRef, true);
     }
 
     private void CheckLight()
     {
         if (!m_HasDisplayed && m_DelayManager.CanShoot) _lightFeedback.StartLightFeedback(m_ShotDelay);
+    }
+
+    protected void DisplayParticles()
+    {
+        InstatiateParticle(m_MuzzleFlash, m_GunRef, true, m_MuzzleFlashLifeTime);
+        InstatiateParticle(m_MuzzleSmoke, m_GunRef, true, m_MuzzleSmokeLifeTime);
     }
 }

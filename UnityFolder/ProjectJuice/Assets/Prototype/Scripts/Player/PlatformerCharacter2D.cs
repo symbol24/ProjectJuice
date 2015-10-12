@@ -55,11 +55,11 @@ namespace UnityStandardAssets._2D
 
         private DelayManager m_delayManager;
 
-        [SerializeField] private ParticleSystem m_JumpParticle;
-        [SerializeField] private ParticleSystem m_LandingParticle;
-        [SerializeField] private ParticleSystem m_DashBodyThrusters;
-        [SerializeField] private ParticleSystem m_GroundDashGrinding;
-        [SerializeField] private ParticleSystem m_DashChromaticAberation;
+        [HideInInspector] public ParticleSystem m_JumpParticle;
+        [HideInInspector] public ParticleSystem m_LandingParticle;
+        [HideInInspector] public ParticleSystem m_DashBodyThrusters;
+        [HideInInspector] public ParticleSystem m_GroundDashGrinding;
+        [HideInInspector] public ParticleSystem m_DashChromaticAberation;
         [SerializeField] private GameObject m_BackThrusterPoint;
         [SerializeField] private GameObject m_FeetPoint;
 

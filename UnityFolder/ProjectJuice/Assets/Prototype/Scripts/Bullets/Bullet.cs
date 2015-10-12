@@ -72,7 +72,8 @@ public class Bullet : ExtendedMonobehaviour, IDamaging {
     [HideInInspector] public string RobotBulletImpact;
     [HideInInspector] public string WeakpointBulletImpact;
 
-    [SerializeField] private ParticleSystem m_particleImpact;
+    [HideInInspector] public ParticleSystem m_particleImpact;
+    [Range(0,5)][SerializeField] private float m_particleLifeTime = 0.2f;
 
     void Awake()
     {
@@ -97,12 +98,15 @@ public class Bullet : ExtendedMonobehaviour, IDamaging {
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        InstatiateParticle(m_particleImpact, gameObject);
         Ground ground = collision.gameObject.GetComponent<Ground>();
         if (ground != null && !ground.IsPassThrough)
         {
             SoundManager.PlaySFX(GroundImpact);
             Consumed();
+        }
+        else
+        {
+            InstatiateParticle(m_particleImpact, gameObject, false, m_particleLifeTime);
         }
     }
 

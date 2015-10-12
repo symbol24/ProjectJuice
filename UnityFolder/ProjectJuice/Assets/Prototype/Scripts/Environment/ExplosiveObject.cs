@@ -60,10 +60,10 @@ public class ExplosiveObject : HPBase
     [HideInInspector] public string BulletImpact;
     [HideInInspector] public string Explosion;
 
-    [SerializeField] private ParticleSystem _groundScraping;
-    [SerializeField] private ParticleSystem _explosionFX;
-    [SerializeField] private ParticleSystem _shockwave;
-    [SerializeField] private ParticleSystem _chromaticAberation;
+    [HideInInspector] public ParticleSystem _groundScraping;
+    [HideInInspector] public ParticleSystem _explosionFX;
+    [HideInInspector] public ParticleSystem _shockwave;
+    [HideInInspector] public ParticleSystem _chromaticAberation;
 
     // Use this for initialization
     protected override void Start()

@@ -10,24 +10,24 @@ public class SappingDartGun : ExtendedMonobehaviour {
     //private DartChain _dartChainPrefab;
 
     HPScript _hpScript;
-    [SerializeField] 
+    [SerializeField]
     private float _dartSpeed;
     [SerializeField]
     bool _isContiniousSucking = true;
-    [Range(0,5)][SerializeField]
+    [Range(0, 5)][SerializeField]
     float _suckingInterval = 0.4f;
-    [Range(0,20)][SerializeField]
+    [Range(0, 20)][SerializeField]
     float _dartCollTimerDisappear = 0f;
 
-    [Range(0,5)][SerializeField] private float _lifetimeSinceHit = 1f;
+    [Range(0, 5)][SerializeField] private float _lifetimeSinceHit = 1f;
     [SerializeField] private DartChainV2 _dartChainPrefab;
     [SerializeField] private DartChainV2 _dartChainStatic;
-    [Range(0,5)][SerializeField]
+    [Range(0, 5)][SerializeField]
     private float _crossSectionLength = 0.1f;
     [Range(0, 5)] [SerializeField] private float _crossSectionTolerance = 0.3f;
     [SerializeField] private int _crossSectionsLimit = 100;
     [Range(0, 5)] [SerializeField] private float _shootDelay = 0.5f;
-    
+
     public float HoseCrossSectionLength { get { return _crossSectionLength; } }
     [SerializeField]
     private bool _enabledCrossSectionTolerance = false;
@@ -36,13 +36,14 @@ public class SappingDartGun : ExtendedMonobehaviour {
     DelayManager _delayManager;
     IPlatformer2DUserControl _inputManager;
 
-    [Range(0,5)][SerializeField] private float m_transferSoundDelay = 0.4f;
-    
+    [Range(0, 5)][SerializeField] private float m_transferSoundDelay = 0.4f;
+
     [HideInInspector] public string Fire;
     [HideInInspector] public string Transfering;
     [HideInInspector] public string CoolDown;
 
-    [SerializeField] private ParticleSystem m_firingParticle;
+    [HideInInspector] public ParticleSystem m_firingParticle;
+    [Range(0, 5)][SerializeField] private float m_ParticleLifetime = 0.3f;
 
     private LightFeedbackTemp _lightFeedback;
 
@@ -101,7 +102,7 @@ public class SappingDartGun : ExtendedMonobehaviour {
         dart.ShootBullet(_dartSpeed, _dartSpawnPoint.transform);
         _delayManager.AddDelay(float.MaxValue);
         SoundManager.PlaySFX(Fire);
-        InstatiateParticle(m_firingParticle, _dartChainStatic.gameObject, true);
+        InstatiateParticle(m_firingParticle, _dartChainStatic.gameObject, true, m_ParticleLifetime);
     }
 
     private void Dart_DartCollision(object sender, EventArgs e)

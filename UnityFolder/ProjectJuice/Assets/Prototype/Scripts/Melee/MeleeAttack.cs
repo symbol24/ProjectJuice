@@ -20,7 +20,9 @@ public class MeleeAttack : ExtendedMonobehaviour
     [SerializeField] private DelayManager _delayManager;
     [SerializeField] private bool _addImpactForce = true;
     [SerializeField] private PlatformerCharacter2D _physicsManager;
-    [SerializeField] private GameObject _clashingEffectPrefab;
+    [SerializeField] private ParticleSystem _clashingEffectPrefab;
+    [SerializeField] private ParticleSystem _clashCroudFlashes;
+    [Range(0,4)][SerializeField] private float _FlashTimerOnScreen = 2f;
 
     public ImpactForceSettings _impactForceSettings;
     
@@ -185,17 +187,7 @@ public class MeleeAttack : ExtendedMonobehaviour
     {
         _physicsManager.AddKnockBack(otherMelee);
         otherMelee.Consumed();
-        PlayClashSFX();
-        GameObject particles = null;
-        if (otherMelee.HasPreferredImpactPoint)
-        {
-            particles = (GameObject)Instantiate(_clashingEffectPrefab, otherMelee.PreferredImpactPoint, otherMelee.transform.rotation);
-        }
-        else
-        {
-            particles = (GameObject)Instantiate(_clashingEffectPrefab);
-        }
-        particles.transform.parent = transform;
+        ClashFX(otherMelee);
     }
 
     private void PlayClashSFX()
@@ -204,5 +196,17 @@ public class MeleeAttack : ExtendedMonobehaviour
         SoundManager.PlaySFX(Clash);
         SoundManager.PlaySFX(ClashCrowd);
         SoundManager.PlaySFX(ClashAftermath);
+    }
+
+    private void ClashFX(MeleeDamagingCollider otherMelee)
+    {
+        PlayClashSFX();
+        GameObject toParent = gameObject;
+        if (otherMelee.HasPreferredImpactPoint)
+        {
+            toParent = otherMelee.gameObject;
+        }
+        InstatiateParticle(_clashingEffectPrefab, toParent, true);
+        InstatiateParticle(_clashCroudFlashes, toParent, false, _FlashTimerOnScreen);
     }
 }

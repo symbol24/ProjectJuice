@@ -71,4 +71,28 @@ public static class EditorUtilities {
 
         return ret;
     }
+
+    public static string[] GetListOfParticles()
+    {
+        string[] ret = new string[Database.instance.Particles.Length];
+
+        for(int i = 0; i < ret.Length; i++)
+        {
+            ret[i] = Database.instance.Particles[i].name;
+        }
+
+        return ret;
+    }
+
+    public static int GetSelectedParticle(ParticleSystem toCheck)
+    {
+        int ret = 0;
+
+        for(int i = 0; i < Database.instance.Particles.Length; i++)
+        {
+            if (toCheck.name == Database.instance.Particles[i].name) ret = i;
+        }
+
+        return ret;
+    }
 }
