@@ -24,6 +24,8 @@ public class Gun : ExtendedMonobehaviour {
     [Range(0, 10)][SerializeField] private int m_AmountOfFlashes = 3;
     protected bool m_HasDisplayed = true;
 
+    [HideInInspector] public string GunShot;
+
     protected virtual void Start()
     {
         if (m_GunReference == null) m_GunReference = GetComponentInChildren<gunRef>().gameObject;
@@ -40,7 +42,7 @@ public class Gun : ExtendedMonobehaviour {
 
             //CheckLight();
 
-            if (m_Controller.m_Shoot && m_DelayManager.m_CanShoot)
+            if (m_Controller.m_Shoot && m_DelayManager.CanShoot)
             {
                 Fire();
             }
@@ -60,11 +62,12 @@ public class Gun : ExtendedMonobehaviour {
         Bullet newBullet = Instantiate(m_BulletPrefab, m_GunReference.transform.position, m_GunReference.transform.rotation) as Bullet;
         newBullet.ShootBullet();
         newBullet.AddImmuneTarget(m_HpScript);
+        SoundManager.PlaySFX(GunShot);
     }
 
     private void CheckLight()
     {
-        if (!m_HasDisplayed && m_DelayManager.m_CanShoot) StartCoroutine(DisplayGunLight());
+        if (!m_HasDisplayed && m_DelayManager.CanShoot) StartCoroutine(DisplayGunLight());
     }
 
     protected IEnumerator DisplayGunLight()

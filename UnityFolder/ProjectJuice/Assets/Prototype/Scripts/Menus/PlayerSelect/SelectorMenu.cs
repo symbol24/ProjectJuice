@@ -45,6 +45,7 @@ public class SelectorMenu : Menu {
     [HideInInspector] public int m_ConfirmTextConfirmation = 8;
     [HideInInspector] public int m_ConfirmTextConfirmed = 5;
     [HideInInspector] public string m_VerticalSlide;
+    [HideInInspector] public string m_PanelActivate;
 
 
     protected override void Start()
@@ -59,7 +60,7 @@ public class SelectorMenu : Menu {
 
     // Update is called once per frame
     protected override void Update () {
-        if (m_DelayManager.m_CanShoot)
+        if (m_DelayManager.CanShoot)
         {
             if(m_CurrentSelectionState == SelectionState.Selection || m_CurrentSelectionState == SelectionState.Confirmation)
             {
@@ -71,7 +72,7 @@ public class SelectorMenu : Menu {
                 BackTrack();
         }
 
-        if (m_CurrentSelectionState == SelectionState.Selection && m_DelayManager.m_CanShield)
+        if (m_CurrentSelectionState == SelectionState.Selection && m_DelayManager.CanShield)
         {
 
             if (m_VerticalPosition == 0 && m_Controls.X[m_ControllerID] > Database.instance.MenuNavigationDeadZone)
@@ -107,6 +108,7 @@ public class SelectorMenu : Menu {
         m_CurrentSelectionState =  SetStateAndTexts(true);
         SetSelector(m_VerticalPosition);
         m_DelayManager.Reset();
+        SoundManager.PlaySFX(m_PanelActivate);
     }
 
     private int MoveSelection(int selection, int max, bool isRight)

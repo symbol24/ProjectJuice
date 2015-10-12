@@ -68,6 +68,9 @@ public class Bullet : MonoBehaviour, IDamaging {
     [SerializeField] private ImpactForceSettings _impactForceSettings;
     [Range(0,10)][SerializeField] private int _bulletsToGive = 1;
     
+    [HideInInspector] public string GroundImpact;
+    [HideInInspector] public string RobotBulletImpact;
+    [HideInInspector] public string WeakpointBulletImpact;
 
     void Awake()
     {
@@ -93,8 +96,11 @@ public class Bullet : MonoBehaviour, IDamaging {
     void OnTriggerEnter2D(Collider2D collision)
     {
             Ground ground = collision.gameObject.GetComponent<Ground>();
-            if (ground != null && !ground.IsPassThrough)
-                Consumed();
+        if (ground != null && !ground.IsPassThrough)
+        {
+            SoundManager.PlaySFX(GroundImpact);
+            Consumed();
+        }
     }
 
     public void AddImmuneTarget(HPScript hpScript)

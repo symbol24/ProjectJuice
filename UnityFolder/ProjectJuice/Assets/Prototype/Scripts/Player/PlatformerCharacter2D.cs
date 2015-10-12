@@ -115,7 +115,7 @@ namespace UnityStandardAssets._2D
                 
                 if (!isShooting && m_shootinDelayAdded) m_shootinDelayAdded = false;
 
-                toMove = (isShooting && m_Grounded && m_delayManager.m_OtherReady ? move * m_ShootingSpeed : move);
+                toMove = (isShooting && m_Grounded && m_delayManager.OtherReady ? move * m_ShootingSpeed : move);
 
                 if (imobile && m_Grounded) toMove = 0;
 
@@ -166,6 +166,7 @@ namespace UnityStandardAssets._2D
                 m_Anim.SetBool("Ground", false);
                 m_Rigidbody2D.velocity = Vector2.zero;
                 m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
+                SoundManager.PlaySFX(Database.instance.Jump);
             }
             else if (m_HasDoubleJump && !m_Grounded && !m_UsedDoubleJump)
             {
@@ -174,6 +175,7 @@ namespace UnityStandardAssets._2D
                 if (!m_CanDash) m_CanDash = !m_CanDash;
                 m_Rigidbody2D.velocity = Vector2.zero;
                 m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
+                SoundManager.PlaySFX(Database.instance.Jump);
             }
         }
 
@@ -197,7 +199,7 @@ namespace UnityStandardAssets._2D
 
             if (isGrounded)
             {
-                if(!m_AirControl)
+                if (!m_AirControl)
                     m_AirControl = true;
 
                 if(m_UsedDoubleJump)
@@ -209,6 +211,9 @@ namespace UnityStandardAssets._2D
 
                 if (!m_MeleeDownDashComplete)
                     m_MeleeDownDashComplete = true;
+
+                if(!m_Grounded)
+                    SoundManager.PlaySFX(Database.instance.Landing);
             }
 
 
@@ -219,6 +224,12 @@ namespace UnityStandardAssets._2D
         {
             if (m_CanDash)
             {
+
+                SoundManager.PlaySFX(Database.instance.Dash);
+
+                if (m_Grounded)
+                    SoundManager.PlaySFX(Database.instance.DashMetalGrind);
+
                 m_DashTimer = float.MaxValue;
                 m_CanDash = false;
                 m_AirControl = false;

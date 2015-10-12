@@ -8,6 +8,7 @@ public class SelectorMenuEditor : Editor {
 
     int[] _choices = new int[10];
     int _vertChoice = 0;
+    int _panelChoice = 0;
 
     string[] _strings;
     string[] _listOfClips;
@@ -33,6 +34,7 @@ public class SelectorMenuEditor : Editor {
         _choices[8] = selectorMenu.m_ConfirmTextConfirmation;
         _choices[9] = selectorMenu.m_ConfirmTextConfirmed;
         _vertChoice = EditorUtilities.GetSelectedClip(_listOfClips, selectorMenu.m_VerticalSlide);
+        _panelChoice = EditorUtilities.GetSelectedClip(_listOfClips, selectorMenu.m_PanelActivate);
 
         _choices[0] = EditorGUILayout.Popup("Header PreSelection", _choices[0], _strings);
         _choices[1] = EditorGUILayout.Popup("Header Selection", _choices[1], _strings);
@@ -45,6 +47,7 @@ public class SelectorMenuEditor : Editor {
         _choices[8] = EditorGUILayout.Popup("Popup Confirmation", _choices[8], _strings);
         _choices[9] = EditorGUILayout.Popup("Popup Confirmed", _choices[9], _strings);
         _vertChoice = EditorGUILayout.Popup("Menu Vertical Slide Sound", _vertChoice, _listOfClips);
+        _panelChoice = EditorGUILayout.Popup("Menu Vertical Slide Sound", _panelChoice, _listOfClips);
 
         selectorMenu.m_headerPreSelection = _choices[0];
         selectorMenu.m_headerSelection = _choices[1];
@@ -56,7 +59,8 @@ public class SelectorMenuEditor : Editor {
         selectorMenu.m_ledgerConfirmedCanStart = _choices[7];
         selectorMenu.m_ConfirmTextConfirmation = _choices[8];
         selectorMenu.m_ConfirmTextConfirmed = _choices[9];
-        selectorMenu.m_VerticalSlide = SoundManager.Instance.storedSFXs[_vertChoice].name;
+        selectorMenu.m_VerticalSlide = _listOfClips[_vertChoice];
+        selectorMenu.m_PanelActivate = _listOfClips[_panelChoice];
 
         EditorUtility.SetDirty(target);
     }

@@ -86,6 +86,12 @@ public class Database : MonoBehaviour
     [HideInInspector] public string MenuClickName;
     [HideInInspector] public string MenuCancelName;
     [HideInInspector] public string MenuErrorName;
+    [HideInInspector] public string RobotDeath;
+    [HideInInspector] public string RobotDeathCrowd;
+    [HideInInspector] public string Jump;
+    [HideInInspector] public string Landing;
+    [HideInInspector] public string Dash;
+    [HideInInspector] public string DashMetalGrind;
 
     void Start()
     {

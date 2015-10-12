@@ -36,6 +36,15 @@ public class MeleeAttack : ExtendedMonobehaviour
     [Range(0, 10)][SerializeField] private int m_AmountOfFlashes = 3;
     protected bool m_HasFeedbackDisplayed = true;
 
+    [HideInInspector] public string Swipe;
+    [HideInInspector] public string PlayerImpact;
+    [HideInInspector] public string Sheath;
+    [HideInInspector] public string Clash;
+    [HideInInspector] public string ClashCrowd;
+    [HideInInspector] public string ClashAftermath;
+    [HideInInspector] public string AbilitySecondSound;
+    [HideInInspector] public string AbilityAerial;
+
     // Use this for initialization
     private void Start()
     {
@@ -50,7 +59,7 @@ public class MeleeAttack : ExtendedMonobehaviour
      void Update()
     {
 
-        if (_delayManager.m_CanShoot && _inputManager.m_Melee)
+        if (_delayManager.CanShoot && _inputManager.m_Melee)
         {
             if (isAbility && !_mouvementManager.isGrounded)
             {
@@ -86,13 +95,18 @@ public class MeleeAttack : ExtendedMonobehaviour
 
     private IEnumerator StartSwingingAnimation()
     {
+        
         bool isGroundedAtStart = _mouvementManager.isGrounded;
         if (isAbility)
         {
-            //_mouvementManager.ChangeCanFlip();
-            if (_abilityHasSpike &&  !isGroundedAtStart)
+            _mouvementManager.ChangeCanFlip();
+            if (_abilityHasSpike && !isGroundedAtStart)
                 _completedAerialAttack = false;
+
+            if(!isGroundedAtStart) SoundManager.PlaySFX(AbilityAerial);
         }
+
+        SoundManager.PlaySFX(Swipe);
 
         _delayManager.AddDelay(100f);
         m_HasFeedbackDisplayed = false;
@@ -118,13 +132,14 @@ public class MeleeAttack : ExtendedMonobehaviour
                 _swingerCollider.SetActive(true);
                 _mouvementManager.PhysicsDashForMeleeAbility(_DashForce);
             }
+            else
+                SoundManager.PlaySFX(AbilitySecondSound);
         }
 
 
         yield return new WaitForSeconds(_delayAfterSwing);
         _wasConsumedDuringThisAnimation = false;
         _isSwingingAnimationOnGoing = false;
-
         StartCoroutine(DisplayGunLight());
     }
 
@@ -167,7 +182,7 @@ public class MeleeAttack : ExtendedMonobehaviour
     {
         _physicsManager.AddKnockBack(otherMelee);
         otherMelee.Consumed();
-        
+        PlayClashSFX();
         GameObject particles = null;
         if (otherMelee.HasPreferredImpactPoint)
         {
@@ -180,9 +195,17 @@ public class MeleeAttack : ExtendedMonobehaviour
         particles.transform.parent = transform;
     }
 
+    private void PlayClashSFX()
+    {
+
+        SoundManager.PlaySFX(Clash);
+        SoundManager.PlaySFX(ClashCrowd);
+        SoundManager.PlaySFX(ClashAftermath);
+    }
+
     private void CheckLight()
     {
-        if (!m_HasFeedbackDisplayed && _delayManager.m_CanShoot) StartCoroutine(DisplayGunLight());
+        if (!m_HasFeedbackDisplayed && _delayManager.CanShoot) StartCoroutine(DisplayGunLight());
     }
 
     IEnumerator DisplayGunLight()
@@ -196,5 +219,6 @@ public class MeleeAttack : ExtendedMonobehaviour
         }
         m_HasFeedbackDisplayed = true;
         _delayManager.SetDelay(0);
+        SoundManager.PlaySFX(Sheath);
     }
 }

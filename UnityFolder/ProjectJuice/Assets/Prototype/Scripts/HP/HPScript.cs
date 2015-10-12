@@ -27,7 +27,6 @@ public class HPScript : HPBase
         m_ShieldImmunity = !m_ShieldImmunity;
     }
 
-
     #region EventsAvailable
     public event EventHandler<ImpactEventArgs> HpImpactReceived;
     public event EventHandler Dead;
@@ -37,7 +36,7 @@ public class HPScript : HPBase
         EventHandler handler = Dead;
         if (handler != null) handler(this, EventArgs.Empty);
         Debug.Log("addDeath Animation");
-
+        PlayDeathSounds();
         Destroy(gameObject);
     }
     protected virtual void OnHpImpactReceived(ImpactEventArgs e)
@@ -46,7 +45,7 @@ public class HPScript : HPBase
         if (handler != null) handler(this, e);
     }
     #endregion EventsAvailable
-
+    
     // Use this for initialization
     protected override void Start()
     {
@@ -85,9 +84,12 @@ public class HPScript : HPBase
         {
             Collider2D collider = collision.collider;
 
+            RouteOnTriggerEnter2D(collider, isBackCollider);
+            /*
             CheckForDamage(collider, isBackCollider);
             if (!isBackCollider)
                 CheckForPowerUp(collider);
+                */
         }
     }
 
@@ -104,6 +106,11 @@ public class HPScript : HPBase
         }
     }
     
+    private void PlayDeathSounds()
+    {
+        SoundManager.PlaySFX(Database.instance.RobotDeath);
+        SoundManager.PlaySFX(Database.instance.RobotDeathCrowd);
+    }
 
     private bool DamagingDoesDamage(IDamaging checkDamaging, Vector2 pointOfCollision, out float damage)
     {
@@ -153,6 +160,8 @@ public class HPScript : HPBase
                     _character.AddKnockBack(checkDamaging);
                 }
 
+                PlayRightSound(collider, isBack);
+
                 var e = new ImpactEventArgs
                 {
                     Damage = damage,
@@ -164,6 +173,23 @@ public class HPScript : HPBase
         }
     }
 
+    private void PlayRightSound(Collider2D collider, bool isWeakPoint = false)
+    {
+        string toPlay = "";
 
+        var bullet = collider.GetComponent<Bullet>();
+        if(bullet != null)
+        {
+            if (isWeakPoint) toPlay = bullet.WeakpointBulletImpact;
+            else toPlay = bullet.RobotBulletImpact;
+        }
+
+        var melee = collider.GetComponent<MeleeDamagingCollider>();
+        if (melee != null)
+        {
+            toPlay = melee._meleeAttack.PlayerImpact;
+        }
+        SoundManager.PlaySFX(toPlay);
+    }
 
 }

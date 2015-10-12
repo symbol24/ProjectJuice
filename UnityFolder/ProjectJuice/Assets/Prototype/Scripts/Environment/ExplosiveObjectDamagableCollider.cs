@@ -14,4 +14,14 @@ public class ExplosiveObjectDamagableCollider : MonoBehaviour
     {
         _explosiveObject.RouteOnTriggerEnter2D(collider);
     }
+
+    private void OnCollisionStay2D(Collision2D collider)
+    {
+        _explosiveObject.RouteOnCollisionStay2D(collider.collider);
+    }
+
+    private void OnTriggerStay2D(Collider2D collider)
+    {
+        _explosiveObject.RouteOnCollisionStay2D(collider);
+    }
 }

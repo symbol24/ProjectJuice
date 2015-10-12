@@ -17,9 +17,14 @@ public class PauseMenu : Menu {
 
     protected static bool m_isPaused = false;
     private bool m_inConfirm = false;
+
+    [Range(0,1)][SerializeField] private float m_PauseMusicVolume = 0.5f;
+    [SerializeField] private bool m_IsFullSoundPause = false;
+    [Range(0,10)][SerializeField] private float m_delayToReturn = 2f;
     
     [HideInInspector] public string MenuOpenName;
     [HideInInspector] public string MenuCloseName;
+    [HideInInspector] public string ReturnToCS;
 
     // Use this for initialization
     protected override void Start ()
@@ -57,24 +62,23 @@ public class PauseMenu : Menu {
         }
         else if(GameManager.instance.IsPaused)
         {
-            print("Can shoot: " + m_DelayManager.m_CanShoot);
-            if (m_DelayManager.m_CanShoot && m_Controls._Start[m_ControllingPlayer])
+            if (m_DelayManager.CanShoot && m_Controls._Start[m_ControllingPlayer])
             {
                 SwitchPauseState();
                 m_ControllingPlayer = 0;
             }
 
-            if(m_DelayManager.m_CanShield && !m_inConfirm && m_Controls.Y[m_ControllingPlayer] != 0)
+            if(m_DelayManager.CanShield && !m_inConfirm && m_Controls.Y[m_ControllingPlayer] != 0)
             {
                 SetNextActive(m_Controls.Y[m_ControllingPlayer]);
             }
 
-            if (m_DelayManager.m_CanShoot && m_Controls.Confirm[m_ControllingPlayer])
+            if (m_DelayManager.CanShoot && m_Controls.Confirm[m_ControllingPlayer])
             {
                 Activate();
             }
 
-            if(m_DelayManager.m_CanShoot && m_inConfirm && m_Controls.Cancel[m_ControllingPlayer])
+            if(m_DelayManager.CanShoot && m_inConfirm && m_Controls.Cancel[m_ControllingPlayer])
             {
                 CancelConfirm();
             }
@@ -84,22 +88,32 @@ public class PauseMenu : Menu {
     public void SwitchPauseState()
     {
         m_isPaused = !m_isPaused;
-        GameManager.instance.SetPaused(m_isPaused);
         m_PausePanel.SetActive(m_isPaused);
         if (m_isPaused)
         {
+            GameManager.instance.SetPaused(m_isPaused, m_PauseMusicVolume, m_IsFullSoundPause);
             SoundManager.PlaySFX(MenuOpenName);
             m_currentSelection = 0;
             m_ListOfButtones[m_currentSelection].Select();
             m_DelayManager.CoroutineDelay(Database.instance.LongMenuInputDelay, true);
         }
         else
+        {
             SoundManager.PlaySFX(MenuCloseName);
+            GameManager.instance.SetPaused(m_isPaused, 1, m_IsFullSoundPause);
+        }
     }
 
     public void ReturnToMainMenu()
     {
-        if(m_isPaused)
+        StartCoroutine(SoundThenReturn());
+    }
+
+    private IEnumerator SoundThenReturn()
+    {
+        SoundManager.PlaySFX(ReturnToCS);
+        yield return new WaitForSeconds(m_delayToReturn);
+        if (m_isPaused)
             SwitchPauseState();
         Application.LoadLevel(Database.instance.MainMenuID);
     }
@@ -164,7 +178,7 @@ public class PauseMenu : Menu {
 
     private void Activate()
     {
-        SoundManager.PlaySFX(Database.instance.MenuClickName);
+         SoundManager.PlaySFX(Database.instance.MenuClickName);
         m_ListOfButtones[m_currentSelection].onClick.Invoke();
         m_DelayManager.CoroutineDelay(Database.instance.MenuInputDelay, false);
     }

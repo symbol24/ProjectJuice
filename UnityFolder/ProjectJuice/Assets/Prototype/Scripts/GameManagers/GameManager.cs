@@ -68,22 +68,30 @@ public class GameManager : ExtendedMonobehaviour
     {
     }
 
-    public void SetPaused(bool isPaused)
+    public void SetPaused(bool isPaused, float volume = 1, bool isFullSoundPause = false)
     {
         if (isPaused)
         {
-            SoundManager.Pause();
+            TogglePauseSound(volume, isFullSoundPause);
             m_PreviousState = m_CurrentState;
             m_CurrentState = GameState.Paused;
             Time.timeScale = 0f;
         }
         else
         {
-            SoundManager.UnPause();
+            TogglePauseSound(volume, isFullSoundPause);
             m_CurrentState = m_PreviousState;
             PlayerSpawner.instance.FlushAlivePlayerInputs();
             Time.timeScale = 1f;
         }
+    }
+
+    private void TogglePauseSound(float volume = 1, bool isFull = false)
+    {
+        if (isFull)
+            SoundManager.PauseToggle();
+        else
+            SoundManager.SetVolumeMusic(volume);
     }
 
     public bool IsPlaying

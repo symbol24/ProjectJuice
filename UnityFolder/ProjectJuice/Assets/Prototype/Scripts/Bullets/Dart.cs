@@ -41,7 +41,9 @@ public class Dart : ExtendedMonobehaviour
     private bool _ignoreWalls = false;
 
     
-
+    [HideInInspector] public string PlayerImpact;
+    [HideInInspector] public string GroundImpact;
+    [HideInInspector] public string Severed;
 
 
     void Update ()
@@ -135,6 +137,7 @@ public class Dart : ExtendedMonobehaviour
             _hitAWall = true;
             StickDart(toCheckWall);
             OnDartCollision();
+            SoundManager.PlaySFX(GroundImpact);
         }
     }
 
@@ -156,6 +159,7 @@ public class Dart : ExtendedMonobehaviour
                     _hitAWall = true;
                     StickDart(toCheck);
                     OnDartCollision();
+                    SoundManager.PlaySFX(GroundImpact);
                 }
             }
 
@@ -173,6 +177,7 @@ public class Dart : ExtendedMonobehaviour
                 OnDartCollision();
                 ret = true;
                 StickDart(toCheck);
+                SoundManager.PlaySFX(PlayerImpact);
             }
         }
         return ret;
@@ -270,6 +275,7 @@ public class Dart : ExtendedMonobehaviour
     private void HitFloor(object sender, EventArgs eventArgs)
     {
         Debug.Log("Dart Hit the Floor");
+        SoundManager.PlaySFX(Severed);
         OnDartDestroyed();
     }
 }

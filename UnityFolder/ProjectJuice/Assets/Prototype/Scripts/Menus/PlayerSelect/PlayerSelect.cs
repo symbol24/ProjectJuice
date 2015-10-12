@@ -18,6 +18,7 @@ public class PlayerSelect : Menu {
     [Range(0,1)][SerializeField] private float m_delayTransition = 0.5f;
     [HideInInspector] public int NextScene;
     [HideInInspector] public string StartSound;
+    [HideInInspector] public string AllReadySound;
 
     void Awake()
     {
@@ -127,7 +128,10 @@ public class PlayerSelect : Menu {
 
     public void ReadyUp(bool isUp)
     {
-        if (isUp) m_ReadyCount++;
+        if (isUp) {
+            m_ReadyCount++;
+            if (m_ReadyCount == m_PlayerCount) SoundManager.PlaySFX(AllReadySound);
+        }
         else m_ReadyCount--;
     }
 

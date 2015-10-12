@@ -45,6 +45,7 @@ public class ExplosiveObject : HPBase
     public List<GameObject> _explosiveColliders;
     public List<GameObject> _collidersToDisableDuringExplosion;
 
+    private DelayManager _delayManager;
 
     public GameObject ExplosionPrefab
     {
@@ -52,6 +53,12 @@ public class ExplosiveObject : HPBase
     }
     
     [Range(0,10)][SerializeField] public int _bulletsToGive = 5;
+    [Range(0, 1)][SerializeField] private float _delayFourPushingSound = 0.4f;
+
+    [HideInInspector] public string Pushing;
+    [HideInInspector] public string GroundImpact;
+    [HideInInspector] public string BulletImpact;
+    [HideInInspector] public string Explosion;
 
 
     // Use this for initialization
@@ -61,6 +68,8 @@ public class ExplosiveObject : HPBase
         _mainRigidbody = GetComponent<Rigidbody2D>();
         if(_bulletExplosionCollisionEvaluator == null) _bulletExplosionCollisionEvaluator = GetComponent<Collider2D>();
         HpChanged += OnHpChanged;
+        _delayManager = GetComponent<DelayManager>();
+        _delayManager.Reset();
     }
 
     private void SwitchCollidersOnOff()
@@ -87,6 +96,25 @@ public class ExplosiveObject : HPBase
         CheckForDamaging(collider);
     }
 
+    public void RouteOnCollisionStay2D(Collider2D collider)
+    {
+        var player = collider.GetComponent<IPlatformer2DUserControl>();
+        var ground = collider.GetComponent<Ground>();
+        if (player != null && ground != null)
+        {
+            print("both touching ground and player");
+            if(_mainRigidbody.velocity.x > 0 || _mainRigidbody.velocity.x < 0)
+            {
+                print("volicity is greater or lower");
+                if (_delayManager.SoundReady)
+                {
+                    SoundManager.PlaySFX(Pushing);
+                    _delayManager.AddSoundDelay(_delayFourPushingSound);
+                }
+            }
+        }
+    }
+
     private void CheckForDamaging(Collider2D toCheck)
     {
         var damaging = toCheck.GetComponent<IDamaging>();
@@ -95,6 +123,7 @@ public class ExplosiveObject : HPBase
             //Get Hit
             CurrentHp -= damaging.Damage;
             damaging.Consumed();
+            SoundManager.PlaySFX(BulletImpact);
 
             if (damaging.AddImpactForce)
             {
@@ -117,6 +146,17 @@ public class ExplosiveObject : HPBase
                 destroyer.Timeout = _explosionDestroyTimeout;
             }
         }
+
+        var ground = toCheck.GetComponent<Ground>();
+        if(ground != null) SoundManager.PlaySFX(GroundImpact);
+
+        /*
+        var player = toCheck.GetComponent<IPlatformer2DUserControl>();
+        if (player != null) SoundManager.PlaySFX(GroundImpact);
+        */
+
+        var otherExplosif = toCheck.GetComponent<ExplosiveObjectDamagableCollider>();
+        if (otherExplosif != null) SoundManager.PlaySFX(GroundImpact);
     }
 
     private void OnHpChanged(object sender, HpChangedEventArgs hpChangedEventArgs)
@@ -149,6 +189,7 @@ public class ExplosiveObject : HPBase
     private void Kaboom()
     {
         print("need to add fireworks here");
+        SoundManager.PlaySFX(Explosion);
         SwitchCollidersOnOff();
         foreach (var ragdollParticlePrefab in _ragdollParticles)
         {
