@@ -60,6 +60,10 @@ public class ExplosiveObject : HPBase
     [HideInInspector] public string BulletImpact;
     [HideInInspector] public string Explosion;
 
+    [SerializeField] private ParticleSystem _groundScraping;
+    [SerializeField] private ParticleSystem _explosionFX;
+    [SerializeField] private ParticleSystem _shockwave;
+    [SerializeField] private ParticleSystem _chromaticAberation;
 
     // Use this for initialization
     protected override void Start()
@@ -109,6 +113,7 @@ public class ExplosiveObject : HPBase
                 if (_delayManager.SoundReady)
                 {
                     SoundManager.PlaySFX(Pushing);
+                    InstatiateParticle(_groundScraping, gameObject);
                     _delayManager.AddSoundDelay(_delayFourPushingSound);
                 }
             }
@@ -188,7 +193,7 @@ public class ExplosiveObject : HPBase
 
     private void Kaboom()
     {
-        print("need to add fireworks here");
+        DisplayFX();
         SoundManager.PlaySFX(Explosion);
         SwitchCollidersOnOff();
         foreach (var ragdollParticlePrefab in _ragdollParticles)
@@ -206,6 +211,13 @@ public class ExplosiveObject : HPBase
         }
         var timer = gameObject.AddComponent<DestroyOnTimer>();
         timer.Timeout = _explosionDuration;
+    }
+
+    private void DisplayFX()
+    {
+        InstatiateParticle(_explosionFX, gameObject);
+        InstatiateParticle(_shockwave, gameObject);
+        InstatiateParticle(_chromaticAberation, gameObject);
     }
 
     private IEnumerator DeleteNextUpdate(ExplosiveObjectCollider script)

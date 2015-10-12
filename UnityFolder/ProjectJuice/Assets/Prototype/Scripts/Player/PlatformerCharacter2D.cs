@@ -55,6 +55,16 @@ namespace UnityStandardAssets._2D
 
         private DelayManager m_delayManager;
 
+        [SerializeField] private ParticleSystem m_JumpParticle;
+        [SerializeField] private ParticleSystem m_LandingParticle;
+        [SerializeField] private ParticleSystem m_DashBodyThrusters;
+        [SerializeField] private ParticleSystem m_GroundDashGrinding;
+        [SerializeField] private ParticleSystem m_DashChromaticAberation;
+        [SerializeField] private GameObject m_BackThrusterPoint;
+        [SerializeField] private GameObject m_FeetPoint;
+
+ 
+
         private void Awake()
         {
             // Setting up references.
@@ -167,6 +177,7 @@ namespace UnityStandardAssets._2D
                 m_Rigidbody2D.velocity = Vector2.zero;
                 m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
                 SoundManager.PlaySFX(Database.instance.Jump);
+                InstatiateParticle(m_JumpParticle, m_FeetPoint);
             }
             else if (m_HasDoubleJump && !m_Grounded && !m_UsedDoubleJump)
             {
@@ -176,6 +187,7 @@ namespace UnityStandardAssets._2D
                 m_Rigidbody2D.velocity = Vector2.zero;
                 m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
                 SoundManager.PlaySFX(Database.instance.Jump);
+                InstatiateParticle(m_JumpParticle, m_FeetPoint);
             }
         }
 
@@ -212,8 +224,11 @@ namespace UnityStandardAssets._2D
                 if (!m_MeleeDownDashComplete)
                     m_MeleeDownDashComplete = true;
 
-                if(!m_Grounded)
+                if (!m_Grounded)
+                {
                     SoundManager.PlaySFX(Database.instance.Landing);
+                    InstatiateParticle(m_LandingParticle, m_FeetPoint);
+                }
             }
 
 
@@ -226,9 +241,15 @@ namespace UnityStandardAssets._2D
             {
 
                 SoundManager.PlaySFX(Database.instance.Dash);
+                InstatiateParticle(m_DashBodyThrusters, m_BackThrusterPoint, true);
+                InstatiateParticle(m_DashChromaticAberation, gameObject, true);
 
                 if (m_Grounded)
+                {
                     SoundManager.PlaySFX(Database.instance.DashMetalGrind);
+                    InstatiateParticle(m_GroundDashGrinding, m_FeetPoint, true);
+
+                }
 
                 m_DashTimer = float.MaxValue;
                 m_CanDash = false;

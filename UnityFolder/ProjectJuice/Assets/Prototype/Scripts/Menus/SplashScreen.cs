@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using Utility;
 
 public class SplashScreen : MonoBehaviour {
     MenuControls m_MenuControls;

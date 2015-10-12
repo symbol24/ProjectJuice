@@ -42,11 +42,17 @@ public class SappingDartGun : ExtendedMonobehaviour {
     [HideInInspector] public string Transfering;
     [HideInInspector] public string CoolDown;
 
+    [SerializeField] private ParticleSystem m_firingParticle;
+
+    private LightFeedbackTemp _lightFeedback;
+
+
     void Start()
     {
         _delayManager = GetComponent<DelayManager>();
         _inputManager = GetComponent<IPlatformer2DUserControl>();
         _hpScript = GetComponent<HPScript>();
+        _lightFeedback = GetComponent<LightFeedbackTemp>();
 
     }
 
@@ -95,6 +101,7 @@ public class SappingDartGun : ExtendedMonobehaviour {
         dart.ShootBullet(_dartSpeed, _dartSpawnPoint.transform);
         _delayManager.AddDelay(float.MaxValue);
         SoundManager.PlaySFX(Fire);
+        InstatiateParticle(m_firingParticle, _dartChainStatic.gameObject, true);
     }
 
     private void Dart_DartCollision(object sender, EventArgs e)
@@ -124,7 +131,13 @@ public class SappingDartGun : ExtendedMonobehaviour {
         if(_moveLastChainToRefPoint != null) StopCoroutine(_moveLastChainToRefPoint);
         _delayManager.SetDelay(0);
         _delayManager.AddDelay(_shootDelay);
+        CoolDownEffects();
+    }
+
+    private void CoolDownEffects()
+    {
         SoundManager.PlaySFX(CoolDown);
+        _lightFeedback.StartLightFeedback(_shootDelay);
     }
 
     private void Dart_JuiceSucked(object sender, JuiceSuckedEventArgs e)

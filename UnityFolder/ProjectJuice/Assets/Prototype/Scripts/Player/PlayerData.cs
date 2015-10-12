@@ -39,7 +39,7 @@ public class PlayerData : MonoBehaviour {
 
     void Awake()
     {
-        List<PlayerData> all = Utility.Utilities.GetAllPlayerData();
+        List<PlayerData> all = Utilities.GetAllPlayerData();
         int x = 0;
         foreach (PlayerData pd in all)
         {

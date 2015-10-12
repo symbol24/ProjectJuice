@@ -3,7 +3,7 @@ using System.Linq;
 using UnityEngine;
 using System.Collections;
 
-public class Bullet : MonoBehaviour, IDamaging {
+public class Bullet : ExtendedMonobehaviour, IDamaging {
     [SerializeField] private float m_baseSpeed;
     [SerializeField] private float m_Damage;
     private Rigidbody2D m_RigidBody;
@@ -72,6 +72,8 @@ public class Bullet : MonoBehaviour, IDamaging {
     [HideInInspector] public string RobotBulletImpact;
     [HideInInspector] public string WeakpointBulletImpact;
 
+    [SerializeField] private ParticleSystem m_particleImpact;
+
     void Awake()
     {
         m_RigidBody = GetComponent<Rigidbody2D>();
@@ -95,7 +97,8 @@ public class Bullet : MonoBehaviour, IDamaging {
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-            Ground ground = collision.gameObject.GetComponent<Ground>();
+        InstatiateParticle(m_particleImpact, gameObject);
+        Ground ground = collision.gameObject.GetComponent<Ground>();
         if (ground != null && !ground.IsPassThrough)
         {
             SoundManager.PlaySFX(GroundImpact);

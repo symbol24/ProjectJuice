@@ -2,36 +2,33 @@
 using System.Collections;
 using System.Collections.Generic;
 
-namespace Utility
+public static class Utilities
 {
-    public class Utilities : MonoBehaviour
+
+    public static PlayerData GetPlayerData(PlayerIDs playerID)
     {
 
-        public static PlayerData GetPlayerData(PlayerIDs playerID)
+        PlayerData[] list = MonoBehaviour.FindObjectsOfType<PlayerData>();
+        PlayerData temp = null;
+
+        foreach (PlayerData pd in list)
         {
-
-            PlayerData[] list = FindObjectsOfType<PlayerData>();
-            PlayerData temp = null;
-
-            foreach (PlayerData pd in list)
-            {
-                if (playerID == pd.playerID)
-                    temp = pd;
-            }
-
-            return temp;
+            if (playerID == pd.playerID)
+                temp = pd;
         }
 
-        public static List<PlayerData> GetAllPlayerData()
-        {
-            List<PlayerData> ListOfPlayers = new List<PlayerData>();
-            PlayerData[] list = FindObjectsOfType<PlayerData>();
-            foreach (PlayerData pd in list)
-            {
-                ListOfPlayers.Add(pd);
-            }
+        return temp;
+    }
 
-            return ListOfPlayers;
+    public static List<PlayerData> GetAllPlayerData()
+    {
+        List<PlayerData> ListOfPlayers = new List<PlayerData>();
+        PlayerData[] list = MonoBehaviour.FindObjectsOfType<PlayerData>();
+        foreach (PlayerData pd in list)
+        {
+            ListOfPlayers.Add(pd);
         }
+
+        return ListOfPlayers;
     }
 }

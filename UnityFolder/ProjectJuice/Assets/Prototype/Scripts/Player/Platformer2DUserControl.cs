@@ -2,7 +2,6 @@ using System;
 using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
 using GamepadInput;
-using Utility;
 
 namespace UnityStandardAssets._2D
 {

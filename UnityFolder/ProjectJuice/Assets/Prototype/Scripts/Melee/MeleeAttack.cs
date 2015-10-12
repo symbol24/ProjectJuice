@@ -29,12 +29,6 @@ public class MeleeAttack : ExtendedMonobehaviour
     public float startingRotation = -45;
     public float endingRotation = 45;
     [Range(0,3)]public float _delayAfterSwing = 0.5f;
-    
-    [SerializeField] private Light m_GunLight;
-    [Range(0,3)][SerializeField] float m_LightOn = 0.1f;
-    [Range(0,3)][SerializeField] float m_LightOff = 0.1f;
-    [Range(0, 10)][SerializeField] private int m_AmountOfFlashes = 3;
-    protected bool m_HasFeedbackDisplayed = true;
 
     [HideInInspector] public string Swipe;
     [HideInInspector] public string PlayerImpact;
@@ -45,6 +39,8 @@ public class MeleeAttack : ExtendedMonobehaviour
     [HideInInspector] public string AbilitySecondSound;
     [HideInInspector] public string AbilityAerial;
 
+    private LightFeedbackTemp _lightFeedback;
+
     // Use this for initialization
     private void Start()
     {
@@ -53,10 +49,17 @@ public class MeleeAttack : ExtendedMonobehaviour
         if (_mouvementManager == null) _mouvementManager = GetComponent<PlatformerCharacter2D>();
         _swingerCollider.gameObject.SetRotationEulerZ(startingRotation);
         if (_physicsManager == null) _physicsManager = GetComponent<PlatformerCharacter2D>();
+        _lightFeedback = GetComponent<LightFeedbackTemp>();
+        _lightFeedback.LightDone += MeleeTimerReset;
+    }
+
+    private void MeleeTimerReset(object sender, EventArgs e)
+    {
+        _delayManager.SetDelay(0);
     }
 
     // Update is called once per frame
-     void Update()
+    void Update()
     {
 
         if (_delayManager.CanShoot && _inputManager.m_Melee)
@@ -109,7 +112,6 @@ public class MeleeAttack : ExtendedMonobehaviour
         SoundManager.PlaySFX(Swipe);
 
         _delayManager.AddDelay(100f);
-        m_HasFeedbackDisplayed = false;
         _isSwingingAnimationOnGoing = true;
         _swingerCollider.SetActive(true);
         yield return null;
@@ -140,7 +142,8 @@ public class MeleeAttack : ExtendedMonobehaviour
         yield return new WaitForSeconds(_delayAfterSwing);
         _wasConsumedDuringThisAnimation = false;
         _isSwingingAnimationOnGoing = false;
-        StartCoroutine(DisplayGunLight());
+        SoundManager.PlaySFX(Sheath);
+        _lightFeedback.StartLightFeedback(0);
     }
 
 
@@ -201,24 +204,5 @@ public class MeleeAttack : ExtendedMonobehaviour
         SoundManager.PlaySFX(Clash);
         SoundManager.PlaySFX(ClashCrowd);
         SoundManager.PlaySFX(ClashAftermath);
-    }
-
-    private void CheckLight()
-    {
-        if (!m_HasFeedbackDisplayed && _delayManager.CanShoot) StartCoroutine(DisplayGunLight());
-    }
-
-    IEnumerator DisplayGunLight()
-    {
-        for (int i = 0; i < m_AmountOfFlashes; i++)
-        {
-            m_GunLight.enabled = true;
-            yield return new WaitForSeconds(m_LightOn);
-            m_GunLight.enabled = false;
-            yield return new WaitForSeconds(m_LightOff);
-        }
-        m_HasFeedbackDisplayed = true;
-        _delayManager.SetDelay(0);
-        SoundManager.PlaySFX(Sheath);
     }
 }

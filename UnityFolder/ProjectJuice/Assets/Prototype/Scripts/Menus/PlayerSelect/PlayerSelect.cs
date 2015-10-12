@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using GamepadInput;
 using UnityEngine.UI;
-using Utility;
 
 public class PlayerSelect : Menu {
     private List<PlayerData> m_ListofPlayers = new List<PlayerData>();

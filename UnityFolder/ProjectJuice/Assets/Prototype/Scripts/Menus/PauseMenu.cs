@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using Utility;
 using UnityEngine.UI;
 
 public class PauseMenu : Menu {

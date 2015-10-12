@@ -1,7 +1,6 @@
 ﻿using System;
 using UnityEngine;
 using System.Collections;
-using Utility;
 
 public class Platformer2DUserControlKeyboard : MonoBehaviour, IPlatformer2DUserControl
 {

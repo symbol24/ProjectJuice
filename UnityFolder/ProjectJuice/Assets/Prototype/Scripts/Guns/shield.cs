@@ -25,6 +25,8 @@ public class shield : Gun {
     [HideInInspector] public string CoolDown;
     [HideInInspector] public string AbrosbExplosion;
 
+
+
     protected override void Start()
     {
         base.Start();
