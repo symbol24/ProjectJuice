@@ -63,6 +63,7 @@ namespace UnityStandardAssets._2D
         [SerializeField] private GameObject m_BackThrusterPoint;
         [SerializeField] private GameObject m_FeetPoint;
 
+        private Ground[] m_platforms;
  
 
         private void Awake()
@@ -76,6 +77,7 @@ namespace UnityStandardAssets._2D
             m_Anim = m_Body.GetComponent<Animator>();
             m_Rigidbody2D = GetComponent<Rigidbody2D>();
             m_MyColliders = GetComponents<Collider2D>();
+            m_platforms = FindObjectsOfType<Ground>();
         }
 
         void Start()
@@ -87,6 +89,8 @@ namespace UnityStandardAssets._2D
         {
             if (GameManager.instance.IsPlaying)
             {
+                CheckIfAbove();
+
                 m_Grounded = SetGrounded(m_Grounded);
 
                 // Set the vertical animation
@@ -224,7 +228,7 @@ namespace UnityStandardAssets._2D
                 if (!m_MeleeDownDashComplete)
                     m_MeleeDownDashComplete = true;
 
-                if (!m_Grounded)
+                if (!m_Grounded && m_Rigidbody2D.velocity.y < 0.1f)
                 {
                     SoundManager.PlaySFX(Database.instance.Landing);
                     InstatiateParticle(m_LandingParticle, m_FeetPoint);
@@ -434,6 +438,35 @@ namespace UnityStandardAssets._2D
         public void FlushAnimState()
         {
             m_Anim.SetFloat("Speed", 0f);
+        }
+
+        private void CheckIfAbove()
+        {
+            foreach(Ground g in m_platforms)
+            {
+                if (g.IsPassThrough)
+                {
+                    EdgeCollider2D ec = g.GetComponent<EdgeCollider2D>();
+                    if (ec != null)
+                    {
+                        if (ec.transform.position.y > m_GroundCheck.transform.position.y)
+                        {
+
+                            foreach (Collider2D myc2d in m_MyColliders)
+                            {
+                                Physics2D.IgnoreCollision(ec, myc2d, true);
+                            }
+                        }
+                        else
+                        {
+                            foreach (Collider2D myc2d in m_MyColliders)
+                            {
+                                Physics2D.IgnoreCollision(ec, myc2d, false);
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }

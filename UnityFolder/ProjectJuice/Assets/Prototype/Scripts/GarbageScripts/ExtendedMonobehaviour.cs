@@ -157,7 +157,7 @@ public abstract class ExtendedMonobehaviour : MonoBehaviour, IGameObject {
             if (isToParent) temp.transform.SetParent(point.transform);
         }
         else
-            print("missing Particle system");
+            Debug.LogWarning("Missing Particle");
     }
 
     private IEnumerator DestroyParticleEmitter(ParticleSystem toDestroy, float timer = 1f)
