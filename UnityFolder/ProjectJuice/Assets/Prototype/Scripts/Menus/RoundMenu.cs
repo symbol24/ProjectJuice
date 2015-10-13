@@ -219,6 +219,7 @@ public class RoundMenu : Menu {
 
     private void GoToNextRound()
     {
+        GameManager.instance.SetGameState(GameState.Loading);
         StartCoroutine(DelayedToNextRound());
     }
 
