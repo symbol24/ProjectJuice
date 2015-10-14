@@ -35,7 +35,7 @@ public class HPScript : HPBase
     {
         EventHandler handler = Dead;
         if (handler != null) handler(this, EventArgs.Empty);
-        Debug.Log("addDeath Animation");
+        Debug.LogWarning("Missing Death Animation");
         PlayDeathFX();
         Destroy(gameObject);
     }
