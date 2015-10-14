@@ -15,6 +15,10 @@ namespace UnityStandardAssets._2D
         [Range(0, 1)][SerializeField]private float m_AirSpeed = 0.25f;    // Percentage of speed in the air from controller input
         private bool m_HasDoubleJump = false;                               // Determines if has special second jump
         private bool m_UsedDoubleJump = false;
+        [Range(-1, 0)][SerializeField]private float m_JumpDownYAxisTolerence = -0.5f;
+        private Collider2D[] m_lastPassedThrough;
+        [SerializeField] private bool m_UseForceToPassThrough = false;
+        [Range(0,1)][SerializeField] private float m_percentOfJumpForcedUsed = 0.5f;
 
         //shooting slowdown
         [Range(0,1)][SerializeField] private float m_ShootingDelayToSlow = 0.25f;
@@ -41,6 +45,7 @@ namespace UnityStandardAssets._2D
         //[Range(0, 1)][SerializeField]private float m_TriggerResetDelay = 0.1f; // To reset the ground when passing through
         private bool m_IsPassing = false;
         //private bool m_ConfirmPassing = false;
+        private bool m_ignoreCheckPassing = false;
 
         private Animator m_Anim;            // Reference to the player's animator component.
         private Rigidbody2D m_Rigidbody2D;
@@ -175,13 +180,21 @@ namespace UnityStandardAssets._2D
         {
             if (m_Grounded && m_Anim.GetBool("Ground"))
             {
-                // Add a vertical force to the player.
                 m_Grounded = false;
                 m_Anim.SetBool("Ground", false);
                 m_Rigidbody2D.velocity = Vector2.zero;
-                m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
-                SoundManager.PlaySFX(Database.instance.Jump);
-                InstatiateParticle(m_JumpParticle, m_FeetPoint);
+                if (m_Controller.m_YAxis < m_JumpDownYAxisTolerence)
+                {
+                    PassDownThroughWithJump();
+                }
+                else
+                {
+                    // Add a vertical force to the player.
+
+                    m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
+                    SoundManager.PlaySFX(Database.instance.Jump);
+                    InstatiateParticle(m_JumpParticle, m_FeetPoint);
+                }
             }
             else if (m_HasDoubleJump && !m_Grounded && !m_UsedDoubleJump)
             {
@@ -205,7 +218,7 @@ namespace UnityStandardAssets._2D
             bool isGrounded = false;
 
 
-            Collider2D[] colliders = Physics2D.OverlapCircleAll(m_GroundCheck.position, k_GroundedRadius, m_WhatIsGround);
+            Collider2D[] colliders = GetGroundColliders();
             for (int i = 0; i < colliders.Length; i++)
             {
                 if (colliders[i].gameObject.layer != gameObject.layer)
@@ -233,10 +246,17 @@ namespace UnityStandardAssets._2D
                     SoundManager.PlaySFX(Database.instance.Landing);
                     InstatiateParticle(m_LandingParticle, m_FeetPoint);
                 }
+
+                //if (m_ignoreCheckPassing) ResetPassthrough();
             }
 
 
             return isGrounded;
+        }
+
+        private Collider2D[] GetGroundColliders()
+        {
+            return Physics2D.OverlapCircleAll(m_GroundCheck.position, k_GroundedRadius, m_WhatIsGround);
         }
 
         public void PhysicsDash()
@@ -442,28 +462,77 @@ namespace UnityStandardAssets._2D
 
         private void CheckIfAbove()
         {
-            foreach(Ground g in m_platforms)
+            if (!m_ignoreCheckPassing)
             {
-                if (g.IsPassThrough)
+                foreach (Ground g in m_platforms)
                 {
-                    EdgeCollider2D ec = g.GetComponent<EdgeCollider2D>();
+                    if (g.IsPassThrough)
+                    {
+                        EdgeCollider2D ec = g.GetComponent<EdgeCollider2D>();
+                        if (ec != null)
+                        {
+                            if (ec.transform.position.y > m_GroundCheck.transform.position.y)
+                            {
+                                IgnoreCollision(ec, true);
+                            }
+                            else
+                            {
+                                IgnoreCollision(ec, false);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        private void IgnoreCollision(Collider2D col1, bool isIgnore = false)
+        {
+            foreach (Collider2D myc2d in m_MyColliders)
+            {
+                Physics2D.IgnoreCollision(col1, myc2d, isIgnore);
+            }
+        }
+
+        private void PassDownThroughWithJump()
+        {
+            Collider2D[] colls = GetGroundColliders();
+
+            foreach(Collider2D col in colls)
+            {
+                Ground gr = col.GetComponent<Ground>();
+                if (gr != null && gr.IsPassThrough)
+                {
+                    EdgeCollider2D ec = col.GetComponent<EdgeCollider2D>();
                     if (ec != null)
                     {
-                        if (ec.transform.position.y > m_GroundCheck.transform.position.y)
-                        {
+                        IgnoreCollision(ec, true);
+                        m_ignoreCheckPassing = true;
+                    }
+                }
+            }
+            if (m_ignoreCheckPassing)
+            {
+                m_LastPassThrough = colls;
+                if(m_UseForceToPassThrough)
+                    m_Rigidbody2D.AddForce(new Vector2(0f, -m_JumpForce * m_percentOfJumpForcedUsed));
+            }
+        }
 
-                            foreach (Collider2D myc2d in m_MyColliders)
-                            {
-                                Physics2D.IgnoreCollision(ec, myc2d, true);
-                            }
-                        }
-                        else
+        public void ResetPassthrough()
+        {
+            if (m_ignoreCheckPassing)
+            {
+                foreach (Collider2D col in m_LastPassThrough)
+                {
+                    Ground gr = col.GetComponent<Ground>();
+                    if (gr != null && gr.IsPassThrough)
+                    {
+                        EdgeCollider2D ec = col.GetComponent<EdgeCollider2D>();
+                        if (ec != null)
                         {
-                            foreach (Collider2D myc2d in m_MyColliders)
-                            {
-                                Physics2D.IgnoreCollision(ec, myc2d, false);
-                            }
+                            IgnoreCollision(ec, false);
                         }
+                        m_ignoreCheckPassing = false;
                     }
                 }
             }

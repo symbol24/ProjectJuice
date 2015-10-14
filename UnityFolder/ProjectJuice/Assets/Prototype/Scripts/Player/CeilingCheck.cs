@@ -9,4 +9,9 @@ public class CeilingCheck : MonoBehaviour {
     {
         //m_parent.CheckPassThrough(collider);
     }
+
+    void OntriggerExit2D(Collider2D collider)
+    {
+        //m_parent.ResetPassthrough(collider);
+    }
 }
