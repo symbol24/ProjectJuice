@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 08d8719302f068d4980e2d65509d2a1b
-timeCreated: 1443836729
+timeCreated: 1444785232
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -80,272 +80,262 @@ TextureImporter:
     - name: RobComplete_0
       rect:
         serializedVersion: 2
-        x: 46
+        x: 729
         y: 693
         width: 212
         height: 207
       alignment: 9
-      pivot: {x: .492929131, y: .261026144}
+      pivot: {x: .478787392, y: .253784776}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: RobComplete_1
       rect:
         serializedVersion: 2
-        x: 175
+        x: 802
         y: 899
         width: 10
         height: 5
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: RobComplete_2
       rect:
         serializedVersion: 2
-        x: 261
+        x: 721
         y: 867
         width: 5
         height: 11
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: RobComplete_3
       rect:
         serializedVersion: 2
-        x: 35
-        y: 758
-        width: 5
-        height: 35
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: RobComplete_4
-      rect:
-        serializedVersion: 2
-        x: 273
-        y: 695
-        width: 97
-        height: 89
-      alignment: 9
-      pivot: {x: .700898468, y: .163142174}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: RobComplete_5
-      rect:
-        serializedVersion: 2
-        x: 615
-        y: 745
-        width: 53
-        height: 58
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: RobComplete_6
-      rect:
-        serializedVersion: 2
-        x: 688
+        x: 198
         y: 742
         width: 101
         height: 115
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: RobComplete_4
+      rect:
+        serializedVersion: 2
+        x: 319
+        y: 745
+        width: 53
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: RobComplete_5
+      rect:
+        serializedVersion: 2
+        x: 617
+        y: 695
+        width: 97
+        height: 89
+      alignment: 9
+      pivot: {x: .283646733, y: .146299899}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: RobComplete_6
+      rect:
+        serializedVersion: 2
+        x: 947
+        y: 758
+        width: 5
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: RobComplete_7
       rect:
         serializedVersion: 2
-        x: 856
+        x: 97
         y: 719
         width: 34
         height: 38
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: RobComplete_8
       rect:
         serializedVersion: 2
-        x: 251
+        x: 730
         y: 693
         width: 6
         height: 10
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: RobComplete_9
       rect:
         serializedVersion: 2
-        x: 14
-        y: 305
-        width: 83
-        height: 365
-      alignment: 9
-      pivot: {x: .500000179, y: .894260883}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: RobComplete_10
-      rect:
-        serializedVersion: 2
-        x: 134
-        y: 533
-        width: 82
-        height: 139
-      alignment: 9
-      pivot: {x: .518280566, y: .71568507}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: RobComplete_11
-      rect:
-        serializedVersion: 2
-        x: 255
-        y: 381
-        width: 182
-        height: 269
-      alignment: 9
-      pivot: {x: .500000179, y: .21022743}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: RobComplete_12
-      rect:
-        serializedVersion: 2
-        x: 571
-        y: 599
-        width: 46
-        height: 62
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: RobComplete_13
-      rect:
-        serializedVersion: 2
-        x: 689
+        x: 250
         y: 594
         width: 48
         height: 68
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: RobComplete_10
+      rect:
+        serializedVersion: 2
+        x: 370
+        y: 599
+        width: 46
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: RobComplete_11
+      rect:
+        serializedVersion: 2
+        x: 550
+        y: 381
+        width: 182
+        height: 269
+      alignment: 9
+      pivot: {x: .483527213, y: .199082613}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: RobComplete_12
+      rect:
+        serializedVersion: 2
+        x: 771
+        y: 531
+        width: 82
+        height: 139
+      alignment: 9
+      pivot: {x: .499999255, y: .801958919}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: RobComplete_13
+      rect:
+        serializedVersion: 2
+        x: 890
+        y: 305
+        width: 83
+        height: 365
+      alignment: 9
+      pivot: {x: .518060505, y: .918902338}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: RobComplete_14
       rect:
         serializedVersion: 2
-        x: 120
-        y: 326
-        width: 74
-        height: 184
-      alignment: 9
-      pivot: {x: .560770392, y: .858459651}
+        x: 59
+        y: 435
+        width: 127
+        height: 150
+      alignment: 0
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: RobComplete_15
       rect:
         serializedVersion: 2
-        x: 592
-        y: 444
-        width: 25
-        height: 58
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: RobComplete_16
-      rect:
-        serializedVersion: 2
-        x: 679
+        x: 265
         y: 368
         width: 43
         height: 134
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: RobComplete_16
+      rect:
+        serializedVersion: 2
+        x: 370
+        y: 444
+        width: 25
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: RobComplete_17
       rect:
         serializedVersion: 2
-        x: 795
-        y: 425
-        width: 140
-        height: 160
-      alignment: 0
-      pivot: {x: .5, y: .5}
+        x: 792
+        y: 327
+        width: 74
+        height: 184
+      alignment: 9
+      pivot: {x: .479742914, y: .88289988}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: RobComplete_18
       rect:
         serializedVersion: 2
-        x: 67
-        y: 157
-        width: 102
-        height: 84
-      alignment: 9
-      pivot: {x: .294252962, y: .73198992}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: RobComplete_19
-      rect:
-        serializedVersion: 2
-        x: 227
-        y: 186
-        width: 45
-        height: 66
-      alignment: 9
-      pivot: {x: .300131232, y: .840684593}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: RobComplete_20
-      rect:
-        serializedVersion: 2
-        x: 313
+        x: 523
         y: 183
         width: 151
         height: 165
       alignment: 9
-      pivot: {x: .728326261, y: .817972422}
+      pivot: {x: .172400057, y: .854311645}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: RobComplete_19
+      rect:
+        serializedVersion: 2
+        x: 715
+        y: 186
+        width: 45
+        height: 66
+      alignment: 9
+      pivot: {x: .699868441, y: .840684593}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: RobComplete_20
+      rect:
+        serializedVersion: 2
+        x: 818
+        y: 157
+        width: 102
+        height: 84
+      alignment: 9
+      pivot: {x: .735139132, y: .785526097}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: RobComplete_21
       rect:
         serializedVersion: 2
-        x: 17
-        y: 69
-        width: 47
-        height: 40
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: RobComplete_22
-      rect:
-        serializedVersion: 2
-        x: 74
-        y: 69
-        width: 47
-        height: 40
-      alignment: 9
-      pivot: {x: .691363215, y: .762327194}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: RobComplete_23
-      rect:
-        serializedVersion: 2
-        x: 147
-        y: 14
-        width: 105
-        height: 117
-      alignment: 9
-      pivot: {x: .742697418, y: .83311379}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: RobComplete_24
-      rect:
-        serializedVersion: 2
-        x: 305
-        y: 0
-        width: 150
-        height: 164
-      alignment: 9
-      pivot: {x: .729848862, y: .81991148}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: RobComplete_25
-      rect:
-        serializedVersion: 2
-        x: 702
-        y: 44
-        width: 70
-        height: 68
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: RobComplete_26
-      rect:
-        serializedVersion: 2
-        x: 852
+        x: 15
         y: 11
         width: 120
         height: 111
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: RobComplete_22
+      rect:
+        serializedVersion: 2
+        x: 215
+        y: 44
+        width: 70
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: RobComplete_23
+      rect:
+        serializedVersion: 2
+        x: 532
+        y: 0
+        width: 150
+        height: 164
+      alignment: 9
+      pivot: {x: .180210367, y: .847332478}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: RobComplete_24
+      rect:
+        serializedVersion: 2
+        x: 735
+        y: 14
+        width: 105
+        height: 117
+      alignment: 9
+      pivot: {x: .24302572, y: .820301712}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: RobComplete_25
+      rect:
+        serializedVersion: 2
+        x: 866
+        y: 69
+        width: 47
+        height: 40
+      alignment: 9
+      pivot: {x: .212954253, y: .762327194}
       border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 
