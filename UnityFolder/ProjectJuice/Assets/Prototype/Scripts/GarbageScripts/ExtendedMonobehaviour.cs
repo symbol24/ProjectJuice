@@ -132,16 +132,7 @@ public abstract class ExtendedMonobehaviour : MonoBehaviour, IGameObject {
                     ret = sourceReference.transform.position;
                 }
             }
-            
-            /*Debug.Log(hit.transform.gameObject.name);
-            Debug.DrawLine(transform.position, ret);
-            Debug.DrawLine(transform.position, hit.centroid, Color.yellow);
-            Debug.DrawLine(transform.position, hit.transform.position, Color.cyan);
-            Debug.DrawLine(transform.position, targetCollider.transform.position, Color.magenta);
-            Debug.Break();*/
         }
-
-
         return ret;
     }
     
@@ -165,4 +156,42 @@ public abstract class ExtendedMonobehaviour : MonoBehaviour, IGameObject {
         yield return new WaitForSeconds(timer);
         Destroy(toDestroy.gameObject);
     }
+
+    protected Vector2 GetPointOfImpact(Transform targetReference, Transform sourceReference,
+        int raycastIterationsToFindTarget = 5, float raycastVariationPerTry = 0.1f)
+    {
+        var ret = default(Vector2);
+        var othersPosition = targetReference.gameObject.transform.position - sourceReference.position;
+        RaycastHit2D hit = default(RaycastHit2D);
+        if (_legacyGetPointOfImpact)
+        {
+            for (int i = 0; i < raycastIterationsToFindTarget; i++)
+            {
+                var firstTarget = new Vector3(othersPosition.x + raycastVariationPerTry * i,
+                    othersPosition.y + raycastVariationPerTry * i, othersPosition.z);
+                hit = Physics2D.Raycast(sourceReference.position, firstTarget, float.MaxValue);
+                if (hit.transform == targetReference) break;
+                var secondTarget = new Vector3(othersPosition.x - raycastVariationPerTry * i,
+                    othersPosition.y - raycastVariationPerTry * i, othersPosition.z);
+                hit = Physics2D.Raycast(sourceReference.position, secondTarget, float.MaxValue);
+                if (hit.transform == targetReference) break;
+            }
+            ret = hit.point;
+        }
+        else
+        {
+            RaycastHit2D[] hits;
+            hits = Physics2D.RaycastAll(sourceReference.position, othersPosition,
+                Vector3.Distance(sourceReference.position, othersPosition));
+            //Debug.DrawRay(sourceReference.position, othersPosition, Color.green);
+            hit = hits.FirstOrDefault(c => c.transform == targetReference);
+            ret = hit.point;
+            if (hit == default(RaycastHit2D))
+            {
+                ret = sourceReference.transform.position;
+            }
+        }
+        return ret;
+    }
+
 }
