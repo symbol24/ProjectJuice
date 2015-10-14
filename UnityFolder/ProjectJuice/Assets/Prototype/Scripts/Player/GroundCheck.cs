@@ -7,6 +7,7 @@ public class GroundCheck : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D collider)
     {
-        m_parent.CheckifFeetPassed(collider);
+        //m_parent.CheckifFeetPassed(collider);
+        m_parent.ResetPassthrough();
     }
 }
