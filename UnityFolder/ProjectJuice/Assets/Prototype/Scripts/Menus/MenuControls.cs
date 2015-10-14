@@ -2,7 +2,6 @@
 using System.Collections;
 using GamepadInput;
 using System.Collections.Generic;
-using Utility;
 
 public class MenuControls : MonoBehaviour {
     private List<PlayerData> m_ListofPlayers = new List<PlayerData>();

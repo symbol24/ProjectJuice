@@ -20,6 +20,12 @@ public class HPScript : HPBase
     [SerializeField] private Transform _centerOfReferenceForJuice;
     [SerializeField] private Rigidbody2D _mainRigidbody;
 
+    private bool m_ShieldImmunity = false;
+    public bool ShieldImunity { get { return m_ShieldImmunity; } }
+    public void SwitchShieldImunity()
+    {
+        m_ShieldImmunity = !m_ShieldImmunity;
+    }
 
     #region EventsAvailable
     public event EventHandler<ImpactEventArgs> HpImpactReceived;
@@ -29,8 +35,8 @@ public class HPScript : HPBase
     {
         EventHandler handler = Dead;
         if (handler != null) handler(this, EventArgs.Empty);
-        Debug.Log("addDeath Animation");
-
+        Debug.LogWarning("Missing Death Animation");
+        PlayDeathFX();
         Destroy(gameObject);
     }
     protected virtual void OnHpImpactReceived(ImpactEventArgs e)
@@ -40,6 +46,10 @@ public class HPScript : HPBase
     }
     #endregion EventsAvailable
 
+    
+    [HideInInspector] public ParticleSystem _deathFlashes;
+    [Range(0,5)][SerializeField] private float _deathFlashesLength = 2f;
+    
     // Use this for initialization
     protected override void Start()
     {
@@ -65,18 +75,26 @@ public class HPScript : HPBase
 
     public void RouteOnTriggerEnter2D(Collider2D collider, bool isBackCollider)
     {
-        
-        CheckForDamage(collider, isBackCollider);
-        if(!isBackCollider)
-            CheckForPowerUp(collider);
+        if (!m_ShieldImmunity)
+        {
+            CheckForDamage(collider, isBackCollider);
+            if (!isBackCollider)
+                CheckForPowerUp(collider);
+        }
     }
     public void RouteOnCollisionEnter2D(Collision2D collision, bool isBackCollider)
     {
-        Collider2D collider = collision.collider;
+        if (!m_ShieldImmunity)
+        {
+            Collider2D collider = collision.collider;
 
-        CheckForDamage(collider, isBackCollider);
-        if (!isBackCollider)
-            CheckForPowerUp(collider);
+            RouteOnTriggerEnter2D(collider, isBackCollider);
+            /*
+            CheckForDamage(collider, isBackCollider);
+            if (!isBackCollider)
+                CheckForPowerUp(collider);
+                */
+        }
     }
 
     private void CheckForPowerUp(Collider2D collider)
@@ -92,12 +110,18 @@ public class HPScript : HPBase
         }
     }
     
+    private void PlayDeathFX()
+    {
+        InstatiateParticle(_deathFlashes, gameObject, false, _deathFlashesLength);
+        SoundManager.PlaySFX(Database.instance.RobotDeath);
+        SoundManager.PlaySFX(Database.instance.RobotDeathCrowd);
+    }
 
     private bool DamagingDoesDamage(IDamaging checkDamaging, Vector2 pointOfCollision, out float damage)
     {
         bool ret = true;
         damage = checkDamaging.Damage;
-        Debug.Log("original Damage = " + damage);
+        //Debug.Log("original Damage = " + damage);
         if (checkDamaging.ImpactForceSettings.IsFadeDmgOnDistance)
         {
             var distance = Vector2.Distance(checkDamaging.gameObject.transform.position, transform.position);
@@ -111,7 +135,7 @@ public class HPScript : HPBase
                 ret = false;
             }
         }
-        Debug.Log("afterCalc Damage = " + damage);
+        //Debug.Log("afterCalc Damage = " + damage);
         return ret;
     }
 
@@ -141,6 +165,8 @@ public class HPScript : HPBase
                     _character.AddKnockBack(checkDamaging);
                 }
 
+                PlayRightSound(collider, isBack);
+
                 var e = new ImpactEventArgs
                 {
                     Damage = damage,
@@ -152,6 +178,23 @@ public class HPScript : HPBase
         }
     }
 
+    private void PlayRightSound(Collider2D collider, bool isWeakPoint = false)
+    {
+        string toPlay = "";
 
+        var bullet = collider.GetComponent<Bullet>();
+        if(bullet != null)
+        {
+            if (isWeakPoint) toPlay = bullet.WeakpointBulletImpact;
+            else toPlay = bullet.RobotBulletImpact;
+        }
+
+        var melee = collider.GetComponent<MeleeDamagingCollider>();
+        if (melee != null)
+        {
+            toPlay = melee._meleeAttack.PlayerImpact;
+        }
+        SoundManager.PlaySFX(toPlay);
+    }
 
 }

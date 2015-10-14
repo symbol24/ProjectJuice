@@ -10,6 +10,7 @@ public class LogoEditor : Editor {
 
     string[] ListOfAudioClips;
     int _clipChoice = 0;
+    
 
     public override void OnInspectorGUI()
     {
@@ -18,16 +19,15 @@ public class LogoEditor : Editor {
         var logoIntro = target as LogoIntro;
         
         ListOfScenes = EditorUtilities.GetSceneNames();
-        ListOfAudioClips = EditorUtilities.GetListOfAudioClipsFromGroup("Logo");
+        ListOfAudioClips = EditorUtilities.GetListOfAudioClips();
 
         _sceneChoice = logoIntro.NextScene;
-        _clipChoice =  logoIntro.Clip;
+        _clipChoice =  EditorUtilities.GetSelectedClip(ListOfAudioClips, logoIntro.ClipName);
 
         _sceneChoice = EditorGUILayout.Popup("Next Scene", _sceneChoice, ListOfScenes);
         _clipChoice = EditorGUILayout.Popup("Audio Clip on Logo", _clipChoice, ListOfAudioClips);
 
         logoIntro.NextScene = _sceneChoice;
-        logoIntro.Clip = _clipChoice;
         logoIntro.ClipName = SoundManager.Instance.storedSFXs[_clipChoice].name;
 
         EditorUtility.SetDirty(target);

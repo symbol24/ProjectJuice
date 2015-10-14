@@ -37,18 +37,43 @@ public class RoundMenu : Menu {
     private int m_currentSelection = 0;
     private int m_maxSelection = 0;
     private bool m_inConfirm = false;
+    private bool m_playingSpecialBGM = false;
+    [SerializeField] private bool m_playSpecialBGM = false;
+    [Range(0,1)][SerializeField] private float m_BGMVolume = 0.2f;
+    [SerializeField] private AudioClip m_SpecialBGM;
+    private SoundConnection m_myConnection;
 
     [HideInInspector] public int VictoryID;
     [HideInInspector] public string VictoryName;
     [HideInInspector] public int DrawID;
     [HideInInspector] public string DrawName;
+    [HideInInspector] public string MenuOpen;
+    [HideInInspector] public string MenuClose;
+    [HideInInspector] public string ReturnToCS;
+    [HideInInspector] public string MedalAppear;
+    [HideInInspector] public string MedalCrowd;
+    [HideInInspector] public string RoundPhaseOut;
+    [HideInInspector] public string MatchPhaseIn;
 
     // Use this for initialization
     protected override void Start () {
         base.Start();
-        m_maxSelection = m_ListOfButtones.Length;
+        m_maxSelection = GetListOfActiveButtons();
         m_DelayManager = GetComponent<DelayManager>();
         m_DelayManager.Reset();
+        m_myConnection = SoundManager.GetCurrentSoundConnection();
+        m_RoundMenu.SetActive(false);
+        m_MatchMenu.SetActive(false);
+        m_RoundPanel.SetActive(false);
+    }
+
+    private int GetListOfActiveButtons()
+    {
+        int ret = 0;
+
+        foreach (Button b in m_ListOfButtones) if (b.IsActive()) ret++;
+
+        return ret;
     }
 
     // Update is called once per frame
@@ -58,7 +83,7 @@ public class RoundMenu : Menu {
         {
             for (int i = 0; i < PlayerSpawner.instance.ListOfPlayerDatas.Count; i++)
             {
-                if (m_RoundMenu.activeInHierarchy && m_DelayManager.m_CanShoot && m_Controls.Confirm[i])
+                if (m_RoundMenu.activeInHierarchy && m_DelayManager.CanShoot && (m_Controls.Confirm[i] || m_Controls._Start[i]))
                 {
                     SoundManager.PlaySFX(Database.instance.MenuClickName);
                     GoToNextRound();
@@ -71,17 +96,17 @@ public class RoundMenu : Menu {
             {
                 if (m_MatchMenu.activeInHierarchy)
                 {
-                    if (m_DelayManager.m_CanShield && !m_inConfirm && m_Controls.X[i] != 0)
+                    if (m_DelayManager.CanShield && !m_inConfirm && m_Controls.X[i] != 0)
                     {
                         SetNextActive(m_Controls.X[i]);
                     }
 
-                    if (m_DelayManager.m_CanShoot && m_Controls.Confirm[i])
+                    if (m_DelayManager.CanShoot && m_Controls.Confirm[i])
                     {
                         RoundActivate();
                     }
 
-                    if (m_DelayManager.m_CanShoot && m_inConfirm && m_Controls.Cancel[i])
+                    if (m_DelayManager.CanShoot && m_inConfirm && m_Controls.Cancel[i])
                     {
                         CancelConfirm();
                     }
@@ -95,7 +120,9 @@ public class RoundMenu : Menu {
         if (active)
             StartCoroutine(DelayBeforeActive(active, m_DelayBeforeDisplay, isMatchOver, winnerName, nextGameState));
         else
+        {
             m_RoundPanel.SetActive(active);
+        }
     }
 
     private IEnumerator DelayBeforeActive(bool active, float timer, bool isMatchOver, string winnerName, GameState nextState)
@@ -103,11 +130,39 @@ public class RoundMenu : Menu {
         m_DelayManager.AddDelay(float.MaxValue);
         PlayerSpawner.instance.FlushAlivePlayerInputs();
         yield return new WaitForSeconds(timer);
+        SwitchBGM();
         DisplayPlayers(isMatchOver, winnerName);
         m_RoundPanel.SetActive(active);
         GameManager.instance.SetGameState(nextState);
         m_DelayManager.Reset();
         m_DelayManager.AddDelay(Database.instance.LongMenuInputDelay);
+        SoundManager.PlaySFX(MenuOpen);
+    }
+
+    private void SwitchBGM()
+    {
+        if (m_playSpecialBGM)
+        {
+            if (!m_playingSpecialBGM)
+            {
+                SoundManager.StopMusicImmediately();
+                SoundManager.Play(m_SpecialBGM, true);
+            }
+            else
+            {
+                SoundManager.StopMusicImmediately();
+                if(m_myConnection != null)
+                    SoundManager.PlayConnection(m_myConnection);
+            }
+            m_playingSpecialBGM = !m_playingSpecialBGM;
+        }
+        else
+        {
+            if (SoundManager.GetVolumeMusic() > m_BGMVolume)
+                SoundManager.SetVolumeMusic(m_BGMVolume);
+            else
+                SoundManager.SetVolumeMusic(1);
+        }
     }
 
     private void DisplayPlayers(bool isMatchOver, string winnerName)
@@ -164,6 +219,15 @@ public class RoundMenu : Menu {
 
     private void GoToNextRound()
     {
+        GameManager.instance.SetGameState(GameState.Loading);
+        StartCoroutine(DelayedToNextRound());
+    }
+
+    private IEnumerator DelayedToNextRound()
+    {
+        SoundManager.PlaySFX(MenuClose);
+        yield return new WaitForSeconds(m_DelayBeforeDisplay);
+        SwitchBGM();
         HidePanelStuff();
         GameManager.instance.StartNextRound();
     }
@@ -193,6 +257,14 @@ public class RoundMenu : Menu {
 
     public void RoundRematch()
     {
+        StartCoroutine(DelayedRematch());
+    }
+
+    private IEnumerator DelayedRematch()
+    {
+        SoundManager.PlaySFX(MenuClose);
+        yield return new WaitForSeconds(m_DelayBeforeDisplay);
+        SwitchBGM();
         Application.LoadLevel(Application.loadedLevel);
     }
 

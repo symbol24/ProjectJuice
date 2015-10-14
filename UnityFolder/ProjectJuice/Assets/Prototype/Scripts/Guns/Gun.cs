@@ -14,15 +14,20 @@ public class Gun : ExtendedMonobehaviour {
     public GameObject m_Gun { get { return m_GunObject; } }
     [SerializeField] private Bullet m_BulletPrefab;
     public Bullet m_Bullet { get { return m_BulletPrefab; } }
-    [Range(0,5)][SerializeField] private float m_ShotDelay = 0.1f;
+    [Range(0,5)][SerializeField] protected float m_ShotDelay = 0.1f;
     public float m_Delay { get { return m_ShotDelay; } }
     [SerializeField] private HPScript m_HpScript;
     public HPScript m_HpScp { get { return m_HpScript; } }
-    [SerializeField] private Light m_GunLight;
-    [Range(0,3)][SerializeField] float m_LightOn = 0.1f;
-    [Range(0,3)][SerializeField] float m_LightOff = 0.1f;
-    [Range(0, 10)][SerializeField] private int m_AmountOfFlashes = 3;
     protected bool m_HasDisplayed = true;
+
+    [HideInInspector] public string GunShot;
+
+    [HideInInspector] public ParticleSystem m_MuzzleFlash;
+    [Range(0, 5)][SerializeField] private float m_MuzzleFlashLifeTime = 0.1f;
+    [HideInInspector] public ParticleSystem m_MuzzleSmoke;
+    [Range(0, 5)][SerializeField] private float m_MuzzleSmokeLifeTime = 0.5f;
+
+    protected LightFeedbackTemp _lightFeedback;
 
     protected virtual void Start()
     {
@@ -30,6 +35,13 @@ public class Gun : ExtendedMonobehaviour {
         m_Controller = GetComponent<IPlatformer2DUserControl>();
         m_DelayManager = GetComponent<DelayManager>();
         if(m_HpScript == null) m_HpScript = GetComponent<HPScript>();
+        _lightFeedback = GetComponent<LightFeedbackTemp>();
+        _lightFeedback.LightDone += ResetDelayManager;
+    }
+
+    protected void ResetDelayManager(object sender, System.EventArgs e)
+    {
+        m_DelayManager.SetDelay(0);
     }
 
     // Update is called once per frame
@@ -40,7 +52,7 @@ public class Gun : ExtendedMonobehaviour {
 
             //CheckLight();
 
-            if (m_Controller.m_Shoot && m_DelayManager.m_CanShoot)
+            if (m_Controller.m_Shoot && m_DelayManager.CanShoot)
             {
                 Fire();
             }
@@ -60,24 +72,17 @@ public class Gun : ExtendedMonobehaviour {
         Bullet newBullet = Instantiate(m_BulletPrefab, m_GunReference.transform.position, m_GunReference.transform.rotation) as Bullet;
         newBullet.ShootBullet();
         newBullet.AddImmuneTarget(m_HpScript);
+        SoundManager.PlaySFX(GunShot);
     }
 
     private void CheckLight()
     {
-        if (!m_HasDisplayed && m_DelayManager.m_CanShoot) StartCoroutine(DisplayGunLight());
+        if (!m_HasDisplayed && m_DelayManager.CanShoot) _lightFeedback.StartLightFeedback(m_ShotDelay);
     }
 
-    protected IEnumerator DisplayGunLight()
+    protected void DisplayParticles()
     {
-        yield return new WaitForSeconds(m_ShotDelay);
-        m_HasDisplayed = true;
-        for (int i = 0; i < m_AmountOfFlashes; i++)
-        {
-            m_GunLight.enabled = true;
-            yield return new WaitForSeconds(m_LightOn);
-            m_GunLight.enabled = false;
-            yield return new WaitForSeconds(m_LightOff);
-        }
-        m_DelayManager.Reset();
+        InstatiateParticle(m_MuzzleFlash, m_GunRef, true, m_MuzzleFlashLifeTime);
+        InstatiateParticle(m_MuzzleSmoke, m_GunRef, true, m_MuzzleSmokeLifeTime);
     }
 }

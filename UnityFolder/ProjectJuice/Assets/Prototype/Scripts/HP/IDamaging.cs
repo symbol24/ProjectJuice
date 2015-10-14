@@ -14,4 +14,5 @@ public interface IDamaging : IConsumable
     IEnumerable<HPScript> ImmuneTargets { get; }
     bool HasImmuneTargets { get; }
     void UpdateImpactForceSetting(ImpactForceSettings toUpdate);
+    int BulletsToGiveShield { get; }
 }

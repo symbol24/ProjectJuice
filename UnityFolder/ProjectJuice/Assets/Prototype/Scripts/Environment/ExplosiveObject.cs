@@ -5,20 +5,21 @@ using System.Collections;
 
 public class ExplosiveObject : HPBase
 {
+    [SerializeField] private bool _IsExplosive = true;
     [SerializeField] private GameObject _explosionPrefab;
-    [SerializeField] private float _explosionDestroyTimeout = 3f;
+    [Range(0,10)][SerializeField] private float _explosionDestroyTimeout = 3f;
     [SerializeField] private List<GameObject> _ragdollParticles;
     [SerializeField] private bool _enableTimerBeforeExplosion = false;
-    [SerializeField] private float _timerBeforeExplosion;
+    [Range(0,10)][SerializeField] private float _timerBeforeExplosion;
     [SerializeField] private bool _addImpactForce = true;
     [SerializeField] private ImpactForceSettings _impactForceSettings;
-    [SerializeField] private float _DragResetDelay;
-    [SerializeField] private float _impactForceModifier = 100f;
-    [SerializeField] private float _massAdditionWhenIgnited = -10;
-    [SerializeField] private float _explosionDuration = 0.2f;
+    [Range(0,10)][SerializeField] private float _DragResetDelay;
+    [Range(0,500)][SerializeField] private float _impactForceModifier = 100f;
+    [Range(-50,50)][SerializeField] private float _massAdditionWhenIgnited = -10;
+    [Range(0,10)][SerializeField] private float _explosionDuration = 0.2f;
     [SerializeField]private ForceMode2D m_ForceType = ForceMode2D.Force;
-    [SerializeField] private float _XMinForce = 1f;
-    [SerializeField] private float _XMaxForce = 1f;
+    [Range(-10,10)][SerializeField] private float _XMinForce = 1f;
+    [Range(-10,10)][SerializeField] private float _XMaxForce = 1f;
     private float RandomXSpeed
     {
         get
@@ -28,8 +29,8 @@ public class ExplosiveObject : HPBase
             return ret * Mathf.Sign(UnityEngine.Random.value - 0.5f);
         }
     }
-    [SerializeField] private float _YMinForce = 1f;
-    [SerializeField] private float _YMaxForce = 1f;
+    [Range(-10,10)][SerializeField] private float _YMinForce = 1f;
+    [Range(-10,10)][SerializeField] private float _YMaxForce = 1f;
     private float RandomYSpeed
     {
         get
@@ -45,11 +46,25 @@ public class ExplosiveObject : HPBase
     public List<GameObject> _explosiveColliders;
     public List<GameObject> _collidersToDisableDuringExplosion;
 
+    private DelayManager _delayManager;
 
     public GameObject ExplosionPrefab
     {
         get { return _explosionPrefab; }
     }
+    
+    [Range(0,10)][SerializeField] public int _bulletsToGive = 5;
+    [Range(0, 1)][SerializeField] private float _delayFourPushingSound = 0.4f;
+
+    [HideInInspector] public string Pushing;
+    [HideInInspector] public string GroundImpact;
+    [HideInInspector] public string BulletImpact;
+    [HideInInspector] public string Explosion;
+
+    [HideInInspector] public ParticleSystem _groundScraping;
+    [HideInInspector] public ParticleSystem _explosionFX;
+    [HideInInspector] public ParticleSystem _shockwave;
+    [HideInInspector] public ParticleSystem _chromaticAberation;
 
     // Use this for initialization
     protected override void Start()
@@ -58,6 +73,8 @@ public class ExplosiveObject : HPBase
         _mainRigidbody = GetComponent<Rigidbody2D>();
         if(_bulletExplosionCollisionEvaluator == null) _bulletExplosionCollisionEvaluator = GetComponent<Collider2D>();
         HpChanged += OnHpChanged;
+        _delayManager = GetComponent<DelayManager>();
+        _delayManager.Reset();
     }
 
     private void SwitchCollidersOnOff()
@@ -84,6 +101,26 @@ public class ExplosiveObject : HPBase
         CheckForDamaging(collider);
     }
 
+    public void RouteOnCollisionStay2D(Collider2D collider)
+    {
+        var player = collider.GetComponent<IPlatformer2DUserControl>();
+        var ground = collider.GetComponent<Ground>();
+        if (player != null && ground != null)
+        {
+            print("both touching ground and player");
+            if(_mainRigidbody.velocity.x > 0 || _mainRigidbody.velocity.x < 0)
+            {
+                print("volicity is greater or lower");
+                if (_delayManager.SoundReady)
+                {
+                    SoundManager.PlaySFX(Pushing);
+                    InstatiateParticle(_groundScraping, gameObject);
+                    _delayManager.AddSoundDelay(_delayFourPushingSound);
+                }
+            }
+        }
+    }
+
     private void CheckForDamaging(Collider2D toCheck)
     {
         var damaging = toCheck.GetComponent<IDamaging>();
@@ -92,6 +129,7 @@ public class ExplosiveObject : HPBase
             //Get Hit
             CurrentHp -= damaging.Damage;
             damaging.Consumed();
+            SoundManager.PlaySFX(BulletImpact);
 
             if (damaging.AddImpactForce)
             {
@@ -114,6 +152,17 @@ public class ExplosiveObject : HPBase
                 destroyer.Timeout = _explosionDestroyTimeout;
             }
         }
+
+        var ground = toCheck.GetComponent<Ground>();
+        if(ground != null) SoundManager.PlaySFX(GroundImpact);
+
+        /*
+        var player = toCheck.GetComponent<IPlatformer2DUserControl>();
+        if (player != null) SoundManager.PlaySFX(GroundImpact);
+        */
+
+        var otherExplosif = toCheck.GetComponent<ExplosiveObjectDamagableCollider>();
+        if (otherExplosif != null) SoundManager.PlaySFX(GroundImpact);
     }
 
     private void OnHpChanged(object sender, HpChangedEventArgs hpChangedEventArgs)
@@ -145,7 +194,8 @@ public class ExplosiveObject : HPBase
 
     private void Kaboom()
     {
-        print("need to add fireworks here");
+        DisplayFX();
+        SoundManager.PlaySFX(Explosion);
         SwitchCollidersOnOff();
         foreach (var ragdollParticlePrefab in _ragdollParticles)
         {
@@ -153,15 +203,25 @@ public class ExplosiveObject : HPBase
             var particleRigidbody = particle.GetComponent<Rigidbody2D>();
             particleRigidbody.AddForce(new Vector2(RandomXSpeed, RandomYSpeed));
         }
-        foreach (var explosiveCollider in _explosiveColliders)
+        if (_IsExplosive)
         {
-            var script = explosiveCollider.AddComponent<ExplosiveObjectCollider>();
-            script._explosiveObject = this;
-            _mainRigidbody.isKinematic = true;
-            //StartCoroutine(DeleteNextUpdate(script));
+            foreach (var explosiveCollider in _explosiveColliders)
+            {
+                var script = explosiveCollider.AddComponent<ExplosiveObjectCollider>();
+                script._explosiveObject = this;
+                _mainRigidbody.isKinematic = true;
+                //StartCoroutine(DeleteNextUpdate(script));
+            }
         }
         var timer = gameObject.AddComponent<DestroyOnTimer>();
         timer.Timeout = _explosionDuration;
+    }
+
+    private void DisplayFX()
+    {
+        InstatiateParticle(_explosionFX, gameObject);
+        InstatiateParticle(_shockwave, gameObject);
+        InstatiateParticle(_chromaticAberation, gameObject);
     }
 
     private IEnumerator DeleteNextUpdate(ExplosiveObjectCollider script)

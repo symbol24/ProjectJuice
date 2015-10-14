@@ -9,11 +9,8 @@ public class RoundStartTimer : MonoBehaviour {
     [Range(0, 3)][SerializeField] float m_delayAfterGo = 0.5f;
     [Range(0, 10)][SerializeField] int m_amountOfSeconds = 5;
     private FadeOut m_fader;
-    [HideInInspector] public int NumberClipID;
     [HideInInspector] public string NumberClipName;
-    [HideInInspector] public int GoClipID;
     [HideInInspector] public string GoClipName;
-    [HideInInspector] public int GetReadyClipID;
     [HideInInspector] public string GetReadyClipName;
 
     // Use this for initialization

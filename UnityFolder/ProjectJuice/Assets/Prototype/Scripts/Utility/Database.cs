@@ -22,6 +22,14 @@ public class Database : MonoBehaviour
         }
     }
 
+    void Awake()
+    {
+        if (FindObjectsOfType<Database>().Length > 1)
+            Destroy(gameObject);
+        else
+            DontDestroyOnLoad(gameObject);
+    }
+
     [SerializeField]
     List<Sponsor> m_ListofSponsors;
     public List<Sponsor> ListofSponsors { get { return m_ListofSponsors; } }
@@ -70,18 +78,23 @@ public class Database : MonoBehaviour
     [Range(0,10)][SerializeField] float m_BackDamageMultiplier = 1.4f;
     public float BackDamageMultiplier { get { return m_BackDamageMultiplier; } }
 
-    [HideInInspector] public int MainMenuID;
-    [HideInInspector] public int MenuSlideID;
-    [HideInInspector] public string MenuSlideName;
-    [HideInInspector] public int MenuClickID;
-    [HideInInspector] public string MenuClickName;
-    [HideInInspector] public int MenuCanceID;
-    [HideInInspector] public string MenuCancelName;
+    [Range(0,1)][SerializeField] float m_MenuNavigationDeadZone = 0.5f;
+    public float MenuNavigationDeadZone { get { return m_MenuNavigationDeadZone; } }
 
-    void Awake()
-    {
-        DontDestroyOnLoad(this);
-    }
+    [SerializeField] private ParticleSystem[] m_Particles;
+    public ParticleSystem[] Particles { get { return m_Particles; } }
+
+    [HideInInspector] public int MainMenuID;
+    [HideInInspector] public string MenuSlideName;
+    [HideInInspector] public string MenuClickName;
+    [HideInInspector] public string MenuCancelName;
+    [HideInInspector] public string MenuErrorName;
+    [HideInInspector] public string RobotDeath;
+    [HideInInspector] public string RobotDeathCrowd;
+    [HideInInspector] public string Jump;
+    [HideInInspector] public string Landing;
+    [HideInInspector] public string Dash;
+    [HideInInspector] public string DashMetalGrind;
 
     void Start()
     {

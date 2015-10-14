@@ -18,10 +18,11 @@ public class MeleeAttack : ExtendedMonobehaviour
     [SerializeField] private GameObject _swingerCollider;
     [SerializeField] private GameObject _flipReference;
     [SerializeField] private DelayManager _delayManager;
-    [SerializeField] private float _damage = 80;
     [SerializeField] private bool _addImpactForce = true;
     [SerializeField] private PlatformerCharacter2D _physicsManager;
-    [SerializeField] private GameObject _clashingEffectPrefab;
+    [SerializeField] private ParticleSystem _clashingEffectPrefab;
+    [SerializeField] private ParticleSystem _clashCroudFlashes;
+    [Range(0,4)][SerializeField] private float _FlashTimerOnScreen = 2f;
 
     public ImpactForceSettings _impactForceSettings;
     
@@ -31,12 +32,16 @@ public class MeleeAttack : ExtendedMonobehaviour
     public float endingRotation = 45;
     [Range(0,3)]public float _delayAfterSwing = 0.5f;
 
-    
-    [SerializeField] private Light m_GunLight;
-    [Range(0,3)][SerializeField] float m_LightOn = 0.1f;
-    [Range(0,3)][SerializeField] float m_LightOff = 0.1f;
-    [Range(0, 10)][SerializeField] private int m_AmountOfFlashes = 3;
-    protected bool m_HasFeedbackDisplayed = true;
+    [HideInInspector] public string Swipe;
+    [HideInInspector] public string PlayerImpact;
+    [HideInInspector] public string Sheath;
+    [HideInInspector] public string Clash;
+    [HideInInspector] public string ClashCrowd;
+    [HideInInspector] public string ClashAftermath;
+    [HideInInspector] public string AbilitySecondSound;
+    [HideInInspector] public string AbilityAerial;
+
+    private LightFeedbackTemp _lightFeedback;
 
     // Use this for initialization
     private void Start()
@@ -46,13 +51,20 @@ public class MeleeAttack : ExtendedMonobehaviour
         if (_mouvementManager == null) _mouvementManager = GetComponent<PlatformerCharacter2D>();
         _swingerCollider.gameObject.SetRotationEulerZ(startingRotation);
         if (_physicsManager == null) _physicsManager = GetComponent<PlatformerCharacter2D>();
+        _lightFeedback = GetComponent<LightFeedbackTemp>();
+        _lightFeedback.LightDone += MeleeTimerReset;
+    }
+
+    private void MeleeTimerReset(object sender, EventArgs e)
+    {
+        _delayManager.SetDelay(0);
     }
 
     // Update is called once per frame
-     void Update()
+    void Update()
     {
 
-        if (_delayManager.m_CanShoot && _inputManager.m_Melee)
+        if (_delayManager.CanShoot && _inputManager.m_Melee)
         {
             if (isAbility && !_mouvementManager.isGrounded)
             {
@@ -88,16 +100,20 @@ public class MeleeAttack : ExtendedMonobehaviour
 
     private IEnumerator StartSwingingAnimation()
     {
+        
         bool isGroundedAtStart = _mouvementManager.isGrounded;
         if (isAbility)
         {
-            //_mouvementManager.ChangeCanFlip();
-            if (_abilityHasSpike &&  !isGroundedAtStart)
+            _mouvementManager.ChangeCanFlip();
+            if (_abilityHasSpike && !isGroundedAtStart)
                 _completedAerialAttack = false;
+
+            if(!isGroundedAtStart) SoundManager.PlaySFX(AbilityAerial);
         }
 
+        SoundManager.PlaySFX(Swipe);
+
         _delayManager.AddDelay(100f);
-        m_HasFeedbackDisplayed = false;
         _isSwingingAnimationOnGoing = true;
         _swingerCollider.SetActive(true);
         yield return null;
@@ -120,14 +136,16 @@ public class MeleeAttack : ExtendedMonobehaviour
                 _swingerCollider.SetActive(true);
                 _mouvementManager.PhysicsDashForMeleeAbility(_DashForce);
             }
+            else
+                SoundManager.PlaySFX(AbilitySecondSound);
         }
 
 
         yield return new WaitForSeconds(_delayAfterSwing);
         _wasConsumedDuringThisAnimation = false;
         _isSwingingAnimationOnGoing = false;
-
-        StartCoroutine(DisplayGunLight());
+        SoundManager.PlaySFX(Sheath);
+        _lightFeedback.StartLightFeedback(0);
     }
 
 
@@ -169,34 +187,26 @@ public class MeleeAttack : ExtendedMonobehaviour
     {
         _physicsManager.AddKnockBack(otherMelee);
         otherMelee.Consumed();
-        
-        GameObject particles = null;
+        ClashFX(otherMelee);
+    }
+
+    private void PlayClashSFX()
+    {
+
+        SoundManager.PlaySFX(Clash);
+        SoundManager.PlaySFX(ClashCrowd);
+        SoundManager.PlaySFX(ClashAftermath);
+    }
+
+    private void ClashFX(MeleeDamagingCollider otherMelee)
+    {
+        PlayClashSFX();
+        GameObject toParent = gameObject;
         if (otherMelee.HasPreferredImpactPoint)
         {
-            particles = (GameObject)Instantiate(_clashingEffectPrefab, otherMelee.PreferredImpactPoint, otherMelee.transform.rotation);
+            toParent = otherMelee.gameObject;
         }
-        else
-        {
-            particles = (GameObject)Instantiate(_clashingEffectPrefab);
-        }
-        particles.transform.parent = transform;
-    }
-
-    private void CheckLight()
-    {
-        if (!m_HasFeedbackDisplayed && _delayManager.m_CanShoot) StartCoroutine(DisplayGunLight());
-    }
-
-    IEnumerator DisplayGunLight()
-    {
-        for (int i = 0; i < m_AmountOfFlashes; i++)
-        {
-            m_GunLight.enabled = true;
-            yield return new WaitForSeconds(m_LightOn);
-            m_GunLight.enabled = false;
-            yield return new WaitForSeconds(m_LightOff);
-        }
-        m_HasFeedbackDisplayed = true;
-        _delayManager.Reset();
+        InstatiateParticle(_clashingEffectPrefab, toParent, true);
+        InstatiateParticle(_clashCroudFlashes, toParent, false, _FlashTimerOnScreen);
     }
 }

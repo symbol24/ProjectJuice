@@ -85,7 +85,6 @@ public class DartChainV2 : ExtendedMonobehaviour {
     private bool _collidedWithSomething = false;
     [SerializeField] private ForceStrategy _strategy = ForceStrategy.Cascade;
     [SerializeField] private float _mitigationFactor = 0.5f;
-    [SerializeField] private float _ignoreForceAt = 0.1f;
     private float _breakFullTimeout = 0.1f;
     private float _breakTimer;
     [SerializeField] private float _rotationCorrection = 90f;
@@ -106,14 +105,14 @@ public class DartChainV2 : ExtendedMonobehaviour {
     // Update is called once per frame
     private void Update()
     {
-        /*
+        
         if (!_isStaticChain && NextChain != null)
         {
             transform.rotation =
                 Quaternion.Euler(new Vector3(transform.rotation.x, transform.rotation.y,
                     GetRotation(transform.position, NextChain.transform.position) + _rotationCorrection));
 
-        }*/
+        }
 
 
 

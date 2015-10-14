@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityStandardAssets._2D;
-using Utility;
 using System;
 
 public class PlayerSpawner : MonoBehaviour

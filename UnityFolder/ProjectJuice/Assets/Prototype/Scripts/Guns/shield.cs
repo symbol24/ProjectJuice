@@ -7,17 +7,29 @@ public class shield : Gun {
     [Range(0,25)][SerializeField] private float m_ShotAngle = 10f;
     [Range(0,1)][SerializeField] private float m_ShotModifier = 0.9f;
     [Range(0,24)][SerializeField] private int m_MaxBullets = 9;
+    [Range(0,3)][SerializeField] private float m_DelayToActivate = 0.25f;
+    [Range(0,10)][SerializeField] private float m_DelayToShutOff = 3f;
+    [Range(0, 1)][SerializeField] private float m_FullChargeSoundDelay = 0.3f;
     private int m_CurrentCount = 0;
     private bool m_FacingRight = true;
     private bool m_IsActive = false;
-    [Range(0,5)][SerializeField] private float m_ActiveTime = 1.0f;
+    public bool IsShieldActive { get { return m_IsActive && m_Gun.activeInHierarchy; } }
+    //[Range(0,5)][SerializeField] private float m_ActiveTime = 1.0f;
     [SerializeField] private Light m_Light;
 
+    [HideInInspector] public string Activate;
+    [HideInInspector] public string AbsorbBullet;
+    [HideInInspector] public string ShootingBullets;
+    [HideInInspector] public string FullCharge;
+    [HideInInspector] public string Ricochet;
+    [HideInInspector] public string CoolDown;
+    [HideInInspector] public string AbrosbExplosion;
 
     protected override void Start()
     {
         base.Start();
         m_Gun.SetActive(false);
+        m_DelayManager.Reset();
     }
 
     // Update is called once per frame
@@ -25,10 +37,10 @@ public class shield : Gun {
     {
         if (GameManager.instance.IsPlaying)
         {
-            if (m_Controller.m_Special && !m_IsActive && m_DelayManager.m_CanShield)
+            if (m_DelayManager.CanShield && m_Controller.m_SpecialStay)
                 ActivateShield();
 
-            if (m_IsActive && m_DelayManager.m_CanShield)
+            if (m_IsActive && !m_Controller.m_SpecialStay)
                 DeactivateShield();
 
             if (m_Controller.m_FacingRight != m_FacingRight) FlipPosition();
@@ -40,12 +52,25 @@ public class shield : Gun {
     public void RoutedTriggerEnter(Collider2D collision)
     {
         Bullet bullet = collision.gameObject.GetComponent<Bullet>();
+        MeleeDamagingCollider melee = collision.gameObject.GetComponent<MeleeDamagingCollider>();
+        var explosive = collision.gameObject.GetComponent<IDamaging>();
         if (bullet != null)
         {
             bullet.Consumed();
-            if (m_CurrentCount < m_MaxBullets) {
-                m_CurrentCount++;
-           }
+            if (m_CurrentCount < m_MaxBullets) m_CurrentCount += bullet.BulletsToGiveShield;
+            SoundManager.PlaySFX(AbsorbBullet);
+        }
+
+        if(melee != null)
+        {
+            if (m_CurrentCount < m_MaxBullets) m_CurrentCount += melee.BulletsToGiveShield;
+            melee.Consumed();
+            SoundManager.PlaySFX(melee._meleeAttack.Clash);
+        }
+        if(explosive != null)
+        {
+            if (m_CurrentCount < m_MaxBullets) m_CurrentCount += explosive.BulletsToGiveShield;
+            SoundManager.PlaySFX(AbrosbExplosion);
         }
     }
 
@@ -55,6 +80,12 @@ public class shield : Gun {
         {
             if (!m_Light.enabled)
                 m_Light.enabled = true;
+
+            if (m_DelayManager.SoundReady)
+            {
+                SoundManager.PlaySFX(FullCharge);
+                m_DelayManager.AddSoundDelay(m_FullChargeSoundDelay);
+            }
         }
         else
         {
@@ -65,18 +96,51 @@ public class shield : Gun {
 
     private void ActivateShield()
     {
-        m_Gun.SetActive(true);
-        if (m_CanShootBack) Fire();
-        m_DelayManager.AddShieldDelay(m_ActiveTime);
-        m_DelayManager.AddDelay(m_ActiveTime);
-        m_IsActive = true;
+        if (!m_IsActive && m_DelayManager.OtherReady)
+        {
+            m_DelayManager.AddOtherDelay(m_DelayToActivate);
+            m_DelayManager.AddShieldOffDelay(float.MaxValue);
+            m_DelayManager.AddDelay(float.MaxValue);
+            m_IsActive = true;
+        }
+        else if (m_IsActive && m_DelayManager.CanTurnOffShield)
+        {
+            DeactivateShield();
+        }
+        else if (m_IsActive && !m_DelayManager.CanTurnOffShield && m_DelayManager.OtherReady)
+        {
+            DisplayShield();
+        }
+    }
+
+    private void DisplayShield()
+    {
+        if (!m_Gun.activeInHierarchy)
+        {
+            SoundManager.PlaySFX(Activate);
+            m_Gun.SetActive(true);
+            if (m_CanShootBack) Fire();
+            m_DelayManager.SetShieldOffDelay(m_DelayToShutOff);
+            if (!m_HpScp.ShieldImunity) m_HpScp.SwitchShieldImunity();
+        }
     }
 
     private void DeactivateShield()
     {
-        m_Gun.SetActive(false);
-        m_DelayManager.AddShieldDelay(m_Delay);
+        if (IsShieldActive)
+        {
+            SoundManager.PlaySFX(CoolDown);
+            m_DelayManager.SetShieldDelay(m_Delay);
+            m_DelayManager.SetDelay(m_Delay);
+        }
+        else
+        {
+            m_DelayManager.SetShieldDelay(0);
+            m_DelayManager.SetDelay(0);
+        }
         m_IsActive = false;
+        if (m_HpScp.ShieldImunity) m_HpScp.SwitchShieldImunity();
+        m_Gun.SetActive(false);
     }
 
     public override void Fire()
@@ -88,6 +152,14 @@ public class shield : Gun {
             FireOneBullet(newRot);
         }
         m_CurrentCount = 0;
+        ShieldShotFX();
+    }
+
+    private void ShieldShotFX()
+    {
+        DisplayParticles();
+        SoundManager.PlaySFX(ShootingBullets);
+        SoundManager.PlaySFX(Ricochet);
     }
 
     public void FireOneBullet(Quaternion newRotation)

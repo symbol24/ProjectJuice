@@ -7,6 +7,6 @@ public class CeilingCheck : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D collider)
     {
-        m_parent.CheckPassThrough(collider);
+        //m_parent.CheckPassThrough(collider);
     }
 }

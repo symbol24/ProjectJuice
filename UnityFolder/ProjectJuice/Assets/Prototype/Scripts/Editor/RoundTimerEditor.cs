@@ -18,19 +18,15 @@ public class RoundTimerEditor : Editor {
 
         var roundTimer = target as RoundStartTimer;
 
-        _listOfClips = EditorUtilities.GetListOfAudioClipsFromGroup("Logo");
+        _listOfClips = EditorUtilities.GetListOfAudioClips();
         
-        _choice = roundTimer.NumberClipID;
-        _goChoice = roundTimer.GoClipID;
-        _GetReadyGo = roundTimer.GetReadyClipID;
+        _choice = EditorUtilities.GetSelectedClip(_listOfClips, roundTimer.NumberClipName);
+        _goChoice = EditorUtilities.GetSelectedClip(_listOfClips, roundTimer.GoClipName);
+        _GetReadyGo = EditorUtilities.GetSelectedClip(_listOfClips, roundTimer.GetReadyClipName);
 
         _choice = EditorGUILayout.Popup("Audio Clip on Number", _choice, _listOfClips);
         _goChoice = EditorGUILayout.Popup("Audio Clip on Go", _goChoice, _listOfClips);
         _GetReadyGo = EditorGUILayout.Popup("Audio Clip on Get Ready", _GetReadyGo, _listOfClips);
-
-        roundTimer.NumberClipID = _choice;
-        roundTimer.GoClipID = _goChoice;
-        roundTimer.GetReadyClipID = _choice;
 
         roundTimer.NumberClipName = SoundManager.Instance.storedSFXs[_choice].name;
         roundTimer.GoClipName = SoundManager.Instance.storedSFXs[_goChoice].name;

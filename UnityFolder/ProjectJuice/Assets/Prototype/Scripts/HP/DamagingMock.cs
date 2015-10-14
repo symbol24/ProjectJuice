@@ -82,4 +82,11 @@ public class DamagingMock : MonoBehaviour, IDamaging {
         get { return _hasImmuneTargets; }
         private set { _hasImmuneTargets = value; }
     }
+
+    [Range(0,10)][SerializeField] private int _bulletsToGive = 3;
+    public int BulletsToGiveShield
+    {
+        get { return _bulletsToGive; }
+        private set { _bulletsToGive = value; }
+    }
 }
