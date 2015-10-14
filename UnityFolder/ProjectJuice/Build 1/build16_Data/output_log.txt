@@ -16,7 +16,7 @@ Platform assembly: C:\Users\Roberto\Documents\Juice\UnityFolder\ProjectJuice\Bui
 Loading C:\Users\Roberto\Documents\Juice\UnityFolder\ProjectJuice\Build 1\build16_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
 Platform assembly: C:\Users\Roberto\Documents\Juice\UnityFolder\ProjectJuice\Build 1\build16_Data\Managed\UnityEngine.Analytics.dll (this message is harmless)
 Loading C:\Users\Roberto\Documents\Juice\UnityFolder\ProjectJuice\Build 1\build16_Data\Managed\UnityEngine.Analytics.dll into Unity Child Domain
-- Completed reload, in  0.265 seconds
+- Completed reload, in  0.260 seconds
 desktop: 1366x768 60Hz; virtual: 1366x768 at 0,0
 <RI> Initializing input.
 <RI> Input initialized.
@@ -24,44 +24,58 @@ desktop: 1366x768 60Hz; virtual: 1366x768 at 0,0
 Platform assembly: C:\Users\Roberto\Documents\Juice\UnityFolder\ProjectJuice\Build 1\build16_Data\Managed\System.Core.dll (this message is harmless)
 Platform assembly: C:\Users\Roberto\Documents\Juice\UnityFolder\ProjectJuice\Build 1\build16_Data\Managed\System.dll (this message is harmless)
 Unloading 2 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 1.504853 ms
+UnloadTime: 0.984337 ms
 
 Unloading 4 unused Assets to reduce memory usage. Loaded Objects now: 556.
-Total: 0.529695 ms (FindLiveObjects: 0.053455 ms CreateObjectMapping: 0.034017 ms MarkObjects: 0.421704 ms  DeleteObjects: 0.018898 ms)
+Total: 0.532395 ms (FindLiveObjects: 0.053455 ms CreateObjectMapping: 0.034557 ms MarkObjects: 0.428183 ms  DeleteObjects: 0.015118 ms)
 
 Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 9.020479 ms
+UnloadTime: 11.929754 ms
 
 Unloading 3 unused Assets to reduce memory usage. Loaded Objects now: 996.
-Total: 0.771054 ms (FindLiveObjects: 0.111230 ms CreateObjectMapping: 0.043196 ms MarkObjects: 0.586390 ms  DeleteObjects: 0.026997 ms)
+Total: 0.724618 ms (FindLiveObjects: 0.079373 ms CreateObjectMapping: 0.043196 ms MarkObjects: 0.583150 ms  DeleteObjects: 0.016738 ms)
 
 Unloading 5 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 2.136059 ms
+UnloadTime: 2.679794 ms
 
-Unloading 4 unused Assets to reduce memory usage. Loaded Objects now: 3101.
-Total: 1.511872 ms (FindLiveObjects: 0.282396 ms CreateObjectMapping: 0.082613 ms MarkObjects: 1.114466 ms  DeleteObjects: 0.030777 ms)
-
-addDeath Animation
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+Unloading 4 unused Assets to reduce memory usage. Loaded Objects now: 3128.
+Total: 1.483794 ms (FindLiveObjects: 0.228940 ms CreateObjectMapping: 0.080993 ms MarkObjects: 1.149563 ms  DeleteObjects: 0.022678 ms)
 
 need to add some kind of combustion here
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
 
-addDeath Animation
+Missing Death Animation
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
 
-addDeath Animation
+Missing Death Animation
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
 
-addDeath Animation
+Missing Death Animation
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
 
-addDeath Animation
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+Unloading 5 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 7.921672 ms
+
+Unloading 1 unused Assets to reduce memory usage. Loaded Objects now: 3121.
+Total: 2.821262 ms (FindLiveObjects: 0.328292 ms CreateObjectMapping: 0.131748 ms MarkObjects: 2.325583 ms  DeleteObjects: 0.033477 ms)
+
+need to add some kind of combustion here
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+Missing Death Animation
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
 
