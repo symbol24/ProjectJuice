@@ -1,6 +1,21 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:UnityFolder/ProjectJuice/Assets/Amazing Math Art Folder/Tiles/Base.png.meta
 guid: a4e5330cbb9ddae4ebd2273ef7da0b26
 timeCreated: 1444862750
+=======
+<<<<<<< HEAD
+guid: a642c22e4cdd92a4f9c39b2727383b94
+timeCreated: 1444785854
+=======
+<<<<<<< HEAD
+guid: 0ad84267dd278744d824c6544dc1e716
+timeCreated: 1444784940
+=======
+guid: 995e7b6e4233c3b4e9176cd5b2eedcab
+timeCreated: 1444789508
+>>>>>>> bbae086123d4f7a94d4e1321c141b4560bd7724c
+>>>>>>> 62e5c1bf1cf562269dcb3062fcf232d6336b8640
+>>>>>>> cea364d1a19c7fdc3acc2dab94eb5c0404fc24ef:UnityFolder/ProjectJuice/Assets/Amazing Math Art Folder/Tiles/Base.png.meta
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName: {}
@@ -26,24 +41,43 @@ TextureImporter:
   cubemapConvolutionSteps: 8
   cubemapConvolutionExponent: 1.5
   seamlessCubemap: 0
+<<<<<<< HEAD
   textureFormat: -3
   maxTextureSize: 2048
   textureSettings:
     filterMode: 0
     aniso: 16
+=======
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: -1
+>>>>>>> 62e5c1bf1cf562269dcb3062fcf232d6336b8640
     mipBias: -1
     wrapMode: 1
   nPOTScale: 0
   lightmap: 0
   rGBM: 0
   compressionQuality: 50
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+  allowsAlphaSplitting: 0
+=======
+>>>>>>> bbae086123d4f7a94d4e1321c141b4560bd7724c
+>>>>>>> 62e5c1bf1cf562269dcb3062fcf232d6336b8640
   spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: .5, y: .5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+<<<<<<< HEAD
   spritePixelsToUnits: 72
+=======
+  spritePixelsToUnits: 100
+>>>>>>> 62e5c1bf1cf562269dcb3062fcf232d6336b8640
   alphaIsTransparency: 1
   textureType: 8
   buildTargetSettings: []
