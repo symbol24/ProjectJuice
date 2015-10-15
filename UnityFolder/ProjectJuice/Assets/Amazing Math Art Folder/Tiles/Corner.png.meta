@@ -1,4 +1,8 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:UnityFolder/ProjectJuice/Assets/Amazing Math Art Folder/Tiles/Corner.png.meta
+guid: 71a31bd249462f14f818124cdb8c401b
+timeCreated: 1444862750
+=======
 <<<<<<< HEAD
 guid: a4ee6f4b0af1dd04aaf8b24056728fb5
 timeCreated: 1444785854
@@ -11,6 +15,7 @@ guid: 4478d22595dbc5142b7835f991a32974
 timeCreated: 1444789499
 >>>>>>> bbae086123d4f7a94d4e1321c141b4560bd7724c
 >>>>>>> 62e5c1bf1cf562269dcb3062fcf232d6336b8640
+>>>>>>> cea364d1a19c7fdc3acc2dab94eb5c0404fc24ef:UnityFolder/ProjectJuice/Assets/Amazing Math Art Folder/Tiles/Corner.png.meta
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName: {}

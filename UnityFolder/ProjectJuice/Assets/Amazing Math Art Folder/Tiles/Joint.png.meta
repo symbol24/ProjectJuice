@@ -1,4 +1,8 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:UnityFolder/ProjectJuice/Assets/Amazing Math Art Folder/Tiles/Joint.png.meta
+guid: 5cc5100efa31fb9499c6dd522d3a6676
+timeCreated: 1444862749
+=======
 <<<<<<< HEAD
 guid: 742035d910ecebd4494537fedc28439f
 timeCreated: 1444785840
@@ -11,6 +15,7 @@ guid: e17ebb3a6d7d1b848be46c5a42fd4c65
 timeCreated: 1444789515
 >>>>>>> bbae086123d4f7a94d4e1321c141b4560bd7724c
 >>>>>>> 62e5c1bf1cf562269dcb3062fcf232d6336b8640
+>>>>>>> cea364d1a19c7fdc3acc2dab94eb5c0404fc24ef:UnityFolder/ProjectJuice/Assets/Amazing Math Art Folder/Tiles/Joint.png.meta
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName: {}
