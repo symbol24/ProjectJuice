@@ -47,7 +47,7 @@ namespace UnityStandardAssets._2D
         //private bool m_ConfirmPassing = false;
         private bool m_ignoreCheckPassing = false;
 
-        private Animator m_Anim;            // Reference to the player's animator component.
+        [SerializeField] private Animator m_Anim;            // Reference to the player's animator component.
         private Rigidbody2D m_Rigidbody2D;
         public GameObject m_Body;           //for sprite and animation
         private Collider2D[] m_MyColliders;
@@ -79,7 +79,7 @@ namespace UnityStandardAssets._2D
             m_GroundCheck = transform.FindChild("GroundCheck");
             m_delayManager = GetComponent<DelayManager>();
             //m_CeilingCheck = transform.FindChild("CeilingCheck");
-            m_Anim = m_Body.GetComponent<Animator>();
+            if(m_Anim == null)m_Anim = m_Body.GetComponent<Animator>();
             m_Rigidbody2D = GetComponent<Rigidbody2D>();
             m_MyColliders = GetComponents<Collider2D>();
             m_platforms = FindObjectsOfType<Ground>();
