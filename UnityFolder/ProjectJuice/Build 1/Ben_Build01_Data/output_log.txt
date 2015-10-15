@@ -1,0 +1,37 @@
+Initialize engine version: 5.1.0f3 (ec70b008569d)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.0]
+    Renderer: NVIDIA GeForce GTX 860M   (ID=0x1392)
+    Vendor:   NVIDIA
+    VRAM:     1972 MB
+Begin MonoManager ReloadAssembly
+Platform assembly: C:\Users\Agora\Documents\GitHub\NeWJuiceProjectFolder\UnityFolder\ProjectJuice\Build 1\Ben_Build01_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading C:\Users\Agora\Documents\GitHub\NeWJuiceProjectFolder\UnityFolder\ProjectJuice\Build 1\Ben_Build01_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: C:\Users\Agora\Documents\GitHub\NeWJuiceProjectFolder\UnityFolder\ProjectJuice\Build 1\Ben_Build01_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading C:\Users\Agora\Documents\GitHub\NeWJuiceProjectFolder\UnityFolder\ProjectJuice\Build 1\Ben_Build01_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: C:\Users\Agora\Documents\GitHub\NeWJuiceProjectFolder\UnityFolder\ProjectJuice\Build 1\Ben_Build01_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading C:\Users\Agora\Documents\GitHub\NeWJuiceProjectFolder\UnityFolder\ProjectJuice\Build 1\Ben_Build01_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: C:\Users\Agora\Documents\GitHub\NeWJuiceProjectFolder\UnityFolder\ProjectJuice\Build 1\Ben_Build01_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading C:\Users\Agora\Documents\GitHub\NeWJuiceProjectFolder\UnityFolder\ProjectJuice\Build 1\Ben_Build01_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+Platform assembly: C:\Users\Agora\Documents\GitHub\NeWJuiceProjectFolder\UnityFolder\ProjectJuice\Build 1\Ben_Build01_Data\Managed\UnityEngine.Analytics.dll (this message is harmless)
+Loading C:\Users\Agora\Documents\GitHub\NeWJuiceProjectFolder\UnityFolder\ProjectJuice\Build 1\Ben_Build01_Data\Managed\UnityEngine.Analytics.dll into Unity Child Domain
+- Completed reload, in  0.044 seconds
+desktop: 3840x2160 48Hz; virtual: 3840x2160 at 0,0
+<RI> Initializing input.
+<RI> Input initialized.
+<RI> Initialized touch support.
+Platform assembly: C:\Users\Agora\Documents\GitHub\NeWJuiceProjectFolder\UnityFolder\ProjectJuice\Build 1\Ben_Build01_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: C:\Users\Agora\Documents\GitHub\NeWJuiceProjectFolder\UnityFolder\ProjectJuice\Build 1\Ben_Build01_Data\Managed\System.dll (this message is harmless)
+Unloading 2 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 1.119560 ms
+
+Unloading 4 unused Assets to reduce memory usage. Loaded Objects now: 615.
+Total: 0.429431 ms (FindLiveObjects: 0.064455 ms CreateObjectMapping: 0.032022 ms MarkObjects: 0.321457 ms  DeleteObjects: 0.010674 ms)
+
+Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 51.526886 ms
+
+Unloading 3 unused Assets to reduce memory usage. Loaded Objects now: 1055.
+Total: 1.032524 ms (FindLiveObjects: 0.110437 ms CreateObjectMapping: 0.070203 ms MarkObjects: 0.829714 ms  DeleteObjects: 0.020937 ms)
+
