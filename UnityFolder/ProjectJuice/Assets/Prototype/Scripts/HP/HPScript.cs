@@ -49,7 +49,8 @@ public class HPScript : HPBase
     
     [HideInInspector] public ParticleSystem _deathFlashes;
     [Range(0,5)][SerializeField] private float _deathFlashesLength = 2f;
-    
+    private CameraShaker _cameraShaker;
+
     // Use this for initialization
     protected override void Start()
     {
@@ -60,6 +61,8 @@ public class HPScript : HPBase
         if (_inputController == null) _inputController = GetComponent<IPlatformer2DUserControl>();
         if (_character == null) _character = GetComponent<PlatformerCharacter2D>();
         HpChanged += OnHpChanged;
+        if (_cameraShaker == null) _cameraShaker = FindObjectOfType<CameraShaker>();
+        if (_cameraShaker == null) Debug.LogWarning("cameraShaker not found");
     }
 
     private void OnHpChanged(object sender, HpChangedEventArgs hpChangedEventArgs)
@@ -174,6 +177,7 @@ public class HPScript : HPBase
                     color = _inputController.m_PlayerData.PlayerSponsor.SponsorColor
                 };
                 OnHpImpactReceived(e);
+                _cameraShaker.DoShake();
             }
         }
     }
