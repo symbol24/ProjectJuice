@@ -194,4 +194,13 @@ public abstract class ExtendedMonobehaviour : MonoBehaviour, IGameObject {
         return ret;
     }
 
+    protected AudioSource PlayNewSound(AudioSource audioSource, string newSound)
+    {
+        if (audioSource != null && audioSource.isPlaying)
+            audioSource.Stop();
+
+        audioSource = SoundManager.PlaySFX(newSound);
+
+        return audioSource;
+    }
 }

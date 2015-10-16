@@ -14,6 +14,9 @@ public class shield : Gun {
     private bool m_FacingRight = true;
     private bool m_IsActive = false;
     public bool IsShieldActive { get { return m_IsActive && m_Gun.activeInHierarchy; } }
+    private AudioSource m_ActiveDeactiveAudioSource = new AudioSource();
+    private AudioSource m_AbsorbAudioSource = new AudioSource();
+    private AudioSource m_FullChargeAudioSource = new AudioSource();
     //[Range(0,5)][SerializeField] private float m_ActiveTime = 1.0f;
     [SerializeField] private Light m_Light;
     [SerializeField]
@@ -62,19 +65,19 @@ public class shield : Gun {
         {
             bullet.Consumed();
             if (m_CurrentCount < m_MaxBullets) m_CurrentCount += bullet.BulletsToGiveShield;
-            SoundManager.PlaySFX(AbsorbBullet);
+            m_AbsorbAudioSource = PlayNewSound(m_AbsorbAudioSource, AbsorbBullet);
         }
 
         if(melee != null)
         {
             if (m_CurrentCount < m_MaxBullets) m_CurrentCount += melee.BulletsToGiveShield;
             melee.Consumed();
-            SoundManager.PlaySFX(melee._meleeAttack.Clash);
+            m_AbsorbAudioSource = PlayNewSound(m_AbsorbAudioSource, melee._meleeAttack.Clash);
         }
         if(explosive != null)
         {
             if (m_CurrentCount < m_MaxBullets) m_CurrentCount += explosive.BulletsToGiveShield;
-            SoundManager.PlaySFX(AbrosbExplosion);
+            m_AbsorbAudioSource = PlayNewSound(m_AbsorbAudioSource, AbrosbExplosion);
         }
     }
 
@@ -87,14 +90,17 @@ public class shield : Gun {
 
             if (m_DelayManager.SoundReady)
             {
-                SoundManager.PlaySFX(FullCharge);
+                m_FullChargeAudioSource = PlayNewSound(m_FullChargeAudioSource, FullCharge);
                 m_DelayManager.AddSoundDelay(m_FullChargeSoundDelay);
             }
         }
         else
         {
-            if(m_Light.enabled)
-               m_Light.enabled = false;
+            if (m_Light.enabled)
+            {
+                m_Light.enabled = false;
+                if(m_FullChargeAudioSource != null && m_FullChargeAudioSource.isPlaying) m_FullChargeAudioSource.Stop();
+            }
         }
     }
 
@@ -122,7 +128,7 @@ public class shield : Gun {
     {
         if (!m_Gun.activeInHierarchy)
         {
-            SoundManager.PlaySFX(Activate);
+            m_ActiveDeactiveAudioSource = PlayNewSound(m_ActiveDeactiveAudioSource, Activate);
             m_Gun.SetActive(true);
             m_DelayManager.SetShieldOffDelay(m_DelayToShutOff);
             if (!m_HpScp.ShieldImunity) m_HpScp.SwitchShieldImunity();
@@ -133,7 +139,7 @@ public class shield : Gun {
     {
         if (IsShieldActive)
         {
-            SoundManager.PlaySFX(CoolDown);
+            m_ActiveDeactiveAudioSource = PlayNewSound(m_ActiveDeactiveAudioSource, CoolDown);
             m_DelayManager.SetShieldDelay(m_Delay);
             m_DelayManager.SetDelay(m_Delay);
         }

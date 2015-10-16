@@ -208,6 +208,11 @@ namespace UnityStandardAssets._2D
             }
         }
 
+        public void SpawnCheckGround()
+        {
+            m_Grounded = true;
+        }
+
         private bool SetGrounded(bool previousGround)
         {
 

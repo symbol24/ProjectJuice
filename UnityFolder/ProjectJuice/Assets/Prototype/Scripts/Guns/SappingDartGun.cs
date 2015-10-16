@@ -47,6 +47,7 @@ public class SappingDartGun : ExtendedMonobehaviour {
 
     private LightFeedbackTemp _lightFeedback;
 
+    private AudioSource m_SappingAudioSource;
 
     void Start()
     {
@@ -133,6 +134,7 @@ public class SappingDartGun : ExtendedMonobehaviour {
         _delayManager.SetDelay(0);
         _delayManager.AddDelay(_shootDelay);
         CoolDownEffects();
+        if (m_SappingAudioSource != null && m_SappingAudioSource.isPlaying) m_SappingAudioSource.Stop();
     }
 
     private void CoolDownEffects()
@@ -146,7 +148,8 @@ public class SappingDartGun : ExtendedMonobehaviour {
         _hpScript.CurrentHp += e.HpSucked;
         if (_delayManager.OtherReady)
         {
-            SoundManager.PlaySFX(Transfering);
+            m_SappingAudioSource = PlayNewSound(m_SappingAudioSource, Transfering);
+            //SoundManager.PlaySFX(Transfering);
             _delayManager.AddOtherDelay(m_transferSoundDelay);
         }
     }
