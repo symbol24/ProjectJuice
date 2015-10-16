@@ -10,7 +10,10 @@ public class MovementSparking : ExtendedMonobehaviour
     public GameObject _effectsToSpawn;
     private GroundChecker _groundChecker;
     private MovementChecker _movementChecker;
-    [SerializeField] private float _sparklesTimeout = 1f;
+    [SerializeField] 
+    private float _sparklesDestroyTimeout = 1f;
+    [SerializeField]
+    private float _sparklesSpawnCooldown = 0.1f;
     public List<Transform> _pointsOfSparks;
     private float _groundTolerance = 0.01f;
 
@@ -24,32 +27,43 @@ public class MovementSparking : ExtendedMonobehaviour
 
     private void XPositionChanged(object sender, PositionChangedEventArgs positionChangedEventArgs)
     {
-        base.GetPointOfImpact(_groundChecker.PointOfCollision.transform, transform);
-
-        if (_groundChecker.IsGrounded)
+        if (!_spawnSparklesRunning)
         {
-            var lowestPoint = _pointsOfSparks.Min(c => c.transform.position.y);
-            var pointsCloseToGround =
-                _pointsOfSparks.Where(c => c.transform.position.y < (lowestPoint + _groundTolerance));
-
-
-            foreach (var pointsOfSpark in pointsCloseToGround)
-            {
-                var positionToSpawn = pointsOfSpark.position;
-                var particles =
-                    (GameObject)
-                        Instantiate(_effectsToSpawn,
-                            positionToSpawn,
-                            _effectsToSpawn.transform.rotation);
-                particles.transform.parent = transform;
-                particles.AddComponent<DestroyOnTimer>().Timeout = _sparklesTimeout;
-            }
-            
+            StartCoroutine(SpawnSparkles());
         }
     }
 
-    // Update is called once per frame
-	void Update () {
-	    
-	}
+    private bool _spawnSparklesRunning = false;
+    
+
+    private IEnumerator SpawnSparkles()
+    {
+        if (!_spawnSparklesRunning)
+        {
+            _spawnSparklesRunning = true;
+            //GetPointOfImpact(_groundChecker.PointOfCollision.transform, transform);
+
+            if (_groundChecker.IsGrounded)
+            {
+                var lowestPoint = _pointsOfSparks.Min(c => c.transform.position.y);
+                var pointsCloseToGround =
+                    _pointsOfSparks.Where(c => c.transform.position.y < (lowestPoint + _groundTolerance));
+
+
+                foreach (var pointsOfSpark in pointsCloseToGround)
+                {
+                    var positionToSpawn = pointsOfSpark.position;
+                    var particles =
+                        (GameObject)
+                            Instantiate(_effectsToSpawn,
+                                positionToSpawn,
+                                _effectsToSpawn.transform.rotation);
+                    particles.transform.parent = transform;
+                    particles.AddComponent<DestroyOnTimer>().Timeout = _sparklesDestroyTimeout;
+                }
+                yield return new WaitForSeconds(_sparklesSpawnCooldown);
+            }
+            _spawnSparklesRunning = false;
+        }
+    }
 }
