@@ -6,6 +6,7 @@ using System.Collections;
 public class Bullet : ExtendedMonobehaviour, IDamaging {
     [SerializeField] private float m_baseSpeed;
     [SerializeField] private float m_Damage;
+    [SerializeField] private DamageType _damageType = DamageType.Bullet;
     private Rigidbody2D m_RigidBody;
     public float Damage
     {
@@ -56,6 +57,9 @@ public class Bullet : ExtendedMonobehaviour, IDamaging {
             return true;
         }
     }
+
+    public DamageType TypeOfDamage { get { return _damageType; } }
+
     bool IConsumable.IsAvailableForConsumption(object sender)
     {
         return IsAvailableForConsumption;

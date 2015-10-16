@@ -18,8 +18,12 @@ public class DamagingMock : MonoBehaviour, IDamaging {
     [SerializeField]
     private ImpactForceSettings _impactForceSettings;
 
+    [SerializeField]
+    private DamageType _damageType = DamageType.Explosive;
+    public DamageType TypeOfDamage { get { return _damageType; } }
+
     // Use this for initialization
-	void Start () {
+    void Start () {
 	
 	}
 	

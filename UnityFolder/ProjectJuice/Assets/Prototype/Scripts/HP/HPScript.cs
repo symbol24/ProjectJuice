@@ -149,8 +149,7 @@ public class HPScript : HPBase
         //If it is not damaging, dont bother with calculations
         if (checkDamaging != null && CheckIfIDamagableIsActive(checkDamaging))
         {
-            Vector2 pointOfCollision = GetPointOfImpact(checkDamaging, collider, _centerOfReferenceForJuice,
-                _raycastIterationsToFindTarget, _raycastVariationPerTry);
+            Vector2 pointOfCollision = GetPointOfImpact(checkDamaging, collider, _centerOfReferenceForJuice, _raycastIterationsToFindTarget, _raycastVariationPerTry);
             float damage;
             if (DamagingDoesDamage(checkDamaging, pointOfCollision, out damage))
             {
@@ -173,6 +172,7 @@ public class HPScript : HPBase
                 var e = new ImpactEventArgs
                 {
                     Damage = damage,
+                    type = checkDamaging.TypeOfDamage,
                     PointOfCollision = pointOfCollision,
                     color = _inputController.m_PlayerData.PlayerSponsor.SponsorColor
                 };

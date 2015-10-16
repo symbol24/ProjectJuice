@@ -1,0 +1,1 @@
+﻿public enum DamageType { Bullet,  Melee, Dart, Explosive }

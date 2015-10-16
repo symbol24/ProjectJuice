@@ -5,6 +5,7 @@ using System.Collections;
 public interface IDamaging : IConsumable
 {
     float Damage { get; }
+    DamageType TypeOfDamage { get; }
     bool HasPreferredImpactPoint { get; }
     Vector3 PreferredImpactPoint { get; }
     bool AddImpactForce { get; }

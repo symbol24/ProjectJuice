@@ -53,6 +53,8 @@ public class PhysicsParticleSystem : ExtendedMonobehaviour
 
     private PhysicsSingleParticle _particleScript;
 
+    [Range(0,1)][SerializeField] private float _meleeOffset = 0.5f;
+
     // Use this for initialization
     private void Start()
     {
@@ -77,14 +79,25 @@ public class PhysicsParticleSystem : ExtendedMonobehaviour
         var amountToPickup = Mathf.RoundToInt(iterations * _probabilityOfPickup);
         for (int i = 0; i < iterations; i++)
         {
-            var singleParticle =
-                Instantiate(SingleParticle, impactEventArgs.PointOfCollision, Quaternion.identity) as GameObject;
+            var calculatedOffset = impactEventArgs.PointOfCollision;
+
+            if(impactEventArgs.type == DamageType.Melee)
+            {
+                if (calculatedOffset.x < transform.position.x)
+                    calculatedOffset.x += _meleeOffset;
+                else if (calculatedOffset.x > transform.position.x)
+                    calculatedOffset.x -= _meleeOffset;
+            }
+
+            var singleParticle = Instantiate(SingleParticle, calculatedOffset, Quaternion.identity) as GameObject;
             var spriteRenderer = singleParticle.GetComponent<SpriteRenderer>();
             spriteRenderer.color = impactEventArgs.color;
             var particleScript = singleParticle.GetComponent<PhysicsSingleParticle>();
-            if (_isLegacyCode) { 
-            if (_overrideProbabilityToParticles) particleScript.ProbabilityOfHealthPickup = _probabilityOfPickup;
-            if (_overrideHealthAmountPerParticle) particleScript.HpRecovered = _healthRecoveredPerParticle;
+
+            if (_isLegacyCode)
+            { 
+                if (_overrideProbabilityToParticles) particleScript.ProbabilityOfHealthPickup = _probabilityOfPickup;
+                if (_overrideHealthAmountPerParticle) particleScript.HpRecovered = _healthRecoveredPerParticle;
             }
             else
             {
@@ -99,11 +112,9 @@ public class PhysicsParticleSystem : ExtendedMonobehaviour
 
                 if (_overrideHealthAmountPerParticle) particleScript.HpRecovered = _healthRecoveredPerParticle;
             }
+
             var particleRigidBody = particleScript.gameObject.GetComponent<Rigidbody2D>();
-            var forceDirection =
-                new Vector2(
-                    (Mathf.Abs(RandomXSpeed)*Mathf.Sign(impactEventArgs.PointOfCollision.x - transform.position.x)),
-                    RandomYSpeed);
+            var forceDirection = new Vector2((Mathf.Abs(RandomXSpeed)*Mathf.Sign(calculatedOffset.x - transform.position.x)), RandomYSpeed);
             particleRigidBody.AddForce(forceDirection, ForceMode2D.Impulse);
         }
     }
