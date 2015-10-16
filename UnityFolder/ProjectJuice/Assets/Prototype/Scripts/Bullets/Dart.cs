@@ -40,7 +40,9 @@ public class Dart : ExtendedMonobehaviour
     private float _currentLifetimeAfterHit = 0f;
     private bool _ignoreWalls = false;
 
-    
+    [Range(0,10)][SerializeField] private int m_BulletsToGiveShield = 2;
+    public int BulletsToGiveShield { get { return m_BulletsToGiveShield; } }
+
     [HideInInspector] public string PlayerImpact;
     [HideInInspector] public string GroundImpact;
     [HideInInspector] public string Severed;
@@ -111,6 +113,7 @@ public class Dart : ExtendedMonobehaviour
     }
 
     #region CollisionChecking
+    
     private void OnTriggerEnter2D(Collider2D collider)
     {
         CheckForHPCollision(collider.gameObject);
@@ -120,12 +123,21 @@ public class Dart : ExtendedMonobehaviour
             else CheckForWall(collider.gameObject);
         }
     }
+    
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(!CheckForHPCollision(collision.gameObject))
+        CheckForHPCollision(collision.gameObject);
+        if (_targetHpScript == null)
+        {
+            if (_ignoreWalls) _ignoreWalls = !_ignoreWalls;
+            else CheckForWall(collision.gameObject);
+        }
+        /*
+        if (!CheckForHPCollision(collision.gameObject))
         {
             CheckForWall(collision.gameObject);
         }
+        */
     }
     #endregion CollisionChecking
 

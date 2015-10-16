@@ -6,7 +6,7 @@ public class ScaleBasedOnHP : MonoBehaviour
 {
     public GameObject _gameObjectToScale;
     public HPScript _hpScript;
-    private Transform _originalTransform;
+    //private Transform _originalTransform;
     private float _originalX;
     //private SpriteRenderer m_Sprite;
     
@@ -21,7 +21,7 @@ public class ScaleBasedOnHP : MonoBehaviour
         if (_hpScript == null) _hpScript = GetComponent<HPScript>();
         _hpScript.HpChanged += HpScriptOnHpChanged;
         //_gameObjectToScale.transform.localScale = _gameObjectToScale.transform.localScale.SetX(1);
-        _originalTransform = _gameObjectToScale.transform;
+        //_originalTransform = _gameObjectToScale.transform;
         _originalX = _gameObjectToScale.transform.localScale.x;
 	}
 

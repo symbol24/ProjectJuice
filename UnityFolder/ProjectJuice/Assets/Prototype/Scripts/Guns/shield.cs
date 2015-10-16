@@ -13,6 +13,7 @@ public class shield : Gun {
     private int m_CurrentCount = 0;
     private bool m_FacingRight = true;
     private bool m_IsActive = false;
+    [SerializeField] private bool m_DebugIsActive = false;
     public bool IsShieldActive { get { return m_IsActive && m_Gun.activeInHierarchy; } }
     private AudioSource m_ActiveDeactiveAudioSource = new AudioSource();
     private AudioSource m_AbsorbAudioSource = new AudioSource();
@@ -42,7 +43,7 @@ public class shield : Gun {
     {
         if (GameManager.instance.IsPlaying)
         {
-            if (m_DelayManager.CanShield && m_Controller.m_SpecialStay)
+            if (m_DelayManager.CanShield && (m_Controller.m_SpecialStay || m_DebugIsActive))
                 ActivateShield();
 
             if (m_IsActive && !m_Controller.m_SpecialStay)
@@ -61,6 +62,7 @@ public class shield : Gun {
         Bullet bullet = collision.gameObject.GetComponent<Bullet>();
         MeleeDamagingCollider melee = collision.gameObject.GetComponent<MeleeDamagingCollider>();
         var explosive = collision.gameObject.GetComponent<IDamaging>();
+        Dart dart = collision.gameObject.GetComponent<Dart>();
         if (bullet != null)
         {
             bullet.Consumed();
@@ -78,6 +80,11 @@ public class shield : Gun {
         {
             if (m_CurrentCount < m_MaxBullets) m_CurrentCount += explosive.BulletsToGiveShield;
             m_AbsorbAudioSource = PlayNewSound(m_AbsorbAudioSource, AbrosbExplosion);
+        }
+        if(dart != null)
+        {
+            if (m_CurrentCount < m_MaxBullets) m_CurrentCount += dart.BulletsToGiveShield;
+            m_AbsorbAudioSource = PlayNewSound(m_AbsorbAudioSource, AbsorbBullet);
         }
     }
 
