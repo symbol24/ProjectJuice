@@ -32,6 +32,11 @@ namespace UnityStandardAssets._2D
         public bool m_Imobilize { get; private set; }
         public bool m_SpecialStay { get; private set; }
 
+        public void Vibrate(float leftSide, float rightSide)
+        {
+            XInputDotNetPure.GamePad.SetVibration(m_PlayerData.GamepadIndex.ToPlayerIndex(), leftSide, rightSide);
+        }
+
         //Gamepad buttons used
         [SerializeField] private GamePad.Button m_JumpButton = GamePad.Button.A;
         [SerializeField] private GamePad.Button m_DashButton = GamePad.Button.B;

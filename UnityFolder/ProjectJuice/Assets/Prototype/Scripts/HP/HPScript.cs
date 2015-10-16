@@ -19,6 +19,8 @@ public class HPScript : HPBase
     [Range(0,20)][SerializeField] private int _raycastIterationsToFindTarget = 5;
     [SerializeField] private Transform _centerOfReferenceForJuice;
     [SerializeField] private Rigidbody2D _mainRigidbody;
+    [SerializeField] private bool _enabledImpactReceivedShakes = false;
+    [SerializeField] private float _shakeMultiplier = 4f;
 
     private bool m_ShieldImmunity = false;
     public bool ShieldImunity { get { return m_ShieldImmunity; } }
@@ -37,6 +39,7 @@ public class HPScript : HPBase
         if (handler != null) handler(this, EventArgs.Empty);
         Debug.LogWarning("Missing Death Animation");
         PlayDeathFX();
+        _cameraShaker.DoShake(_shakeMultiplier);
         Destroy(gameObject);
     }
     protected virtual void OnHpImpactReceived(ImpactEventArgs e)
@@ -177,7 +180,7 @@ public class HPScript : HPBase
                     color = _inputController.m_PlayerData.PlayerSponsor.SponsorColor
                 };
                 OnHpImpactReceived(e);
-                _cameraShaker.DoShake();
+                if(_enabledImpactReceivedShakes) _cameraShaker.DoShake();
             }
         }
     }

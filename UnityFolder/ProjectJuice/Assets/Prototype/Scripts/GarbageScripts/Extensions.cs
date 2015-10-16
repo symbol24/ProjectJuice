@@ -1,5 +1,8 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using System.Collections;
+using XInputDotNetPure;
+using GamePad = GamepadInput.GamePad;
 
 public static class Extensions
 {
@@ -36,4 +39,10 @@ public static class Extensions
         return midlePoint;
     }
 
+    public static PlayerIndex ToPlayerIndex(this GamePad.Index gamepadIndex)
+    {
+        if(gamepadIndex == GamePad.Index.Any) gamepadIndex = GamePad.Index.One;
+        var ret = (PlayerIndex) Enum.Parse(typeof (PlayerIndex), Enum.GetName(typeof (GamePad.Index), gamepadIndex));
+        return ret;
+    }
 }
