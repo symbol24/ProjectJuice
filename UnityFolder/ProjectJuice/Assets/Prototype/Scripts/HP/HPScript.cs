@@ -177,7 +177,7 @@ public class HPScript : HPBase
                     color = _inputController.m_PlayerData.PlayerSponsor.SponsorColor
                 };
                 OnHpImpactReceived(e);
-                _cameraShaker.DoShake();
+                if(_cameraShaker != null) _cameraShaker.DoShake();
             }
         }
     }

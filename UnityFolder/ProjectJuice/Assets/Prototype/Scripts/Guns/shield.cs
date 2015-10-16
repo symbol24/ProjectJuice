@@ -16,6 +16,8 @@ public class shield : Gun {
     public bool IsShieldActive { get { return m_IsActive && m_Gun.activeInHierarchy; } }
     //[Range(0,5)][SerializeField] private float m_ActiveTime = 1.0f;
     [SerializeField] private Light m_Light;
+    [SerializeField]
+    private bool m_isDebugFullTest = false;
 
     [HideInInspector] public string Activate;
     [HideInInspector] public string AbsorbBullet;
@@ -28,8 +30,8 @@ public class shield : Gun {
     protected override void Start()
     {
         base.Start();
-        m_Gun.SetActive(false);
         m_DelayManager.Reset();
+        m_Gun.SetActive(false);
     }
 
     // Update is called once per frame
@@ -46,6 +48,8 @@ public class shield : Gun {
             if (m_Controller.m_FacingRight != m_FacingRight) FlipPosition();
 
             CheckLight();
+            
+            if (m_isDebugFullTest && m_CurrentCount == 0 && m_DelayManager.CanShield) m_CurrentCount = 10;
         }
 	}
 
@@ -98,6 +102,7 @@ public class shield : Gun {
     {
         if (!m_IsActive && m_DelayManager.OtherReady)
         {
+            if (m_CanShootBack) Fire();
             m_DelayManager.AddOtherDelay(m_DelayToActivate);
             m_DelayManager.AddShieldOffDelay(float.MaxValue);
             m_DelayManager.AddDelay(float.MaxValue);
@@ -119,7 +124,6 @@ public class shield : Gun {
         {
             SoundManager.PlaySFX(Activate);
             m_Gun.SetActive(true);
-            if (m_CanShootBack) Fire();
             m_DelayManager.SetShieldOffDelay(m_DelayToShutOff);
             if (!m_HpScp.ShieldImunity) m_HpScp.SwitchShieldImunity();
         }
