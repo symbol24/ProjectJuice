@@ -4,19 +4,6 @@ using System.Collections;
 
 public abstract class ExtendedMonobehaviour : MonoBehaviour, IGameObject { 
 
-    protected SFXGroup GetGroupWithName(string name)
-    {
-        SFXGroup ret = null;
-
-        foreach(SFXGroup sfxg in SoundManager.Instance.sfxGroups)
-        {
-            if (sfxg.groupName == name)
-                ret = sfxg;
-        }
-
-        return ret;
-    }
-
     protected void SetRotationEulerX(float xValue)
     {
         transform.rotation = Quaternion.Euler(xValue, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z);
@@ -157,8 +144,7 @@ public abstract class ExtendedMonobehaviour : MonoBehaviour, IGameObject {
         Destroy(toDestroy.gameObject);
     }
 
-    protected Vector2 GetPointOfImpact(Transform targetReference, Transform sourceReference,
-        int raycastIterationsToFindTarget = 5, float raycastVariationPerTry = 0.1f)
+    protected Vector2 GetPointOfImpact(Transform targetReference, Transform sourceReference, int raycastIterationsToFindTarget = 5, float raycastVariationPerTry = 0.1f)
     {
         var ret = default(Vector2);
         var othersPosition = targetReference.gameObject.transform.position - sourceReference.position;
@@ -167,12 +153,10 @@ public abstract class ExtendedMonobehaviour : MonoBehaviour, IGameObject {
         {
             for (int i = 0; i < raycastIterationsToFindTarget; i++)
             {
-                var firstTarget = new Vector3(othersPosition.x + raycastVariationPerTry * i,
-                    othersPosition.y + raycastVariationPerTry * i, othersPosition.z);
+                var firstTarget = new Vector3(othersPosition.x + raycastVariationPerTry * i, othersPosition.y + raycastVariationPerTry * i, othersPosition.z);
                 hit = Physics2D.Raycast(sourceReference.position, firstTarget, float.MaxValue);
                 if (hit.transform == targetReference) break;
-                var secondTarget = new Vector3(othersPosition.x - raycastVariationPerTry * i,
-                    othersPosition.y - raycastVariationPerTry * i, othersPosition.z);
+                var secondTarget = new Vector3(othersPosition.x - raycastVariationPerTry * i, othersPosition.y - raycastVariationPerTry * i, othersPosition.z);
                 hit = Physics2D.Raycast(sourceReference.position, secondTarget, float.MaxValue);
                 if (hit.transform == targetReference) break;
             }
@@ -194,4 +178,13 @@ public abstract class ExtendedMonobehaviour : MonoBehaviour, IGameObject {
         return ret;
     }
 
+    protected AudioSource PlayNewSound(AudioSource audioSource, string newSound)
+    {
+        if (audioSource != null && audioSource.isPlaying)
+            audioSource.Stop();
+
+        audioSource = SoundManager.PlaySFX(newSound);
+
+        return audioSource;
+    }
 }

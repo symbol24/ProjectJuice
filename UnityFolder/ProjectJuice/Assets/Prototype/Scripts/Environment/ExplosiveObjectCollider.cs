@@ -7,8 +7,10 @@ public class ExplosiveObjectCollider : ExtendedMonobehaviour, IDamaging
 {
 
     public ExplosiveObject _explosiveObject;
-
     
+    [SerializeField] private DamageType _damageType = DamageType.Explosive;
+    public DamageType TypeOfDamage { get { return _damageType; } }
+
     public int BulletsToGiveShield
     {
         get { return _explosiveObject._bulletsToGive; }

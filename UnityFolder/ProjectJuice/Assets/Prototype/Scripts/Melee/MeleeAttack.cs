@@ -13,6 +13,8 @@ public class MeleeAttack : ExtendedMonobehaviour
     [SerializeField] private bool _isAbility = false; //for spawner
     public bool isAbility { get { return _isAbility; } }
     [SerializeField] private bool _abilityHasSpike = false;
+    [SerializeField] private DamageType _damageType = DamageType.Melee;
+    public DamageType TypeOfDamage { get { return _damageType; } }
     [SerializeField] private float _DashForce = 450f;
     private bool _completedAerialAttack = true;
     [SerializeField] private GameObject _swingerCollider;

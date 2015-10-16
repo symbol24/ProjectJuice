@@ -7,6 +7,7 @@ public class ImpactEventArgs : EventArgs
 {
     public float Damage { get; set; }
     public Color color { get; set; }
+    public DamageType type { get; set; }
     /// <summary>
     /// This point is in worldCoordinates
     /// </summary>

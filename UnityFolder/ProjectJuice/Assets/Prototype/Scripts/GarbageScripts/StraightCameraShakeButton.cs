@@ -16,7 +16,7 @@ public class StraightCameraShakeButton : MonoBehaviour
 	void Update () {
 	    if (Input.GetKeyDown(_buttonForShake))
 	    {
-	        _shaker.DoShake();
+	        if(_shaker != null) _shaker.DoShake();
 	    }
 	}
 }

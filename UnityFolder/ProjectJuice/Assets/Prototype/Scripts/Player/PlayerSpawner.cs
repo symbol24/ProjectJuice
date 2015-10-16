@@ -70,7 +70,9 @@ public class PlayerSpawner : MonoBehaviour
         {
             GameObject temp = Instantiate(m_PlayerPrefab, m_Spawners[i].transform.position, m_Spawners[i].transform.rotation) as GameObject;
             Platformer2DUserControl pUserControl = temp.GetComponent<Platformer2DUserControl>();
+            PlatformerCharacter2D pc2d = temp.GetComponent<PlatformerCharacter2D>();
             pUserControl.PlayerID = pd.playerID;
+            pc2d.SpawnCheckGround();
             SetAbility(temp, pd);
             temp.layer = m_PlayerLayerIDs[i];
             ScoreManager.instance.FollowScoreOf(pUserControl);

@@ -160,7 +160,8 @@ public class PauseMenu : Menu {
 
     private void SetNextActive(float y)
     {
-        if(y > 0)
+        m_DelayManager.CoroutineDelay(Database.instance.MenuInputDelay, false);
+        if (y > 0)
         {
             m_currentSelection--;
             if (m_currentSelection < 0) m_currentSelection = m_maxSelection - 1;
@@ -172,7 +173,6 @@ public class PauseMenu : Menu {
         }
         SoundManager.PlaySFX(Database.instance.MenuSlideName);
         m_ListOfButtones[m_currentSelection].Select();
-        m_DelayManager.CoroutineDelay(Database.instance.MenuInputDelay, false);
     }
 
     private void Activate()

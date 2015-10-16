@@ -45,6 +45,7 @@ public class MeleeDamagingCollider : MonoBehaviour, IDamaging
         _meleeAttack.Consumed();
     }
 
+    public DamageType TypeOfDamage { get { return _meleeAttack.TypeOfDamage; } }
     public float Damage { get { return _meleeAttack.Damage; } }
     public bool HasPreferredImpactPoint { get { return true; }}
     public Vector3 PreferredImpactPoint { get { return _preferredImpactPoint.position; }}
