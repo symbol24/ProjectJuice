@@ -42,6 +42,7 @@ public class RoundMenu : Menu {
     [Range(0,1)][SerializeField] private float m_BGMVolume = 0.2f;
     [SerializeField] private AudioClip m_SpecialBGM;
     private SoundConnection m_myConnection;
+    private int m_lastController = 0;
 
     [HideInInspector] public int VictoryID;
     [HideInInspector] public string VictoryName;
@@ -131,8 +132,8 @@ public class RoundMenu : Menu {
         PlayerSpawner.instance.FlushAlivePlayerInputs();
         yield return new WaitForSeconds(timer);
         SwitchBGM();
-        DisplayPlayers(isMatchOver, winnerName);
         m_RoundPanel.SetActive(active);
+        DisplayPlayers(isMatchOver, winnerName);
         GameManager.instance.SetGameState(nextState);
         m_DelayManager.Reset();
         m_DelayManager.AddDelay(Database.instance.LongMenuInputDelay);
@@ -275,21 +276,40 @@ public class RoundMenu : Menu {
         m_DelayManager.CoroutineDelay(Database.instance.MenuInputDelay, false);
     }
 
-    private void SetNextActive(float x)
+    private void SetNextActive(float x, int currentController = 0)
     {
-        if (x < 0)
+        bool moved = false;
+
+        if (m_lastController != currentController)
         {
-            m_currentSelection--;
-            if (m_currentSelection < 0) m_currentSelection = m_maxSelection - 1;
+            m_lastController = currentController;
+
+            if (x < -Database.instance.MenuNavigationDeadZone || x > Database.instance.MenuNavigationDeadZone)
+                m_DelayManager.CoroutineDelay(Database.instance.MenuInputDelay, false);
+
+            if (x < -Database.instance.MenuNavigationDeadZone)
+            {
+                m_currentSelection--;
+                if (m_currentSelection < 0) m_currentSelection = m_maxSelection - 1;
+                moved = true;
+            }
+            else if (x > Database.instance.MenuNavigationDeadZone)
+            {
+                m_currentSelection++;
+                if (m_currentSelection == m_maxSelection) m_currentSelection = 0;
+                moved = true;
+            }
+
+            if (moved)
+            {
+                SoundManager.PlaySFX(Database.instance.MenuSlideName);
+                m_ListOfButtones[m_currentSelection].Select();
+            }
         }
-        else if (x > 0)
+        else
         {
-            m_currentSelection++;
-            if (m_currentSelection == m_maxSelection) m_currentSelection = 0;
+            m_lastController = -1;
         }
-        SoundManager.PlaySFX(Database.instance.MenuSlideName);
-        m_ListOfButtones[m_currentSelection].Select();
-        m_DelayManager.CoroutineDelay(Database.instance.MenuInputDelay, false);
     }
 
     public void RoundConfirm(bool closeApp)
