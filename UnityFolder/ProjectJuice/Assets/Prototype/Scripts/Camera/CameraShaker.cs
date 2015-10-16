@@ -16,7 +16,7 @@ public class CameraShaker : MonoBehaviour {
     private bool isShakeRunning = false;
 
 
-    public void DoShake()
+    public void DoShake(float multiplier = 1f)
     {
         var startingIntensity = Math.Abs(_currentIntensity) < 0.01f ? 0f : _currentIntensity;
         if (isShakeRunning)
@@ -30,7 +30,7 @@ public class CameraShaker : MonoBehaviour {
             _originalPosition = transform.position;
         }
 
-        _currentShake = ProcessShake(_shakeIntensity, startingIntensity);
+        _currentShake = ProcessShake(_shakeIntensity, startingIntensity + (multiplier - 1)*_shakeIntensity);
         StartCoroutine(_currentShake);
     }
 
