@@ -56,6 +56,9 @@ public class ExplosiveObject : HPBase
     [Range(0,10)][SerializeField] public int _bulletsToGive = 5;
     [Range(0, 1)][SerializeField] private float _delayFourPushingSound = 0.4f;
 
+    private FadeOut m_fade;
+    private bool isMuted = true;
+
     [HideInInspector] public string Pushing;
     [HideInInspector] public string GroundImpact;
     [HideInInspector] public string BulletImpact;
@@ -75,6 +78,14 @@ public class ExplosiveObject : HPBase
         HpChanged += OnHpChanged;
         _delayManager = GetComponent<DelayManager>();
         _delayManager.Reset();
+        m_fade = FindObjectOfType<FadeOut>();
+        if (m_fade != null) m_fade.FadeDone += M_fade_FadeDone;
+        else isMuted = false;
+    }
+
+    private void M_fade_FadeDone(object sender, EventArgs e)
+    {
+        isMuted = false;
     }
 
     private void SwitchCollidersOnOff()
@@ -113,7 +124,8 @@ public class ExplosiveObject : HPBase
                 print("volicity is greater or lower");
                 if (_delayManager.SoundReady)
                 {
-                    SoundManager.PlaySFX(Pushing);
+                    if(!isMuted)
+                        SoundManager.PlaySFX(Pushing);
                     InstatiateParticle(_groundScraping, gameObject);
                     _delayManager.AddSoundDelay(_delayFourPushingSound);
                 }
@@ -129,7 +141,8 @@ public class ExplosiveObject : HPBase
             //Get Hit
             CurrentHp -= damaging.Damage;
             damaging.Consumed();
-            SoundManager.PlaySFX(BulletImpact);
+            if(!isMuted)
+                SoundManager.PlaySFX(BulletImpact);
 
             if (damaging.AddImpactForce)
             {
@@ -154,7 +167,7 @@ public class ExplosiveObject : HPBase
         }
 
         var ground = toCheck.GetComponent<Ground>();
-        if(ground != null) SoundManager.PlaySFX(GroundImpact);
+        if(!isMuted && ground != null) SoundManager.PlaySFX(GroundImpact);
 
         /*
         var player = toCheck.GetComponent<IPlatformer2DUserControl>();
@@ -162,7 +175,7 @@ public class ExplosiveObject : HPBase
         */
 
         var otherExplosif = toCheck.GetComponent<ExplosiveObjectDamagableCollider>();
-        if (otherExplosif != null) SoundManager.PlaySFX(GroundImpact);
+        if (!isMuted && otherExplosif != null) SoundManager.PlaySFX(GroundImpact);
     }
 
     private void OnHpChanged(object sender, HpChangedEventArgs hpChangedEventArgs)
@@ -195,7 +208,8 @@ public class ExplosiveObject : HPBase
     private void Kaboom()
     {
         DisplayFX();
-        SoundManager.PlaySFX(Explosion);
+        if(!isMuted)
+            SoundManager.PlaySFX(Explosion);
         SwitchCollidersOnOff();
         foreach (var ragdollParticlePrefab in _ragdollParticles)
         {

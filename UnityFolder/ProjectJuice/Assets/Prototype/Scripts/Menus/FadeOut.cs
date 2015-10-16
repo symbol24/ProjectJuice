@@ -15,7 +15,7 @@ public class FadeOut : MonoBehaviour {
     // Use this for initialization
     void Start () {
 
-        if (!SoundManager.IsSFXMuted()) SoundManager.MuteSFX();
+        //if (!SoundManager.IsSFXMuted()) SoundManager.MuteSFX();
         m_Sprite = GetComponent<SpriteRenderer>();
         m_SpriteColor = m_Sprite.color;
         if (TestLoading) OnLevelWasLoaded(Application.loadedLevel);
@@ -47,7 +47,7 @@ public class FadeOut : MonoBehaviour {
     protected virtual void OnFadeDone()
     {
 
-        if (SoundManager.IsSFXMuted()) SoundManager.MuteSFX();
+        //if (SoundManager.IsSFXMuted()) SoundManager.MuteSFX();
         EventHandler handler = FadeDone;
         if (handler != null) handler(this, EventArgs.Empty);
     }
