@@ -16,19 +16,2772 @@ Platform assembly: C:\Users\Roberto\Documents\Juice\UnityFolder\ProjectJuice\Bui
 Loading C:\Users\Roberto\Documents\Juice\UnityFolder\ProjectJuice\Build 1\build16_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
 Platform assembly: C:\Users\Roberto\Documents\Juice\UnityFolder\ProjectJuice\Build 1\build16_Data\Managed\UnityEngine.Analytics.dll (this message is harmless)
 Loading C:\Users\Roberto\Documents\Juice\UnityFolder\ProjectJuice\Build 1\build16_Data\Managed\UnityEngine.Analytics.dll into Unity Child Domain
-- Completed reload, in  0.258 seconds
+Platform assembly: C:\Users\Roberto\Documents\Juice\UnityFolder\ProjectJuice\Build 1\build16_Data\Managed\XInputDotNetPure.dll (this message is harmless)
+Loading C:\Users\Roberto\Documents\Juice\UnityFolder\ProjectJuice\Build 1\build16_Data\Managed\XInputDotNetPure.dll into Unity Child Domain
+Platform assembly: C:\Users\Roberto\Documents\Juice\UnityFolder\ProjectJuice\Build 1\build16_Data\Managed\XInputDotNetPure.dll (this message is harmless)
+Loading C:\Users\Roberto\Documents\Juice\UnityFolder\ProjectJuice\Build 1\build16_Data\Managed\XInputDotNetPure.dll into Unity Child Domain
+- Completed reload, in  0.257 seconds
 desktop: 1366x768 60Hz; virtual: 1366x768 at 0,0
 <RI> Initializing input.
-<RI.Hid> Failed to create device file:
- 2 The system cannot find the file specified.
-
- 
-(Filename:  Line: 54)
-
-<RI.Hid> Failed to create device file:
- 2 The system cannot find the file specified.
-
- 
-(Filename:  Line: 54)
-
 <RI> Input initialized.
+<RI> Initialized touch support.
+Platform assembly: C:\Users\Roberto\Documents\Juice\UnityFolder\ProjectJuice\Build 1\build16_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: C:\Users\Roberto\Documents\Juice\UnityFolder\ProjectJuice\Build 1\build16_Data\Managed\System.dll (this message is harmless)
+Unloading 2 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.993516 ms
+
+Unloading 4 unused Assets to reduce memory usage. Loaded Objects now: 628.
+Total: 0.570191 ms (FindLiveObjects: 0.056155 ms CreateObjectMapping: 0.037796 ms MarkObjects: 0.460041 ms  DeleteObjects: 0.015118 ms)
+
+Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 4.992419 ms
+
+Unloading 3 unused Assets to reduce memory usage. Loaded Objects now: 1072.
+Total: 0.778074 ms (FindLiveObjects: 0.098271 ms CreateObjectMapping: 0.046436 ms MarkObjects: 0.616088 ms  DeleteObjects: 0.015658 ms)
+
+Unloading 6 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 2.543185 ms
+
+Unloading 4 unused Assets to reduce memory usage. Loaded Objects now: 2994.
+Total: 1.503233 ms (FindLiveObjects: 0.225161 ms CreateObjectMapping: 0.084232 ms MarkObjects: 1.170621 ms  DeleteObjects: 0.022138 ms)
+
+cameraShaker not found
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+cameraShaker not found
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+need to add some kind of combustion here
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+cameraShaker not found
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+cameraShaker not found
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+need to add some kind of combustion here
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+cameraShaker not found
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+cameraShaker not found
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+cameraShaker not found
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+cameraShaker not found
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+cameraShaker not found
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+cameraShaker not found
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+cameraShaker not found
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+cameraShaker not found
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+cameraShaker not found
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+cameraShaker not found
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+cameraShaker not found
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+cameraShaker not found
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Unloading 6 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 7.625776 ms
+
+Unloading 1 unused Assets to reduce memory usage. Loaded Objects now: 3032.
+Total: 1.618783 ms (FindLiveObjects: 0.224621 ms CreateObjectMapping: 0.082613 ms MarkObjects: 1.294270 ms  DeleteObjects: 0.015658 ms)
+
+cameraShaker not found
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+cameraShaker not found
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+need to add some kind of combustion here
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+cameraShaker not found
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+cameraShaker not found
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+need to add some kind of combustion here
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+cameraShaker not found
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+cameraShaker not found
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+cameraShaker not found
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+cameraShaker not found
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+cameraShaker not found
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+cameraShaker not found
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+cameraShaker not found
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+cameraShaker not found
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+cameraShaker not found
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+cameraShaker not found
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+cameraShaker not found
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+cameraShaker not found
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at ExtendedMonobehaviour+<DestroyParticleEmitter>c__Iterator2.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at ExtendedMonobehaviour+<DestroyParticleEmitter>c__Iterator2.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Missing Death Animation
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at HPScript.OnDead () [0x00000] in <filename unknown>:0 
+  at HPScript+<DestroyNextFrame>c__Iterator10.MoveNext () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+cameraShaker not found
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+cameraShaker not found
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
