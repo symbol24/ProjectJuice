@@ -39,7 +39,7 @@ public class HPScript : HPBase
         if (handler != null) handler(this, EventArgs.Empty);
         Debug.LogWarning("Missing Death Animation");
         PlayDeathFX();
-        _cameraShaker.DoShake(_shakeMultiplier);
+        if(_cameraShaker != null) _cameraShaker.DoShake(_shakeMultiplier);
         Destroy(gameObject);
     }
     protected virtual void OnHpImpactReceived(ImpactEventArgs e)

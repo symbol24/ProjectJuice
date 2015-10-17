@@ -111,9 +111,11 @@ public class PauseMenu : Menu {
     private IEnumerator SoundThenReturn()
     {
         SoundManager.PlaySFX(ReturnToCS);
-        yield return new WaitForSeconds(m_delayToReturn);
-        if (m_isPaused)
-            SwitchPauseState();
+        float endTimer = Time.unscaledTime + m_delayToReturn;
+        while (endTimer > Time.unscaledTime)
+        {
+            yield return 0;
+        }
         Application.LoadLevel(Database.instance.MainMenuID);
     }
 
