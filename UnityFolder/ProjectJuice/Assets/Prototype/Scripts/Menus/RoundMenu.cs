@@ -258,15 +258,15 @@ public class RoundMenu : Menu {
 
     public void RoundRematch()
     {
-        StartCoroutine(DelayedRematch());
+        StartCoroutine(DelayedRematch(Application.loadedLevel));
     }
 
-    private IEnumerator DelayedRematch()
+    private IEnumerator DelayedRematch(int targetLevel)
     {
         SoundManager.PlaySFX(MenuClose);
         yield return new WaitForSeconds(m_DelayBeforeDisplay);
         SwitchBGM();
-        Application.LoadLevel(Application.loadedLevel);
+        Application.LoadLevel(targetLevel);
     }
 
     private void RoundActivate()
@@ -318,7 +318,6 @@ public class RoundMenu : Menu {
         m_ListOfButtones[m_currentSelection].onClick.RemoveAllListeners();
         Text buttonText = m_ListOfButtones[m_currentSelection].GetComponentInChildren<Text>();
         buttonText.text = Database.instance.GameTexts[8];
-        Debug.Break();
         if (closeApp)
         {
             m_ListOfButtones[m_currentSelection].onClick.AddListener(() => RoundCloseApp());
@@ -351,7 +350,7 @@ public class RoundMenu : Menu {
 
     public void RoundReturnToMainMenu()
     {
-        Application.LoadLevel(Database.instance.MainMenuID);
+            StartCoroutine(DelayedRematch(Database.instance.MainMenuID));
     }
 
     public void RoundCloseApp()
