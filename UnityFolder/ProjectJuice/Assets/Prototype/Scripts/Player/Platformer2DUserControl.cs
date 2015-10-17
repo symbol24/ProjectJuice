@@ -32,11 +32,6 @@ namespace UnityStandardAssets._2D
         public bool m_Imobilize { get; private set; }
         public bool m_SpecialStay { get; private set; }
 
-        public void Vibrate(float leftSide, float rightSide)
-        {
-            XInputDotNetPure.GamePad.SetVibration(m_PlayerData.GamepadIndex.ToPlayerIndex(), leftSide, rightSide);
-        }
-
         //Gamepad buttons used
         [SerializeField] private GamePad.Button m_JumpButton = GamePad.Button.A;
         [SerializeField] private GamePad.Button m_DashButton = GamePad.Button.B;
@@ -87,9 +82,9 @@ namespace UnityStandardAssets._2D
                 m_Special = GamePad.GetButtonDown(m_SpecialButton, controller);
                 m_Imobilize = GamePad.GetButton(m_ImobilizeButton, controller);
                 m_SpecialStay = GamePad.GetButton(m_SpecialButton, controller);
+                
             }
         }
-
         public void FlushInputs()
         {
             m_Jump = false;
@@ -102,5 +97,6 @@ namespace UnityStandardAssets._2D
             m_Imobilize = false;
             m_SpecialStay = false;
         }
+
     }
 }

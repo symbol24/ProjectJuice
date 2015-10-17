@@ -8,21 +8,22 @@ public class CameraShaker : MonoBehaviour {
     public bool shakePosition;
     //private bool shakeRotation = false; //NotImplemented
 
+        /*
     public float _shakeIntensity = 1.5f;
     public float shakeTime = 0.5f;
     public float _mitigationOnShakeAddition = 0.2f;
-    public float _shakeFlatConstant = 2f;
+    public float _shakeFlatConstant = 2f;*/
 
     private bool isShakeRunning = false;
 
 
-    public void DoShake(float multiplier = 1f)
+    public void DoShake(CameraShakeSettings settings)
     {
         var startingIntensity = Math.Abs(_currentIntensity) < 0.01f ? 0f : _currentIntensity;
         if (isShakeRunning)
         {
             StopCoroutine(_currentShake);
-            startingIntensity += _shakeIntensity * _mitigationOnShakeAddition;
+            startingIntensity += settings.ShakeIntensity* settings.MitigationOnShakeAddition;
             isShakeRunning = false;
         }
         else
@@ -30,14 +31,14 @@ public class CameraShaker : MonoBehaviour {
             _originalPosition = transform.position;
         }
 
-        _currentShake = ProcessShake(_shakeIntensity, startingIntensity + (multiplier - 1)*_shakeIntensity);
+        _currentShake = ProcessShake(settings.ShakeIntensity, startingIntensity + settings.ShakeIntensity, settings.ShakeTime);
         StartCoroutine(_currentShake);
     }
 
     private IEnumerator _currentShake;
     private float _currentIntensity = 0f;
     private Vector3 _originalPosition;
-    IEnumerator ProcessShake(float shakeIntensity, float startingIntensity)
+    IEnumerator ProcessShake(float shakeIntensity, float startingIntensity, float shakeTime)
     {
         if (startingIntensity == 0f) startingIntensity = 0.0001f;
         if (!isShakeRunning)

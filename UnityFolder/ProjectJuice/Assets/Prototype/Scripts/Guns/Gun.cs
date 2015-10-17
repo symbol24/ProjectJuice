@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityStandardAssets.CrossPlatformInput;
 using GamepadInput;
-using UnityStandardAssets._2D;
+using System;
 
 public class Gun : ExtendedMonobehaviour {
     public IPlatformer2DUserControl m_Controller { get; private set; }
@@ -72,6 +72,7 @@ public class Gun : ExtendedMonobehaviour {
         Bullet newBullet = Instantiate(m_BulletPrefab, m_GunReference.transform.position, m_GunReference.transform.rotation) as Bullet;
         newBullet.ShootBullet();
         newBullet.AddImmuneTarget(m_HpScript);
+        if (BulletFired != null) BulletFired(this, new BulletFiredEventArgs { BulletFired = newBullet });
         SoundManager.PlaySFX(GunShot);
     }
 
@@ -85,4 +86,7 @@ public class Gun : ExtendedMonobehaviour {
         InstatiateParticle(m_MuzzleFlash, m_GunRef, true, m_MuzzleFlashLifeTime);
         InstatiateParticle(m_MuzzleSmoke, m_GunRef, true, m_MuzzleSmokeLifeTime);
     }
+
+    public event EventHandler<BulletFiredEventArgs> BulletFired;
+
 }
