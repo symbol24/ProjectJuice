@@ -261,9 +261,12 @@ public class RoundMenu : Menu {
         StartCoroutine(DelayedRematch(Application.loadedLevel));
     }
 
-    private IEnumerator DelayedRematch(int targetLevel)
+    private IEnumerator DelayedRematch(int targetLevel, bool isReturn = false)
     {
-        SoundManager.PlaySFX(MenuClose);
+        if(isReturn)
+            SoundManager.PlaySFX(ReturnToCS);
+        else
+            SoundManager.PlaySFX(MenuClose);
         yield return new WaitForSeconds(m_DelayBeforeDisplay);
         SwitchBGM();
         Application.LoadLevel(targetLevel);
@@ -350,7 +353,7 @@ public class RoundMenu : Menu {
 
     public void RoundReturnToMainMenu()
     {
-            StartCoroutine(DelayedRematch(Database.instance.MainMenuID));
+            StartCoroutine(DelayedRematch(Database.instance.MainMenuID, true));
     }
 
     public void RoundCloseApp()
