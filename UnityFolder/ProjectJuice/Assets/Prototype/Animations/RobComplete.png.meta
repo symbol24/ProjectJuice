@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 08d8719302f068d4980e2d65509d2a1b
-timeCreated: 1444785232
+timeCreated: 1445037894
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -17,7 +17,7 @@ TextureImporter:
     21300020: RobComplete_10
     21300022: RobComplete_11
     21300024: RobComplete_12
-    21300026: RobComplete_13
+    21300026: RobComplete_Gun
     21300028: RobComplete_14
     21300030: RobComplete_15
     21300032: RobComplete_16
@@ -64,7 +64,6 @@ TextureImporter:
   lightmap: 0
   rGBM: 0
   compressionQuality: 50
-  allowsAlphaSplitting: 0
   spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
@@ -95,7 +94,7 @@ TextureImporter:
         width: 10
         height: 5
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: RobComplete_2
       rect:
@@ -105,7 +104,7 @@ TextureImporter:
         width: 5
         height: 11
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: RobComplete_3
       rect:
@@ -115,7 +114,7 @@ TextureImporter:
         width: 101
         height: 115
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: RobComplete_4
       rect:
@@ -125,7 +124,7 @@ TextureImporter:
         width: 53
         height: 58
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: RobComplete_5
       rect:
@@ -145,7 +144,7 @@ TextureImporter:
         width: 5
         height: 35
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: RobComplete_7
       rect:
@@ -155,7 +154,7 @@ TextureImporter:
         width: 34
         height: 38
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: RobComplete_8
       rect:
@@ -165,7 +164,7 @@ TextureImporter:
         width: 6
         height: 10
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: RobComplete_9
       rect:
@@ -175,7 +174,7 @@ TextureImporter:
         width: 48
         height: 68
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: RobComplete_10
       rect:
@@ -185,7 +184,7 @@ TextureImporter:
         width: 46
         height: 62
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: RobComplete_11
       rect:
@@ -207,7 +206,7 @@ TextureImporter:
       alignment: 9
       pivot: {x: .499999255, y: .801958919}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: RobComplete_13
+    - name: RobComplete_Gun
       rect:
         serializedVersion: 2
         x: 890
@@ -235,7 +234,7 @@ TextureImporter:
         width: 43
         height: 134
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: RobComplete_16
       rect:
@@ -245,7 +244,7 @@ TextureImporter:
         width: 25
         height: 58
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: RobComplete_17
       rect:
@@ -295,7 +294,7 @@ TextureImporter:
         width: 120
         height: 111
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: RobComplete_22
       rect:
@@ -305,7 +304,7 @@ TextureImporter:
         width: 70
         height: 68
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: RobComplete_23
       rect:

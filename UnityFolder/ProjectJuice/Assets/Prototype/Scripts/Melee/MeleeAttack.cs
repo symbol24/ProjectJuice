@@ -111,9 +111,13 @@ public class MeleeAttack : ExtendedMonobehaviour
                 _completedAerialAttack = false;
 
             if(!isGroundedAtStart) SoundManager.PlaySFX(AbilityAerial);
+            else SoundManager.PlaySFX(Swipe);
+        }
+        else
+        {
+            SoundManager.PlaySFX(Swipe);
         }
 
-        SoundManager.PlaySFX(Swipe);
 
         _delayManager.AddDelay(100f);
         _isSwingingAnimationOnGoing = true;
@@ -138,8 +142,10 @@ public class MeleeAttack : ExtendedMonobehaviour
                 _swingerCollider.SetActive(true);
                 _mouvementManager.PhysicsDashForMeleeAbility(_DashForce);
             }
+            /*
             else
                 SoundManager.PlaySFX(AbilitySecondSound);
+                */
         }
 
 
