@@ -38,8 +38,31 @@ namespace UnityStandardAssets._2D
         [SerializeField]private LayerMask m_WhatIsGround;                  // A mask determining what is ground to the character
         private Transform m_GroundCheck;    // A position marking where to check if the player is grounded.
         const float k_GroundedRadius = .2f; // Radius of the overlap circle to determine if grounded
+
+        public event EventHandler<BoolEventArgs> GroundedChanged; // Event fired when IsGrounded changes.
         private bool m_Grounded;            // Whether or not the player is grounded.
-        public bool isGrounded { get { return m_Grounded; } }
+        public bool IsGrounded
+        {
+            get { return m_Grounded; }
+            private set
+            {
+                if (m_Grounded != value)
+                {
+                    var e = new BoolEventArgs() {NewBoolValue = value, PreviousBoolValue = m_Grounded};
+                    m_Grounded = value;
+                    try
+                    {
+                        if (GroundedChanged != null) GroundedChanged(this, e);
+                    }
+                    catch (Exception ex)
+                    {
+                        ex.Log();
+                        throw;
+                    }
+                }
+            }
+        }
+
         //private Transform m_CeilingCheck;   // A position marking where to check for ceilings
         const float k_CeilingRadius = .01f; // Radius of the overlap circle to determine if the player can stand up
         //[Range(0, 1)][SerializeField]private float m_TriggerResetDelay = 0.1f; // To reset the ground when passing through
@@ -96,7 +119,7 @@ namespace UnityStandardAssets._2D
             {
                 CheckIfAbove();
 
-                m_Grounded = SetGrounded(m_Grounded);
+                IsGrounded = SetGrounded(IsGrounded);
 
                 // Set the vertical animation
                 m_Anim.SetFloat("vSpeed", m_Rigidbody2D.velocity.y);
@@ -110,7 +133,7 @@ namespace UnityStandardAssets._2D
         {
             //CheckPassThrough();
 
-            if (m_DashTimer < Time.time && !m_CanDash && m_Grounded)
+            if (m_DashTimer < Time.time && !m_CanDash && IsGrounded)
             {
                 CheckDrag();
                 m_CanDash = true;
@@ -121,12 +144,12 @@ namespace UnityStandardAssets._2D
             //m_Anim.SetBool("Crouch", dash);
 
             //only control the player if grounded or airControl is turned on
-            if ((m_Grounded || m_AirControl) && m_CanDash)
+            if ((IsGrounded || m_AirControl) && m_CanDash)
             {
                 // Reduce the speed in air by the airSpeed multiplier
-                float toMove = (!m_Grounded ? move * m_AirSpeed : move);
+                float toMove = (!IsGrounded ? move * m_AirSpeed : move);
 
-                if (isShooting && m_Grounded && !m_shootinDelayAdded)
+                if (isShooting && IsGrounded && !m_shootinDelayAdded)
                 {
                     m_delayManager.AddOtherDelay(m_ShootingDelayToSlow);
                     m_shootinDelayAdded = true;
@@ -134,9 +157,9 @@ namespace UnityStandardAssets._2D
                 
                 if (!isShooting && m_shootinDelayAdded) m_shootinDelayAdded = false;
 
-                toMove = (isShooting && m_Grounded && m_delayManager.OtherReady ? move * m_ShootingSpeed : move);
+                toMove = (isShooting && IsGrounded && m_delayManager.OtherReady ? move * m_ShootingSpeed : move);
 
-                if (imobile && m_Grounded) toMove = 0;
+                if (imobile && IsGrounded) toMove = 0;
 
                 // The Speed animator parameter is set to the absolute value of the horizontal input.
                 m_Anim.SetFloat("Speed", Mathf.Abs(toMove));
@@ -178,9 +201,9 @@ namespace UnityStandardAssets._2D
 
         private void Jump()
         {
-            if (m_Grounded && m_Anim.GetBool("Ground"))
+            if (IsGrounded && m_Anim.GetBool("Ground"))
             {
-                m_Grounded = false;
+                IsGrounded = false;
                 m_Anim.SetBool("Ground", false);
                 m_Rigidbody2D.velocity = Vector2.zero;
                 if (m_Controller.m_YAxis < m_JumpDownYAxisTolerence)
@@ -196,7 +219,7 @@ namespace UnityStandardAssets._2D
                     InstatiateParticle(m_JumpParticle, m_FeetPoint);
                 }
             }
-            else if (m_HasDoubleJump && !m_Grounded && !m_UsedDoubleJump)
+            else if (m_HasDoubleJump && !IsGrounded && !m_UsedDoubleJump)
             {
                 CheckDrag();
                 m_UsedDoubleJump = true;
@@ -210,7 +233,7 @@ namespace UnityStandardAssets._2D
 
         public void SpawnCheckGround()
         {
-            m_Grounded = true;
+            IsGrounded = true;
         }
 
         private bool SetGrounded(bool previousGround)
@@ -246,7 +269,7 @@ namespace UnityStandardAssets._2D
                 if (!m_MeleeDownDashComplete)
                     m_MeleeDownDashComplete = true;
 
-                if (!m_Grounded && m_Rigidbody2D.velocity.y < 0.1f)
+                if (!IsGrounded && m_Rigidbody2D.velocity.y < 0.1f)
                 {
                     SoundManager.PlaySFX(Database.instance.Landing);
                     InstatiateParticle(m_LandingParticle, m_FeetPoint);
@@ -273,7 +296,7 @@ namespace UnityStandardAssets._2D
                 InstatiateParticle(m_DashBodyThrusters, m_BackThrusterPoint, true);
                 InstatiateParticle(m_DashChromaticAberation, gameObject, true);
 
-                if (m_Grounded)
+                if (IsGrounded)
                 {
                     SoundManager.PlaySFX(Database.instance.DashMetalGrind);
                     InstatiateParticle(m_GroundDashGrinding, m_FeetPoint, true);
@@ -295,7 +318,7 @@ namespace UnityStandardAssets._2D
                 }
 
                 // if grounded force y to positive
-                if (m_Grounded && angle.y < 0) angle.y = 0f;
+                if (IsGrounded && angle.y < 0) angle.y = 0f;
 
                 // if not facing right force x negative
                 if (!m_Controller.m_FacingRight && angle.x > 0) angle.x = -angle.x;
@@ -348,7 +371,7 @@ namespace UnityStandardAssets._2D
                 Vector2 angle = impact.ImpactForceSettings.ImpactAngle;
 
                 // if grounded force y to positive
-                if (m_Grounded && angle.y < 0) angle.y = 0f;
+                if (IsGrounded && angle.y < 0) angle.y = 0f;
 
                 // if not facing right force x negative
                 //if (!m_Controller.m_FacingRight && angle.x > 0) angle.x = -angle.x;

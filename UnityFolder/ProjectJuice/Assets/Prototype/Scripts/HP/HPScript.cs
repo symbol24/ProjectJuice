@@ -33,16 +33,32 @@ public class HPScript : HPBase
 
     protected virtual void OnDead()
     {
-        EventHandler handler = Dead;
-        if (handler != null) handler(this, EventArgs.Empty);
+        try
+        {
+            EventHandler handler = Dead;
+            if (handler != null) handler(this, EventArgs.Empty);
+        }
+        catch (Exception ex)
+        {
+            ex.Log("Before PlayDeathFX and DestroyingGameObject");
+            throw;
+        }
         Debug.LogWarning("Missing Death Animation");
         PlayDeathFX();
         Destroy(gameObject);
     }
     protected virtual void OnHpImpactReceived(ImpactEventArgs e)
     {
-        EventHandler<ImpactEventArgs> handler = HpImpactReceived;
-        if (handler != null) handler(this, e);
+        try
+        {
+            EventHandler<ImpactEventArgs> handler = HpImpactReceived;
+            if (handler != null) handler(this, e);
+        }
+        catch (Exception ex)
+        {
+            ex.Log();
+            throw;
+        }
     }
     #endregion EventsAvailable
 
@@ -53,6 +69,8 @@ public class HPScript : HPBase
     // Use this for initialization
     protected override void Start()
     {
+        var ex = new NullReferenceException("TestException");
+        ex.Log("Testing comment");
         MaxHp = Database.instance.PlayerBaseHP;
         base.Start();
         if (_centerOfReferenceForJuice == null) _centerOfReferenceForJuice = transform;

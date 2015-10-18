@@ -101,27 +101,44 @@ public class ScoreManager : ExtendedMonobehaviour
 
     protected virtual void OnPlayerScored(PlayerScoreEventArgs e)
     {
-        if (e.IsThereAWinner)
+        try
         {
-            var potentialPlayerWinning =
-                CurrentScores.SingleOrDefault(c => c.Player == e.Platformer2DUserControl.m_PlayerData);
-            if (potentialPlayerWinning != null)
+            if (e.IsThereAWinner)
             {
-                potentialPlayerWinning.CurrentScore++;
-            }
-            else
-            {
-                potentialPlayerWinning = new PlayerScoreTracker
+                var potentialPlayerWinning =
+                    CurrentScores.SingleOrDefault(c => c.Player == e.Platformer2DUserControl.m_PlayerData);
+                if (potentialPlayerWinning != null)
                 {
-                    CurrentScore = 1,
-                    Player = e.Platformer2DUserControl.m_PlayerData
-                };
-                CurrentScores.Add(potentialPlayerWinning);
+                    potentialPlayerWinning.CurrentScore++;
+                }
+                else
+                {
+                    potentialPlayerWinning = new PlayerScoreTracker
+                    {
+                        CurrentScore = 1,
+                        Player = e.Platformer2DUserControl.m_PlayerData
+                    };
+                    CurrentScores.Add(potentialPlayerWinning);
+                }
+                e.PlayerScore = potentialPlayerWinning.CurrentScore;
             }
-            e.PlayerScore = potentialPlayerWinning.CurrentScore;
         }
-        EventHandler<PlayerScoreEventArgs> handler = PlayerScored;
-        if (handler != null) handler(this, e);
+        catch (Exception ex)
+        {
+            ex.Log("InScoreManager when checking for winner");
+            throw;
+        }
+        try
+        {
+            EventHandler<PlayerScoreEventArgs> handler = PlayerScored;
+            if (handler != null) handler(this, e);
+        }
+        catch (Exception ex)
+        {
+            ex.Log();
+            throw;
+        }
+
     }
 
     public PlayerScoreTracker GetScoreData(PlayerData player)

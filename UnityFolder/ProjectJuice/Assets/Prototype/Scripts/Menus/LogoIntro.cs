@@ -17,7 +17,8 @@ public class LogoIntro : ExtendedMonobehaviour {
 
 
     // Use this for initialization
-    void Start () {
+    void Start ()
+    {
         m_Sprite = GetComponent<SpriteRenderer>();
         m_SpriteColor = m_Sprite.color;
         StartCoroutine(Fade());

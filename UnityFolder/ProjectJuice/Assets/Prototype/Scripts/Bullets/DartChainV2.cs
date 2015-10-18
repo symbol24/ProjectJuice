@@ -254,7 +254,15 @@ public class DartChainV2 : ExtendedMonobehaviour {
         var groundCheck = collider.GetComponent<Ground>();
         if (groundCheck != null && !groundCheck.IsPassThrough)
         {
-            if (HitFloor != null) HitFloor(this, EventArgs.Empty);
+            try
+            {
+                if (HitFloor != null) HitFloor(this, EventArgs.Empty);
+            }
+            catch (Exception ex)
+            {
+                ex.Log();
+                throw;
+            }
         }
     }
 

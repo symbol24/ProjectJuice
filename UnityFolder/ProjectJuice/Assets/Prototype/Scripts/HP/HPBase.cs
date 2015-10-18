@@ -34,8 +34,16 @@ public abstract class HPBase : ExtendedMonobehaviour {
     public event EventHandler<HpChangedEventArgs> HpChanged;
     protected virtual void OnHpChanged(HpChangedEventArgs e)
     {
-        EventHandler<HpChangedEventArgs> handler = HpChanged;
-        if (handler != null) handler(this, e);
+        try
+        {
+            EventHandler<HpChangedEventArgs> handler = HpChanged;
+            if (handler != null) handler(this, e);
+        }
+        catch (Exception ex)
+        {
+            ex.Log();
+            throw;
+        }
     }
 
 

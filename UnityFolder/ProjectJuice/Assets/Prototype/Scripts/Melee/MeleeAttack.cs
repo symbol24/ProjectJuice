@@ -68,7 +68,7 @@ public class MeleeAttack : ExtendedMonobehaviour
 
         if (_delayManager.CanShoot && _inputManager.m_Melee)
         {
-            if (isAbility && !_mouvementManager.isGrounded)
+            if (isAbility && !_mouvementManager.IsGrounded)
             {
                 _swingingAnimation = StartSwingingAnimation();
                 StartCoroutine(_swingingAnimation);
@@ -103,7 +103,7 @@ public class MeleeAttack : ExtendedMonobehaviour
     private IEnumerator StartSwingingAnimation()
     {
         
-        bool isGroundedAtStart = _mouvementManager.isGrounded;
+        bool isGroundedAtStart = _mouvementManager.IsGrounded;
         if (isAbility)
         {
             _mouvementManager.ChangeCanFlip();
