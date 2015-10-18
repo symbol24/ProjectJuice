@@ -6,6 +6,7 @@ public class SplashScreen : MonoBehaviour {
     MenuControls m_MenuControls;
     List<PlayerData> m_AllDatas;
     [Range(0,5)][SerializeField] private float m_DelayForTransition;
+    [SerializeField] private Animator _pressStartAnimator;
     [HideInInspector] public int m_NextLevel;
     [HideInInspector] public string CrowdClip; 
     [HideInInspector] public string PressClip;
@@ -31,6 +32,7 @@ public class SplashScreen : MonoBehaviour {
 
     IEnumerator GotoNextScene()
     {
+        _pressStartAnimator.SetBool("Pressed", true);
         SoundManager.PlaySFX(PressClip);
         yield return new WaitForSeconds(m_DelayForTransition);
         Application.LoadLevel(m_NextLevel);
