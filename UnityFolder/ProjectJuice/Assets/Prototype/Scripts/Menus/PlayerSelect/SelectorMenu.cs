@@ -22,7 +22,9 @@ public class SelectorMenu : Menu {
 
     //sponsor
     [SerializeField] private Text m_SponsorName;
+    [SerializeField] private bool m_UseSponsorColor = true;
     [SerializeField] private Image m_SponsorColor;
+    [SerializeField] private Image m_SponsorImage;
 
     //ability
     [SerializeField] private Text m_AbilityName;
@@ -176,8 +178,10 @@ public class SelectorMenu : Menu {
     private void DisplaySponsor(int selection)
     {
         m_SponsorName.text = Database.instance.ListofSponsors[selection].SponsorName;
-        //m_SelectionName.color = Database.instance.NormalTextColor;
-        m_SponsorColor.color = Database.instance.ListofSponsors[selection].SponsorColor;
+        if(m_UseSponsorColor)
+            m_SponsorColor.color = Database.instance.ListofSponsors[selection].SponsorColor;
+        if (Database.instance.ListofSponsors[selection].SponsorImage != null)
+            m_SponsorImage.sprite = Database.instance.ListofSponsors[selection].SponsorImage;
 
         if (Database.instance.ListofSponsors[selection].isTaken)
         {

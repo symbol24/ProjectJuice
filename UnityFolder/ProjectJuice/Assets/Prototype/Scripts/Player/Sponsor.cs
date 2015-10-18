@@ -11,6 +11,9 @@ public class Sponsor : MonoBehaviour {
     [SerializeField] private Color m_SponsorColor;
     public Color SponsorColor { get { return m_SponsorColor; } }
 
+    [SerializeField] private Sprite m_SponsorImage;
+    public Sprite SponsorImage { get { return m_SponsorImage; } }
+
     //[SerializeField] private Sponsors m_SponsorID;
     //public Sponsors ID { get { return m_SponsorID; } }
 
