@@ -191,10 +191,27 @@ public class MeleeAttack : ExtendedMonobehaviour
     public bool HasImmuneTargets { get { return false; }}
     public ImpactForceSettings ImpactForceSettings { get { return _impactForceSettings; } }
 
+    public event EventHandler MeleeClashed;
+
+    protected virtual void OnMeleeClashed()
+    {
+        try
+        {
+            EventHandler handler = MeleeClashed;
+            if (handler != null) handler(this, EventArgs.Empty);
+        }
+        catch (Exception ex)
+        {
+            ex.Log();
+            throw;
+        }
+    }
+
     public void ClashedWithOtherMelee(MeleeDamagingCollider otherMelee)
     {
         _physicsManager.AddKnockBack(otherMelee);
         otherMelee.Consumed();
+        OnMeleeClashed();
         ClashFX(otherMelee);
     }
 

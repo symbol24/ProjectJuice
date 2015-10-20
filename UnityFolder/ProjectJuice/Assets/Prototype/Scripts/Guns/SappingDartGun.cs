@@ -93,6 +93,7 @@ public class SappingDartGun : ExtendedMonobehaviour {
 
 
         var currentCrossSection = InstantiateChain(dart.StaticCrossSection, dart);
+        OnDartFired(new DartFiredEventArgs{Dart = dart,});
         currentCrossSection.IgnoreFloor = true;
         _currentCount = 0;
         _addCrossSection = AddCrossSection(currentCrossSection);
@@ -104,6 +105,22 @@ public class SappingDartGun : ExtendedMonobehaviour {
         _delayManager.AddDelay(float.MaxValue);
         SoundManager.PlaySFX(Fire);
         InstatiateParticle(m_firingParticle, _dartChainStatic.gameObject, true, m_ParticleLifetime);
+    }
+
+    public event EventHandler<DartFiredEventArgs> DartFired;
+
+    protected virtual void OnDartFired(DartFiredEventArgs e)
+    {
+        try
+        {
+            EventHandler<DartFiredEventArgs> handler = DartFired;
+            if (handler != null) handler(this, e);
+        }
+        catch (Exception ex)
+        {
+            ex.Log();
+            throw;
+        }
     }
 
     private void Dart_DartCollision(object sender, EventArgs e)

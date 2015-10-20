@@ -1,9 +1,12 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.EventSystems;
+using Random = UnityEngine.Random;
 
 public class shield : Gun {
-    private bool m_CanShootBack { get { return m_CurrentCount >= m_MaxBullets; } }
+    public bool m_CanShootBack { get { return m_CurrentCount >= m_MaxBullets; } }
     [Range(0,25)][SerializeField] private float m_ShotAngle = 10f;
     [Range(0,1)][SerializeField] private float m_ShotModifier = 0.9f;
     [Range(0,24)][SerializeField] private int m_MaxBullets = 9;
@@ -57,6 +60,22 @@ public class shield : Gun {
         }
 	}
 
+    public event EventHandler BulletAbsorbed;
+
+    protected virtual void OnBulletAbsorbed()
+    {
+        try
+        {
+            EventHandler handler = BulletAbsorbed;
+            if (handler != null) handler(this, EventArgs.Empty);
+        }
+        catch (Exception ex)
+        {
+            ex.Log();
+            throw;
+        }
+    }
+
     public void RoutedTriggerEnter(Collider2D collision)
     {
         Bullet bullet = collision.gameObject.GetComponent<Bullet>();
@@ -66,6 +85,7 @@ public class shield : Gun {
         if (bullet != null)
         {
             bullet.Consumed();
+            OnBulletAbsorbed();
             if (m_CurrentCount < m_MaxBullets) m_CurrentCount += bullet.BulletsToGiveShield;
             m_AbsorbAudioSource = PlayNewSound(m_AbsorbAudioSource, AbsorbBullet);
         }
@@ -74,16 +94,19 @@ public class shield : Gun {
         {
             if (m_CurrentCount < m_MaxBullets) m_CurrentCount += melee.BulletsToGiveShield;
             melee.Consumed();
+            OnBulletAbsorbed();
             m_AbsorbAudioSource = PlayNewSound(m_AbsorbAudioSource, melee._meleeAttack.Clash);
         }
         if(explosive != null)
         {
             if (m_CurrentCount < m_MaxBullets) m_CurrentCount += explosive.BulletsToGiveShield;
+            OnBulletAbsorbed();
             m_AbsorbAudioSource = PlayNewSound(m_AbsorbAudioSource, AbrosbExplosion);
         }
         if(dart != null)
         {
             if (m_CurrentCount < m_MaxBullets) m_CurrentCount += dart.BulletsToGiveShield;
+            OnBulletAbsorbed();
             m_AbsorbAudioSource = PlayNewSound(m_AbsorbAudioSource, AbsorbBullet);
         }
     }
@@ -168,8 +191,25 @@ public class shield : Gun {
             newRot = Quaternion.Euler( 0, 0, newRot.eulerAngles.z + Random.Range(-m_ShotAngle, m_ShotAngle));
             FireOneBullet(newRot);
         }
+        OnShieldFired();
         m_CurrentCount = 0;
         ShieldShotFX();
+    }
+
+    public event EventHandler ShieldFired;
+
+    protected virtual void OnShieldFired()
+    {
+        try
+        {
+            EventHandler handler = ShieldFired;
+            if (handler != null) handler(this, EventArgs.Empty);
+        }
+        catch (Exception ex)
+        {
+            ex.Log();
+            throw;
+        }
     }
 
     private void ShieldShotFX()
