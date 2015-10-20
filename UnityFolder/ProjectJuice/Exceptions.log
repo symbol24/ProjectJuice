@@ -18,3 +18,2099 @@ Message: TestException
 Stack Trace:
 
 -----------
+NullReferenceException occurred at 10/19/2015 8:19:46 PM:
+Message: TestException
+Stack Trace:
+
+-----------
+NullReferenceException occurred at 10/19/2015 8:19:46 PM:
+Message: TestException
+Stack Trace:
+
+-----------
+NullReferenceException occurred at 10/19/2015 8:19:46 PM:
+Message: TestException
+Stack Trace:
+
+-----------
+NullReferenceException occurred at 10/19/2015 8:19:46 PM:
+Message: TestException
+Stack Trace:
+
+-----------
+NullReferenceException occurred at 10/19/2015 8:21:41 PM:
+Message: TestException
+Stack Trace:
+
+-----------
+NullReferenceException occurred at 10/19/2015 8:21:41 PM:
+Message: TestException
+Stack Trace:
+
+-----------
+NullReferenceException occurred at 10/19/2015 8:22:07 PM:
+Message: TestException
+Stack Trace:
+
+-----------
+NullReferenceException occurred at 10/19/2015 8:22:07 PM:
+Message: TestException
+Stack Trace:
+
+-----------
+NullReferenceException occurred at 10/19/2015 8:22:57 PM:
+Message: TestException
+Stack Trace:
+
+-----------
+NullReferenceException occurred at 10/19/2015 8:22:57 PM:
+Message: TestException
+Stack Trace:
+
+-----------
+NullReferenceException occurred at 10/19/2015 8:24:14 PM:
+Message: TestException
+Stack Trace:
+
+-----------
+NullReferenceException occurred at 10/19/2015 8:24:14 PM:
+Message: TestException
+Stack Trace:
+
+-----------
+NullReferenceException occurred at 10/19/2015 8:25:16 PM:
+Message: TestException
+Stack Trace:
+
+-----------
+NullReferenceException occurred at 10/19/2015 8:25:16 PM:
+Message: TestException
+Stack Trace:
+
+-----------
+NullReferenceException occurred at 10/19/2015 8:26:38 PM:
+Message: TestException
+Stack Trace:
+
+-----------
+NullReferenceException occurred at 10/19/2015 8:26:38 PM:
+Message: TestException
+Stack Trace:
+
+-----------
+NullReferenceException occurred at 10/19/2015 8:27:08 PM:
+Message: TestException
+Stack Trace:
+
+-----------
+NullReferenceException occurred at 10/19/2015 8:27:08 PM:
+Message: TestException
+Stack Trace:
+
+-----------
+NullReferenceException occurred at 10/19/2015 8:27:26 PM:
+Message: TestException
+Stack Trace:
+
+-----------
+NullReferenceException occurred at 10/19/2015 8:27:26 PM:
+Message: TestException
+Stack Trace:
+
+-----------
+NullReferenceException occurred at 10/19/2015 8:27:45 PM:
+Message: TestException
+Stack Trace:
+
+-----------
+NullReferenceException occurred at 10/19/2015 8:27:45 PM:
+Message: TestException
+Stack Trace:
+
+-----------
+NullReferenceException occurred at 10/19/2015 8:28:35 PM:
+Message: TestException
+Stack Trace:
+
+-----------
+NullReferenceException occurred at 10/19/2015 8:28:35 PM:
+Message: TestException
+Stack Trace:
+
+-----------
+NullReferenceException occurred at 10/19/2015 8:28:51 PM:
+Message: TestException
+Stack Trace:
+
+-----------
+NullReferenceException occurred at 10/19/2015 8:28:51 PM:
+Message: TestException
+Stack Trace:
+
+-----------
+NullReferenceException occurred at 10/19/2015 8:29:15 PM:
+Message: TestException
+Stack Trace:
+
+-----------
+NullReferenceException occurred at 10/19/2015 8:29:15 PM:
+Message: TestException
+Stack Trace:
+
+-----------
+NullReferenceException occurred at 10/19/2015 8:30:08 PM:
+Message: TestException
+Stack Trace:
+
+-----------
+NullReferenceException occurred at 10/19/2015 8:30:08 PM:
+Message: TestException
+Stack Trace:
+
+-----------
+NullReferenceException occurred at 10/19/2015 8:39:50 PM:
+Message: TestException
+Stack Trace:
+
+-----------
+NullReferenceException occurred at 10/19/2015 8:39:50 PM:
+Message: TestException
+Stack Trace:
+
+-----------
+NullReferenceException occurred at 10/19/2015 8:47:46 PM:
+Message: TestException
+Stack Trace:
+
+-----------
+NullReferenceException occurred at 10/19/2015 8:47:46 PM:
+Message: TestException
+Stack Trace:
+
+-----------
+NullReferenceException occurred at 10/19/2015 8:48:16 PM:
+Message: TestException
+Stack Trace:
+
+-----------
+NullReferenceException occurred at 10/19/2015 8:48:16 PM:
+Message: TestException
+Stack Trace:
+
+-----------
+NullReferenceException occurred at 10/19/2015 8:49:00 PM:
+Message: TestException
+Stack Trace:
+
+-----------
+NullReferenceException occurred at 10/19/2015 8:49:00 PM:
+Message: TestException
+Stack Trace:
+
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:19 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:19 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:19 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:19 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:19 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:19 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:19 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:19 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:19 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:19 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:19 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:19 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:19 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:20 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:20 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:20 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:20 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:20 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:20 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:20 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:20 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:20 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:20 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:20 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:20 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:20 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:20 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:20 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:20 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:20 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:20 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:20 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:20 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:20 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:20 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:20 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:20 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:20 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:20 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:20 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:20 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:20 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:20 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:20 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:20 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:20 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:20 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:20 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:20 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:20 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:20 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:20 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:20 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:20 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:20 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:20 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:20 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:20 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:20 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:20 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:20 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:20 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:20 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:20 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:20 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:20 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:20 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:20 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:20 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:20 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:20 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:20 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:20 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:20 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:20 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:20 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:20 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:20 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:20 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:20 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:20 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:20 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:20 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:20 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:20 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:20 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:20 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:20 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:20 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:20 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:20 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:20 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:20 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:20 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:20 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:20 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:20 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:20 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:20 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:20 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:20 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:20 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:20 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:20 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:20 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:20 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:20 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:20 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:20 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:20 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:20 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:20 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:20 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:20 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:20 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:20 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:20 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:20 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:20 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:20 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:20 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:20 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:20 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:20 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:20 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:20 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:20 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:20 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:20 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:20 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:20 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:20 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:20 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:20 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:20 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:20 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:20 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:20 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:20 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:20 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:23 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:24 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:24 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:24 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:24 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:24 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:24 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:24 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:24 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:24 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:24 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:24 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:24 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:24 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:24 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:24 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:24 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:24 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:24 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:24 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:24 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:24 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:24 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:24 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:24 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:24 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:24 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:24 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:24 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:24 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:24 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:24 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:24 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:24 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:24 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:24 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:24 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:24 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:24 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:24 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:24 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:24 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:24 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:24 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:24 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:24 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:24 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:24 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:24 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:24 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:24 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:24 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:24 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:24 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:24 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:24 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:24 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:24 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:24 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:24 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:24 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:24 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:24 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:24 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:24 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:24 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:24 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:24 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:24 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:24 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:24 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:24 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:24 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:24 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:24 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:24 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:24 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:24 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:24 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:24 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:24 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:24 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:24 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:24 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:24 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:24 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:24 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:24 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:24 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:24 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:24 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:24 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:24 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:24 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:24 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:24 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:24 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:24 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:24 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:24 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:24 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:24 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:24 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:24 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:24 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:24 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:24 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:24 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:24 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:24 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:24 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:24 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:24 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:24 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:24 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:24 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:24 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:24 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:24 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:24 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:24 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:24 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:24 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:24 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:24 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:24 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:24 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+MissingReferenceException occurred at 10/19/2015 8:49:24 PM:
+Message: The object of type 'Dart' has been destroyed but you are still trying to access it.
+Your script should either check if it is null or you should not destroy the object.
+Stack Trace:
+  at (wrapper managed-to-native) UnityEngine.Component:get_gameObject ()
+  at Dart.OnDartDestroyed () [0x0003b] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\Bullets\Dart.cs:290 
+-----------
+NullReferenceException occurred at 10/19/2015 8:49:52 PM:
+Message: TestException
+Stack Trace:
+
+-----------
+NullReferenceException occurred at 10/19/2015 8:49:52 PM:
+Message: TestException
+Stack Trace:
+
+-----------
+NullReferenceException occurred at 10/19/2015 8:53:03 PM:
+Message: TestException
+Stack Trace:
+
+-----------
+NullReferenceException occurred at 10/19/2015 8:53:03 PM:
+Message: TestException
+Stack Trace:
+
+-----------
+NullReferenceException occurred at 10/19/2015 8:53:19 PM:
+Message: TestException
+Stack Trace:
+
+-----------
+NullReferenceException occurred at 10/19/2015 8:53:19 PM:
+Message: TestException
+Stack Trace:
+
+-----------
