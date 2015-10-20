@@ -1,12 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class HpScriptVibration : MonoBehaviour
+public class HpScriptVibration : VibrationBase<HPScript>
 {
-    [SerializeField]
-    private HPScript _hpScript;
-    [SerializeField]
-    private PlayerVibrator _playerVibrator;
     [SerializeField]
     private bool _enableImpactVibration;
     [SerializeField]
@@ -22,16 +18,13 @@ public class HpScriptVibration : MonoBehaviour
 
 
     // Use this for initialization
-    void Start()
+    protected override void Start()
     {
-        if (_hpScript == null) _hpScript = GetComponent<HPScript>();
-        if (_hpScript == null) Debug.LogWarning("HpScript not found!");
-        if (_playerVibrator == null) _playerVibrator = GetComponent<PlayerVibrator>();
-        if (_playerVibrator == null) Debug.LogWarning("NoPlayer Vibrator FOUND! :$ >.<");
+        base.Start();
 
-        if (_enableDeadVibration) _hpScript.Dead += _hpScript_Dead;
-        if (_enableHpChangedVibration) _hpScript.HpChanged += _hpScript_HpChanged;
-        if (_enableImpactVibration) _hpScript.HpImpactReceived += _hpScript_HpImpactReceived;
+        if (_enableDeadVibration) _componentToListen.Dead += _hpScript_Dead;
+        if (_enableHpChangedVibration) _componentToListen.HpChanged += _hpScript_HpChanged;
+        if (_enableImpactVibration) _componentToListen.HpImpactReceived += _hpScript_HpImpactReceived;
     }
 
     private void _hpScript_HpImpactReceived(object sender, ImpactEventArgs e)

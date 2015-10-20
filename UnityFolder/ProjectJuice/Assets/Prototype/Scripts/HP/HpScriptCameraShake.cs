@@ -1,12 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class HpScriptCameraShake : MonoBehaviour
+public class HpScriptCameraShake : CameraShakeBase<HPScript>
 {
-    [SerializeField]
-    private HPScript _hpScript;
-    [SerializeField]
-    private CameraShaker _cameraShaker;
     [SerializeField]
     private bool _enableImpactShake;
     [SerializeField]
@@ -22,27 +18,25 @@ public class HpScriptCameraShake : MonoBehaviour
 
 
     // Use this for initialization
-    void Start()
+    protected override void Start()
     {
-        if (_cameraShaker == null) _cameraShaker = GetComponent<CameraShaker>();
-        if (_cameraShaker == null) Debug.LogWarning("NoCameraShakerFound (CameraShake on MainCamera)");
-        if (_hpScript == null) _hpScript = GetComponent<HPScript>();
-        if (_enableImpactShake && _cameraShaker != null && _hpScript != null) _hpScript.HpImpactReceived += _hpScript_HpImpactReceived;
-        if (_enableHpChangedShake && _cameraShaker != null && _hpScript != null) _hpScript.HpChanged += _hpScript_HpChanged;
-        if (_enableDeadShake && _cameraShaker != null && _hpScript != null) _hpScript.Dead += _hpScript_Dead;
+        base.Start();
+        if (_enableImpactShake && _cameraShaker != null && _componentToListenTo != null) _componentToListenTo.HpImpactReceived += ComponentToListenToHpImpactReceived;
+        if (_enableHpChangedShake && _cameraShaker != null && _componentToListenTo != null) _componentToListenTo.HpChanged += ComponentToListenToHpChanged;
+        if (_enableDeadShake && _cameraShaker != null && _componentToListenTo != null) _componentToListenTo.Dead += ComponentToListenToDead;
     }
 
-    private void _hpScript_Dead(object sender, System.EventArgs e)
+    private void ComponentToListenToDead(object sender, System.EventArgs e)
     {
         _cameraShaker.DoShake(_deadShakeSettings);
     }
 
-    private void _hpScript_HpChanged(object sender, HpChangedEventArgs e)
+    private void ComponentToListenToHpChanged(object sender, HpChangedEventArgs e)
     {
         if (e.NewHp < e.PreviousHp) _cameraShaker.DoShake(_hpChangedShakeSettings);
     }
 
-    private void _hpScript_HpImpactReceived(object sender, ImpactEventArgs e)
+    private void ComponentToListenToHpImpactReceived(object sender, ImpactEventArgs e)
     {
         _cameraShaker.DoShake(_impactShakeSettings);
     }
