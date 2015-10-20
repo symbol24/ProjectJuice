@@ -68,7 +68,7 @@ public class MeleeAttack : ExtendedMonobehaviour
 
         if (_delayManager.CanShoot && _inputManager.m_Melee)
         {
-            if (isAbility && !_mouvementManager.isGrounded)
+            if (isAbility && !_mouvementManager.IsGrounded)
             {
                 _swingingAnimation = StartSwingingAnimation();
                 StartCoroutine(_swingingAnimation);
@@ -103,7 +103,7 @@ public class MeleeAttack : ExtendedMonobehaviour
     private IEnumerator StartSwingingAnimation()
     {
         
-        bool isGroundedAtStart = _mouvementManager.isGrounded;
+        bool isGroundedAtStart = _mouvementManager.IsGrounded;
         if (isAbility)
         {
             _mouvementManager.ChangeCanFlip();
@@ -191,10 +191,27 @@ public class MeleeAttack : ExtendedMonobehaviour
     public bool HasImmuneTargets { get { return false; }}
     public ImpactForceSettings ImpactForceSettings { get { return _impactForceSettings; } }
 
+    public event EventHandler MeleeClashed;
+
+    protected virtual void OnMeleeClashed()
+    {
+        try
+        {
+            EventHandler handler = MeleeClashed;
+            if (handler != null) handler(this, EventArgs.Empty);
+        }
+        catch (Exception ex)
+        {
+            ex.Log();
+            throw;
+        }
+    }
+
     public void ClashedWithOtherMelee(MeleeDamagingCollider otherMelee)
     {
         _physicsManager.AddKnockBack(otherMelee);
         otherMelee.Consumed();
+        OnMeleeClashed();
         ClashFX(otherMelee);
     }
 

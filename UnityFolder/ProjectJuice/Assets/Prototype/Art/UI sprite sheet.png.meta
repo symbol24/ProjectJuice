@@ -1,0 +1,187 @@
+fileFormatVersion: 2
+guid: 4ba8a81ea4353e14da9c3ec2a9012a34
+timeCreated: 1445204895
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: UI robot
+    21300002: UI axe
+    21300004: UI_dart
+    21300006: UI shield
+    21300008: UI jump
+    21300010: UI arrow_left
+    21300012: UI sponsor_red
+    21300014: UI sponsor_green
+    21300016: UI sponsor_blue
+    21300018: UI sponsor_yellow
+    21300020: UI sponsor_purple
+    21300022: UI sponsor_orange
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 8
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -3
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: 0
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 72
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: UI robot
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 1811
+        width: 303
+        height: 335
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: UI axe
+      rect:
+        serializedVersion: 2
+        x: 355
+        y: 1812
+        width: 302
+        height: 334
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: UI_dart
+      rect:
+        serializedVersion: 2
+        x: 688
+        y: 1812
+        width: 301
+        height: 333
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: UI shield
+      rect:
+        serializedVersion: 2
+        x: 1016
+        y: 1812
+        width: 302
+        height: 333
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: UI jump
+      rect:
+        serializedVersion: 2
+        x: 1346
+        y: 1812
+        width: 303
+        height: 333
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: UI arrow_left
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 1692
+        width: 54
+        height: 89
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: UI sponsor_red
+      rect:
+        serializedVersion: 2
+        x: 27
+        y: 1100
+        width: 557
+        height: 557
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: UI sponsor_green
+      rect:
+        serializedVersion: 2
+        x: 619
+        y: 1099
+        width: 557
+        height: 558
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: UI sponsor_blue
+      rect:
+        serializedVersion: 2
+        x: 1227
+        y: 1100
+        width: 557
+        height: 557
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: UI sponsor_yellow
+      rect:
+        serializedVersion: 2
+        x: 27
+        y: 502
+        width: 556
+        height: 557
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: UI sponsor_purple
+      rect:
+        serializedVersion: 2
+        x: 619
+        y: 502
+        width: 557
+        height: 557
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: UI sponsor_orange
+      rect:
+        serializedVersion: 2
+        x: 1227
+        y: 502
+        width: 556
+        height: 556
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

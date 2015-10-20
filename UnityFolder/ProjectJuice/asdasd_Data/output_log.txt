@@ -1,0 +1,36 @@
+Mono path[0] = 'F:/Projects/2015-2016 Fall/Juisplash/GitHub/UnityFolder/ProjectJuice/asdasd_Data/Managed'
+Mono path[1] = 'F:/Projects/2015-2016 Fall/Juisplash/GitHub/UnityFolder/ProjectJuice/asdasd_Data/Mono'
+Mono config path = 'F:/Projects/2015-2016 Fall/Juisplash/GitHub/UnityFolder/ProjectJuice/asdasd_Data/Mono/etc'
+PlayerConnection initialized from F:/Projects/2015-2016 Fall/Juisplash/GitHub/UnityFolder/ProjectJuice/asdasd_Data (debug = 0)
+PlayerConnection initialized network socket : 0.0.0.0 55294
+Multi-casting "[IP] 10.78.56.119 [Port] 55294 [Flags] 2 [Guid] 2455169382 [EditorId] 1040235864 [Version] 1048832 [Id] WindowsPlayer(Victor-PC) [Debug] 0" to [225.0.0.222:54997]...
+PlayerConnection already initialized - listening to [10.78.56.119:55294]
+Initialize engine version: 5.1.3f1 (b0a23b31c3d8)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.0]
+    Renderer: NVIDIA GeForce GTX 970 (ID=0x13c2)
+    Vendor:   NVIDIA
+    VRAM:     3072 MB
+Begin MonoManager ReloadAssembly
+Platform assembly: F:\Projects\2015-2016 Fall\Juisplash\GitHub\UnityFolder\ProjectJuice\asdasd_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading F:\Projects\2015-2016 Fall\Juisplash\GitHub\UnityFolder\ProjectJuice\asdasd_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: F:\Projects\2015-2016 Fall\Juisplash\GitHub\UnityFolder\ProjectJuice\asdasd_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading F:\Projects\2015-2016 Fall\Juisplash\GitHub\UnityFolder\ProjectJuice\asdasd_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: F:\Projects\2015-2016 Fall\Juisplash\GitHub\UnityFolder\ProjectJuice\asdasd_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading F:\Projects\2015-2016 Fall\Juisplash\GitHub\UnityFolder\ProjectJuice\asdasd_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: F:\Projects\2015-2016 Fall\Juisplash\GitHub\UnityFolder\ProjectJuice\asdasd_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading F:\Projects\2015-2016 Fall\Juisplash\GitHub\UnityFolder\ProjectJuice\asdasd_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+Platform assembly: F:\Projects\2015-2016 Fall\Juisplash\GitHub\UnityFolder\ProjectJuice\asdasd_Data\Managed\UnityEngine.Analytics.dll (this message is harmless)
+Loading F:\Projects\2015-2016 Fall\Juisplash\GitHub\UnityFolder\ProjectJuice\asdasd_Data\Managed\UnityEngine.Analytics.dll into Unity Child Domain
+Platform assembly: F:\Projects\2015-2016 Fall\Juisplash\GitHub\UnityFolder\ProjectJuice\asdasd_Data\Managed\XInputDotNetPure.dll (this message is harmless)
+Loading F:\Projects\2015-2016 Fall\Juisplash\GitHub\UnityFolder\ProjectJuice\asdasd_Data\Managed\XInputDotNetPure.dll into Unity Child Domain
+Platform assembly: F:\Projects\2015-2016 Fall\Juisplash\GitHub\UnityFolder\ProjectJuice\asdasd_Data\Managed\XInputDotNetPure.dll (this message is harmless)
+Loading F:\Projects\2015-2016 Fall\Juisplash\GitHub\UnityFolder\ProjectJuice\asdasd_Data\Managed\XInputDotNetPure.dll into Unity Child Domain
+Platform assembly: F:\Projects\2015-2016 Fall\Juisplash\GitHub\UnityFolder\ProjectJuice\asdasd_Data\Managed\System.Core.dll (this message is harmless)
+- Completed reload, in  0.135 seconds
+desktop: 1024x768 60Hz; virtual: 1024x768 at 0,0
+<RI> Initializing input.
+<RI> Input initialized.
+<RI> Initialized touch support.
+Platform assembly: F:\Projects\2015-2016 Fall\Juisplash\GitHub\UnityFolder\ProjectJuice\asdasd_Data\Managed\System.dll (this message is harmless)

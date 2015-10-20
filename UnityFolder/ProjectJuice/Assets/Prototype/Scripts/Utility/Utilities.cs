@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
+using System.IO;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -31,4 +33,24 @@ public static class Utilities
 
         return ListOfPlayers;
     }
+
+    public static void Log(this Exception ex, string comment = "")
+    {
+        if (Debug.isDebugBuild)
+        {
+            if (ex != null)
+            {
+                using (var fs = File.AppendText(Path.Combine(Environment.CurrentDirectory, "Exceptions.log")))
+                {
+                    fs.WriteLine(ex.GetType().Name + " occurred at " + DateTime.Now.ToString() + ":");
+                    if(string.IsNullOrEmpty(comment)) fs.WriteLine(comment);
+                    fs.WriteLine("Message: " + ex.Message);
+                    fs.WriteLine("Stack Trace:");
+                    fs.WriteLine(ex.StackTrace);
+                    fs.WriteLine("-----------");
+                }
+            }
+        }
+    }
+
 }

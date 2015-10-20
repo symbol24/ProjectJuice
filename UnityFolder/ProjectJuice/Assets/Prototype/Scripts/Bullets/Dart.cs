@@ -245,29 +245,54 @@ public class Dart : ExtendedMonobehaviour
     public event EventHandler<JuiceSuckedEventArgs> JuiceSucked;
     protected void OnJuiceSucked(JuiceSuckedEventArgs e)
     {
-        if(JuiceSucked != null)
+        try
         {
-            JuiceSucked(this, e);
+            if (JuiceSucked != null)
+            {
+                JuiceSucked(this, e);
+            }
+        }
+        catch (Exception ex)
+        {
+            ex.Log();
+            throw;
         }
     }
     public event EventHandler DartCollision;
     protected void OnDartCollision()
     {
-        if (DartCollision != null) DartCollision(this, EventArgs.Empty);
-        
+        try
+        {
+            if (DartCollision != null) DartCollision(this, EventArgs.Empty);
+        }
+        catch (Exception ex)
+        {
+            ex.Log();
+        }
+
     }
     public event EventHandler DartDestroyed;
     protected void OnDartDestroyed()
     {
-        if (DartDestroyed != null) DartDestroyed(this, EventArgs.Empty);
-        if (gameObject != null)
+        try
+        {
+            if (DartDestroyed != null) DartDestroyed(this, EventArgs.Empty);
+        }
+        catch (Exception ex)
+        {
+            ex.Log("When calling the event");
+            throw;
+        }
+
+        try
         {
             SubscribeToTargetHPScript(false);
             Destroy(gameObject);
         }
-        else
+        catch (Exception ex)
         {
-            Debug.Log("NeedToLook at this");
+            ex.Log("When attempting to destroy GameObject");
+            throw;
         }
     }
     #endregion events

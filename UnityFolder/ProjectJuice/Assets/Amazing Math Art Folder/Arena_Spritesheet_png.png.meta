@@ -1,0 +1,165 @@
+fileFormatVersion: 2
+guid: ad0e3f47cfc53044bb93e3b3ff99de4e
+timeCreated: 1445184620
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Arena_top_bar
+    21300002: Arena_bar_left
+    21300004: Arena_T
+    21300006: Arena_right_bar
+    21300008: Arena_steps
+    21300010: Arena_bottom_bar
+    21300012: Arena_small_platform
+    21300014: Arena_alert_platform
+    21300016: Arena_clean_platform
+    21300018: Arena_small_step
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 8
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -3
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: 0
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 72
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: Arena_top_bar
+      rect:
+        serializedVersion: 2
+        x: 835
+        y: 2553
+        width: 3333
+        height: 90
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Arena_bar_left
+      rect:
+        serializedVersion: 2
+        x: 674
+        y: 493
+        width: 103
+        height: 1977
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Arena_T
+      rect:
+        serializedVersion: 2
+        x: 2155
+        y: 1961
+        width: 689
+        height: 472
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Arena_right_bar
+      rect:
+        serializedVersion: 2
+        x: 4276
+        y: 493
+        width: 107
+        height: 1977
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Arena_steps
+      rect:
+        serializedVersion: 2
+        x: 1984
+        y: 882
+        width: 1048
+        height: 395
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Arena_bottom_bar
+      rect:
+        serializedVersion: 2
+        x: 832
+        y: 337
+        width: 3336
+        height: 98
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Arena_small_platform
+      rect:
+        serializedVersion: 2
+        x: 4276
+        y: 1269
+        width: 108
+        height: 421
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Arena_alert_platform
+      rect:
+        serializedVersion: 2
+        x: 3178
+        y: 2554
+        width: 673
+        height: 91
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Arena_clean_platform
+      rect:
+        serializedVersion: 2
+        x: 835
+        y: 2554
+        width: 610
+        height: 89
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Arena_small_step
+      rect:
+        serializedVersion: 2
+        x: 2699
+        y: 1961
+        width: 145
+        height: 167
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,12 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class GunVibration : MonoBehaviour {
-
-    [SerializeField]
-    private Gun _gun;
-    [SerializeField]
-    private PlayerVibrator _playerVibrator;
+public class GunVibration : VibrationBase<Gun>
+{
     [SerializeField]
     private bool _enableFireVibration = true;
     [SerializeField]
@@ -14,18 +10,13 @@ public class GunVibration : MonoBehaviour {
 
 
 	// Use this for initialization
-	void Start ()
+	protected override void Start ()
     {
-        if (_gun == null) _gun = GetComponent<Gun>();
-        if (_gun == null) Debug.LogWarning("GunNotFound! Vibrator looking ;)");
-        if (_playerVibrator == null) _playerVibrator = GetComponent<PlayerVibrator>();
-        if (_playerVibrator == null) Debug.LogWarning("PlayerVibrator not found. Gun is sad :(");
-
-        if (_enableFireVibration) _gun.BulletFired += _gun_BulletFired;
-
+        base.Start();
+        if (_enableFireVibration) _componentToListen.BulletFired += ComponentToListenBulletFired;
 	}
 
-    private void _gun_BulletFired(object sender, BulletFiredEventArgs e)
+    private void ComponentToListenBulletFired(object sender, BulletFiredEventArgs e)
     {
         _playerVibrator.Vibrate(_fireVibrationSettings);
     }
