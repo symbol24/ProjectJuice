@@ -287,7 +287,7 @@ public class Dart : ExtendedMonobehaviour
         try
         {
             SubscribeToTargetHPScript(false);
-            Destroy(gameObject);
+            if (gameObject != null) Destroy(gameObject);
         }
         catch (Exception ex)
         {
