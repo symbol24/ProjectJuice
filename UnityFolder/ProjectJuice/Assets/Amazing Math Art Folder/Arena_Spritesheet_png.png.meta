@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: ad0e3f47cfc53044bb93e3b3ff99de4e
-timeCreated: 1445184620
+timeCreated: 1445387141
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -10,10 +10,18 @@ TextureImporter:
     21300006: Arena_right_bar
     21300008: Arena_steps
     21300010: Arena_bottom_bar
-    21300012: Arena_small_platform
-    21300014: Arena_alert_platform
-    21300016: Arena_clean_platform
-    21300018: Arena_small_step
+    21300012: Arena_small_platform_DEBUG
+    21300014: Arena_alert_platform_DEBUG
+    21300016: Arena_clean_platform_DEBUG
+    21300018: Arena_small_step_debug
+    21300020: Arena_Side_T
+    21300022: Arena_Corner_steps
+    21300024: Arena_Passthrough_Left_End
+    21300026: Arena_Passthrough_middle
+    21300028: Arena_Passthrough_Right_end
+    21300030: Arena_Platform_Left_end
+    21300032: Arena_Platform_middle
+    21300034: Arena_Platform_Right_end
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -119,7 +127,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Arena_small_platform
+    - name: Arena_small_platform_DEBUG
       rect:
         serializedVersion: 2
         x: 4276
@@ -129,7 +137,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Arena_alert_platform
+    - name: Arena_alert_platform_DEBUG
       rect:
         serializedVersion: 2
         x: 3178
@@ -139,7 +147,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Arena_clean_platform
+    - name: Arena_clean_platform_DEBUG
       rect:
         serializedVersion: 2
         x: 835
@@ -149,13 +157,93 @@ TextureImporter:
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Arena_small_step
+    - name: Arena_small_step_debug
       rect:
         serializedVersion: 2
         x: 2699
         y: 1961
         width: 145
         height: 167
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Arena_Side_T
+      rect:
+        serializedVersion: 2
+        x: 821
+        y: 1326
+        width: 549
+        height: 403
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Arena_Corner_steps
+      rect:
+        serializedVersion: 2
+        x: 806
+        y: 471
+        width: 220
+        height: 208
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Arena_Passthrough_Left_End
+      rect:
+        serializedVersion: 2
+        x: 3227
+        y: 1182
+        width: 61
+        height: 39
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Arena_Passthrough_middle
+      rect:
+        serializedVersion: 2
+        x: 3457
+        y: 1182
+        width: 89
+        height: 39
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Arena_Passthrough_Right_end
+      rect:
+        serializedVersion: 2
+        x: 3728
+        y: 1182
+        width: 61
+        height: 39
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Arena_Platform_Left_end
+      rect:
+        serializedVersion: 2
+        x: 3398
+        y: 879
+        width: 132
+        height: 64
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Arena_Platform_middle
+      rect:
+        serializedVersion: 2
+        x: 3591
+        y: 887
+        width: 88
+        height: 53
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Arena_Platform_Right_end
+      rect:
+        serializedVersion: 2
+        x: 3774
+        y: 879
+        width: 132
+        height: 64
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
