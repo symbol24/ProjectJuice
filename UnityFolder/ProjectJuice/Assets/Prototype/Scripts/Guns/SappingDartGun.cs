@@ -126,6 +126,7 @@ public class SappingDartGun : ExtendedMonobehaviour {
     private void Dart_DartCollision(object sender, EventArgs e)
     {
         StopCoroutine(_addCrossSection);
+        StartCoroutine(LastCoroutine());
         var lastDartChainCandidate = lastDartChainAdded;
         if (lastDartChainCandidate != null)
         {
@@ -142,6 +143,11 @@ public class SappingDartGun : ExtendedMonobehaviour {
             }
             lastDartChainCandidate.IgnoreFloor = true;
         }
+    }
+
+    private IEnumerator LastCoroutine()
+    {
+        yield return null;
     }
 
     private void Dart_DartDestroyed(object sender, EventArgs e)
@@ -185,7 +191,7 @@ public class SappingDartGun : ExtendedMonobehaviour {
 
     private IEnumerator AddCrossSection(DartChainV2 currentFirstChain)
     {
-        float distance = 0f;
+        float distance = Vector3.Distance(currentFirstChain.transform.position, _dartSpawnPoint.transform.position);
         while (distance <= _crossSectionLength)
         {
             distance = Vector3.Distance(currentFirstChain.transform.position, _dartSpawnPoint.transform.position);

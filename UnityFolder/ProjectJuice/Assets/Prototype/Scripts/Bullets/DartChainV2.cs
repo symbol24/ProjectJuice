@@ -106,11 +106,15 @@ public class DartChainV2 : ExtendedMonobehaviour {
     private void Update()
     {
         
-        if (!_isStaticChain && NextChain != null)
+        if (!_isStaticChain && NextChain != null && PreviousChain != null)
         {
-            transform.rotation =
+            /*transform.rotation =
                 Quaternion.Euler(new Vector3(transform.rotation.x, transform.rotation.y,
-                    GetRotation(transform.position, NextChain.transform.position) + _rotationCorrection));
+                    GetRotation(transform.position, NextChain.transform.position) + _rotationCorrection));*/
+            /*transform.rotation = Quaternion.Euler(0, 0,
+                GetAlphaFrom(Vector3.Distance(transform.position, NextChain.transform.position),
+                    Vector3.Distance(transform.position, PreviousChain.transform.position),
+                    Vector3.Distance(NextChain.transform.position, PreviousChain.transform.position)));*/
 
         }
 
@@ -264,6 +268,16 @@ public class DartChainV2 : ExtendedMonobehaviour {
                 throw;
             }
         }
+    }
+
+
+    public float GetAlphaFrom(float aSide, float bSide, float cSide)
+    {
+        //CosineLaw
+        var num = aSide*aSide - bSide*bSide - cSide*cSide;
+        var den = 2*bSide*cSide;
+        var angle = Mathf.Acos(num/den);
+        return Mathf.Rad2Deg * angle;
     }
 
 }
