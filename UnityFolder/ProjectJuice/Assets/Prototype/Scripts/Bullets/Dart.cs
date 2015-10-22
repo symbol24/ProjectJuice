@@ -1,4 +1,4 @@
-﻿using System.Runtime.InteropServices;
+﻿using System.Linq;
 using System.Timers;
 using UnityEngine;
 using System.Collections;
@@ -86,7 +86,40 @@ public class Dart : ExtendedMonobehaviour
         }
 
         if (dartToBeDestroyed) OnDartDestroyed();
+
+        if (!_nextUpdateIsCollision && !_hitAWall && _targetHpScript == null)
+        {
+            Debug.DrawRay(transform.position, MainRigidbody2D.velocity*Time.deltaTime, Color.green);
+            var colliders = Physics2D.RaycastAll(transform.position, MainRigidbody2D.velocity,
+                MainRigidbody2D.velocity.magnitude*(Time.deltaTime + 0.001f));
+            var collisionFound =
+                colliders.FirstOrDefault(
+                    c =>
+                        c.collider.gameObject.GetComponent<HPScript>() != null ||
+                        c.collider.gameObject.GetComponent<shield>() != null ||
+                        (c.collider.gameObject.GetComponent<Ground>() != null &&
+                         !c.collider.gameObject.GetComponent<Ground>().IsPassThrough));
+            if (collisionFound != default(RaycastHit2D))
+            {
+                var newVel = MainRigidbody2D.velocity.normalized*
+                             ((Vector3.Distance(collisionFound.transform.position, transform.position))/Time.deltaTime);
+                MainRigidbody2D.velocity = Vector3.Magnitude(newVel) - Vector3.Magnitude(newVel.normalized*_correctionToNewVel) < 0
+                    ? newVel.normalized
+                    : newVel - newVel.normalized*_correctionToNewVel;
+                Debug.Log("clamping velocity");
+                Debug.Log(MainRigidbody2D.velocity);
+                _nextUpdateIsCollision = true;
+            }
+            //Debug.Break();
+        }
+        else
+        {
+            
+        }
+        //Debug.Log(MainRigidbody2D.velocity);
+        
     }
+    private bool _nextUpdateIsCollision = false;
 
     void Start()
     {
@@ -196,6 +229,8 @@ public class Dart : ExtendedMonobehaviour
     }
 
     private bool _isSubscribedToTargetHPScript = false;
+    [SerializeField]private float _correctionToNewVel = 50;
+
     private void SubscribeToTargetHPScript(bool isToSubscribe)
     {
         if (isToSubscribe && !_isSubscribedToTargetHPScript)
@@ -271,6 +306,7 @@ public class Dart : ExtendedMonobehaviour
         }
 
     }
+    private bool _onDartAlreadyDestroyed = false;
     public event EventHandler DartDestroyed;
     protected void OnDartDestroyed()
     {
@@ -287,7 +323,11 @@ public class Dart : ExtendedMonobehaviour
         try
         {
             SubscribeToTargetHPScript(false);
-            Destroy(gameObject);
+            if (!_onDartAlreadyDestroyed && gameObject != null)
+            {
+                Destroy(gameObject);
+                _onDartAlreadyDestroyed = true;
+            }
         }
         catch (Exception ex)
         {
@@ -311,7 +351,7 @@ public class Dart : ExtendedMonobehaviour
 
     private void HitFloor(object sender, EventArgs eventArgs)
     {
-        Debug.Log("Dart Hit the Floor");
+        //Debug.Log("Dart Hit the Floor");
         SoundManager.PlaySFX(Severed);
         OnDartDestroyed();
     }

@@ -88,6 +88,7 @@ public class DartChainV2 : ExtendedMonobehaviour {
     private float _breakFullTimeout = 0.1f;
     private float _breakTimer;
     [SerializeField] private float _rotationCorrection = 90f;
+    [SerializeField]private float _one80Tolerance = 0.1f;
 
     private enum ForceStrategy
     {
@@ -102,20 +103,15 @@ public class DartChainV2 : ExtendedMonobehaviour {
         _collidedWithSomething = true;
     }
 
+    private void Start()
+    {
+        CorrectRotation();
+    }
+
     // Update is called once per frame
     private void Update()
     {
-        
-        if (!_isStaticChain && NextChain != null)
-        {
-            transform.rotation =
-                Quaternion.Euler(new Vector3(transform.rotation.x, transform.rotation.y,
-                    GetRotation(transform.position, NextChain.transform.position) + _rotationCorrection));
-
-        }
-
-
-
+        CorrectRotation();
         if (!_isStaticChain && !_collidedWithSomething && _enableScriptTranslation)
         {
             _breakTimer = 0f;
@@ -266,4 +262,43 @@ public class DartChainV2 : ExtendedMonobehaviour {
         }
     }
 
+    private void CorrectRotation()
+    {
+        if (!_isStaticChain && NextChain != null && PreviousChain != null)
+        {
+            var newAngle = GetAlphaFrom(-NextChain.transform.position + PreviousChain.transform.position);
+            newAngle += _rotationCorrection;
+            transform.rotation = Quaternion.Euler(0, 0, newAngle);
+        }
+    }
+
+
+    public float GetAlphaFrom(float aSide, float bSide, float cSide)
+    {
+        if (aSide + bSide >= cSide - _one80Tolerance) return 180;
+        else if (cSide < _one80Tolerance) return 0;
+        else
+        {
+            //CosineLaw
+            var num = aSide*aSide - bSide*bSide - cSide*cSide;
+            var den = 2*bSide*cSide;
+            if (den == 0f) den = 0.000001f;
+            //print(den);
+            var angle = Mathf.Acos(num/den);
+            return Mathf.Rad2Deg*angle;
+        }
+    }
+
+    public float GetAlphaFrom(Vector3 toCalculateAngle)
+    {
+        float ret;
+        if (toCalculateAngle.x == 0f) ret = 90;
+        else if (toCalculateAngle.y == 0f) ret = 0;
+        else
+        {
+            var ratio = toCalculateAngle.y/toCalculateAngle.x;
+            ret = Mathf.Atan(ratio) * Mathf.Rad2Deg;
+        }
+        return ret;
+    }
 }
