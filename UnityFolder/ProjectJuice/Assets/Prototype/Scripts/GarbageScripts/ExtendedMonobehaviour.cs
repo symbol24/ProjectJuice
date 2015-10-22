@@ -137,6 +137,20 @@ public abstract class ExtendedMonobehaviour : MonoBehaviour, IGameObject {
         else
             Debug.LogWarning("Missing Particle");
     }
+    protected void InstatiateParticle(ParticleSystem toInstantiate, Transform point, bool isToParent = false, float destroyTimer = 1f)
+    {
+        if (toInstantiate != null)
+        {
+            var temp = Instantiate<ParticleSystem>(toInstantiate);
+            temp.transform.position = point.transform.position;
+            temp.transform.rotation = point.transform.rotation;
+            temp.Play();
+            StartCoroutine(DestroyParticleEmitter(temp, destroyTimer));
+            if (isToParent) temp.transform.SetParent(point.transform);
+        }
+        else
+            Debug.LogWarning("Missing Particle");
+    }
 
     private IEnumerator DestroyParticleEmitter(ParticleSystem toDestroy, float timer = 1f)
     {
