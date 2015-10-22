@@ -192,11 +192,11 @@ public class SappingDartGun : ExtendedMonobehaviour {
     private IEnumerator AddCrossSection(DartChainV2 currentFirstChain)
     {
         float distance = Vector3.Distance(currentFirstChain.transform.position, _dartSpawnPoint.transform.position);
-        while (distance <= _crossSectionLength)
+        /*while (distance <= _crossSectionLength)
         {
             distance = Vector3.Distance(currentFirstChain.transform.position, _dartSpawnPoint.transform.position);
             yield return null;
-        }
+        }*/
         var crossSectionsNeeded = distance/_crossSectionLength;
         lastDartChainAdded = currentFirstChain;
         int numberOfIterations = Mathf.RoundToInt(crossSectionsNeeded);
@@ -205,6 +205,7 @@ public class SappingDartGun : ExtendedMonobehaviour {
             lastDartChainAdded = InstantiateChain(lastDartChainAdded);
         }
 
+        yield return null;
         _addCrossSection = AddCrossSection(lastDartChainAdded);
         _currentCount ++;
         if (_currentCount < _crossSectionsLimit) StartCoroutine(_addCrossSection);
