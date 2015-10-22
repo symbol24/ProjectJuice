@@ -40,7 +40,7 @@ public class ExplosiveObject : HPBase
             return ret;
         }
     }
-
+    
     private Rigidbody2D _mainRigidbody;
     [SerializeField] private Collider2D _bulletExplosionCollisionEvaluator;
     public List<GameObject> _explosiveColliders;
@@ -114,6 +114,7 @@ public class ExplosiveObject : HPBase
 
     public void RouteOnCollisionStay2D(Collider2D collider)
     {
+        /*
         var player = collider.GetComponent<IPlatformer2DUserControl>();
         var ground = collider.GetComponent<Ground>();
         if (player != null && ground != null)
@@ -130,7 +131,7 @@ public class ExplosiveObject : HPBase
                     _delayManager.AddSoundDelay(_delayFourPushingSound);
                 }
             }
-        }
+        }*/
     }
 
     private void CheckForDamaging(Collider2D toCheck)
@@ -167,7 +168,7 @@ public class ExplosiveObject : HPBase
         }
 
         var ground = toCheck.GetComponent<Ground>();
-        if(!isMuted && ground != null) SoundManager.PlaySFX(GroundImpact);
+        //if(!isMuted && ground != null) SoundManager.PlaySFX(GroundImpact);
 
         /*
         var player = toCheck.GetComponent<IPlatformer2DUserControl>();
@@ -175,7 +176,7 @@ public class ExplosiveObject : HPBase
         */
 
         var otherExplosif = toCheck.GetComponent<ExplosiveObjectDamagableCollider>();
-        if (!isMuted && otherExplosif != null) SoundManager.PlaySFX(GroundImpact);
+        //if (!isMuted && otherExplosif != null) SoundManager.PlaySFX(GroundImpact);
     }
 
     private void OnHpChanged(object sender, HpChangedEventArgs hpChangedEventArgs)
