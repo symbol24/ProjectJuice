@@ -8,6 +8,7 @@ public class RoundStartTimer : MonoBehaviour {
     [Range(0, 3)][SerializeField] float m_delayBetweenNumbers = 1f;
     [Range(0, 3)][SerializeField] float m_delayAfterGo = 0.5f;
     [Range(0, 10)][SerializeField] int m_amountOfSeconds = 5;
+    public int AmountOfSeconds { get { return m_amountOfSeconds; } }
     private FadeOut m_fader;
     [SerializeField] private Animator m_PurpleAnimator;
     [HideInInspector] public string NumberClipName;
@@ -24,7 +25,6 @@ public class RoundStartTimer : MonoBehaviour {
 
     private void StartCountdown(object sender, System.EventArgs e)
     {
-        SoundManager.PlaySFX(GetReadyClipName);
         StartCoroutine(DisplayTime());
     }
 
@@ -35,7 +35,6 @@ public class RoundStartTimer : MonoBehaviour {
 
     public void Reset()
     {
-        m_PurpleAnimator.SetBool("Play", true);
         m_TimerText.text = Database.instance.GameTexts[16];
     }
 
@@ -43,17 +42,16 @@ public class RoundStartTimer : MonoBehaviour {
     {
         bool displayed = false;
         int time = m_amountOfSeconds;
+        m_PurpleAnimator.SetBool("Play", true);
         while (!displayed)
         {
             m_PurpleAnimator.SetBool("Play", true);
-            SoundManager.PlaySFX(NumberClipName);
             m_TimerText.text = time.ToString();
             time--;
             if (time == 0) displayed = true;
             yield return new WaitForSeconds(m_delayBetweenNumbers);
         }
         m_PurpleAnimator.SetBool("Play", true);
-        SoundManager.PlaySFX(GoClipName);
         m_TimerText.text = Database.instance.GameTexts[17];
         yield return new WaitForSeconds(m_delayAfterGo);
         GameManager.instance.SetGameState(GameState.Playing);

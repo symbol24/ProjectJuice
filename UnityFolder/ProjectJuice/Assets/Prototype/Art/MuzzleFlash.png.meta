@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: fe7745bf0a550a043961de840f2d3116
-timeCreated: 1445482980
+timeCreated: 1445560435
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -43,7 +43,6 @@ TextureImporter:
   lightmap: 0
   rGBM: 0
   compressionQuality: 50
-  allowsAlphaSplitting: 0
   spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
@@ -64,7 +63,7 @@ TextureImporter:
         width: 140
         height: 142
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: MuzzleFlash_1
       rect:
@@ -74,7 +73,7 @@ TextureImporter:
         width: 292
         height: 168
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: MuzzleFlash_2
       rect:
@@ -84,17 +83,17 @@ TextureImporter:
         width: 284
         height: 223
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: MuzzleFlash_3
       rect:
         serializedVersion: 2
         x: 942
-        y: 36
+        y: 35
         width: 192
-        height: 220
+        height: 222
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: MuzzleFlash_4
       rect:
@@ -104,17 +103,7 @@ TextureImporter:
         width: 8
         height: 7
       alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: MuzzleFlash_5
-      rect:
-        serializedVersion: 2
-        x: 1056
-        y: 44
-        width: 10
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 
