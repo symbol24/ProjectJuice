@@ -36,10 +36,19 @@ public class ArcShooting : Gun
                 m_DelayManager.AddDelay(m_BurstDelay);
             }
             else
+            {
                 m_DelayManager.AddDelay(m_Delay);
+                m_DelayManager.CanShootDelayResetted += MDelayManagerOnCanShootDelayResetted;
+            }
 
             yield return new WaitForSeconds(m_BurstDelay);
         }
         _lightFeedback.StartLightFeedback(m_ShotDelay);
+    }
+
+    private void MDelayManagerOnCanShootDelayResetted(object sender, EventArgs eventArgs)
+    {
+        m_DelayManager.CanShootDelayResetted -= MDelayManagerOnCanShootDelayResetted;
+        SoundManager.PlaySFX(GunReloaded);
     }
 }
