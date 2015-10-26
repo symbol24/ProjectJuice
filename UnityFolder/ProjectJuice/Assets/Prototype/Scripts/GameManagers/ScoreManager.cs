@@ -48,7 +48,7 @@ public class ScoreManager : ExtendedMonobehaviour
     }
     public void FollowScoreOf(IPlatformer2DUserControl control, HPScript hpScript)
     {
-        CurrentScores.Add(new PlayerScoreTracker {CurrentScore = 0, Player = control.m_PlayerData});
+        CurrentScores.Add(new PlayerScoreTracker { CurrentScore = 0, Player = control.m_PlayerData});
         var data = new ScoreData() {HpScript = hpScript, Platformer2DUserControl = control};
         data.HpScript.Dead += HpScript_Dead;
         ScoreDatas.Add(data);
@@ -107,7 +107,7 @@ public class ScoreManager : ExtendedMonobehaviour
             if (e.IsThereAWinner)
             {
                 var potentialPlayerWinning =
-                    CurrentScores.Single(c => c.Player == e.Platformer2DUserControl.m_PlayerData);
+                    CurrentScores.First(c => c.Player == e.Platformer2DUserControl.m_PlayerData);
                     potentialPlayerWinning.CurrentScore++;
                 e.PlayerScore = potentialPlayerWinning.CurrentScore;
             }
@@ -135,6 +135,15 @@ public class ScoreManager : ExtendedMonobehaviour
         var ret = CurrentScores.FirstOrDefault(c => c.Player == player);
         return ret;
     }
+
+    public void Reset()
+    {
+        foreach(var score in CurrentScores)
+        {
+            score.CurrentScore = 0;
+        }
+    }
+
 
     //InternalDataClass
     private class ScoreData

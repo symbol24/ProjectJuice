@@ -8,7 +8,18 @@ namespace UnityStandardAssets._2D
     [RequireComponent(typeof (PlatformerCharacter2D))]
     public class Platformer2DUserControl : ExtendedMonobehaviour, IPlatformer2DUserControl
     {
-        public PlayerData m_PlayerData { get; private set; }
+        private PlayerData _m_playerData;
+        public PlayerData m_PlayerData
+        {
+            get
+            {
+                if (_m_playerData == null)
+                {
+                    _m_playerData = Utilities.GetPlayerData(m_PlayerID);
+                }
+                return _m_playerData;
+            }
+        }
         
         [SerializeField] private PlayerIDs m_PlayerID;
         public PlayerIDs PlayerID { get { return m_PlayerID; } set { m_PlayerID = value; } }
@@ -53,7 +64,6 @@ namespace UnityStandardAssets._2D
 
         void Start()
         {
-            m_PlayerData = Utilities.GetPlayerData(m_PlayerID);
             controller = m_PlayerData.GamepadIndex; //Get the index of the gamepad from the playerdata.
         }
 
