@@ -107,7 +107,7 @@ public class ScoreManager : ExtendedMonobehaviour
             if (e.IsThereAWinner)
             {
                 var potentialPlayerWinning =
-                    CurrentScores.Single(c => c.Player == e.Platformer2DUserControl.m_PlayerData);
+                    CurrentScores.First(c => c.Player == e.Platformer2DUserControl.m_PlayerData);
                     potentialPlayerWinning.CurrentScore++;
                 e.PlayerScore = potentialPlayerWinning.CurrentScore;
             }
