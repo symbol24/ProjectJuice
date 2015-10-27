@@ -25,6 +25,7 @@ public class PauseMenu : Menu {
     [SerializeField] private float m_CenterYPosition;
     [Range(0,3)][SerializeField] private float m_scrollInTime = 0.5f;
     [SerializeField] private RectTransform m_PausePanelToScroll;
+    [SerializeField] private Animator m_PauseMenuAnimator;
     
     [HideInInspector] public string MenuOpenName;
     [HideInInspector] public string MenuCloseName;
@@ -105,7 +106,7 @@ public class PauseMenu : Menu {
             m_currentSelection = 0;
             m_ListOfButtones[m_currentSelection].Select();
             m_DelayManager.CoroutineDelay(Database.instance.LongMenuInputDelay, true);
-            StartScrollCoroutine(false, m_scrollInTime);
+            //StartScrollCoroutine(false, m_scrollInTime);
         }
         else
         {
