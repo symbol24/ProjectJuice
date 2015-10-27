@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using System.Collections;
 
 public class DelayManager : MonoBehaviour {
@@ -10,6 +11,13 @@ public class DelayManager : MonoBehaviour {
     private float m_SoundDelay;
 
     public bool CanShoot { get { return m_CurrentDelay <= 0f; } }
+    public event EventHandler CanShootDelayResetted;
+    protected virtual void OnCanShootDelayResetted()
+    {
+        EventHandler handler = CanShootDelayResetted;
+        if (handler != null) handler(this, EventArgs.Empty);
+    }
+
     public bool CanShield { get { return m_ShieldDelay <= 0f; } }
     public bool CanTurnOffShield { get { return m_ShieldOffDelay <= 0f; } }
     public bool OtherReady { get { return m_OtherDelay <= 0f; } }
@@ -17,7 +25,11 @@ public class DelayManager : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-        if (m_CurrentDelay > 0) m_CurrentDelay -= Time.deltaTime;
+        if (m_CurrentDelay > 0)
+        {
+            m_CurrentDelay -= Time.deltaTime;
+            if(m_CurrentDelay <= 0) OnCanShootDelayResetted();
+        }
         else m_CurrentDelay = 0f;
 
         if (m_ShieldDelay > 0) m_ShieldDelay -= Time.deltaTime;

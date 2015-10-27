@@ -29,17 +29,16 @@ public class ScoreManager : ExtendedMonobehaviour
     {
         get { return _currentScores ?? (_currentScores = new List<PlayerScoreTracker>()); }
     }
-    
+    public IEnumerable<PlayerScoreTracker> PlayerScores
+    {
+        get { return CurrentScores; }
+    }
+
     void Start()
     {
         GameManager.instance.SubscribeToEndRound();
     }
     
-    //Public Methods/Properties Available
-    public List<PlayerScoreTracker> PlayerScores
-    {
-        get { return CurrentScores; }
-    }
 
     public void FollowScoreOf(IPlatformer2DUserControl control)
     {
@@ -47,9 +46,9 @@ public class ScoreManager : ExtendedMonobehaviour
         if(checkHpScript == null) Debug.LogError("CannotFindHpScript");
         FollowScoreOf(control, checkHpScript);
     }
-
     public void FollowScoreOf(IPlatformer2DUserControl control, HPScript hpScript)
     {
+        CurrentScores.Add(new PlayerScoreTracker {CurrentScore = 0, Player = control.m_PlayerData});
         var data = new ScoreData() {HpScript = hpScript, Platformer2DUserControl = control};
         data.HpScript.Dead += HpScript_Dead;
         ScoreDatas.Add(data);
@@ -77,13 +76,13 @@ public class ScoreManager : ExtendedMonobehaviour
 
     private bool _isAnounceWinnerRunning = false;
     private IEnumerator _anounceWinner;
+
     private IEnumerator AnounceWinner()
     {
-        yield return new WaitForSeconds(_delayToCheckIfDraw);
-        if (ScoreDatas.Any())
+        if (ScoreDatas.Count <= 1)
         {
+            yield return new WaitForSeconds(_delayToCheckIfDraw);
             //Check if we have a single player left
-            
             if (ScoreDatas.Count == 1)
             {
                 //Clear and fire event
@@ -91,12 +90,14 @@ public class ScoreManager : ExtendedMonobehaviour
                 ScoreDatas.Clear();
                 OnPlayerScored(possibleWinner.GetEventArgs());
             }
+            else
+            {
+                //Nobody in the round - it is a draw
+                OnPlayerScored(new PlayerScoreEventArgs() {IsThereAWinner = false,});
+            }
+
         }
-        else
-        {
-            //Nobody in the round - it is a draw
-            OnPlayerScored(new PlayerScoreEventArgs(){IsThereAWinner =  false,});
-        }
+
     }
 
     protected virtual void OnPlayerScored(PlayerScoreEventArgs e)
@@ -106,20 +107,8 @@ public class ScoreManager : ExtendedMonobehaviour
             if (e.IsThereAWinner)
             {
                 var potentialPlayerWinning =
-                    CurrentScores.SingleOrDefault(c => c.Player == e.Platformer2DUserControl.m_PlayerData);
-                if (potentialPlayerWinning != null)
-                {
+                    CurrentScores.First(c => c.Player == e.Platformer2DUserControl.m_PlayerData);
                     potentialPlayerWinning.CurrentScore++;
-                }
-                else
-                {
-                    potentialPlayerWinning = new PlayerScoreTracker
-                    {
-                        CurrentScore = 1,
-                        Player = e.Platformer2DUserControl.m_PlayerData
-                    };
-                    CurrentScores.Add(potentialPlayerWinning);
-                }
                 e.PlayerScore = potentialPlayerWinning.CurrentScore;
             }
         }
@@ -143,13 +132,7 @@ public class ScoreManager : ExtendedMonobehaviour
 
     public PlayerScoreTracker GetScoreData(PlayerData player)
     {
-        PlayerScoreTracker ret = null;
-
-        foreach(PlayerScoreTracker pst in PlayerScores)
-        {
-            if (player == pst.Player)
-                ret = pst;
-        }
+        var ret = CurrentScores.FirstOrDefault(c => c.Player == player);
         return ret;
     }
 

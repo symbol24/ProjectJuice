@@ -21,6 +21,7 @@ public class Gun : ExtendedMonobehaviour {
     protected bool m_HasDisplayed = true;
 
     [HideInInspector] public string GunShot;
+    [HideInInspector] public string GunReloaded;
 
     [HideInInspector] public ParticleSystem m_MuzzleFlash;
     [Range(0, 5)][SerializeField] private float m_MuzzleFlashLifeTime = 0.1f;
