@@ -41,7 +41,7 @@ public class PauseMenu : Menu {
 
         Vector3 temp = new Vector3(m_PausePanelToScroll.localPosition.x, m_PausePanelToScroll.localPosition.y, m_PausePanelToScroll.localPosition.z);
         temp.y = m_UpperYPosition;
-        m_PausePanelToScroll.localPosition = temp;
+        //m_PausePanelToScroll.localPosition = temp;
 
         m_PausePanel.SetActive(false);
     }
