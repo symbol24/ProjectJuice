@@ -43,7 +43,6 @@ public class MovementSparking : ExtendedMonobehaviour
     }
     private void DetectedStopping(object sender, EventArgs e)
     {
-        print("stoppingSound");
         if(_currentAudio != null && _currentAudio.isPlaying)
         {
             _currentAudio.Stop();

@@ -5377,166 +5377,246 @@ Message: TestException
 Stack Trace:
 
 -----------
-<<<<<<< HEAD
-NullReferenceException occurred at 10/26/2015 6:55:16 PM:
-=======
 NullReferenceException occurred at 10/26/2015 6:48:03 PM:
->>>>>>> 9ff7d8889111160fbdcd79233fc9f13271aad689
 Message: TestException
 Stack Trace:
 
 -----------
-<<<<<<< HEAD
-NullReferenceException occurred at 10/26/2015 6:55:16 PM:
-=======
 NullReferenceException occurred at 10/26/2015 6:48:03 PM:
->>>>>>> 9ff7d8889111160fbdcd79233fc9f13271aad689
 Message: TestException
 Stack Trace:
 
 -----------
-<<<<<<< HEAD
-NullReferenceException occurred at 10/26/2015 6:57:28 PM:
-Message: TestException
-Stack Trace:
-
------------
-NullReferenceException occurred at 10/26/2015 6:57:28 PM:
-Message: TestException
-Stack Trace:
-
------------
-NullReferenceException occurred at 10/26/2015 7:27:38 PM:
-Message: TestException
-Stack Trace:
-
------------
-NullReferenceException occurred at 10/26/2015 7:27:38 PM:
-Message: TestException
-Stack Trace:
-
------------
-NullReferenceException occurred at 10/26/2015 7:29:24 PM:
-Message: TestException
-Stack Trace:
-
------------
-NullReferenceException occurred at 10/26/2015 7:29:24 PM:
-Message: TestException
-Stack Trace:
-
------------
-NullReferenceException occurred at 10/26/2015 7:57:13 PM:
-Message: TestException
-Stack Trace:
-
------------
-NullReferenceException occurred at 10/26/2015 7:57:13 PM:
-Message: TestException
-Stack Trace:
-
------------
-NullReferenceException occurred at 10/26/2015 7:59:33 PM:
-Message: TestException
-Stack Trace:
-
------------
-NullReferenceException occurred at 10/26/2015 7:59:33 PM:
-Message: TestException
-Stack Trace:
-
------------
-NullReferenceException occurred at 10/26/2015 8:01:38 PM:
-Message: TestException
-Stack Trace:
-
------------
-NullReferenceException occurred at 10/26/2015 8:01:38 PM:
-Message: TestException
-Stack Trace:
-
------------
-NullReferenceException occurred at 10/26/2015 8:11:13 PM:
-Message: TestException
-Stack Trace:
-
------------
-NullReferenceException occurred at 10/26/2015 8:11:13 PM:
-Message: TestException
-Stack Trace:
-
------------
-InvalidOperationException occurred at 10/26/2015 8:12:35 PM:
-Message: Operation is not valid due to the current state of the object
-Stack Trace:
-  at System.Linq.Enumerable.Single[PlayerScoreTracker] (IEnumerable`1 source, System.Func`2 predicate, Fallback fallback) [0x00000] in <filename unknown>:0 
-  at System.Linq.Enumerable.Single[PlayerScoreTracker] (IEnumerable`1 source, System.Func`2 predicate) [0x00000] in <filename unknown>:0 
-  at ScoreManager.OnPlayerScored (.PlayerScoreEventArgs e) [0x00020] in C:\Users\Roberto\Documents\Juice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\GameManagers\ScoreManager.cs:109 
------------
-NullReferenceException occurred at 10/26/2015 8:19:47 PM:
-Message: TestException
-Stack Trace:
-
------------
-NullReferenceException occurred at 10/26/2015 8:19:47 PM:
-Message: TestException
-Stack Trace:
-
------------
-NullReferenceException occurred at 10/26/2015 8:50:35 PM:
-Message: TestException
-Stack Trace:
-
------------
-NullReferenceException occurred at 10/26/2015 8:50:35 PM:
-Message: TestException
-Stack Trace:
-
------------
-InvalidOperationException occurred at 10/26/2015 8:50:47 PM:
-=======
 InvalidOperationException occurred at 10/26/2015 6:48:28 PM:
->>>>>>> 9ff7d8889111160fbdcd79233fc9f13271aad689
 Message: Operation is not valid due to the current state of the object
 Stack Trace:
   at System.Linq.Enumerable.Single[PlayerScoreTracker] (IEnumerable`1 source, System.Func`2 predicate, Fallback fallback) [0x00000] in <filename unknown>:0 
   at System.Linq.Enumerable.Single[PlayerScoreTracker] (IEnumerable`1 source, System.Func`2 predicate) [0x00000] in <filename unknown>:0 
-<<<<<<< HEAD
-  at ScoreManager.OnPlayerScored (.PlayerScoreEventArgs e) [0x00020] in C:\Users\Roberto\Documents\Juice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\GameManagers\ScoreManager.cs:109 
------------
-NullReferenceException occurred at 10/26/2015 8:51:05 PM:
-=======
   at ScoreManager.OnPlayerScored (.PlayerScoreEventArgs e) [0x00020] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\GameManagers\ScoreManager.cs:109 
 -----------
 NullReferenceException occurred at 10/26/2015 7:28:58 PM:
->>>>>>> 9ff7d8889111160fbdcd79233fc9f13271aad689
 Message: TestException
 Stack Trace:
 
 -----------
-<<<<<<< HEAD
-NullReferenceException occurred at 10/26/2015 8:51:05 PM:
-=======
 NullReferenceException occurred at 10/26/2015 7:28:58 PM:
->>>>>>> 9ff7d8889111160fbdcd79233fc9f13271aad689
 Message: TestException
 Stack Trace:
 
 -----------
-<<<<<<< HEAD
-InvalidOperationException occurred at 10/26/2015 8:51:43 PM:
-=======
 InvalidOperationException occurred at 10/26/2015 7:29:14 PM:
->>>>>>> 9ff7d8889111160fbdcd79233fc9f13271aad689
 Message: Operation is not valid due to the current state of the object
 Stack Trace:
   at System.Linq.Enumerable.Single[PlayerScoreTracker] (IEnumerable`1 source, System.Func`2 predicate, Fallback fallback) [0x00000] in <filename unknown>:0 
   at System.Linq.Enumerable.Single[PlayerScoreTracker] (IEnumerable`1 source, System.Func`2 predicate) [0x00000] in <filename unknown>:0 
-<<<<<<< HEAD
-  at ScoreManager.OnPlayerScored (.PlayerScoreEventArgs e) [0x00020] in C:\Users\Roberto\Documents\Juice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\GameManagers\ScoreManager.cs:109 
-=======
   at ScoreManager.OnPlayerScored (.PlayerScoreEventArgs e) [0x00020] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\GameManagers\ScoreManager.cs:109 
->>>>>>> 9ff7d8889111160fbdcd79233fc9f13271aad689
+-----------
+NullReferenceException occurred at 10/26/2015 7:53:19 PM:
+Message: TestException
+Stack Trace:
+
+-----------
+NullReferenceException occurred at 10/26/2015 7:53:19 PM:
+Message: TestException
+Stack Trace:
+
+-----------
+InvalidOperationException occurred at 10/26/2015 7:53:29 PM:
+Message: Operation is not valid due to the current state of the object
+Stack Trace:
+  at System.Linq.Enumerable.Single[PlayerScoreTracker] (IEnumerable`1 source, System.Func`2 predicate, Fallback fallback) [0x00000] in <filename unknown>:0 
+  at System.Linq.Enumerable.Single[PlayerScoreTracker] (IEnumerable`1 source, System.Func`2 predicate) [0x00000] in <filename unknown>:0 
+  at ScoreManager.OnPlayerScored (.PlayerScoreEventArgs e) [0x00020] in C:\Users\Phillip\Documents\ProjectJuice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\GameManagers\ScoreManager.cs:109 
+-----------
+NullReferenceException occurred at 10/26/2015 7:54:42 PM:
+Message: TestException
+Stack Trace:
+
+-----------
+NullReferenceException occurred at 10/26/2015 7:54:42 PM:
+Message: TestException
+Stack Trace:
+
+-----------
+NullReferenceException occurred at 10/26/2015 7:55:10 PM:
+Message: TestException
+Stack Trace:
+
+-----------
+NullReferenceException occurred at 10/26/2015 7:55:10 PM:
+Message: TestException
+Stack Trace:
+
+-----------
+NullReferenceException occurred at 10/26/2015 7:55:24 PM:
+Message: TestException
+Stack Trace:
+
+-----------
+NullReferenceException occurred at 10/26/2015 7:55:24 PM:
+Message: TestException
+Stack Trace:
+
+-----------
+NullReferenceException occurred at 10/26/2015 7:55:24 PM:
+Message: TestException
+Stack Trace:
+
+-----------
+NullReferenceException occurred at 10/26/2015 7:55:24 PM:
+Message: TestException
+Stack Trace:
+
+-----------
+NullReferenceException occurred at 10/26/2015 7:56:59 PM:
+Message: TestException
+Stack Trace:
+
+-----------
+NullReferenceException occurred at 10/26/2015 7:56:59 PM:
+Message: TestException
+Stack Trace:
+
+-----------
+NullReferenceException occurred at 10/26/2015 7:57:31 PM:
+Message: TestException
+Stack Trace:
+
+-----------
+NullReferenceException occurred at 10/26/2015 7:57:31 PM:
+Message: TestException
+Stack Trace:
+
+-----------
+NullReferenceException occurred at 10/26/2015 7:57:47 PM:
+Message: TestException
+Stack Trace:
+
+-----------
+NullReferenceException occurred at 10/26/2015 7:57:47 PM:
+Message: TestException
+Stack Trace:
+
+-----------
+NullReferenceException occurred at 10/26/2015 7:58:01 PM:
+Message: TestException
+Stack Trace:
+
+-----------
+NullReferenceException occurred at 10/26/2015 7:58:01 PM:
+Message: TestException
+Stack Trace:
+
+-----------
+NullReferenceException occurred at 10/26/2015 7:58:01 PM:
+Message: TestException
+Stack Trace:
+
+-----------
+NullReferenceException occurred at 10/26/2015 7:58:01 PM:
+Message: TestException
+Stack Trace:
+
+-----------
+NullReferenceException occurred at 10/26/2015 8:37:19 PM:
+Message: TestException
+Stack Trace:
+
+-----------
+NullReferenceException occurred at 10/26/2015 8:37:19 PM:
+Message: TestException
+Stack Trace:
+
+-----------
+NullReferenceException occurred at 10/26/2015 8:39:22 PM:
+Message: TestException
+Stack Trace:
+
+-----------
+NullReferenceException occurred at 10/26/2015 8:39:22 PM:
+Message: TestException
+Stack Trace:
+
+-----------
+NullReferenceException occurred at 10/26/2015 8:40:21 PM:
+Message: TestException
+Stack Trace:
+
+-----------
+NullReferenceException occurred at 10/26/2015 8:40:21 PM:
+Message: TestException
+Stack Trace:
+
+-----------
+NullReferenceException occurred at 10/26/2015 8:41:09 PM:
+Message: TestException
+Stack Trace:
+
+-----------
+NullReferenceException occurred at 10/26/2015 8:41:09 PM:
+Message: TestException
+Stack Trace:
+
+-----------
+NullReferenceException occurred at 10/26/2015 8:51:05 PM:
+Message: TestException
+Stack Trace:
+
+-----------
+NullReferenceException occurred at 10/26/2015 8:51:05 PM:
+Message: TestException
+Stack Trace:
+
+-----------
+NullReferenceException occurred at 10/26/2015 8:51:38 PM:
+Message: TestException
+Stack Trace:
+
+-----------
+NullReferenceException occurred at 10/26/2015 8:51:38 PM:
+Message: TestException
+Stack Trace:
+
+-----------
+NullReferenceException occurred at 10/26/2015 9:05:06 PM:
+Message: TestException
+Stack Trace:
+
+-----------
+NullReferenceException occurred at 10/26/2015 9:05:06 PM:
+Message: TestException
+Stack Trace:
+
+-----------
+NullReferenceException occurred at 10/26/2015 9:10:15 PM:
+Message: TestException
+Stack Trace:
+
+-----------
+NullReferenceException occurred at 10/26/2015 9:10:15 PM:
+Message: TestException
+Stack Trace:
+
+-----------
+NullReferenceException occurred at 10/26/2015 9:10:51 PM:
+Message: TestException
+Stack Trace:
+
+-----------
+NullReferenceException occurred at 10/26/2015 9:10:51 PM:
+Message: TestException
+Stack Trace:
+
+-----------
+NullReferenceException occurred at 10/26/2015 9:12:53 PM:
+Message: TestException
+Stack Trace:
+
+-----------
+NullReferenceException occurred at 10/26/2015 9:12:53 PM:
+Message: TestException
+Stack Trace:
+
 -----------
 NullReferenceException occurred at 10/26/2015 9:09:16 PM:
 Message: TestException

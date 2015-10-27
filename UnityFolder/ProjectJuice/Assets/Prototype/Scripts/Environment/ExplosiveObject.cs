@@ -63,8 +63,7 @@ public class ExplosiveObject : HPBase
     [HideInInspector] public string GroundImpact;
     [HideInInspector] public string BulletImpact;
     [HideInInspector] public string Explosion;
-
-    [HideInInspector] public ParticleSystem _groundScraping;
+    
     [HideInInspector] public ParticleSystem _explosionFX;
     [HideInInspector] public ParticleSystem _shockwave;
     [HideInInspector] public ParticleSystem _chromaticAberation;

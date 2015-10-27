@@ -25,7 +25,7 @@ public class GameManager : ExtendedMonobehaviour
 
     void Awake()
     {
-        DontDestroyOnLoad(this);
+        //DontDestroyOnLoad(this);
     }
     #endregion
 
