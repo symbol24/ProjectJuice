@@ -41,6 +41,7 @@ public class DartVibration : VibrationBase<SappingDartGun>
 
     private void DartOnDartCollision(object sender, EventArgs eventArgs)
     {
-        if(_enableDartCollisionVibration) _playerVibrator.Vibrate(_dartCollisionVibrationSettings);
+        if (_enableDartCollisionVibration) _playerVibrator.Vibrate(_dartCollisionVibrationSettings);
+        else _playerVibrator.StopVibration();
     }
 }
