@@ -42,7 +42,26 @@ public static class Extensions
     public static PlayerIndex ToPlayerIndex(this GamePad.Index gamepadIndex)
     {
         if(gamepadIndex == GamePad.Index.Any) gamepadIndex = GamePad.Index.One;
-        var ret = (PlayerIndex) Enum.Parse(typeof (PlayerIndex), Enum.GetName(typeof (GamePad.Index), gamepadIndex));
+        PlayerIndex ret;// = (PlayerIndex) Enum.Parse(typeof (PlayerIndex), Enum.GetName(typeof (GamePad.Index), gamepadIndex)); //TOO SLOOOOOW
+        switch(gamepadIndex)
+        {
+            case GamePad.Index.One:
+                ret = PlayerIndex.One;
+                break;
+            case GamePad.Index.Two:
+                ret = PlayerIndex.Two;
+                break;
+            case GamePad.Index.Three:
+                ret = PlayerIndex.Three;
+                break;
+            case GamePad.Index.Four:
+                ret = PlayerIndex.Four;
+                break;
+            default:
+                ret = PlayerIndex.Four;
+                break;
+        }
+
         return ret;
     }
 }

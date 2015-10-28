@@ -22,7 +22,7 @@ public abstract class HPBase : ExtendedMonobehaviour {
         {
             if (_currentHp != value)
             {
-                var newHpValue = value >= MaxHp ? MaxHp : _currentHp = value;
+                var newHpValue = value >= MaxHp ? MaxHp : value;
                 var e = new HpChangedEventArgs() { NewHp = newHpValue, PreviousHp = _currentHp };
                 _currentHp = newHpValue;
                 OnHpChanged(e);
