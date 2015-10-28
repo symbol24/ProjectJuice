@@ -21,10 +21,6 @@ public class PauseMenu : Menu {
     [SerializeField] private bool m_IsFullSoundPause = false;
     [Range(0,10)][SerializeField] private float m_delayToReturn = 2f;
 
-    [SerializeField] private float m_UpperYPosition;
-    [SerializeField] private float m_CenterYPosition;
-    [Range(0,3)][SerializeField] private float m_scrollInTime = 0.5f;
-    [SerializeField] private RectTransform m_PausePanelToScroll;
     [SerializeField] private Animator m_PauseMenuAnimator;
     
     [HideInInspector] public string MenuOpenName;
@@ -39,10 +35,6 @@ public class PauseMenu : Menu {
         m_maxSelection = GetListOfActiveButtons();
         m_DelayManager = GetComponent<DelayManager>();
         m_DelayManager.Reset();
-
-        Vector3 temp = new Vector3(m_PausePanelToScroll.localPosition.x, m_PausePanelToScroll.localPosition.y, m_PausePanelToScroll.localPosition.z);
-        temp.y = m_UpperYPosition;
-        //m_PausePanelToScroll.localPosition = temp;
 
         m_PausePanel.SetActive(false);
     }
@@ -98,21 +90,27 @@ public class PauseMenu : Menu {
     public void SwitchPauseState()
     {
         m_isPaused = !m_isPaused;
-        m_PausePanel.SetActive(m_isPaused);
         if (m_isPaused)
         {
+            m_PausePanel.SetActive(m_isPaused);
             GameManager.instance.SetPaused(m_isPaused, m_PauseMusicVolume, m_IsFullSoundPause);
             SoundManager.PlaySFX(MenuOpenName);
+            m_PauseMenuAnimator.SetBool("GoDown", true);
             m_currentSelection = 0;
             m_ListOfButtones[m_currentSelection].Select();
             m_DelayManager.CoroutineDelay(Database.instance.LongMenuInputDelay, true);
-            //StartScrollCoroutine(false, m_scrollInTime);
         }
         else
         {
+            m_PauseMenuAnimator.SetBool("GoUp", true);
             SoundManager.PlaySFX(MenuCloseName);
-            GameManager.instance.SetPaused(m_isPaused, 1, m_IsFullSoundPause);
         }
+    }
+
+    public void ChangePanelState()
+    {
+        m_PausePanel.SetActive(m_isPaused);
+        GameManager.instance.SetPaused(m_isPaused, 1, m_IsFullSoundPause);
     }
 
     public void ReturnToMainMenu()
@@ -196,35 +194,8 @@ public class PauseMenu : Menu {
         m_DelayManager.CoroutineDelay(Database.instance.MenuInputDelay, false);
     }
 
-    private void StartScrollCoroutine(bool isUp = false, float timeToScroll = 0.5f)
+    public void ResetAnimatorBool(string boolName, bool boolValue)
     {
-        StartCoroutine(ScrollInOut(isUp, timeToScroll));
-    }
-
-    private IEnumerator ScrollInOut(bool isUp, float timeToScroll)
-    {
-        print("in ScrollInOut");
-        float target = m_CenterYPosition;
-        if (isUp) target = m_UpperYPosition;
-        float current = m_PausePanelToScroll.localPosition.y;
-        Vector3 temp = new Vector3(m_PausePanelToScroll.localPosition.x, m_PausePanelToScroll.localPosition.y, m_PausePanelToScroll.localPosition.z);
-        while ((!isUp && target > m_CenterYPosition) || (isUp && target < m_UpperYPosition))
-        {
-            yield return new WaitForEndOfFrame();
-            current = CalcCurve(current, isUp, timeToScroll);
-            temp.y = current;
-            m_PausePanelToScroll.localPosition = temp;
-            print(current);
-        }
-    }
-
-    private float CalcCurve(float current, bool isUP, float timer = 0.5f)
-    {
-        if (isUP)
-            current = Mathf.Clamp01(current + Time.unscaledDeltaTime / timer);
-        else
-            current = Mathf.Clamp01(current - Time.unscaledDeltaTime / timer);
-
-        return current;
+        m_PauseMenuAnimator.SetBool(boolName, boolValue);
     }
 }
