@@ -44,6 +44,8 @@ public class RoundMenu : Menu {
     private SoundConnection m_myConnection;
     private int m_lastController = 0;
 
+    [SerializeField] private Animator m_animator;
+
     [HideInInspector] public int VictoryID;
     [HideInInspector] public string VictoryName;
     [HideInInspector] public int DrawID;
