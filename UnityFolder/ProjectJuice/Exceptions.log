@@ -5707,14 +5707,21 @@ Stack Trace:
   at ScoreManager.OnPlayerScored (.PlayerScoreEventArgs e) [0x00020] in C:\Users\Roberto\Documents\Juice\UnityFolder\ProjectJuice\Assets\Prototype\Scripts\GameManagers\ScoreManager.cs:109 
 -----------
 <<<<<<< HEAD
+NullReferenceException occurred at 10/27/2015 7:11:59 PM:
+=======
+<<<<<<< HEAD
 NullReferenceException occurred at 10/27/2015 7:19:29 PM:
 =======
 NullReferenceException occurred at 10/27/2015 7:18:21 PM:
 >>>>>>> 06662135cebcf0892f894ece0c80925c18b94a9a
+>>>>>>> dfbd5693af6c771932d1a0628241c48c5686dcbd
 Message: TestException
 Stack Trace:
 
 -----------
+<<<<<<< HEAD
+NullReferenceException occurred at 10/27/2015 7:11:59 PM:
+=======
 <<<<<<< HEAD
 NullReferenceException occurred at 10/27/2015 7:19:29 PM:
 =======
@@ -5808,6 +5815,7 @@ Stack Trace:
 
 -----------
 NullReferenceException occurred at 10/27/2015 8:23:20 PM:
+>>>>>>> dfbd5693af6c771932d1a0628241c48c5686dcbd
 Message: TestException
 Stack Trace:
 

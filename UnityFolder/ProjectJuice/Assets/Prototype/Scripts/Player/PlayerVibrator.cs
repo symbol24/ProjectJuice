@@ -36,6 +36,7 @@ public class PlayerVibrator : MonoBehaviour {
         {
             StopCoroutine(_vibrationCoroutine);
         }
+        SetVibration(0, 0);
     }
 
     private IEnumerator _vibrationCoroutine;
