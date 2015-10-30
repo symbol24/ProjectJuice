@@ -7,7 +7,7 @@ public class ScaleBasedOnHP : MonoBehaviour
     public GameObject _gameObjectToScale;
     public HPScript _hpScript;
     //private Transform _originalTransform;
-    private float _originalX;
+    protected float _originalX;
     //private SpriteRenderer m_Sprite;
     
     void Awake()
@@ -26,7 +26,7 @@ public class ScaleBasedOnHP : MonoBehaviour
 	}
 
 
-    private void HpScriptOnHpChanged(object sender, HpChangedEventArgs hpChangedEventArgs)
+    protected virtual void HpScriptOnHpChanged(object sender, HpChangedEventArgs hpChangedEventArgs)
     {
         float newScalePercent = _originalX * (_hpScript.CurrentHp / _hpScript.MaxHp);
         _gameObjectToScale.transform.localScale =

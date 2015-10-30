@@ -24,6 +24,7 @@ public class RoundMenu : Menu {
     private DelayManager m_DelayManager;
 
     [Range(0,3)][SerializeField] private float m_DelayBeforeDisplay = 0.5f;
+    [Range(0,3)][SerializeField] private float m_DelayForRtuenToCharSel = 0.5f;
 
     [SerializeField] List<Sprite> m_Circles;
     [SerializeField] List<GameObject> m_ListOfPlayerLines;
@@ -43,6 +44,10 @@ public class RoundMenu : Menu {
     [SerializeField] private AudioClip m_SpecialBGM;
     private SoundConnection m_myConnection;
     private int m_lastController = 0;
+
+    [SerializeField] private Animator m_animator;
+    private bool m_isMatchOver = false;
+    private int m_targetLevel = -1;
 
     [HideInInspector] public int VictoryID;
     [HideInInspector] public string VictoryName;
@@ -118,6 +123,8 @@ public class RoundMenu : Menu {
 
     public void DisplayRoundMenu(bool active, bool isMatchOver, string winnerName, GameState nextGameState)
     {
+        m_isMatchOver = isMatchOver;
+
         if (active)
             StartCoroutine(DelayBeforeActive(active, m_DelayBeforeDisplay, isMatchOver, winnerName, nextGameState));
         else
@@ -138,6 +145,7 @@ public class RoundMenu : Menu {
         m_DelayManager.Reset();
         m_DelayManager.AddDelay(Database.instance.LongMenuInputDelay);
         SoundManager.PlaySFX(MenuOpen);
+        UpdateBoolAnimator("GoDown", true);
     }
 
     private void SwitchBGM()
@@ -221,16 +229,40 @@ public class RoundMenu : Menu {
     private void GoToNextRound()
     {
         GameManager.instance.SetGameState(GameState.Loading);
-        StartCoroutine(DelayedToNextRound());
+        SoundManager.PlaySFX(MenuClose);
+        UpdateBoolAnimator("GoUp", true);
     }
 
-    private IEnumerator DelayedToNextRound()
+    public void TriggerAfterGoUp()
+    {
+        if (!m_isMatchOver)
+        {
+            SwitchBGM();
+            HidePanelStuff();
+            GameManager.instance.StartNextRound();
+        }
+        else
+        {
+            SwitchBGM();
+
+            if (m_targetLevel != Application.loadedLevel)
+            {
+                SoundManager.PlaySFX(ReturnToCS);
+                Invoke("LoadLevel", m_DelayForRtuenToCharSel);
+            }
+            else
+                Application.LoadLevel(m_targetLevel);
+        }
+    }
+
+    private void LoadLevel()
+    {
+        Application.LoadLevel(m_targetLevel);
+    }
+
+    public void TriggerOnStartOfGoUp()
     {
         SoundManager.PlaySFX(MenuClose);
-        yield return new WaitForSeconds(m_DelayBeforeDisplay);
-        SwitchBGM();
-        HidePanelStuff();
-        GameManager.instance.StartNextRound();
     }
 
     private void HidePanelStuff()
@@ -258,18 +290,8 @@ public class RoundMenu : Menu {
 
     public void RoundRematch()
     {
-        StartCoroutine(DelayedRematch(Application.loadedLevel));
-    }
-
-    private IEnumerator DelayedRematch(int targetLevel, bool isReturn = false)
-    {
-        if(isReturn)
-            SoundManager.PlaySFX(ReturnToCS);
-        else
-            SoundManager.PlaySFX(MenuClose);
-        yield return new WaitForSeconds(m_DelayBeforeDisplay);
-        SwitchBGM();
-        Application.LoadLevel(targetLevel);
+        m_targetLevel = Application.loadedLevel;
+        UpdateBoolAnimator("GoUp", true);
     }
 
     private void RoundActivate()
@@ -353,11 +375,17 @@ public class RoundMenu : Menu {
 
     public void RoundReturnToMainMenu()
     {
-            StartCoroutine(DelayedRematch(Database.instance.MainMenuID, true));
+        m_targetLevel = Database.instance.MainMenuID;
+        UpdateBoolAnimator("GoUp", true);
     }
 
     public void RoundCloseApp()
     {
         Application.Quit();
+    }
+    
+    public void UpdateBoolAnimator(string toUpdate, bool with)
+    {
+        m_animator.SetBool(toUpdate, with);
     }
 }

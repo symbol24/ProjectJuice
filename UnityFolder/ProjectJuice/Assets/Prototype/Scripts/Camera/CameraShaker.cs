@@ -51,7 +51,7 @@ public class CameraShaker : MonoBehaviour {
             bool isIncreasing = true;
             while (Time.time < targetTime)
             {
-                Debug.Log(shakeIntensity + " " + currentShakeIntensity);
+                //Debug.Log(shakeIntensity + " " + currentShakeIntensity);
                 if (shakePosition)
                 {
                     transform.position = _originalPosition + Random.insideUnitSphere * (AddPerlinNoiseTo(shakeIntensity) * currentShakeIntensity);

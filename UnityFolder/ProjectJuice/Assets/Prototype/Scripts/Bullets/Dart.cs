@@ -42,6 +42,7 @@ public class Dart : ExtendedMonobehaviour
 
     [Range(0,10)][SerializeField] private int m_BulletsToGiveShield = 2;
     public int BulletsToGiveShield { get { return m_BulletsToGiveShield; } }
+    [SerializeField] private float _maxDistanceToTravel = 30.6f;
 
     [HideInInspector] public string PlayerImpact;
     [HideInInspector] public string GroundImpact;
@@ -117,7 +118,6 @@ public class Dart : ExtendedMonobehaviour
             
         }
         //Debug.Log(MainRigidbody2D.velocity);
-        
     }
     private bool _nextUpdateIsCollision = false;
 
@@ -125,6 +125,14 @@ public class Dart : ExtendedMonobehaviour
     {
         DartCollision += Dart_DartCollision;
         SourceHPScript.Dead += SourceHpScriptOnDead;
+        var triggerToUse = gameObject.AddComponent<TriggerOnDistance>();
+        triggerToUse.DistanceTravelled += Dart_DistanceTravelled;
+        triggerToUse._maxDistance = _maxDistanceToTravel;
+    }
+
+    private void Dart_DistanceTravelled(object sender, EventArgs e)
+    {
+        OnDartDestroyed();
     }
 
     private void SourceHpScriptOnDead(object sender, EventArgs eventArgs)
@@ -206,6 +214,13 @@ public class Dart : ExtendedMonobehaviour
                     OnDartCollision();
                     SoundManager.PlaySFX(GroundImpact);
                 }
+            }
+            else
+            {
+                //If target is shielding, do not use the target script;
+                var shield = _targetHpScript.gameObject.GetComponent<shield>();
+                if (shield.IsShieldActive) _targetHpScript = null;
+                OnDartDestroyed();
             }
 
 
@@ -307,6 +322,8 @@ public class Dart : ExtendedMonobehaviour
 
     }
     private bool _onDartAlreadyDestroyed = false;
+    
+
     public event EventHandler DartDestroyed;
     protected void OnDartDestroyed()
     {
