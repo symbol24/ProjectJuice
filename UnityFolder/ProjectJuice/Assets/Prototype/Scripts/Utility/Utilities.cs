@@ -29,9 +29,18 @@ public static class Utilities
 
         if (randomize)
         {
-            foreach (PlayerData pd in list)
+            PlayerIDs pi = (PlayerIDs)UnityEngine.Random.Range(0, 3);
+            
+            while (ListOfPlayers.Count != list.Length)
             {
-                ListOfPlayers.Add(pd);
+                foreach (var pd in list)
+                {
+
+                    if (!ListOfPlayers.Contains(pd) && pi == pd.playerID)
+                        ListOfPlayers.Add(pd);
+                     
+                }
+                pi = (PlayerIDs)UnityEngine.Random.Range(0, 3);
             }
         }
         else
