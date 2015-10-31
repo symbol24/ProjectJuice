@@ -123,33 +123,52 @@ public abstract class ExtendedMonobehaviour : MonoBehaviour, IGameObject {
         return ret;
     }
     
-    protected void InstatiateParticle(ParticleSystem toInstantiate, GameObject point, bool isToParent = false, float destroyTimer = 1f)
+    protected ParticleSystem InstatiateParticle(ParticleSystem toInstantiate, GameObject point, bool isToParent = false, float destroyTimer = 1f, bool facingRight = true)
     {
+        ParticleSystem ret = null;
+
         if (toInstantiate != null)
         {
-            ParticleSystem temp = Instantiate<ParticleSystem>(toInstantiate);
-            temp.transform.position = point.transform.position;
-            temp.transform.rotation = point.transform.rotation;
-            temp.Play();
-            StartCoroutine(DestroyParticleEmitter(temp, destroyTimer));
-            if (isToParent) temp.transform.SetParent(point.transform);
+            ret = Instantiate<ParticleSystem>(toInstantiate);
+            ret.transform.position = point.transform.position;
+            ret.transform.rotation = point.transform.rotation;
+            ret.Play();
+            StartCoroutine(DestroyParticleEmitter(ret, destroyTimer));
+            if (isToParent) ret.transform.SetParent(point.transform);
+            if (!facingRight) {
+                Vector3 scaleTemp = ret.transform.localScale;
+                scaleTemp.x = -scaleTemp.x;
+                ret.transform.localScale = scaleTemp;
+            }
         }
         else
             Debug.LogWarning("Missing Particle");
+
+        return ret;
     }
-    protected void InstatiateParticle(ParticleSystem toInstantiate, Transform point, bool isToParent = false, float destroyTimer = 1f)
+    protected ParticleSystem InstatiateParticle(ParticleSystem toInstantiate, Transform point, bool isToParent = false, float destroyTimer = 1f, bool facingRight = true)
     {
+        ParticleSystem ret = null;
+
         if (toInstantiate != null)
         {
-            var temp = Instantiate<ParticleSystem>(toInstantiate);
-            temp.transform.position = point.transform.position;
-            temp.transform.rotation = point.transform.rotation;
-            temp.Play();
-            StartCoroutine(DestroyParticleEmitter(temp, destroyTimer));
-            if (isToParent) temp.transform.SetParent(point.transform);
+            ret = Instantiate<ParticleSystem>(toInstantiate);
+            ret.transform.position = point.transform.position;
+            ret.transform.rotation = point.transform.rotation;
+            ret.Play();
+            StartCoroutine(DestroyParticleEmitter(ret, destroyTimer));
+            if (isToParent) ret.transform.SetParent(point.transform);
+            if (!facingRight)
+            {
+                Vector3 scaleTemp = ret.transform.localScale;
+                scaleTemp.x = -scaleTemp.x;
+                ret.transform.localScale = scaleTemp;
+            }
         }
         else
             Debug.LogWarning("Missing Particle");
+
+        return ret;
     }
 
     private IEnumerator DestroyParticleEmitter(ParticleSystem toDestroy, float timer = 1f)

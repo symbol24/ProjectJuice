@@ -10,13 +10,32 @@ public class MeleeAttack : ExtendedMonobehaviour
     private IPlatformer2DUserControl _inputManager;
     public PlatformerCharacter2D MovementManager { get { return _mouvementManager; } }
     private PlatformerCharacter2D _mouvementManager;
+
     [SerializeField] private bool _isAbility = false; //for spawner
     public bool isAbility { get { return _isAbility; } }
     [SerializeField] private bool _abilityHasSpike = false;
+    [SerializeField] private bool _abilityAerialCancelOnGround = true;
+
+    #region Phil's refactor
+    [SerializeField] private Animator m_animator;
+    private bool m_isSwinging = false;
+    public bool isSwinging { get { return m_isSwinging; } }
+    private Collider2D _collider;
+    #endregion
+
+    [SerializeField] private GameObject _ParticleReference;
+    [Range(0,5)][SerializeField] private float _trailGroundLifeTime = 1f;
+    [Range(0,5)][SerializeField] private float _trailAerialLifeTime = 2f;
+
+    private bool isGroundedAtStart = false;
+
     [SerializeField] private DamageType _damageType = DamageType.Melee;
     public DamageType TypeOfDamage { get { return _damageType; } }
+
     [SerializeField] private float _DashForce = 450f;
+
     private bool _completedAerialAttack = true;
+
     [SerializeField] private GameObject _swingerCollider;
     [SerializeField] private GameObject _flipReference;
     [SerializeField] private DelayManager _delayManager;
@@ -42,6 +61,10 @@ public class MeleeAttack : ExtendedMonobehaviour
     [HideInInspector] public string ClashAftermath;
     [HideInInspector] public string AbilitySecondSound;
     [HideInInspector] public string AbilityAerial;
+    private AudioSource _sound;
+
+    [HideInInspector] public ParticleSystem Trail;
+    private ParticleSystem InstantiatedTrail;
 
     private LightFeedbackTemp _lightFeedback;
 
@@ -52,6 +75,7 @@ public class MeleeAttack : ExtendedMonobehaviour
         if (_inputManager == null) _inputManager = GetComponent<IPlatformer2DUserControl>();
         if (_mouvementManager == null) _mouvementManager = GetComponent<PlatformerCharacter2D>();
         _swingerCollider.gameObject.SetRotationEulerZ(startingRotation);
+        _collider = _swingerCollider.GetComponent<Collider2D>();
         if (_physicsManager == null) _physicsManager = GetComponent<PlatformerCharacter2D>();
         _lightFeedback = GetComponent<LightFeedbackTemp>();
         _lightFeedback.LightDone += MeleeTimerReset;
@@ -66,20 +90,22 @@ public class MeleeAttack : ExtendedMonobehaviour
     void Update()
     {
 
-        if (_delayManager.CanShoot && _inputManager.m_Melee)
+        if (_delayManager.CanShoot && !m_isSwinging && _inputManager.m_Melee) //Battle Axe Ability swinging!
         {
-            if (isAbility && !_mouvementManager.IsGrounded)
+            if (m_animator == null)
             {
-                _swingingAnimation = StartSwingingAnimation();
+                //legacy swing done by code
+                _swingingAnimation = LegacyStartSwingingAnimation();
                 StartCoroutine(_swingingAnimation);
-                //need its own special thing here for airial ability melee, for now we can do it in the swing anim
             }
             else
             {
-                _swingingAnimation = StartSwingingAnimation();
-                StartCoroutine(_swingingAnimation);
+                //new Animated swing
+                m_isSwinging = StartAnimatedSwing();
             }
+            
         }
+
         if (_inputManager.m_FacingRight)
         {
             _flipReference.transform.localScale = _flipReference.transform.localScale.SetX(1);
@@ -88,21 +114,76 @@ public class MeleeAttack : ExtendedMonobehaviour
         {
             _flipReference.transform.localScale = _flipReference.transform.localScale.SetX(-1);
         }
+
         _impactForceSettings.DirectionComingForm = _inputManager.m_FacingRight ? Direction2D.Left : Direction2D.Right;
 
         if (!_isSwingingAnimationOnGoing && _completedAerialAttack && _mouvementManager.MeleeDownDashComplete && _swingerCollider.activeInHierarchy)
             _swingerCollider.SetActive(false);
+
+        if (_sound != null && _sound.isPlaying && !isGroundedAtStart && _mouvementManager.IsGrounded)
+            StopAerialSwingOnLand();
     }
+
+    private bool StartAnimatedSwing()
+    {
+        isGroundedAtStart = _mouvementManager.IsGrounded;
+        if (isAbility)
+        {
+            //_mouvementManager.ChangeCanFlip();
+            if (_abilityHasSpike && !isGroundedAtStart)
+                _completedAerialAttack = false;
+
+            if (!isGroundedAtStart)
+            {
+                _sound = SoundManager.PlaySFX(AbilityAerial);
+                m_animator.SetBool("Air", true);
+            }
+            else
+            {
+                _sound = SoundManager.PlaySFX(Swipe);
+                m_animator.SetBool("Grounded", true);
+            }
+        }
+        else
+        {
+            _sound = SoundManager.PlaySFX(Swipe);
+        }
+
+        return true;
+    }
+
+    private void StopAerialSwingOnLand()
+    {
+        if (_abilityAerialCancelOnGround)
+        {
+            _sound.Stop();
+            ResetSwing("Air", false);
+        }
+    }
+
+    public void ResetSwing(string change, bool with)
+    {
+        _collider.enabled = true;
+        m_isSwinging = false;
+        m_animator.SetBool(change, with);
+        _delayManager.AddDelay(_delayAfterSwing);
+    }
+
+    public void StartTrail()
+    {
+        float timer = _trailAerialLifeTime;
+        if (isAbility && isGroundedAtStart) timer = _trailGroundLifeTime;
+
+        InstatiateParticle(Trail, _ParticleReference, true, timer);
+    }
+
 
     private bool _isSwingingAnimationOnGoing = false;
     private IEnumerator _swingingAnimation;
-    
 
-
-
-    private IEnumerator StartSwingingAnimation()
+    private IEnumerator LegacyStartSwingingAnimation()
     {
-        
+        if (!_collider.enabled) _collider.enabled = true;
         bool isGroundedAtStart = _mouvementManager.IsGrounded;
         if (isAbility)
         {
@@ -163,12 +244,20 @@ public class MeleeAttack : ExtendedMonobehaviour
 
     public bool IsAvailableForConsumption
     {
-        get { return _isSwingingAnimationOnGoing && !_wasConsumedDuringThisAnimation; }
+        get {
+            
+            if(m_animator == null)
+                return _isSwingingAnimationOnGoing && !_wasConsumedDuringThisAnimation;
+            else
+               return !_wasConsumedDuringThisAnimation;
+        }
     }
 
     public void Consumed()
     {
+        _collider.enabled = false;
         _wasConsumedDuringThisAnimation = true;
+
     }
 
     public float Damage
