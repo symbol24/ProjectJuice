@@ -22,15 +22,29 @@ public static class Utilities
         return temp;
     }
 
-    public static List<PlayerData> GetAllPlayerData()
+    public static List<PlayerData> GetAllPlayerData(bool randomize = false)
     {
         List<PlayerData> ListOfPlayers = new List<PlayerData>();
         PlayerData[] list = MonoBehaviour.FindObjectsOfType<PlayerData>();
-        foreach (PlayerData pd in list)
-        {
-            ListOfPlayers.Add(pd);
-        }
 
+        if (randomize)
+        {
+            foreach (PlayerData pd in list)
+            {
+                ListOfPlayers.Add(pd);
+            }
+        }
+        else
+        {
+            PlayerIDs pi = PlayerIDs.A;
+            while(ListOfPlayers.Count != list.Length) { 
+                foreach (var pd in list)
+                {
+                    if (pi == pd.playerID) ListOfPlayers.Add(pd);
+                }
+                pi++;
+            }
+        }
         return ListOfPlayers;
     }
 

@@ -21,13 +21,10 @@ public class PlayerSpawner : MonoBehaviour
         }
     }
     #endregion
-
-    [SerializeField]
-    GameObject[] m_Spawners;
-    [SerializeField]
-    GameObject m_PlayerPrefab;
-    [SerializeField]
-    private List<PlayerData> m_ListofPlayers = new List<PlayerData>();
+    [SerializeField] private bool m_randomizePlayersOnSpawn = true;
+    [SerializeField] GameObject[] m_Spawners;
+    [SerializeField] GameObject m_PlayerPrefab;
+    [SerializeField] private List<PlayerData> m_ListofPlayers = new List<PlayerData>();
     public List<PlayerData> ListOfPlayerDatas { get { return m_ListofPlayers; } }
     private List<GameObject> m_Players = new List<GameObject>();
     public List<GameObject> Players { get { return m_Players; } }
@@ -46,7 +43,7 @@ public class PlayerSpawner : MonoBehaviour
 
     private void M_Fader_LoadDone(object sender, EventArgs e)
     {
-        m_ListofPlayers = Utilities.GetAllPlayerData();
+        m_ListofPlayers = Utilities.GetAllPlayerData(m_randomizePlayersOnSpawn);
         SpawnPlayers();
     }
 
@@ -71,11 +68,17 @@ public class PlayerSpawner : MonoBehaviour
             GameObject temp = Instantiate(m_PlayerPrefab, m_Spawners[i].transform.position, m_Spawners[i].transform.rotation) as GameObject;
             Platformer2DUserControl pUserControl = temp.GetComponent<Platformer2DUserControl>();
             PlatformerCharacter2D pc2d = temp.GetComponent<PlatformerCharacter2D>();
+            ArcShooting gun = temp.GetComponent<ArcShooting>();
             pUserControl.PlayerID = pd.playerID;
             pc2d.SpawnCheckGround();
             SetAbility(temp, pd);
             temp.layer = m_PlayerLayerIDs[i];
             ScoreManager.instance.FollowScoreOf(pUserControl);
+            if (m_Spawners[i].transform.position.x > 0)
+            {
+                pc2d.SpawnFlip();
+                gun.SpawnRotation(pUserControl);
+            }
             m_Players.Add(temp);
             i++;
         }

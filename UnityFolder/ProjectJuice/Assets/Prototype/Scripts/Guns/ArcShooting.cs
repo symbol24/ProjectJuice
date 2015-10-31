@@ -19,6 +19,11 @@ public class ArcShooting : Gun
         }
     }
 
+    public void SpawnRotation(IPlatformer2DUserControl controller)
+    {
+        m_Gun.transform.eulerAngles = GetRotation(controller);
+    }
+
     public override void Fire()
     {
         m_HasDisplayed = false;

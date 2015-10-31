@@ -6780,3 +6780,43 @@ Message: TestException
 Stack Trace:
 
 -----------
+NullReferenceException occurred at 10/31/2015 4:15:46 PM:
+Message: TestException
+Stack Trace:
+
+-----------
+NullReferenceException occurred at 10/31/2015 4:15:46 PM:
+Message: TestException
+Stack Trace:
+
+-----------
+NullReferenceException occurred at 10/31/2015 4:21:37 PM:
+Message: TestException
+Stack Trace:
+
+-----------
+NullReferenceException occurred at 10/31/2015 4:21:37 PM:
+Message: TestException
+Stack Trace:
+
+-----------
+NullReferenceException occurred at 10/31/2015 4:24:15 PM:
+Message: TestException
+Stack Trace:
+
+-----------
+NullReferenceException occurred at 10/31/2015 4:24:15 PM:
+Message: TestException
+Stack Trace:
+
+-----------
+NullReferenceException occurred at 10/31/2015 4:26:07 PM:
+Message: TestException
+Stack Trace:
+
+-----------
+NullReferenceException occurred at 10/31/2015 4:26:07 PM:
+Message: TestException
+Stack Trace:
+
+-----------

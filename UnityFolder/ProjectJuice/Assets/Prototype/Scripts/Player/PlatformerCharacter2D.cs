@@ -194,6 +194,11 @@ namespace UnityStandardAssets._2D
             }
         }
 
+        public void SpawnFlip()
+        {
+            Flip();
+        }
+
         public void ChangeCanFlip()
         {
             m_CanFlip = !m_CanFlip;
