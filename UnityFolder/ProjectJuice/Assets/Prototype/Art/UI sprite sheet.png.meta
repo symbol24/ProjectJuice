@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 4ba8a81ea4353e14da9c3ec2a9012a34
-timeCreated: 1445204895
+timeCreated: 1446401354
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -16,6 +16,7 @@ TextureImporter:
     21300018: UI sponsor_yellow
     21300020: UI sponsor_purple
     21300022: UI sponsor_orange
+    21300024: UI sprite sheet_taken
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -178,6 +179,16 @@ TextureImporter:
         y: 502
         width: 556
         height: 556
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: UI sprite sheet_taken
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 134
+        width: 395
+        height: 199
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
