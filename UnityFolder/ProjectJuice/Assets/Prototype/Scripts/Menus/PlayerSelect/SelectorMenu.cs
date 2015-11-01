@@ -25,6 +25,7 @@ public class SelectorMenu : Menu {
     [SerializeField] private bool m_UseSponsorColor = true;
     [SerializeField] private Image m_SponsorColor;
     [SerializeField] private Image m_SponsorImage;
+    [SerializeField] private Image m_TakenImage;
 
     //ability
     [SerializeField] private Text m_AbilityName;
@@ -110,6 +111,8 @@ public class SelectorMenu : Menu {
         m_CurrentSelectionState =  SetStateAndTexts(true);
         SetSelector(m_VerticalPosition);
         m_DelayManager.Reset();
+        if (m_TakenImage.enabled)
+            m_TakenImage.enabled = false;
         SoundManager.PlaySFX(m_PanelActivate);
     }
 
@@ -185,7 +188,11 @@ public class SelectorMenu : Menu {
 
         if (Database.instance.ListofSponsors[selection].isTaken)
         {
-            m_SponsorColor.color = Database.instance.TakenColor;
+            m_TakenImage.enabled = true;
+        }
+        else
+        {
+            if (m_TakenImage.enabled) m_TakenImage.enabled = false;
         }
     }
 
