@@ -20,7 +20,7 @@ public class MeleeAttack : ExtendedMonobehaviour
     [SerializeField] private Animator m_animator;
     private bool m_isSwinging = false;
     public bool isSwinging { get { return m_isSwinging; } }
-    private Collider2D _collider;
+    [SerializeField] private Collider2D _collider;
     #endregion
 
     [SerializeField] private GameObject _ParticleReference;
@@ -75,7 +75,7 @@ public class MeleeAttack : ExtendedMonobehaviour
         if (_inputManager == null) _inputManager = GetComponent<IPlatformer2DUserControl>();
         if (_mouvementManager == null) _mouvementManager = GetComponent<PlatformerCharacter2D>();
         _swingerCollider.gameObject.SetRotationEulerZ(startingRotation);
-        _collider = _swingerCollider.GetComponent<Collider2D>();
+        if(_collider == null) _collider = _swingerCollider.GetComponent<Collider2D>();
         if (_physicsManager == null) _physicsManager = GetComponent<PlatformerCharacter2D>();
         _lightFeedback = GetComponent<LightFeedbackTemp>();
         _lightFeedback.LightDone += MeleeTimerReset;
