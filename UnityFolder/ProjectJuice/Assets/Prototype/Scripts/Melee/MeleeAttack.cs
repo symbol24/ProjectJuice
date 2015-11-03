@@ -41,8 +41,6 @@ public class MeleeAttack : ExtendedMonobehaviour
     [SerializeField] private DelayManager _delayManager;
     [SerializeField] private bool _addImpactForce = true;
     [SerializeField] private PlatformerCharacter2D _physicsManager;
-    [SerializeField] private ParticleSystem _clashingEffectPrefab;
-    [SerializeField] private ParticleSystem _clashCroudFlashes;
     [Range(0,4)][SerializeField] private float _FlashTimerOnScreen = 2f;
 
     public ImpactForceSettings _impactForceSettings;
@@ -64,6 +62,8 @@ public class MeleeAttack : ExtendedMonobehaviour
     private AudioSource _sound;
 
     [HideInInspector] public ParticleSystem Trail;
+    [HideInInspector] public ParticleSystem ClashingParticle;
+    [HideInInspector] public ParticleSystem CrowdParticle;
     private ParticleSystem InstantiatedTrail;
 
     private LightFeedbackTemp _lightFeedback;
@@ -320,7 +320,7 @@ public class MeleeAttack : ExtendedMonobehaviour
         {
             toParent = otherMelee.gameObject;
         }
-        InstatiateParticle(_clashingEffectPrefab, toParent, true);
-        InstatiateParticle(_clashCroudFlashes, toParent, false, _FlashTimerOnScreen);
+        InstatiateParticle(ClashingParticle, toParent, true);
+        InstatiateParticle(CrowdParticle, toParent, false, _FlashTimerOnScreen);
     }
 }

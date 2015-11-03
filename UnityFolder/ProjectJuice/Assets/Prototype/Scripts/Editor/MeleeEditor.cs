@@ -6,13 +6,15 @@ using System.Collections.Generic;
 [CustomEditor(typeof(MeleeAttack))]
 public class MeleeEditor : Editor {
 
+    ParticleSystem validator = new ParticleSystem();
+
     string[] _listOfClips;
 
     int[] _choice = new int[8];
 
     string[] _listOFParticles;
 
-    int[] _particle = new int[1];
+    int[] _particle = new int[3];
 
     public override void OnInspectorGUI()
     {
@@ -24,7 +26,7 @@ public class MeleeEditor : Editor {
         var melee = target as MeleeAttack;
 
         if (melee.isAbility)
-            EditorGUILayout.HelpBox("This is the BATTLE AXE", MessageType.Info);
+            EditorGUILayout.HelpBox("This is the BATTLE AXE", MessageType.Info, true);
 
 
         DrawDefaultInspector();
@@ -40,6 +42,16 @@ public class MeleeEditor : Editor {
             _particle[0] = 0;
         else
             _particle[0] = EditorUtilities.GetSelectedParticle(melee.Trail);
+
+        if (melee.Clash == null)
+            _particle[1] = 0;
+        else
+            _particle[1] = EditorUtilities.GetSelectedParticle(melee.ClashingParticle);
+
+        if (melee.CrowdParticle == null)
+            _particle[2] = 0;
+        else
+            _particle[2] = EditorUtilities.GetSelectedParticle(melee.CrowdParticle);
 
 
         _choice[0] = EditorGUILayout.Popup("Player Impact SFX", _choice[0], _listOfClips);
@@ -64,6 +76,8 @@ public class MeleeEditor : Editor {
         }
 
         _particle[0] = EditorGUILayout.Popup("Melee Trail FX", _particle[0], _listOFParticles);
+        _particle[1] = EditorGUILayout.Popup("Clash FX", _particle[1], _listOFParticles);
+        _particle[2] = EditorGUILayout.Popup("Crowd on Clash FX", _particle[2], _listOFParticles);
 
         melee.PlayerImpact = _listOfClips[_choice[0]];
         melee.Swipe = _listOfClips[_choice[1]];
@@ -73,6 +87,8 @@ public class MeleeEditor : Editor {
         melee.ClashAftermath = _listOfClips[_choice[5]];
 
         melee.Trail = Database.instance.Particles[_particle[0]];
+        melee.ClashingParticle = Database.instance.Particles[_particle[1]];
+        melee.CrowdParticle = Database.instance.Particles[_particle[2]];
 
         EditorUtility.SetDirty(target);
     }
