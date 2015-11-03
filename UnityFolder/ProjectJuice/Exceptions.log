@@ -6960,6 +6960,7 @@ Message: TestException
 Stack Trace:
 
 -----------
+<<<<<<< HEAD
 NullReferenceException occurred at 11/2/2015 6:55:15 PM:
 Message: TestException
 Stack Trace:
@@ -7440,3 +7441,5 @@ Message: TestException
 Stack Trace:
 
 -----------
+=======
+>>>>>>> 9def8b13c9e6ffe068dca3ac0359bea065f2eaf2
