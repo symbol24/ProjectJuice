@@ -20,7 +20,7 @@ public class MeleeAttack : ExtendedMonobehaviour
     [SerializeField] private Animator m_animator;
     private bool m_isSwinging = false;
     public bool isSwinging { get { return m_isSwinging; } }
-    private Collider2D _collider;
+    [SerializeField] private Collider2D _collider;
     #endregion
 
     [SerializeField] private GameObject _ParticleReference;
@@ -41,8 +41,6 @@ public class MeleeAttack : ExtendedMonobehaviour
     [SerializeField] private DelayManager _delayManager;
     [SerializeField] private bool _addImpactForce = true;
     [SerializeField] private PlatformerCharacter2D _physicsManager;
-    [SerializeField] private ParticleSystem _clashingEffectPrefab;
-    [SerializeField] private ParticleSystem _clashCroudFlashes;
     [Range(0,4)][SerializeField] private float _FlashTimerOnScreen = 2f;
 
     public ImpactForceSettings _impactForceSettings;
@@ -64,6 +62,8 @@ public class MeleeAttack : ExtendedMonobehaviour
     private AudioSource _sound;
 
     [HideInInspector] public ParticleSystem Trail;
+    [HideInInspector] public ParticleSystem ClashingParticle;
+    [HideInInspector] public ParticleSystem CrowdParticle;
     private ParticleSystem InstantiatedTrail;
 
     private LightFeedbackTemp _lightFeedback;
@@ -75,7 +75,7 @@ public class MeleeAttack : ExtendedMonobehaviour
         if (_inputManager == null) _inputManager = GetComponent<IPlatformer2DUserControl>();
         if (_mouvementManager == null) _mouvementManager = GetComponent<PlatformerCharacter2D>();
         _swingerCollider.gameObject.SetRotationEulerZ(startingRotation);
-        _collider = _swingerCollider.GetComponent<Collider2D>();
+        if(_collider == null) _collider = _swingerCollider.GetComponent<Collider2D>();
         if (_physicsManager == null) _physicsManager = GetComponent<PlatformerCharacter2D>();
         _lightFeedback = GetComponent<LightFeedbackTemp>();
         _lightFeedback.LightDone += MeleeTimerReset;
@@ -320,7 +320,7 @@ public class MeleeAttack : ExtendedMonobehaviour
         {
             toParent = otherMelee.gameObject;
         }
-        InstatiateParticle(_clashingEffectPrefab, toParent, true);
-        InstatiateParticle(_clashCroudFlashes, toParent, false, _FlashTimerOnScreen);
+        InstatiateParticle(ClashingParticle, toParent, true);
+        InstatiateParticle(CrowdParticle, toParent, false, _FlashTimerOnScreen);
     }
 }
