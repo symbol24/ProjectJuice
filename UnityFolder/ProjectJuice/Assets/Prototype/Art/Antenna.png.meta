@@ -1,14 +1,9 @@
 fileFormatVersion: 2
 guid: 60404402300df704f9aad4ef20c68ae8
-timeCreated: 1446516395
+timeCreated: 1445905227
 licenseType: Free
 TextureImporter:
-  fileIDToRecycleName:
-    21300000: Antenna_0
-    21300002: Antenna_1
-    21300004: Antenna_2
-    21300006: Antenna_3
-    21300008: Antenna_4
+  fileIDToRecycleName: {}
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -31,79 +26,30 @@ TextureImporter:
   cubemapConvolutionSteps: 8
   cubemapConvolutionExponent: 1.5
   seamlessCubemap: 0
-  textureFormat: -3
+  textureFormat: -1
   maxTextureSize: 2048
   textureSettings:
-    filterMode: 0
-    aniso: 16
+    filterMode: -1
+    aniso: -1
     mipBias: -1
     wrapMode: 1
   nPOTScale: 0
   lightmap: 0
   rGBM: 0
   compressionQuality: 50
-  spriteMode: 2
+  allowsAlphaSplitting: 0
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: .5, y: .5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spritePixelsToUnits: 72
+  spritePixelsToUnits: 100
   alphaIsTransparency: 1
   textureType: 8
   buildTargetSettings: []
   spriteSheet:
-    sprites:
-    - name: Antenna_0
-      rect:
-        serializedVersion: 2
-        x: 85
-        y: 139
-        width: 70
-        height: 40
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Antenna_1
-      rect:
-        serializedVersion: 2
-        x: 366
-        y: 139
-        width: 87
-        height: 37
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Antenna_2
-      rect:
-        serializedVersion: 2
-        x: 655
-        y: 136
-        width: 70
-        height: 21
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Antenna_3
-      rect:
-        serializedVersion: 2
-        x: 943
-        y: 135
-        width: 94
-        height: 13
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Antenna_4
-      rect:
-        serializedVersion: 2
-        x: 1237
-        y: 134
-        width: 62
-        height: 22
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
+    sprites: []
   spritePackingTag: 
   userData: 
   assetBundleName: 
