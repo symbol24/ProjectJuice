@@ -40,7 +40,6 @@ public class MeleeAttack : ExtendedMonobehaviour
     [SerializeField] private GameObject _flipReference;
     [SerializeField] private DelayManager _delayManager;
     [SerializeField] private bool _addImpactForce = true;
-    [SerializeField] private PlatformerCharacter2D _physicsManager;
     [Range(0,4)][SerializeField] private float _FlashTimerOnScreen = 2f;
 
     public ImpactForceSettings _impactForceSettings;
@@ -74,9 +73,8 @@ public class MeleeAttack : ExtendedMonobehaviour
         if (_delayManager == null) _delayManager = GetComponent<DelayManager>();
         if (_inputManager == null) _inputManager = GetComponent<IPlatformer2DUserControl>();
         if (_mouvementManager == null) _mouvementManager = GetComponent<PlatformerCharacter2D>();
-        _swingerCollider.gameObject.SetRotationEulerZ(startingRotation);
-        if(_collider == null) _collider = _swingerCollider.GetComponent<Collider2D>();
-        if (_physicsManager == null) _physicsManager = GetComponent<PlatformerCharacter2D>();
+        //_swingerCollider.gameObject.SetRotationEulerZ(startingRotation);
+        if (_collider == null) Debug.LogError(ColliderString());
         _lightFeedback = GetComponent<LightFeedbackTemp>();
         _lightFeedback.LightDone += MeleeTimerReset;
     }
@@ -84,6 +82,16 @@ public class MeleeAttack : ExtendedMonobehaviour
     private void MeleeTimerReset(object sender, EventArgs e)
     {
         _delayManager.SetDelay(0);
+    }
+
+    private string ColliderString()
+    {
+        string ret = "";
+
+        if (_collider == null && isAbility) ret = "Battle Axe missing assigned colliders in inspector!";
+        else if (_collider == null && !isAbility) ret = "Knife missing assigned colliders in inspector!";
+
+        return ret;
     }
 
     // Update is called once per frame
@@ -106,19 +114,23 @@ public class MeleeAttack : ExtendedMonobehaviour
             
         }
 
+        #region FacingStuff
         if (_inputManager.m_FacingRight)
         {
-            _flipReference.transform.localScale = _flipReference.transform.localScale.SetX(1);
+            //_flipReference.transform.localScale = _flipReference.transform.localScale.SetX(1);
         }
         else
         {
-            _flipReference.transform.localScale = _flipReference.transform.localScale.SetX(-1);
+            //_flipReference.transform.localScale = _flipReference.transform.localScale.SetX(-1);
         }
+        #endregion
 
         _impactForceSettings.DirectionComingForm = _inputManager.m_FacingRight ? Direction2D.Left : Direction2D.Right;
 
+        /*
         if (!_isSwingingAnimationOnGoing && _completedAerialAttack && _mouvementManager.MeleeDownDashComplete && _swingerCollider.activeInHierarchy)
             _swingerCollider.SetActive(false);
+            */
 
         if (_sound != null && _sound.isPlaying && !isGroundedAtStart && _mouvementManager.IsGrounded)
             StopAerialSwingOnLand();
@@ -126,10 +138,11 @@ public class MeleeAttack : ExtendedMonobehaviour
 
     private bool StartAnimatedSwing()
     {
+        if (!_collider.enabled) _collider.enabled = true;
         isGroundedAtStart = _mouvementManager.IsGrounded;
         if (isAbility)
         {
-            //_mouvementManager.ChangeCanFlip();
+            _mouvementManager.ChangeCanFlip();
             if (_abilityHasSpike && !isGroundedAtStart)
                 _completedAerialAttack = false;
 
@@ -147,6 +160,7 @@ public class MeleeAttack : ExtendedMonobehaviour
         else
         {
             _sound = SoundManager.PlaySFX(Swipe);
+            m_animator.SetBool("Grounded", true);
         }
 
         return true;
@@ -154,7 +168,7 @@ public class MeleeAttack : ExtendedMonobehaviour
 
     private void StopAerialSwingOnLand()
     {
-        if (_abilityAerialCancelOnGround)
+        if (isAbility && _abilityAerialCancelOnGround)
         {
             _sound.Stop();
             ResetSwing("Air", false);
@@ -167,6 +181,7 @@ public class MeleeAttack : ExtendedMonobehaviour
         m_isSwinging = false;
         m_animator.SetBool(change, with);
         _delayManager.AddDelay(_delayAfterSwing);
+        _wasConsumed = false;
     }
 
     public void StartTrail()
@@ -183,6 +198,7 @@ public class MeleeAttack : ExtendedMonobehaviour
 
     private IEnumerator LegacyStartSwingingAnimation()
     {
+        /*
         if (!_collider.enabled) _collider.enabled = true;
         bool isGroundedAtStart = _mouvementManager.IsGrounded;
         if (isAbility)
@@ -226,7 +242,7 @@ public class MeleeAttack : ExtendedMonobehaviour
             /*
             else
                 SoundManager.PlaySFX(AbilitySecondSound);
-                */
+                
         }
 
 
@@ -235,10 +251,13 @@ public class MeleeAttack : ExtendedMonobehaviour
         _isSwingingAnimationOnGoing = false;
         SoundManager.PlaySFX(Sheath);
         _lightFeedback.StartLightFeedback(0);
+        */
+        Debug.LogWarning("In Legacy swing, ignoring!");
+        yield return 0;
     }
 
 
-    private bool _wasConsumedDuringThisAnimation = false;
+    private bool _wasConsumed = false;
     private List<HPScript> _immuneTargets = new List<HPScript>();
 
 
@@ -247,16 +266,16 @@ public class MeleeAttack : ExtendedMonobehaviour
         get {
             
             if(m_animator == null)
-                return _isSwingingAnimationOnGoing && !_wasConsumedDuringThisAnimation;
+                return _isSwingingAnimationOnGoing && !_wasConsumed;
             else
-               return !_wasConsumedDuringThisAnimation;
+               return !_wasConsumed;
         }
     }
 
     public void Consumed()
     {
         _collider.enabled = false;
-        _wasConsumedDuringThisAnimation = true;
+        _wasConsumed = true;
 
     }
 
@@ -298,7 +317,7 @@ public class MeleeAttack : ExtendedMonobehaviour
 
     public void ClashedWithOtherMelee(MeleeDamagingCollider otherMelee)
     {
-        _physicsManager.AddKnockBack(otherMelee);
+        _mouvementManager.AddKnockBack(otherMelee);
         otherMelee.Consumed();
         OnMeleeClashed();
         ClashFX(otherMelee);
