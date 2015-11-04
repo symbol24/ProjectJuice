@@ -166,7 +166,7 @@ public class ExplosiveObject : HPBase
             }
         }
 
-        var ground = toCheck.GetComponent<Ground>();
+        //var ground = toCheck.GetComponent<Ground>();
         //if(!isMuted && ground != null) SoundManager.PlaySFX(GroundImpact);
 
         /*
@@ -174,7 +174,7 @@ public class ExplosiveObject : HPBase
         if (player != null) SoundManager.PlaySFX(GroundImpact);
         */
 
-        var otherExplosif = toCheck.GetComponent<ExplosiveObjectDamagableCollider>();
+        //var otherExplosif = toCheck.GetComponent<ExplosiveObjectDamagableCollider>();
         //if (!isMuted && otherExplosif != null) SoundManager.PlaySFX(GroundImpact);
     }
 
@@ -207,6 +207,7 @@ public class ExplosiveObject : HPBase
 
     private void Kaboom()
     {
+        //Debug.Break();
         DisplayFX();
         if(!isMuted)
             SoundManager.PlaySFX(Explosion);
@@ -302,4 +303,16 @@ public class ExplosiveObject : HPBase
         yield return new WaitForSeconds(_DragResetDelay);
         CheckDrag();
     }
+
+    public event EventHandler Destroyed;
+    protected void OnDestroyed()
+    {
+        if (Destroyed != null) Destroyed(this, EventArgs.Empty);
+    }
+
+    void OnDestroy()
+    {
+        OnDestroyed();
+    }
+
 }

@@ -157,6 +157,7 @@ public class GameManager : ExtendedMonobehaviour
             m_startTimer.Reset();
         }
         PlayerSpawner.instance.RespawnPlayers();
+        EnvironmentalObjectsManager.Instance.RespawnEnvironment();
     }
 
     public void SetGameState(GameState newState)
