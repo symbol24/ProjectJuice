@@ -196,4 +196,25 @@ public abstract class ExtendedMonobehaviour : MonoBehaviour, IGameObject {
 
         return audioSource;
     }
+
+    /// <summary>
+    /// This method makes the angle to be between -180,180 deg included. It assumes deg, not rads
+    /// </summary>
+    /// <param name="angle"></param>
+    /// <returns></returns>
+    protected float To180Angle(float angle)
+    {
+        if(angle > 180f)
+        {
+            angle -= 180;
+            return To180Angle(angle);
+        }
+        else if(angle < -180f)
+        {
+            angle += 180;
+            return To180Angle(angle);
+        }
+        return angle;
+    }
+
 }
