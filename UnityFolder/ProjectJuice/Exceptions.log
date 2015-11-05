@@ -7968,21 +7968,34 @@ Message: TestException
 Stack Trace:
 
 -----------
+<<<<<<< HEAD
 NullReferenceException occurred at 11/4/2015 7:14:46 PM:
+=======
+NullReferenceException occurred at 11/4/2015 6:56:46 PM:
+>>>>>>> c72f63f6e2a55337758f26075f90d466110ab7d1
 Message: TestException
 Stack Trace:
 
 -----------
+<<<<<<< HEAD
 NullReferenceException occurred at 11/4/2015 7:14:46 PM:
+=======
+NullReferenceException occurred at 11/4/2015 6:57:57 PM:
+>>>>>>> c72f63f6e2a55337758f26075f90d466110ab7d1
 Message: TestException
 Stack Trace:
 
 -----------
+<<<<<<< HEAD
 NullReferenceException occurred at 11/4/2015 7:19:37 PM:
+=======
+NullReferenceException occurred at 11/4/2015 6:58:07 PM:
+>>>>>>> c72f63f6e2a55337758f26075f90d466110ab7d1
 Message: TestException
 Stack Trace:
 
 -----------
+<<<<<<< HEAD
 NullReferenceException occurred at 11/4/2015 7:19:37 PM:
 Message: TestException
 Stack Trace:
@@ -8034,6 +8047,9 @@ Stack Trace:
 
 -----------
 NullReferenceException occurred at 11/4/2015 7:32:44 PM:
+=======
+NullReferenceException occurred at 11/4/2015 6:58:07 PM:
+>>>>>>> c72f63f6e2a55337758f26075f90d466110ab7d1
 Message: TestException
 Stack Trace:
 

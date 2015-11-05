@@ -35,11 +35,6 @@ public class GameManager : ExtendedMonobehaviour
     protected static GameState m_PreviousState;
     public GameState PreviousState { get { return m_PreviousState; } }
 
-    [SerializeField] private int m_AmountOfRoundsToWin = 5;
-    public int AmountOfRoundsToWin { get { return m_AmountOfRoundsToWin; } }
-
-    [SerializeField] private bool ForVictorTesting = false;
-
     private RoundStartTimer m_startTimer;
 
     private SoundConnection mySoundConnection;
@@ -53,8 +48,7 @@ public class GameManager : ExtendedMonobehaviour
     // Use this for initialization
     void Start()
     {
-        if (ForVictorTesting)
-            m_CurrentState = GameState.Playing;
+
     }
 
     public void SubscribeToEndRound()
@@ -133,7 +127,7 @@ public class GameManager : ExtendedMonobehaviour
 
         foreach(PlayerScoreTracker score in ScoreManager.instance.PlayerScores)
         {
-            if (score.CurrentScore == m_AmountOfRoundsToWin)
+            if (score.CurrentScore == Database.instance.AmountOfRounds)
                 ret = true;
         }
 

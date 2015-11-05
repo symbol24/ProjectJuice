@@ -182,6 +182,7 @@ public class MeleeAttack : ExtendedMonobehaviour
         m_animator.SetBool(change, with);
         _delayManager.AddDelay(_delayAfterSwing);
         _wasConsumed = false;
+        if(isAbility) _mouvementManager.ChangeCanFlip();
     }
 
     public void StartTrail()
