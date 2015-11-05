@@ -27,12 +27,12 @@ public class MenuControls : MonoBehaviour {
 
     void Awake()
     {
-        m_Fader = FindObjectOfType<FadeOut>();
-        m_Fader.FadeDone += M_Fader_FadeDone;
     }
 
     private void M_Fader_FadeDone(object sender, System.EventArgs e)
     {
+        m_Fader = FindObjectOfType<FadeOut>();
+        m_Fader.FadeDone += M_Fader_FadeDone;
         m_ListofPlayers = Utilities.GetAllPlayerData();
     }
 

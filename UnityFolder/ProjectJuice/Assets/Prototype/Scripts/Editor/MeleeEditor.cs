@@ -21,8 +21,6 @@ public class MeleeEditor : Editor {
         _listOfClips = EditorUtilities.GetListOfAudioClips();
         _listOFParticles = EditorUtilities.GetListOfParticles();
 
-
-
         var melee = target as MeleeAttack;
 
         if (melee.isAbility)
