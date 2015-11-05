@@ -1,3 +1,10 @@
+Mono path[0] = 'C:/Users/Agora/Documents/GitHub/NeWJuiceProjectFolder/UnityFolder/ProjectJuice/Build 1/Ben_Build01_Data/Managed'
+Mono path[1] = 'C:/Users/Agora/Documents/GitHub/NeWJuiceProjectFolder/UnityFolder/ProjectJuice/Build 1/Ben_Build01_Data/Mono'
+Mono config path = 'C:/Users/Agora/Documents/GitHub/NeWJuiceProjectFolder/UnityFolder/ProjectJuice/Build 1/Ben_Build01_Data/Mono/etc'
+PlayerConnection initialized from C:/Users/Agora/Documents/GitHub/NeWJuiceProjectFolder/UnityFolder/ProjectJuice/Build 1/Ben_Build01_Data (debug = 0)
+PlayerConnection initialized network socket : 0.0.0.0 55402
+Multi-casting "[IP] 10.221.31.223 [Port] 55402 [Flags] 2 [Guid] 3678983194 [EditorId] 3904696788 [Version] 1048832 [Id] WindowsPlayer(Silica) [Debug] 0" to [225.0.0.222:54997]...
+PlayerConnection already initialized - listening to [10.221.31.223:55402]
 Initialize engine version: 5.1.0f3 (ec70b008569d)
 GfxDevice: creating device client; threaded=1
 Direct3D:
@@ -16,7 +23,11 @@ Platform assembly: C:\Users\Agora\Documents\GitHub\NeWJuiceProjectFolder\UnityFo
 Loading C:\Users\Agora\Documents\GitHub\NeWJuiceProjectFolder\UnityFolder\ProjectJuice\Build 1\Ben_Build01_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
 Platform assembly: C:\Users\Agora\Documents\GitHub\NeWJuiceProjectFolder\UnityFolder\ProjectJuice\Build 1\Ben_Build01_Data\Managed\UnityEngine.Analytics.dll (this message is harmless)
 Loading C:\Users\Agora\Documents\GitHub\NeWJuiceProjectFolder\UnityFolder\ProjectJuice\Build 1\Ben_Build01_Data\Managed\UnityEngine.Analytics.dll into Unity Child Domain
-- Completed reload, in  0.080 seconds
+Platform assembly: C:\Users\Agora\Documents\GitHub\NeWJuiceProjectFolder\UnityFolder\ProjectJuice\Build 1\Ben_Build01_Data\Managed\XInputDotNetPure.dll (this message is harmless)
+Loading C:\Users\Agora\Documents\GitHub\NeWJuiceProjectFolder\UnityFolder\ProjectJuice\Build 1\Ben_Build01_Data\Managed\XInputDotNetPure.dll into Unity Child Domain
+Platform assembly: C:\Users\Agora\Documents\GitHub\NeWJuiceProjectFolder\UnityFolder\ProjectJuice\Build 1\Ben_Build01_Data\Managed\XInputDotNetPure.dll (this message is harmless)
+Loading C:\Users\Agora\Documents\GitHub\NeWJuiceProjectFolder\UnityFolder\ProjectJuice\Build 1\Ben_Build01_Data\Managed\XInputDotNetPure.dll into Unity Child Domain
+- Completed reload, in  0.051 seconds
 desktop: 3840x2160 48Hz; virtual: 3840x2160 at 0,0
 <RI> Initializing input.
 <RI> Input initialized.
@@ -24,20 +35,34 @@ desktop: 3840x2160 48Hz; virtual: 3840x2160 at 0,0
 Platform assembly: C:\Users\Agora\Documents\GitHub\NeWJuiceProjectFolder\UnityFolder\ProjectJuice\Build 1\Ben_Build01_Data\Managed\System.Core.dll (this message is harmless)
 Platform assembly: C:\Users\Agora\Documents\GitHub\NeWJuiceProjectFolder\UnityFolder\ProjectJuice\Build 1\Ben_Build01_Data\Managed\System.dll (this message is harmless)
 Unloading 2 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 0.830946 ms
+UnloadTime: 0.503740 ms
+System memory in use before: 60.1 MB.
+System memory in use after: 60.1 MB.
 
-Unloading 4 unused Assets to reduce memory usage. Loaded Objects now: 616.
-Total: 0.322689 ms (FindLiveObjects: 0.031201 ms CreateObjectMapping: 0.022580 ms MarkObjects: 0.258644 ms  DeleteObjects: 0.009442 ms)
+Unloading 4 unused Assets to reduce memory usage. Loaded Objects now: 704.
+Total: 0.356764 ms (FindLiveObjects: 0.043107 ms CreateObjectMapping: 0.042696 ms MarkObjects: 0.257412 ms  DeleteObjects: 0.012726 ms)
 
 Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 43.795078 ms
+UnloadTime: 3.457619 ms
+System memory in use before: 53.1 MB.
+System memory in use after: 53.1 MB.
 
-Unloading 3 unused Assets to reduce memory usage. Loaded Objects now: 1059.
-Total: 0.660980 ms (FindLiveObjects: 0.071845 ms CreateObjectMapping: 0.036949 ms MarkObjects: 0.539869 ms  DeleteObjects: 0.011495 ms)
+Unloading 10 unused Assets to reduce memory usage. Loaded Objects now: 1147.
+Total: 0.689306 ms (FindLiveObjects: 0.068561 ms CreateObjectMapping: 0.036538 ms MarkObjects: 0.505382 ms  DeleteObjects: 0.078003 ms)
 
 Unloading 6 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 2.551958 ms
+UnloadTime: 1.346591 ms
+System memory in use before: 75.4 MB.
+System memory in use after: 75.5 MB.
 
-Unloading 4 unused Assets to reduce memory usage. Loaded Objects now: 2996.
-Total: 1.763708 ms (FindLiveObjects: 0.230316 ms CreateObjectMapping: 0.126448 ms MarkObjects: 1.381900 ms  DeleteObjects: 0.024222 ms)
+Unloading 7 unused Assets to reduce memory usage. Loaded Objects now: 2603.
+Total: 1.078094 ms (FindLiveObjects: 0.098531 ms CreateObjectMapping: 0.178177 ms MarkObjects: 0.750888 ms  DeleteObjects: 0.050086 ms)
+
+Unloading 3 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 3.016692 ms
+System memory in use before: 54.3 MB.
+System memory in use after: 54.4 MB.
+
+Unloading 47 unused Assets to reduce memory usage. Loaded Objects now: 1588.
+Total: 1.365886 ms (FindLiveObjects: 0.093604 ms CreateObjectMapping: 0.096478 ms MarkObjects: 0.919212 ms  DeleteObjects: 0.255770 ms)
 
