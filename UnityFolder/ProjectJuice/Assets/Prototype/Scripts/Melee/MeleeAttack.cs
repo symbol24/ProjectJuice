@@ -11,45 +11,39 @@ public class MeleeAttack : ExtendedMonobehaviour
     public PlatformerCharacter2D MovementManager { get { return _mouvementManager; } }
     private PlatformerCharacter2D _mouvementManager;
 
+    private List<HPScript> _immuneTargets = new List<HPScript>();
+
+    #region Ability info
     [SerializeField] private bool _isAbility = false; //for spawner
     public bool isAbility { get { return _isAbility; } }
-    [SerializeField] private bool _abilityHasSpike = false;
+
     [SerializeField] private bool _abilityAerialCancelOnGround = true;
 
-    #region Phil's refactor
+    private bool isGroundedAtStart = false;
+
+
+    #endregion
+
     [SerializeField] private Animator m_animator;
     private bool m_isSwinging = false;
     public bool isSwinging { get { return m_isSwinging; } }
     [SerializeField] private Collider2D _collider;
-    #endregion
 
-    [SerializeField] private GameObject _ParticleReference;
-    [Range(0,5)][SerializeField] private float _trailGroundLifeTime = 1f;
-    [Range(0,5)][SerializeField] private float _trailAerialLifeTime = 2f;
-
-    private bool isGroundedAtStart = false;
 
     [SerializeField] private DamageType _damageType = DamageType.Melee;
     public DamageType TypeOfDamage { get { return _damageType; } }
 
-    [SerializeField] private float _DashForce = 450f;
-
-    private bool _completedAerialAttack = true;
-
-    [SerializeField] private GameObject _swingerCollider;
-    [SerializeField] private GameObject _flipReference;
-    [SerializeField] private DelayManager _delayManager;
+    private DelayManager _delayManager;
     [SerializeField] private bool _addImpactForce = true;
-    [Range(0,4)][SerializeField] private float _FlashTimerOnScreen = 2f;
 
     public ImpactForceSettings _impactForceSettings;
-    
-    
-    public float rotationSpeed = 100f;
-    public float startingRotation = -45;
-    public float endingRotation = 45;
+
+    public bool IsAvailableForConsumption { get { return !_wasConsumed; } }
+    private bool _wasConsumed = false;
+
     [Range(0,3)]public float _delayAfterSwing = 0.5f;
 
+    #region SFX and FX
     [HideInInspector] public string Swipe;
     [HideInInspector] public string PlayerImpact;
     [HideInInspector] public string Sheath;
@@ -64,6 +58,13 @@ public class MeleeAttack : ExtendedMonobehaviour
     [HideInInspector] public ParticleSystem ClashingParticle;
     [HideInInspector] public ParticleSystem CrowdParticle;
     private ParticleSystem InstantiatedTrail;
+    
+    [Range(0,4)][SerializeField] private float _CrowdFxTimer = 2f;
+
+    [SerializeField] private GameObject _ParticleReference;
+    [Range(0,5)][SerializeField] private float _trailGroundLifeTime = 1f;
+    [Range(0,5)][SerializeField] private float _trailAerialLifeTime = 2f;
+    #endregion
 
     private LightFeedbackTemp _lightFeedback;
 
@@ -73,7 +74,6 @@ public class MeleeAttack : ExtendedMonobehaviour
         if (_delayManager == null) _delayManager = GetComponent<DelayManager>();
         if (_inputManager == null) _inputManager = GetComponent<IPlatformer2DUserControl>();
         if (_mouvementManager == null) _mouvementManager = GetComponent<PlatformerCharacter2D>();
-        //_swingerCollider.gameObject.SetRotationEulerZ(startingRotation);
         if (_collider == null) Debug.LogError(ColliderString());
         _lightFeedback = GetComponent<LightFeedbackTemp>();
         _lightFeedback.LightDone += MeleeTimerReset;
@@ -98,39 +98,16 @@ public class MeleeAttack : ExtendedMonobehaviour
     void Update()
     {
 
-        if (_delayManager.CanShoot && !m_isSwinging && _inputManager.m_Melee) //Battle Axe Ability swinging!
+        if (_delayManager.CanShoot && !m_isSwinging && _inputManager.m_Melee)
         {
-            if (m_animator == null)
+            if (m_animator != null)
             {
-                //legacy swing done by code
-                _swingingAnimation = LegacyStartSwingingAnimation();
-                StartCoroutine(_swingingAnimation);
-            }
-            else
-            {
-                //new Animated swing
                 m_isSwinging = StartAnimatedSwing();
             }
             
         }
 
-        #region FacingStuff
-        if (_inputManager.m_FacingRight)
-        {
-            //_flipReference.transform.localScale = _flipReference.transform.localScale.SetX(1);
-        }
-        else
-        {
-            //_flipReference.transform.localScale = _flipReference.transform.localScale.SetX(-1);
-        }
-        #endregion
-
         _impactForceSettings.DirectionComingForm = _inputManager.m_FacingRight ? Direction2D.Left : Direction2D.Right;
-
-        /*
-        if (!_isSwingingAnimationOnGoing && _completedAerialAttack && _mouvementManager.MeleeDownDashComplete && _swingerCollider.activeInHierarchy)
-            _swingerCollider.SetActive(false);
-            */
 
         if (_sound != null && _sound.isPlaying && !isGroundedAtStart && _mouvementManager.IsGrounded)
             StopAerialSwingOnLand();
@@ -143,8 +120,6 @@ public class MeleeAttack : ExtendedMonobehaviour
         if (isAbility)
         {
             _mouvementManager.ChangeCanFlip();
-            if (_abilityHasSpike && !isGroundedAtStart)
-                _completedAerialAttack = false;
 
             if (!isGroundedAtStart)
             {
@@ -192,87 +167,7 @@ public class MeleeAttack : ExtendedMonobehaviour
 
         InstatiateParticle(Trail, _ParticleReference, true, timer);
     }
-
-
-    private bool _isSwingingAnimationOnGoing = false;
-    private IEnumerator _swingingAnimation;
-
-    private IEnumerator LegacyStartSwingingAnimation()
-    {
-        /*
-        if (!_collider.enabled) _collider.enabled = true;
-        bool isGroundedAtStart = _mouvementManager.IsGrounded;
-        if (isAbility)
-        {
-            _mouvementManager.ChangeCanFlip();
-            if (_abilityHasSpike && !isGroundedAtStart)
-                _completedAerialAttack = false;
-
-            if(!isGroundedAtStart) SoundManager.PlaySFX(AbilityAerial);
-            else SoundManager.PlaySFX(Swipe);
-        }
-        else
-        {
-            SoundManager.PlaySFX(Swipe);
-        }
-
-
-        _delayManager.AddDelay(100f);
-        _isSwingingAnimationOnGoing = true;
-        _swingerCollider.SetActive(true);
-        yield return null;
-        while (_swingerCollider.transform.rotation.eulerAngles.z.ToNormalizedAngle() <= endingRotation)
-        {
-            _swingerCollider.transform.Rotate(Vector3.forward * Time.deltaTime * rotationSpeed);
-
-            yield return null;
-        }
-        _swingerCollider.SetActive(false);
-        yield return null;
-        _swingerCollider.gameObject.SetRotationEulerZ(startingRotation);
-
-        if (isAbility)
-        {
-            _mouvementManager.ChangeCanFlip();
-            if(_abilityHasSpike && !isGroundedAtStart)
-            {
-                _completedAerialAttack = true;
-                _swingerCollider.SetActive(true);
-                _mouvementManager.PhysicsDashForMeleeAbility(_DashForce);
-            }
-            /*
-            else
-                SoundManager.PlaySFX(AbilitySecondSound);
-                
-        }
-
-
-        yield return new WaitForSeconds(_delayAfterSwing);
-        _wasConsumedDuringThisAnimation = false;
-        _isSwingingAnimationOnGoing = false;
-        SoundManager.PlaySFX(Sheath);
-        _lightFeedback.StartLightFeedback(0);
-        */
-        Debug.LogWarning("In Legacy swing, ignoring!");
-        yield return 0;
-    }
-
-
-    private bool _wasConsumed = false;
-    private List<HPScript> _immuneTargets = new List<HPScript>();
-
-
-    public bool IsAvailableForConsumption
-    {
-        get {
-            
-            if(m_animator == null)
-                return _isSwingingAnimationOnGoing && !_wasConsumed;
-            else
-               return !_wasConsumed;
-        }
-    }
-
+    
     public void Consumed()
     {
         _collider.enabled = false;
@@ -341,6 +236,6 @@ public class MeleeAttack : ExtendedMonobehaviour
             toParent = otherMelee.gameObject;
         }
         InstatiateParticle(ClashingParticle, toParent, true);
-        InstatiateParticle(CrowdParticle, toParent, false, _FlashTimerOnScreen);
+        InstatiateParticle(CrowdParticle, toParent, false, _CrowdFxTimer);
     }
 }

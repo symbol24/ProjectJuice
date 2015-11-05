@@ -68,26 +68,9 @@ public class MovementSparking : ExtendedMonobehaviour
 
                 foreach (var pointsOfSpark in pointsCloseToGround)
                 {
-                    //InstatiateParticle()
-                    //var positionToSpawn = pointsOfSpark.position;
 
-                    var particle = InstatiateParticle(_effectsToSpawn, pointsOfSpark, true, _sparklesDestroyTimeout);
-                    //particle.transform.parent = pointsOfSpark;
+                    InstatiateParticle(_effectsToSpawn, pointsOfSpark, true, _sparklesDestroyTimeout);
                     
-                    /*var gameObject = new GameObject();
-                    gameObject.transform.position = pointsOfSpark.position;
-                    gameObject.transform.rotation= pointsOfSpark.rotation;
-                    gameObject.AddComponent<DestroyOnTimer>().Timeout = _sparklesDestroyTimeout + 1f;
-                    particle.transform.parent = gameObject.transform;*/
-
-
-                    /*var particles =
-                        (GameObject)
-                            Instantiate(_effectsToSpawn,
-                                positionToSpawn,
-                                _effectsToSpawn.transform.rotation);
-                    particles.transform.parent = transform;
-                    particles.AddComponent<DestroyOnTimer>().Timeout = _sparklesDestroyTimeout;*/
                 }
                 if (_delayManager.SoundReady)
                 {

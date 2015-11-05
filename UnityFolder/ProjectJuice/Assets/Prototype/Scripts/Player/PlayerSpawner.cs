@@ -32,6 +32,7 @@ public class PlayerSpawner : MonoBehaviour
     private int[] m_PlayerLayerIDs = { 15, 16, 17, 18 };
     private FadeOut m_Fader;
     private Activator _activator;
+    private bool _subscribed = false;
 
     // Use this for initialization
     void Awake()
@@ -44,20 +45,23 @@ public class PlayerSpawner : MonoBehaviour
     {
         m_Fader = FindObjectOfType<FadeOut>();
         if (m_Fader == null && _activator != null) m_Fader = _activator.Loader;
-        m_Fader.FadeDone += M_Fader_FadeDone;
-        m_Fader.LoadDone += M_Fader_LoadDone;
+        SubscribeToEvents(m_Fader);
     }
 
     public void SubscribeToEvents(FadeOut toUse)
     {
-        m_Fader = toUse;
-        m_Fader.FadeDone += M_Fader_FadeDone;
-        m_Fader.LoadDone += M_Fader_LoadDone;
+        if (!_subscribed)
+        {
+            m_Fader = toUse;
+            m_Fader.FadeDone += M_Fader_FadeDone;
+            m_Fader.LoadDone += M_Fader_LoadDone;
+            _subscribed = true;
+        }
     }
 
     private void M_Fader_LoadDone(object sender, EventArgs e)
     {
-        Debug.LogWarning("in playerspawner fader_loaddone");
+        //Debug.LogWarning("in playerspawner fader_loaddone");
         m_ListofPlayers = Utilities.GetAllPlayerData(m_randomizePlayersOnSpawn);
         SpawnPlayers();
     }

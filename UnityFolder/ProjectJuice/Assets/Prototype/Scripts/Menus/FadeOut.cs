@@ -46,7 +46,7 @@ public class FadeOut : MonoBehaviour {
     {
         EventHandler handler = LoadDone;
         if (handler != null) handler(this, EventArgs.Empty);
-        print("load done inlevel " + Application.loadedLevel);
+        //print("load done inlevel " + Application.loadedLevel);
         LoadEventSent = true;
     }
 

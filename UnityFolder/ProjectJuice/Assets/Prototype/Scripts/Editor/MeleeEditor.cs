@@ -6,8 +6,6 @@ using System.Collections.Generic;
 [CustomEditor(typeof(MeleeAttack))]
 public class MeleeEditor : Editor {
 
-    ParticleSystem validator = new ParticleSystem();
-
     string[] _listOfClips;
 
     int[] _choice = new int[8];
