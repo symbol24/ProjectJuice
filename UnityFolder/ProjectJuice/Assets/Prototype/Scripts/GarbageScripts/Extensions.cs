@@ -64,4 +64,15 @@ public static class Extensions
 
         return ret;
     }
+
+    public static Vector3 Clone(this Vector3 toClone)
+    {
+        return new Vector3(toClone.x, toClone.y, toClone.z);
+    }
+    public static Quaternion Clone(this Quaternion toClone)
+    {
+        return new Quaternion(toClone.x, toClone.y, toClone.z, toClone.w);
+    }
+
+
 }

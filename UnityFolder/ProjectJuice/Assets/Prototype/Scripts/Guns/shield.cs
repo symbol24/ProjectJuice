@@ -187,7 +187,7 @@ public class shield : Gun {
     {
         for(int i = 0; i < m_CurrentCount; i++)
         {
-            Quaternion newRot = m_GunRef.transform.rotation;
+            Quaternion newRot = GunBulletReference.transform.rotation;
             newRot = Quaternion.Euler( 0, 0, newRot.eulerAngles.z + Random.Range(-m_ShotAngle, m_ShotAngle));
             FireOneBullet(newRot);
         }
@@ -221,7 +221,7 @@ public class shield : Gun {
 
     public void FireOneBullet(Quaternion newRotation)
     {
-        Bullet newBullet = Instantiate(m_Bullet, m_GunRef.transform.position, newRotation) as Bullet;
+        Bullet newBullet = Instantiate(m_Bullet, GunBulletReference.transform.position, newRotation) as Bullet;
         newBullet.ShootBullet(m_ShotModifier);
         newBullet.AddImmuneTarget(m_HpScp);
     }
@@ -232,13 +232,13 @@ public class shield : Gun {
         thePosition.x *= -1;
         m_Gun.transform.localPosition = thePosition;
 
-        thePosition = m_GunRef.transform.localPosition;
+        thePosition = GunBulletReference.transform.localPosition;
         thePosition.x *= -1;
-        m_GunRef.transform.localPosition = thePosition;
+        GunBulletReference.transform.localPosition = thePosition;
 
-        Quaternion theRotation = m_GunRef.transform.localRotation;
+        Quaternion theRotation = GunBulletReference.transform.localRotation;
         theRotation.z = -theRotation.z;
-        m_GunRef.transform.localRotation = theRotation;
+        GunBulletReference.transform.localRotation = theRotation;
 
         m_FacingRight = !m_FacingRight;
     }

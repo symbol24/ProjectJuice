@@ -208,7 +208,7 @@ public class RoundMenu : Menu {
                 {
 
                     Image toChange = child.GetComponent<Image>();
-                    if (x < GameManager.instance.AmountOfRoundsToWin)
+                    if (x < Database.instance.AmountOfRounds)
                     {
                         child.gameObject.SetActive(true);
                         if (currentPlayerScore != null)

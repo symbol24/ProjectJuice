@@ -30,6 +30,9 @@ public class Database : MonoBehaviour
             DontDestroyOnLoad(gameObject);
     }
 
+    [Range(0,5)][SerializeField] private int m_AmountOfRounds = 3;
+    public int AmountOfRounds { get { return m_AmountOfRounds; } }
+
     [SerializeField]
     List<Sponsor> m_ListofSponsors;
     public List<Sponsor> ListofSponsors { get { return m_ListofSponsors; } }

@@ -21,32 +21,48 @@ public class PlayerSpawner : MonoBehaviour
         }
     }
     #endregion
-
-    [SerializeField]
-    GameObject[] m_Spawners;
-    [SerializeField]
-    GameObject m_PlayerPrefab;
-    [SerializeField]
-    private List<PlayerData> m_ListofPlayers = new List<PlayerData>();
+    [SerializeField] private bool m_randomizePlayersOnSpawn = true;
+    [SerializeField] GameObject[] m_Spawners;
+    [SerializeField] GameObject m_PlayerPrefab;
+    [SerializeField] private List<PlayerData> m_ListofPlayers = new List<PlayerData>();
     public List<PlayerData> ListOfPlayerDatas { get { return m_ListofPlayers; } }
     private List<GameObject> m_Players = new List<GameObject>();
     public List<GameObject> Players { get { return m_Players; } }
     [SerializeField]
     private int[] m_PlayerLayerIDs = { 15, 16, 17, 18 };
     private FadeOut m_Fader;
+    private Activator _activator;
+    private bool _subscribed = false;
 
     // Use this for initialization
     void Awake()
     {
         GameManager.instance.SetGameState(GameState.Loading);
+        _activator = FindObjectOfType<Activator>();
+    }
+
+    void Start()
+    {
         m_Fader = FindObjectOfType<FadeOut>();
-        m_Fader.FadeDone += M_Fader_FadeDone;
-        m_Fader.LoadDone += M_Fader_LoadDone;
+        if (m_Fader == null && _activator != null) m_Fader = _activator.Loader;
+        SubscribeToEvents(m_Fader);
+    }
+
+    public void SubscribeToEvents(FadeOut toUse)
+    {
+        if (!_subscribed)
+        {
+            m_Fader = toUse;
+            m_Fader.FadeDone += M_Fader_FadeDone;
+            m_Fader.LoadDone += M_Fader_LoadDone;
+            _subscribed = true;
+        }
     }
 
     private void M_Fader_LoadDone(object sender, EventArgs e)
     {
-        m_ListofPlayers = Utilities.GetAllPlayerData();
+        //Debug.LogWarning("in playerspawner fader_loaddone");
+        m_ListofPlayers = Utilities.GetAllPlayerData(m_randomizePlayersOnSpawn);
         SpawnPlayers();
     }
 
@@ -71,11 +87,17 @@ public class PlayerSpawner : MonoBehaviour
             GameObject temp = Instantiate(m_PlayerPrefab, m_Spawners[i].transform.position, m_Spawners[i].transform.rotation) as GameObject;
             Platformer2DUserControl pUserControl = temp.GetComponent<Platformer2DUserControl>();
             PlatformerCharacter2D pc2d = temp.GetComponent<PlatformerCharacter2D>();
+            ArcShooting gun = temp.GetComponent<ArcShooting>();
             pUserControl.PlayerID = pd.playerID;
             pc2d.SpawnCheckGround();
             SetAbility(temp, pd);
             temp.layer = m_PlayerLayerIDs[i];
             ScoreManager.instance.FollowScoreOf(pUserControl);
+            if (m_Spawners[i].transform.position.x > 0)
+            {
+                pc2d.SpawnFlip();
+                gun.SpawnRotation(pUserControl);
+            }
             m_Players.Add(temp);
             i++;
         }

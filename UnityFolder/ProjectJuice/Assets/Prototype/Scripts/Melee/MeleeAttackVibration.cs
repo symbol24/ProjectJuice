@@ -4,8 +4,8 @@ using System.Collections;
 
 public class MeleeAttackVibration : VibrationBase<MeleeAttack>
 {
-    [SerializeField] private bool _activarChoqueCuerpoACuerpo;
-    [SerializeField] private VibrationSettings _choqueCuerpoACuerpoParametros;
+    [HideInInspector] public bool _activarChoqueCuerpoACuerpo;
+    [HideInInspector] public VibrationSettings _choqueCuerpoACuerpoParametros;
 
 	// Use this for initialization
 	protected override void Start ()

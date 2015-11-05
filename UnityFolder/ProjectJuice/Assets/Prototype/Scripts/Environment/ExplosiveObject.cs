@@ -54,7 +54,6 @@ public class ExplosiveObject : HPBase
     }
     
     [Range(0,10)][SerializeField] public int _bulletsToGive = 5;
-    [Range(0, 1)][SerializeField] private float _delayFourPushingSound = 0.4f;
 
     private FadeOut m_fade;
     private bool isMuted = true;
@@ -111,28 +110,6 @@ public class ExplosiveObject : HPBase
         CheckForDamaging(collider);
     }
 
-    public void RouteOnCollisionStay2D(Collider2D collider)
-    {
-        /*
-        var player = collider.GetComponent<IPlatformer2DUserControl>();
-        var ground = collider.GetComponent<Ground>();
-        if (player != null && ground != null)
-        {
-            print("both touching ground and player");
-            if(_mainRigidbody.velocity.x > 0 || _mainRigidbody.velocity.x < 0)
-            {
-                print("volicity is greater or lower");
-                if (_delayManager.SoundReady)
-                {
-                    if(!isMuted)
-                        SoundManager.PlaySFX(Pushing);
-                    InstatiateParticle(_groundScraping, gameObject);
-                    _delayManager.AddSoundDelay(_delayFourPushingSound);
-                }
-            }
-        }*/
-    }
-
     private void CheckForDamaging(Collider2D toCheck)
     {
         var damaging = toCheck.GetComponent<IDamaging>();
@@ -156,8 +133,7 @@ public class ExplosiveObject : HPBase
                 var contactPoint = damaging.HasPreferredImpactPoint
                 ? damaging.PreferredImpactPoint
                 : toCheck.transform.position;
-            //Debug.DrawRay(transform.position, contactPoint);
-            //Debug.Break();
+
             if (ExplosionPrefab != null)
             {
                 var particleObject = (GameObject) Instantiate(ExplosionPrefab, contactPoint, Quaternion.identity);
@@ -165,17 +141,6 @@ public class ExplosiveObject : HPBase
                 destroyer.Timeout = _explosionDestroyTimeout;
             }
         }
-
-        var ground = toCheck.GetComponent<Ground>();
-        //if(!isMuted && ground != null) SoundManager.PlaySFX(GroundImpact);
-
-        /*
-        var player = toCheck.GetComponent<IPlatformer2DUserControl>();
-        if (player != null) SoundManager.PlaySFX(GroundImpact);
-        */
-
-        var otherExplosif = toCheck.GetComponent<ExplosiveObjectDamagableCollider>();
-        //if (!isMuted && otherExplosif != null) SoundManager.PlaySFX(GroundImpact);
     }
 
     private void OnHpChanged(object sender, HpChangedEventArgs hpChangedEventArgs)
@@ -207,6 +172,7 @@ public class ExplosiveObject : HPBase
 
     private void Kaboom()
     {
+        //Debug.Break();
         DisplayFX();
         if(!isMuted)
             SoundManager.PlaySFX(Explosion);
@@ -224,7 +190,6 @@ public class ExplosiveObject : HPBase
                 var script = explosiveCollider.AddComponent<ExplosiveObjectCollider>();
                 script._explosiveObject = this;
                 _mainRigidbody.isKinematic = true;
-                //StartCoroutine(DeleteNextUpdate(script));
             }
         }
         var timer = gameObject.AddComponent<DestroyOnTimer>();
@@ -274,9 +239,6 @@ public class ExplosiveObject : HPBase
 
     public void AddKnockBack(IDamaging impact)
     {
-    
-        //_mainRigidbody.drag = impact.ImpactForceSettings.ImpactDrag;
-
         Vector2 angle = impact.ImpactForceSettings.ImpactAngle;
 
         if (impact.ImpactForceSettings.DirectionComingForm == Direction2D.Right) angle.x = -angle.x;
@@ -302,4 +264,16 @@ public class ExplosiveObject : HPBase
         yield return new WaitForSeconds(_DragResetDelay);
         CheckDrag();
     }
+
+    public event EventHandler Destroyed;
+    protected void OnDestroyed()
+    {
+        if (Destroyed != null) Destroyed(this, EventArgs.Empty);
+    }
+
+    void OnDestroy()
+    {
+        OnDestroyed();
+    }
+
 }

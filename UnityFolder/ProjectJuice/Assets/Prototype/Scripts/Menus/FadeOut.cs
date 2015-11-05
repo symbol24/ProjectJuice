@@ -10,17 +10,17 @@ public class FadeOut : MonoBehaviour {
     private bool m_IsDone = false;
     public bool IsDone { get { return m_IsDone; } }
     [SerializeField] int m_LevelToLoad;
-    [SerializeField] bool TestLoading = false;
     private PlayerSpawner m_spawner;
+    private bool LoadEventSent = false;
+    [Range(0, 60)][SerializeField] private float _delayToCheckLoad = 5f;
     // Use this for initialization
-    void Start () {
-
-        //if (!SoundManager.IsSFXMuted()) SoundManager.MuteSFX();
+    void Start ()
+    {
         m_Sprite = GetComponent<SpriteRenderer>();
         m_SpriteColor = m_Sprite.color;
-        if (TestLoading) OnLevelWasLoaded(Application.loadedLevel);
         m_spawner = FindObjectOfType<PlayerSpawner>();
         if(m_spawner != null) m_spawner.SpawnDone += M_spawner_SpawnDone;
+        StartCoroutine(CheckIfNotStuck());
 	}
 
     void OnLevelWasLoaded(int level)
@@ -34,12 +34,20 @@ public class FadeOut : MonoBehaviour {
 
     }
 
+    IEnumerator CheckIfNotStuck()
+    {
+        yield return new WaitForSeconds(_delayToCheckLoad);
+        if (!LoadEventSent) OnLoadDone();
+    }
+
     public event EventHandler LoadDone;
 
     protected virtual void OnLoadDone()
     {
         EventHandler handler = LoadDone;
         if (handler != null) handler(this, EventArgs.Empty);
+        //print("load done inlevel " + Application.loadedLevel);
+        LoadEventSent = true;
     }
 
     public event EventHandler FadeDone;

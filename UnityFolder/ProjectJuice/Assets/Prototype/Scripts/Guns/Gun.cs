@@ -9,7 +9,11 @@ public class Gun : ExtendedMonobehaviour {
     public DelayManager m_DelayManager { get; private set; }
     
     [SerializeField] private GameObject m_GunReference; //used for flipping maybe
-    public GameObject m_GunRef { get { return m_GunReference; } }
+    public GameObject GunBulletReference { get { return m_GunReference; } }
+    [SerializeField] private GameObject m_ParticleRefernce;
+    public GameObject ParticleReference { get { return m_ParticleRefernce; } }
+
+
     [SerializeField] private GameObject m_GunObject;
     public GameObject m_Gun { get { return m_GunObject; } }
     [SerializeField] private Bullet m_BulletPrefab;
@@ -75,6 +79,8 @@ public class Gun : ExtendedMonobehaviour {
         newBullet.AddImmuneTarget(m_HpScript);
         if (BulletFired != null) BulletFired(this, new BulletFiredEventArgs { BulletFired = newBullet });
         SoundManager.PlaySFX(GunShot);
+        DisplayParticles();
+
     }
 
     private void CheckLight()
@@ -84,8 +90,8 @@ public class Gun : ExtendedMonobehaviour {
 
     protected void DisplayParticles()
     {
-        InstatiateParticle(m_MuzzleFlash, m_GunRef, true, m_MuzzleFlashLifeTime);
-        InstatiateParticle(m_MuzzleSmoke, m_GunRef, true, m_MuzzleSmokeLifeTime);
+        InstatiateParticle(m_MuzzleFlash, ParticleReference, true, m_MuzzleFlashLifeTime, m_Controller.m_FacingRight);
+        InstatiateParticle(m_MuzzleSmoke, ParticleReference, true, m_MuzzleSmokeLifeTime, m_Controller.m_FacingRight);
     }
 
     public event EventHandler<BulletFiredEventArgs> BulletFired;

@@ -21,7 +21,7 @@ public class MovementSparking : ExtendedMonobehaviour
     private string Pushing { get { return _explosiveObject.Pushing; } }
     private ExplosiveObject _explosiveObject;
 
-    public List<Transform> _pointsOfSparks;
+    public List<GameObject> _pointsOfSparks;
     private float _groundTolerance = 0.01f;
 
     // Use this for initialization
@@ -33,7 +33,7 @@ public class MovementSparking : ExtendedMonobehaviour
         _movementChecker.MovementStopped += DetectedStopping;
         _delayManager = GetComponent<DelayManager>();
         _explosiveObject = GetComponent<ExplosiveObject>();
-	}
+    }
     private void XPositionChanged(object sender, PositionChangedEventArgs positionChangedEventArgs)
     {
         if (!_spawnSparklesRunning)
@@ -68,17 +68,9 @@ public class MovementSparking : ExtendedMonobehaviour
 
                 foreach (var pointsOfSpark in pointsCloseToGround)
                 {
-                    //InstatiateParticle()
-                    
-                    var positionToSpawn = pointsOfSpark.position;
+
                     InstatiateParticle(_effectsToSpawn, pointsOfSpark, true, _sparklesDestroyTimeout);
-                    /*var particles =
-                        (GameObject)
-                            Instantiate(_effectsToSpawn,
-                                positionToSpawn,
-                                _effectsToSpawn.transform.rotation);
-                    particles.transform.parent = transform;
-                    particles.AddComponent<DestroyOnTimer>().Timeout = _sparklesDestroyTimeout;*/
+                    
                 }
                 if (_delayManager.SoundReady)
                 {
