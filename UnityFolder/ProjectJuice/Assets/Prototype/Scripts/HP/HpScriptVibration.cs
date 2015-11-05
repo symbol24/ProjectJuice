@@ -3,18 +3,18 @@ using System.Collections;
 
 public class HpScriptVibration : VibrationBase<HPScript>
 {
-    [SerializeField]
-    private bool _enableImpactVibration;
-    [SerializeField]
-    private VibrationSettings _impactVibrationSettings;
-    [SerializeField]
-    private bool _enableDeadVibration = true;
-    [SerializeField]
-    private VibrationSettings _deadVibrationSettings;
-    [SerializeField]
-    private bool _enableHpChangedVibration;
-    [SerializeField]
-    private VibrationSettings _hpChangedVibrationSettings;
+    [HideInInspector]
+    public bool _enableImpactVibration;
+    [HideInInspector]
+    public VibrationSettings _impactVibrationSettings;
+    [HideInInspector]
+    public bool _enableDeadVibration = true;
+    [HideInInspector]
+    public VibrationSettings _deadVibrationSettings;
+    [HideInInspector]
+    public bool _enableHpChangedVibration;
+    [HideInInspector]
+    public VibrationSettings _hpChangedVibrationSettings;
 
 
     // Use this for initialization

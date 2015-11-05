@@ -7,16 +7,16 @@ public class VibrationSettings
 {
 
     [SerializeField]
-    private bool _averageBothSides = true;
+    public bool _averageBothSides = true;
     [Range(0, 1)]
     [SerializeField]
-    private float _leftSideVibration = 0.5f;
+    public float _leftSideVibration = 0.5f;
     [Range(0,1)]
     [SerializeField]
-    private float _rightSideVibration = 0.5f;
+    public float _rightSideVibration = 0.5f;
     [Range(0, 1)]
     [SerializeField]
-    private float _timeToVibrate = 0.3f;
+    public float _timeToVibrate = 0.3f;
 
     public float LeftSideVibration
     {

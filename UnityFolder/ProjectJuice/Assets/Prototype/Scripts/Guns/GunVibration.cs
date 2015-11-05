@@ -3,10 +3,10 @@ using System.Collections;
 
 public class GunVibration : VibrationBase<Gun>
 {
-    [SerializeField]
-    private bool _enableFireVibration = true;
-    [SerializeField]
-    private VibrationSettings _fireVibrationSettings;
+    [HideInInspector]
+    public bool _enableFireVibration = true;
+    [HideInInspector]
+    public VibrationSettings _fireVibrationSettings;
 
 
 	// Use this for initialization

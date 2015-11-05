@@ -4,14 +4,22 @@ using System.Collections;
 
 public class DartVibration : VibrationBase<SappingDartGun>
 {
-    [SerializeField] private bool _enableFireVibration;
-    [SerializeField] private VibrationSettings _fireVibrationSettings;
-    [SerializeField] private bool _enableDartCollisionVibration;
-    [SerializeField] private VibrationSettings _dartCollisionVibrationSettings;
-    [SerializeField] private bool _enableDartJuiceSuckedVibration;
-    [SerializeField] private VibrationSettings _dartJuiceSuckedVibrationSettings;
-    [SerializeField] private bool _enableDartDestroyedVibration;
-    [SerializeField] private VibrationSettings _dartDestroyedVibrationSettings;
+    [HideInInspector]
+    public bool _enableFireVibration;
+    [HideInInspector]
+    public VibrationSettings _fireVibrationSettings;
+    //[HideInInspector]
+    public bool _enableDartCollisionVibration;
+    //[HideInInspector]
+    public VibrationSettings _dartCollisionVibrationSettings;
+    [HideInInspector]
+    public bool _enableDartJuiceSuckedVibration;
+    [HideInInspector]
+    public VibrationSettings _dartJuiceSuckedVibrationSettings;
+    [HideInInspector] 
+    public bool _enableDartDestroyedVibration;
+    [HideInInspector] 
+    public VibrationSettings _dartDestroyedVibrationSettings;
 
     protected override void Start()
     {
