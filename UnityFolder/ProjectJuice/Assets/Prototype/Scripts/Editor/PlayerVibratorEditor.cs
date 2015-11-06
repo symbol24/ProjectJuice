@@ -26,7 +26,6 @@ public class PlayerVibratorEditor : Editor
 
     public override void OnInspectorGUI()
     {
-        var vibrator = (PlayerVibrator) target;
         if (_dartVib != null)
         {
             AddTitle("Dart Vibration");
@@ -47,7 +46,7 @@ public class PlayerVibratorEditor : Editor
             AddTitle("HP Vibration");
             AddToMenu(ref _hpVib._enableDeadVibration, ref _hpVib._deadVibrationSettings, "Death");
             AddToMenu(ref _hpVib._enableHpChangedVibration, ref _hpVib._hpChangedVibrationSettings, "HpChanged");
-            AddToMenu(ref _hpVib._enableImpactVibration, ref _hpVib._impactVibrationSettings, "Impacto");
+            //AddToMenu(ref _hpVib._enableImpactVibration, ref _hpVib._impactVibrationSettings, "Impacto");
             EditorGUILayout.Separator();
         }
         if (_meleeVib != null)
