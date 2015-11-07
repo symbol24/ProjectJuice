@@ -6,16 +6,20 @@ using System.Collections.Generic;
 
 public class LoadingScreen : ExtendedMonobehaviour {
     MenuControls m_MenuControls;
-    [SerializeField] private DelayManager _delayManager;
-    [SerializeField] private List<Sprite> _tipScreens;
     [SerializeField] private LoadingType _type = LoadingType.FullyRandom;
+    private DelayManager _delayManager;
+    [SerializeField] private List<Sprite> _tipScreens;
+    [SerializeField] private List<Sprite> LoadingTextSprites;
     [SerializeField] private List<int> _randomRange;
+    [SerializeField] private SpriteRenderer _LoadingText;
     [SerializeField] private GameObject _back;
     [SerializeField] private GameObject _coloredArea;
     [SerializeField] private GameObject _tipScreenGameObject;
     [SerializeField] private List<Color> _colorsForBack;
     private SpriteRenderer _tipScreenSprite;
     private Sprite _toDisplay;
+    [Range(0,1)][SerializeField] private float _loadingTextDisplayTime = 0.2f;
+    private bool _displayLoading = false;
     [Range(0, 60)][SerializeField] private float _minimumLoadTime = 10f;
     private Animator _animator;
     private LoadingState _loadingState = LoadingState.Idle;
@@ -60,6 +64,11 @@ public class LoadingScreen : ExtendedMonobehaviour {
                 if (m_MenuControls.Confirm[i] || m_MenuControls._Start[i])
                 {
                     _goScreen = GoScreen();
+                }
+
+                if (_displayLoading)
+                {
+                    _displayLoading = false;
                 }
             }
         }
@@ -107,6 +116,8 @@ public class LoadingScreen : ExtendedMonobehaviour {
         _loadingState = LoadingState.Enter;
         _animator.SetInteger("Target", UnityEngine.Random.Range(1, 4));
         _delayManager.AddDelay(_minimumLoadTime);
+        _displayLoading = true;
+        StartCoroutine(ChangeLoadingText());
     }
 
     private bool GoScreen()
@@ -142,6 +153,7 @@ public class LoadingScreen : ExtendedMonobehaviour {
 
     protected virtual void OnLoadDone()
     {
+
         EventHandler handler = LoadDone;
         if (handler != null) handler(this, EventArgs.Empty);
         LoadEventSent = true;
@@ -197,5 +209,24 @@ public class LoadingScreen : ExtendedMonobehaviour {
     {
         SpriteRenderer spr = _coloredArea.GetComponent<SpriteRenderer>();
         spr.color = _colorsForBack[UnityEngine.Random.Range(0,_colorsForBack.Count)];
+    }
+
+    private IEnumerator ChangeLoadingText()
+    {
+        int i = 0;
+        while (_displayLoading)
+        {
+            yield return new WaitForSeconds(_loadingTextDisplayTime);
+            i++;
+            if (i > 3) i = 0;
+            _LoadingText.sprite = LoadingTextSprites[i];
+        }
+
+        SetReadyText();
+    }
+
+    private void SetReadyText()
+    {
+        _LoadingText.sprite = LoadingTextSprites[4];
     }
 }
