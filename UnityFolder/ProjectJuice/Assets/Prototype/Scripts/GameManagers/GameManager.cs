@@ -103,7 +103,7 @@ public class GameManager : ExtendedMonobehaviour
 
     private void CheckEndOfRound(object sender, PlayerScoreEventArgs e)
     {
-        
+        ClearRoundSFX();
         if (e.IsThereAWinner) {
             if (CheckIfMatchWinner())
             {
@@ -123,6 +123,17 @@ public class GameManager : ExtendedMonobehaviour
         }
 
         
+    }
+
+    private void ClearRoundSFX()
+    {
+        AudioSource[] list = FindObjectsOfType<AudioSource>();
+        foreach(AudioSource As in list)
+        {
+            if (As.isPlaying) As.Stop();
+
+            //if (!As.isPlaying) Destroy(As.gameObject);
+        }
     }
 
     private bool CheckIfMatchWinner()
