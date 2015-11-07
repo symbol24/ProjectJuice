@@ -117,6 +117,7 @@ public class MeleeAttack : ExtendedMonobehaviour
 
     private bool StartAnimatedSwing()
     {
+        _delayManager.AddDelay(10000);
         if (!_collider.enabled) _collider.enabled = true;
         _isAerial = !_mouvementManager.IsGrounded;
         if (isAbility)
@@ -149,12 +150,9 @@ public class MeleeAttack : ExtendedMonobehaviour
         {
             _sound.Stop();
             ResetSwing("Air", false);
-
-            if (isAbility)
-            {
-                _mouvementManager.ChangeCanFlip();
-                _isAerial = !_mouvementManager.IsGrounded;
-            }
+            _mouvementManager.ChangeCanFlip();
+            _isAerial = !_mouvementManager.IsGrounded;
+            _delayManager.SetDelay(_delayAfterSwing);
         }
     }
 
@@ -163,7 +161,7 @@ public class MeleeAttack : ExtendedMonobehaviour
         _collider.enabled = true;
         m_isSwinging = false;
         m_animator.SetBool(change, with);
-        _delayManager.AddDelay(_delayAfterSwing);
+        _delayManager.SetDelay(_delayAfterSwing);
         _wasConsumed = false;
         if (isAbility)
         {
