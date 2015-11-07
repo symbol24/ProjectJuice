@@ -178,7 +178,6 @@ public class LoadingScreen : ExtendedMonobehaviour {
     private void M_spawner_SpawnDone(object sender, EventArgs e)
     {
         _isSpawnDone = true;
-        print("SpawnDonw = " + SpawnDone);
     }
 
     private void GetObjects()

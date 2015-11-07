@@ -34,6 +34,7 @@ public class PlayerSelect : Menu {
         m_Fader.LoadingAnimDone += M_Fader_FadeDone;
         m_Fader.LoadDone += M_Fader_LoadDone;
         GameManager.instance.SetGameState(GameState.Loading);
+        ResetSponsors();
     }
 
     private void M_Fader_FadeDone(object sender, System.EventArgs e)
@@ -139,5 +140,11 @@ public class PlayerSelect : Menu {
         player.isActivated = false;
         m_PlayerSelectPanels[panel].SetActive(false);
         m_PlayerCount--;
+    }
+
+    private void ResetSponsors()
+    {
+        foreach (Sponsor sp in Database.instance.ListofSponsors)
+            sp.ReleaseSponsor();
     }
 }

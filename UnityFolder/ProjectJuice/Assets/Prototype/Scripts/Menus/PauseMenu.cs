@@ -112,8 +112,12 @@ public class PauseMenu : Menu {
 
     public void ChangePanelState()
     {
-        m_PausePanel.SetActive(m_isPaused);
-        GameManager.instance.SetPaused(m_isPaused, 1, m_IsFullSoundPause);
+        if (m_isPaused)
+        {
+            m_isPaused = !m_isPaused;
+            m_PausePanel.SetActive(m_isPaused);
+            GameManager.instance.SetPaused(m_isPaused, 1, m_IsFullSoundPause);
+        }
     }
 
     public void ReturnToMainMenu()
@@ -123,12 +127,15 @@ public class PauseMenu : Menu {
 
     private IEnumerator SoundThenReturn()
     {
+        SetAnimState(MenuAnimState.NotUsable);
         SoundManager.PlaySFX(ReturnToCS);
+        m_PauseMenuAnimator.SetBool("GoUp", true);
         float endTimer = Time.unscaledTime + m_delayToReturn;
         while (endTimer > Time.unscaledTime)
         {
             yield return 0;
         }
+        ChangePanelState();
         Application.LoadLevel(Database.instance.MainMenuID);
     }
 
