@@ -24,7 +24,7 @@ public class PlayerSpawner : MonoBehaviour
     [SerializeField] private bool m_randomizePlayersOnSpawn = true;
     [SerializeField] GameObject[] m_Spawners;
     [SerializeField] GameObject m_PlayerPrefab;
-    [SerializeField] private List<PlayerData> m_ListofPlayers = new List<PlayerData>();
+    private List<PlayerData> m_ListofPlayers = new List<PlayerData>();
     public List<PlayerData> ListOfPlayerDatas { get { return m_ListofPlayers; } }
     private List<GameObject> m_Players = new List<GameObject>();
     public List<GameObject> Players { get { return m_Players; } }
@@ -53,7 +53,7 @@ public class PlayerSpawner : MonoBehaviour
         if (!_subscribed)
         {
             m_Fader = toUse;
-            m_Fader.FadeDone += M_Fader_FadeDone;
+            m_Fader.LoadingAnimDone += M_Fader_FadeDone;
             m_Fader.LoadDone += M_Fader_LoadDone;
             _subscribed = true;
         }
@@ -75,6 +75,7 @@ public class PlayerSpawner : MonoBehaviour
 
     protected virtual void OnSpawnDone()
     {
+        //Debug.LogWarning("in playerspawner OnSpawnDone");
         EventHandler handler = SpawnDone;
         if (handler != null) handler(this, EventArgs.Empty);
     }

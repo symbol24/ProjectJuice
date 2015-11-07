@@ -18,7 +18,7 @@ public class RoundStartTimer : MonoBehaviour {
     // Use this for initialization
     void Start () {
         if (m_fader == null) m_fader = FindObjectOfType<LoadingScreen>();
-        if(m_fader != null) m_fader.FadeDone += StartCountdown;
+        if(m_fader != null) m_fader.LoadingAnimDone += StartCountdown;
         m_TimerText.text = Database.instance.GameTexts[16];
         GameManager.instance.InjectRoundStartTimer(this);
     }

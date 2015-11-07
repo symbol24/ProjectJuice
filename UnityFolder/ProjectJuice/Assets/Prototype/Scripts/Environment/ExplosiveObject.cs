@@ -77,7 +77,7 @@ public class ExplosiveObject : HPBase
         _delayManager = GetComponent<DelayManager>();
         _delayManager.Reset();
         m_fade = FindObjectOfType<LoadingScreen>();
-        if (m_fade != null) m_fade.FadeDone += M_fade_FadeDone;
+        if (m_fade != null) m_fade.LoadingAnimDone += M_fade_FadeDone;
         else isMuted = false;
     }
 

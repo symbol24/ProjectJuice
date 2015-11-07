@@ -20,7 +20,11 @@ public class Activator : MonoBehaviour {
 
 
         _spawner = FindObjectOfType<PlayerSpawner>();
-        if (_spawner != null && _Loader != null) _spawner.SubscribeToEvents(_Loader);
+        if (_spawner != null && _Loader != null)
+        {
+            _spawner.SubscribeToEvents(_Loader);
+            _Loader.SubscribeToEvents(_spawner);
+        }
     }
 
 }

@@ -25,7 +25,9 @@ public class GameManager : ExtendedMonobehaviour
 
     void Awake()
     {
-        //DontDestroyOnLoad(this);
+        GameManager[] list = FindObjectsOfType<GameManager>();
+        if (list.Length > 1) Destroy(gameObject);
+        else DontDestroyOnLoad(gameObject);
     }
     #endregion
 
@@ -159,5 +161,6 @@ public class GameManager : ExtendedMonobehaviour
     public void SetGameState(GameState newState)
     {
         m_CurrentState = newState;
+        //print("Loaded level " + Application.loadedLevel + " new GameState " + m_CurrentState);
     }
 }

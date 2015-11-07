@@ -21,10 +21,6 @@ public class PlayerSelect : Menu {
 
     void Awake()
     {
-        m_Fader = FindObjectOfType<LoadingScreen>();
-        m_Fader.FadeDone += M_Fader_FadeDone;
-        m_Fader.LoadDone += M_Fader_LoadDone;
-        GameManager.instance.SetGameState(GameState.Loading);
     }
 
     private void M_Fader_LoadDone(object sender, System.EventArgs e)
@@ -34,6 +30,10 @@ public class PlayerSelect : Menu {
     // Use this for initialization
     protected override void Start () {
         base.Start();
+        m_Fader = FindObjectOfType<LoadingScreen>();
+        m_Fader.LoadingAnimDone += M_Fader_FadeDone;
+        m_Fader.LoadDone += M_Fader_LoadDone;
+        GameManager.instance.SetGameState(GameState.Loading);
     }
 
     private void M_Fader_FadeDone(object sender, System.EventArgs e)

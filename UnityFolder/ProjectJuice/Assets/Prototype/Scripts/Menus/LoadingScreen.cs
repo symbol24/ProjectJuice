@@ -32,8 +32,11 @@ public class LoadingScreen : ExtendedMonobehaviour {
     private bool _goScreen = false;
     [SerializeField] private bool _forceGoNoPress = false;
     [SerializeField] private GameState _IntendedGameStateAfterLoading = GameState.Playing;
+    private bool _isSubscribed = false;
+    private bool _isSpawnDone = false;
+    private bool SpawnDone { get { if (_isGameplayScene) return _isSpawnDone; else return true; } }
 
-    private bool CheckCanPress { get { return GameManager.instance.IsLoading && _loadingState == LoadingState.Middle && !_goScreen && _delayManager.CanShoot; } }
+    private bool CheckCanPress { get { return GameManager.instance.IsLoading && _loadingState == LoadingState.Middle && SpawnDone && !_goScreen && _delayManager.CanShoot; } }
     private bool CheckNoPressNeeded { get { return GameManager.instance.IsLoading && _loadingState == LoadingState.Middle && !_goScreen && _delayManager.CanShoot && _forceGoNoPress; } }
 
     // Use this for initialization
@@ -59,17 +62,17 @@ public class LoadingScreen : ExtendedMonobehaviour {
         }
         else if (CheckCanPress)
         {
-            for (int i = 0; i < m_spawner.Players.Count; i++)
+            for (int i = 0; i < m_spawner.ListOfPlayerDatas.Count; i++)
             {
                 if (m_MenuControls.Confirm[i] || m_MenuControls._Start[i])
                 {
                     _goScreen = GoScreen();
                 }
+            }
 
-                if (_displayLoading)
-                {
-                    _displayLoading = false;
-                }
+            if (_displayLoading)
+            {
+                _displayLoading = false;
             }
         }
     }
@@ -132,7 +135,7 @@ public class LoadingScreen : ExtendedMonobehaviour {
         _animator.SetBool("Start", false);
         _animator.SetBool("Restart", false);
         _animator.SetInteger("Target", 0);
-        BroadcastFadeDone();
+        BroadcastLoadingAnimDone();
         _loadingState = LoadingState.Playing;
         _goScreen = false;
         if (!_isGameplayScene) GameManager.instance.SetGameState(_IntendedGameStateAfterLoading);
@@ -145,6 +148,7 @@ public class LoadingScreen : ExtendedMonobehaviour {
 
     public void Respawn()
     {
+        _isSpawnDone = false;
         _animator.SetBool("Restart", true);
         EnterScreens();
     }
@@ -153,28 +157,28 @@ public class LoadingScreen : ExtendedMonobehaviour {
 
     protected virtual void OnLoadDone()
     {
-
         EventHandler handler = LoadDone;
         if (handler != null) handler(this, EventArgs.Empty);
         LoadEventSent = true;
     }
 
-    public void BroadcastFadeDone()
+    public void BroadcastLoadingAnimDone()
     {
-        OnFadeDone();
+        OnLoadingAnimDone();
     }
 
-    public event EventHandler FadeDone;
+    public event EventHandler LoadingAnimDone;
 
-    protected virtual void OnFadeDone()
+    protected virtual void OnLoadingAnimDone()
     {
-        EventHandler handler = FadeDone;
+        EventHandler handler = LoadingAnimDone;
         if (handler != null) handler(this, EventArgs.Empty);
     }
 
     private void M_spawner_SpawnDone(object sender, EventArgs e)
     {
-        print("Spawn done");
+        _isSpawnDone = true;
+        print("SpawnDonw = " + SpawnDone);
     }
 
     private void GetObjects()
@@ -201,7 +205,19 @@ public class LoadingScreen : ExtendedMonobehaviour {
         {
             m_spawner = FindObjectOfType<PlayerSpawner>();
             if (m_spawner == null) Debug.LogError("Loading Screen cannot find player spawner. Is this a gameplay scene? If yes, set the IsGameplayScene to true.");
-            else m_spawner.SpawnDone += M_spawner_SpawnDone;
+            else SubscribeToEvents(m_spawner);
+        }
+    }
+
+    public void SubscribeToEvents(PlayerSpawner toSub)
+    {
+        if (!_isSubscribed)
+        {
+            if (toSub != null)
+            {
+                toSub.SpawnDone += M_spawner_SpawnDone;
+                _isSubscribed = true;
+            }
         }
     }
 
