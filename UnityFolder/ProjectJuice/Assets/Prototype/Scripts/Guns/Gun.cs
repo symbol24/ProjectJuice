@@ -3,6 +3,7 @@ using System.Collections;
 using UnityStandardAssets.CrossPlatformInput;
 using GamepadInput;
 using System;
+using System.Collections.Generic;
 
 public class Gun : ExtendedMonobehaviour {
     public IPlatformer2DUserControl m_Controller { get; private set; }
@@ -24,11 +25,12 @@ public class Gun : ExtendedMonobehaviour {
     public HPScript m_HpScp { get { return m_HpScript; } }
     protected bool m_HasDisplayed = true;
 
+    [SerializeField] private SpriteRenderer m_muzzleFlash;
+    [SerializeField] private List<Sprite> m_muzzleFlashes;
+    [Range(0,10)][SerializeField] private int m_framesBetweenFlashes = 2;
+
     [HideInInspector] public string GunShot;
     [HideInInspector] public string GunReloaded;
-
-    [HideInInspector] public ParticleSystem m_MuzzleFlash;
-    [Range(0, 5)][SerializeField] private float m_MuzzleFlashLifeTime = 0.1f;
     [HideInInspector] public ParticleSystem m_MuzzleSmoke;
     [Range(0, 5)][SerializeField] private float m_MuzzleSmokeLifeTime = 0.5f;
 
@@ -42,6 +44,7 @@ public class Gun : ExtendedMonobehaviour {
         if(m_HpScript == null) m_HpScript = GetComponent<HPScript>();
         _lightFeedback = GetComponent<LightFeedbackTemp>();
         _lightFeedback.LightDone += ResetDelayManager;
+        if (m_muzzleFlash != null && m_muzzleFlash.enabled) m_muzzleFlash.enabled = false;
     }
 
     protected void ResetDelayManager(object sender, System.EventArgs e)
@@ -90,10 +93,24 @@ public class Gun : ExtendedMonobehaviour {
 
     protected void DisplayParticles()
     {
-        InstatiateParticle(m_MuzzleFlash, ParticleReference, true, m_MuzzleFlashLifeTime, m_Controller.m_FacingRight);
+        StartCoroutine(DisplayMuzzleFlashes());
         InstatiateParticle(m_MuzzleSmoke, ParticleReference, true, m_MuzzleSmokeLifeTime, m_Controller.m_FacingRight);
     }
 
     public event EventHandler<BulletFiredEventArgs> BulletFired;
 
+    private IEnumerator DisplayMuzzleFlashes()
+    {
+        if (m_muzzleFlash != null)
+        {
+            m_muzzleFlash.enabled = true;
+            for (int i = 0; i < m_muzzleFlashes.Count; i++)
+            {
+                m_muzzleFlash.sprite = m_muzzleFlashes[i];
+                for (int x = 0; x < m_framesBetweenFlashes; x++)
+                    yield return new WaitForEndOfFrame();
+            }
+            m_muzzleFlash.enabled = false;
+        }
+    }
 }
