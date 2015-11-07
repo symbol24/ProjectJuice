@@ -45,6 +45,15 @@ public class MeleeAttack : ExtendedMonobehaviour
 
     [Range(0,3)]public float _delayAfterSwing = 0.5f;
 
+    private bool ReadInput
+    {
+        get
+        {
+            if (isAbility) return _inputManager.m_Melee || _inputManager.m_Special;
+            else return _inputManager.m_Melee;
+        }
+    }
+
     #region SFX and FX
     [HideInInspector] public string Swipe;
     [HideInInspector] public string PlayerImpact;
@@ -100,7 +109,7 @@ public class MeleeAttack : ExtendedMonobehaviour
     void Update()
     {
 
-        if (_delayManager.CanShoot && !m_isSwinging && _inputManager.m_Melee)
+        if (_delayManager.CanShoot && !m_isSwinging && ReadInput)
         {
             if (m_animator != null)
             {
