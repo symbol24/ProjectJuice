@@ -22,6 +22,8 @@ public class PauseMenu : Menu {
     [Range(0,10)][SerializeField] private float m_delayToReturn = 2f;
 
     [SerializeField] private Animator m_PauseMenuAnimator;
+
+    private MenuAnimState _animState = MenuAnimState.NotUsable;
     
     [HideInInspector] public string MenuOpenName;
     [HideInInspector] public string MenuCloseName;
@@ -62,12 +64,13 @@ public class PauseMenu : Menu {
                 }
             }
         }
-        else if(GameManager.instance.IsPaused)
+        else if(GameManager.instance.IsPaused && _animState == MenuAnimState.Usable)
         {
             if (m_DelayManager.CanShoot && m_Controls._Start[m_ControllingPlayer])
             {
                 SwitchPauseState();
                 m_ControllingPlayer = 0;
+                SetAnimState(MenuAnimState.NotUsable);
             }
 
             if(m_DelayManager.CanShield && !m_inConfirm && m_Controls.Y[m_ControllingPlayer] != 0)
@@ -197,5 +200,10 @@ public class PauseMenu : Menu {
     public void ResetAnimatorBool(string boolName, bool boolValue)
     {
         m_PauseMenuAnimator.SetBool(boolName, boolValue);
+    }
+
+    public void SetAnimState(MenuAnimState newState)
+    {
+        _animState = newState;
     }
 }
