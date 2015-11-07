@@ -210,7 +210,10 @@ public class SelectorMenu : Menu {
                 if (!Database.instance.ListofSponsors[m_SponsorSelection].isTaken)
                 {
                     SoundManager.PlaySFX(Database.instance.MenuClickName);
-                m_CurrentSelectionState = SetStateAndTexts(true);
+                    m_CurrentSelectionState = SetStateAndTexts(true);
+                    //sponsor
+                    m_Player.PlayerSponsor = Database.instance.ListofSponsors[m_SponsorSelection];
+                    Database.instance.ListofSponsors[m_SponsorSelection].TakeSponsor();
                 }
                 else
                     SoundManager.PlaySFX(Database.instance.MenuErrorName);
@@ -218,9 +221,6 @@ public class SelectorMenu : Menu {
                 break;
 
             case SelectionState.Confirmation:
-                    //sponsor
-                    m_Player.PlayerSponsor = Database.instance.ListofSponsors[m_SponsorSelection];
-                    Database.instance.ListofSponsors[m_SponsorSelection].TakeSponsor();
 
                     //ability
                     m_Player.PlayerAbility = Database.instance.ListofAbilities[m_AbilitySelection].AbilityEnum;
