@@ -14,4 +14,6 @@ public interface IPlatformer2DUserControl : IGameObject
     bool m_FacingRight { get; set; }
     PlayerData m_PlayerData { get; }
     bool m_SpecialStay { get; }
+    PlayerIDs PlayerID { get; set; }
+    void FlushInputs();
 }

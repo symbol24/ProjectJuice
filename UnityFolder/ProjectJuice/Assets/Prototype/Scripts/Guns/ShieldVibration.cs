@@ -4,12 +4,18 @@ using System.Collections;
 
 public class ShieldVibration : VibrationBase<shield>
 {
-    [SerializeField] private bool _enabledShieldFiredVibration;
-    [SerializeField] private VibrationSettings _shieldFiredVibrationSettings;
-    [SerializeField] private bool _enableShieldChargedVibration;
-    [SerializeField] private VibrationSettings _shieldChargedVibrationSettings;
-    [SerializeField] private bool _activarEscudoAbsorveVibraciones;
-    [SerializeField] private VibrationSettings _escudoAbsorventeParametros;
+    [HideInInspector]
+    public bool _enabledShieldFiredVibration;
+    [HideInInspector]
+    public VibrationSettings _shieldFiredVibrationSettings;
+    [HideInInspector]
+    public bool _enableShieldChargedVibration;
+    [HideInInspector]
+    public VibrationSettings _shieldChargedVibrationSettings;
+    [HideInInspector]
+    public bool _activarEscudoAbsorveVibraciones;
+    [HideInInspector]
+    public VibrationSettings _escudoAbsorventeParametros;
 
     // Use this for initialization
 	protected override void Start ()

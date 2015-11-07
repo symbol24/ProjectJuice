@@ -5,10 +5,14 @@ using UnityStandardAssets._2D;
 
 public class PlayerJumpVibration : VibrationBase<PlatformerCharacter2D>
 {
-    [SerializeField] private bool _enableLandingVibration = true;
-    [SerializeField] private VibrationSettings _landingVibrationSettings;
-    [SerializeField] private bool _enableJumpingVibration = false;
-    [SerializeField] private VibrationSettings _jumpingVibrationSettings;
+    [HideInInspector] 
+    public bool _enableLandingVibration = true;
+    [HideInInspector]
+    public VibrationSettings _landingVibrationSettings;
+    [HideInInspector]
+    public bool _enableJumpingVibration = false;
+    [HideInInspector]
+    public VibrationSettings _jumpingVibrationSettings;
 
 	// Use this for initialization
 	protected override void Start ()

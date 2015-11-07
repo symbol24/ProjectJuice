@@ -74,5 +74,48 @@ public static class Extensions
         return new Quaternion(toClone.x, toClone.y, toClone.z, toClone.w);
     }
 
+    public static ButtonState GetButton(this GamePadState state, GamepadInput.GamePad.Button button)
+    {
+        ButtonState ret;
+        switch (button)
+        {
+            case GamePad.Button.A:
+                ret = state.Buttons.A;
+                break;
+            case GamePad.Button.B:
+                ret = state.Buttons.B;
+                break;
+            case GamePad.Button.Back:
+                ret = state.Buttons.Back;
+                break;
+            case GamePad.Button.LeftShoulder:
+                ret = state.Buttons.LeftShoulder;
+                break;
+            case GamePad.Button.LeftStick:
+                ret = state.Buttons.LeftStick;
+                break;
+            case GamePad.Button.RightShoulder:
+                ret = state.Buttons.RightShoulder;
+                break;
+            case GamePad.Button.RightStick:
+                ret = state.Buttons.RightStick;
+                break;
+            case GamePad.Button.Start:
+                ret = state.Buttons.Start;
+                break;
+            case GamePad.Button.X:
+                ret = state.Buttons.X;
+                break;
+            case GamePad.Button.Y:
+                ret = state.Buttons.Y;
+                break;
+            default:
+                ret = ButtonState.Released;
+                Debug.LogError("ButtonNotFound");
+                break;
+        }
+        return ret;
+
+    }
 
 }
