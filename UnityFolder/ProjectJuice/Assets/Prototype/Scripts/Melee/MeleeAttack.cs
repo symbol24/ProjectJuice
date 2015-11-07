@@ -64,6 +64,7 @@ public class MeleeAttack : ExtendedMonobehaviour
     [HideInInspector] public string AbilitySecondSound;
     [HideInInspector] public string AbilityAerial;
     private AudioSource _sound;
+    private bool _hasPlayedSheath = true;
 
     [HideInInspector] public ParticleSystem Trail;
     [HideInInspector] public ParticleSystem ClashingParticle;
@@ -108,6 +109,7 @@ public class MeleeAttack : ExtendedMonobehaviour
     // Update is called once per frame
     void Update()
     {
+        if (_delayManager.CanShoot && !_hasPlayedSheath) _hasPlayedSheath = PlaySheath();
 
         if (_delayManager.CanShoot && !m_isSwinging && ReadInput)
         {
@@ -124,8 +126,15 @@ public class MeleeAttack : ExtendedMonobehaviour
             StopAerialSwingOnLand();
     }
 
+    private bool PlaySheath()
+    {
+        SoundManager.PlaySFX(Sheath);
+        return true;
+    }
+
     private bool StartAnimatedSwing()
     {
+        _hasPlayedSheath = false;
         _delayManager.AddDelay(10000);
         if (!_collider.enabled) _collider.enabled = true;
         _isAerial = !_mouvementManager.IsGrounded;

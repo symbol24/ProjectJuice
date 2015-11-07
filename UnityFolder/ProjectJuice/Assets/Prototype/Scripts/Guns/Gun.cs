@@ -23,7 +23,7 @@ public class Gun : ExtendedMonobehaviour {
     public float m_Delay { get { return m_ShotDelay; } }
     [SerializeField] private HPScript m_HpScript;
     public HPScript m_HpScp { get { return m_HpScript; } }
-    protected bool m_HasDisplayed = true;
+    protected bool m_hasPlayedReloaded = true;
 
     [SerializeField] private SpriteRenderer m_muzzleFlash;
     [SerializeField] private List<Sprite> m_muzzleFlashes;
@@ -59,6 +59,7 @@ public class Gun : ExtendedMonobehaviour {
         {
 
             //CheckLight();
+            if (m_DelayManager.CanShoot && !m_hasPlayedReloaded) m_hasPlayedReloaded = PlayReload();
 
             if (m_Controller.m_Shoot && m_DelayManager.CanShoot)
             {
@@ -69,7 +70,7 @@ public class Gun : ExtendedMonobehaviour {
 
     public virtual void Fire()
     {
-        m_HasDisplayed = false;
+        m_hasPlayedReloaded = false;
         FireOneBullet();
 
         m_DelayManager.AddDelay(m_ShotDelay);
@@ -88,7 +89,7 @@ public class Gun : ExtendedMonobehaviour {
 
     private void CheckLight()
     {
-        if (!m_HasDisplayed && m_DelayManager.CanShoot) _lightFeedback.StartLightFeedback(m_ShotDelay);
+        if (!m_hasPlayedReloaded && m_DelayManager.CanShoot) _lightFeedback.StartLightFeedback(m_ShotDelay);
     }
 
     protected void DisplayParticles()
@@ -112,5 +113,11 @@ public class Gun : ExtendedMonobehaviour {
             }
             m_muzzleFlash.enabled = false;
         }
+    }
+
+    protected bool PlayReload()
+    {
+        SoundManager.PlaySFX(GunReloaded);
+        return true;
     }
 }
