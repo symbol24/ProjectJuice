@@ -95,6 +95,7 @@ public class Database : MonoBehaviour
     [HideInInspector] public string Landing;
     [HideInInspector] public string Dash;
     [HideInInspector] public string DashMetalGrind;
+    [HideInInspector] public string JuicePickup;
 
     void Start()
     {
