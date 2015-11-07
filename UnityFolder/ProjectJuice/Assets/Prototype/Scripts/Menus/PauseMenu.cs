@@ -113,11 +113,11 @@ public class PauseMenu : Menu {
     public void ChangePanelState()
     {
         if (m_isPaused)
-        {
             m_isPaused = !m_isPaused;
-            m_PausePanel.SetActive(m_isPaused);
-            GameManager.instance.SetPaused(m_isPaused, 1, m_IsFullSoundPause);
-        }
+
+        m_PausePanel.SetActive(m_isPaused);
+        GameManager.instance.SetPaused(m_isPaused, 1, m_IsFullSoundPause);
+
     }
 
     public void ReturnToMainMenu()
