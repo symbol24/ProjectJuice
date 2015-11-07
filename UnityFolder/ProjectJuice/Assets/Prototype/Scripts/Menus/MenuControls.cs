@@ -23,7 +23,7 @@ public class MenuControls : MonoBehaviour {
     public List<float> X { get { return m_X; } }
     public List<float> Y { get { return m_Y; } }
 
-    private FadeOut m_Fader;
+    private LoadingScreen m_Fader;
 
     void Awake()
     {
@@ -31,7 +31,7 @@ public class MenuControls : MonoBehaviour {
 
     private void M_Fader_FadeDone(object sender, System.EventArgs e)
     {
-        m_Fader = FindObjectOfType<FadeOut>();
+        m_Fader = FindObjectOfType<LoadingScreen>();
         m_Fader.FadeDone += M_Fader_FadeDone;
         m_ListofPlayers = Utilities.GetAllPlayerData();
     }

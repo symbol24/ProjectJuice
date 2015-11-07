@@ -93,6 +93,8 @@ public class GameManager : ExtendedMonobehaviour
         get { return m_CurrentState == GameState.Playing; }
     }
 
+    public bool IsLoading { get { return m_CurrentState == GameState.Loading; } }
+
     public bool IsPaused { get { return m_CurrentState == GameState.Paused; } }
 
     public bool IsCharacterSelect { get { return m_CurrentState == GameState.CharacterSelect; } }

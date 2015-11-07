@@ -3,8 +3,8 @@ using System.Collections;
 
 public class Activator : MonoBehaviour {
     [SerializeField] private Canvas _Canvas;
-    [SerializeField] private FadeOut _Loader;
-    public FadeOut Loader { get { return _Loader; } }
+    [SerializeField] private LoadingScreen _Loader;
+    public LoadingScreen Loader { get { return _Loader; } }
 
     private PlayerSpawner _spawner;
 

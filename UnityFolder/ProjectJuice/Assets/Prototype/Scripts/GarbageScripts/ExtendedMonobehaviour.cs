@@ -4,6 +4,8 @@ using System.Collections;
 
 public abstract class ExtendedMonobehaviour : MonoBehaviour, IGameObject { 
 
+    protected bool RandomBool { get { return Random.value < 0.5f; } }
+
     protected void SetRotationEulerX(float xValue)
     {
         transform.rotation = Quaternion.Euler(xValue, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z);
@@ -135,11 +137,12 @@ public abstract class ExtendedMonobehaviour : MonoBehaviour, IGameObject {
             ret.Play();
             StartCoroutine(DestroyParticleEmitter(ret, destroyTimer));
             if (isToParent) ret.transform.SetParent(point.transform);
+            /*
             if (!facingRight) {
                 Vector3 scaleTemp = ret.transform.localScale;
                 scaleTemp.x = -scaleTemp.x;
                 ret.transform.localScale = scaleTemp;
-            }
+            }*/
         }
         else
             Debug.LogWarning("Missing Particle");

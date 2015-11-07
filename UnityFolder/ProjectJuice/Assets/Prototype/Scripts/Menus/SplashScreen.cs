@@ -16,16 +16,19 @@ public class SplashScreen : MonoBehaviour {
         SoundManager.PlaySFX(CrowdClip, true);
         m_MenuControls = FindObjectOfType<MenuControls>();
         m_AllDatas = Utilities.GetAllPlayerData();
-        GameManager.instance.SetGameState(GameState.Intro);
+        GameManager.instance.SetGameState(GameState.Loading);
 	}
 	
 	// Update is called once per frame
 	void Update () {
-	    for(int i = 0; i < m_AllDatas.Count; i++)
+        if (GameManager.instance.CurrentState == GameState.Intro)
         {
-            if (m_MenuControls.Confirm[i] || m_MenuControls._Start[i])
+            for (int i = 0; i < m_AllDatas.Count; i++)
             {
-                StartCoroutine(GotoNextScene());
+                if (m_MenuControls.Confirm[i] || m_MenuControls._Start[i])
+                {
+                    StartCoroutine(GotoNextScene());
+                }
             }
         }
 	}

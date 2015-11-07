@@ -13,7 +13,7 @@ public class PlayerSelect : Menu {
     [SerializeField] private Text[] m_PlayerTexts;
     public Text[] HeaderText { get { return m_PlayerTexts; } set { m_PlayerTexts = value; } }
     [SerializeField] private GameObject[] m_PlayerSelectPanels;
-    FadeOut m_Fader;
+    LoadingScreen m_Fader;
     [Range(0,1)][SerializeField] private float m_delayTransition = 0.5f;
     [HideInInspector] public int NextScene;
     [HideInInspector] public string StartSound;
@@ -21,9 +21,10 @@ public class PlayerSelect : Menu {
 
     void Awake()
     {
-        m_Fader = FindObjectOfType<FadeOut>();
+        m_Fader = FindObjectOfType<LoadingScreen>();
         m_Fader.FadeDone += M_Fader_FadeDone;
         m_Fader.LoadDone += M_Fader_LoadDone;
+        GameManager.instance.SetGameState(GameState.Loading);
     }
 
     private void M_Fader_LoadDone(object sender, System.EventArgs e)
@@ -43,7 +44,6 @@ public class PlayerSelect : Menu {
             if (pd.isActivated)
                 pd.isActivated = false;
         }
-        GameManager.instance.SetGameState(GameState.CharacterSelect);
     }
 
     // Update is called once per frame

@@ -30,7 +30,7 @@ public class PlayerSpawner : MonoBehaviour
     public List<GameObject> Players { get { return m_Players; } }
     [SerializeField]
     private int[] m_PlayerLayerIDs = { 15, 16, 17, 18 };
-    private FadeOut m_Fader;
+    private LoadingScreen m_Fader;
     private Activator _activator;
     private bool _subscribed = false;
 
@@ -43,12 +43,12 @@ public class PlayerSpawner : MonoBehaviour
 
     void Start()
     {
-        m_Fader = FindObjectOfType<FadeOut>();
+        m_Fader = FindObjectOfType<LoadingScreen>();
         if (m_Fader == null && _activator != null) m_Fader = _activator.Loader;
         SubscribeToEvents(m_Fader);
     }
 
-    public void SubscribeToEvents(FadeOut toUse)
+    public void SubscribeToEvents(LoadingScreen toUse)
     {
         if (!_subscribed)
         {
@@ -118,6 +118,7 @@ public class PlayerSpawner : MonoBehaviour
 
     public void RespawnPlayers()
     {
+        m_Fader.Respawn();
         DestroyRemainingSpawnedPlayers();
         SpawnPlayers();
     }

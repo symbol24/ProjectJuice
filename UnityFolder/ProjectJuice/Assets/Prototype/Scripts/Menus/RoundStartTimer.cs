@@ -9,7 +9,7 @@ public class RoundStartTimer : MonoBehaviour {
     [Range(0, 3)][SerializeField] float m_delayAfterGo = 0.5f;
     [Range(0, 10)][SerializeField] int m_amountOfSeconds = 5;
     public int AmountOfSeconds { get { return m_amountOfSeconds; } }
-    private FadeOut m_fader;
+    private LoadingScreen m_fader;
     [SerializeField] private Animator m_PurpleAnimator;
     [HideInInspector] public string NumberClipName;
     [HideInInspector] public string GoClipName;
@@ -17,7 +17,7 @@ public class RoundStartTimer : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        if (m_fader == null) m_fader = FindObjectOfType<FadeOut>();
+        if (m_fader == null) m_fader = FindObjectOfType<LoadingScreen>();
         if(m_fader != null) m_fader.FadeDone += StartCountdown;
         m_TimerText.text = Database.instance.GameTexts[16];
         GameManager.instance.InjectRoundStartTimer(this);

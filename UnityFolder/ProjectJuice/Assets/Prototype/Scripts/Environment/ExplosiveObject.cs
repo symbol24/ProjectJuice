@@ -55,7 +55,7 @@ public class ExplosiveObject : HPBase
     
     [Range(0,10)][SerializeField] public int _bulletsToGive = 5;
 
-    private FadeOut m_fade;
+    private LoadingScreen m_fade;
     private bool isMuted = true;
 
     [HideInInspector] public string Pushing;
@@ -76,7 +76,7 @@ public class ExplosiveObject : HPBase
         HpChanged += OnHpChanged;
         _delayManager = GetComponent<DelayManager>();
         _delayManager.Reset();
-        m_fade = FindObjectOfType<FadeOut>();
+        m_fade = FindObjectOfType<LoadingScreen>();
         if (m_fade != null) m_fade.FadeDone += M_fade_FadeDone;
         else isMuted = false;
     }
