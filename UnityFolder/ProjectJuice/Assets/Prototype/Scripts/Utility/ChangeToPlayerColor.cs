@@ -6,7 +6,7 @@ public class ChangeToPlayerColor : MonoBehaviour
 {
     //[SerializeField] private PlayerData _playerData;
     [SerializeField] private SpriteRenderer _spriteRenderer;
-    [SerializeField] private Platformer2DUserControl _platformer2DUserControl;
+    [SerializeField] private Platformer2DUserControlXInput _platformer2DUserControl;
     [SerializeField] private IPlatformer2DUserControl _character;
     private float _originalAlpha;
 
@@ -55,7 +55,7 @@ public class ChangeToPlayerColor : MonoBehaviour
 
         if (_spriteRenderer != null) _originalAlpha = _spriteRenderer.color.a;
 
-        if (_character == null) _character = GetComponentInParent<IPlatformer2DUserControl>();
+        if (_character == null) Character = GetComponentInParent<IPlatformer2DUserControl>();
 	    if (_character == null && _platformer2DUserControl != null) Character = _platformer2DUserControl;
 	}
 	
