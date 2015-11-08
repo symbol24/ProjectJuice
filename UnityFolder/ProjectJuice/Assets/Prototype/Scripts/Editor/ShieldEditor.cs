@@ -29,7 +29,7 @@ public class ShieldEditor : Editor {
         _choice[5] = EditorUtilities.GetSelectedClip(_listOfClips, leShield.CoolDown);
         _choice[6] = EditorUtilities.GetSelectedClip(_listOfClips, leShield.AbrosbExplosion);
 
-        _particle[1] = EditorUtilities.GetSelectedParticle(leShield.m_MuzzleSmoke);
+        _particle[0] = EditorUtilities.GetSelectedParticle(leShield.m_MuzzleSmoke);
 
         _choice[0] = EditorGUILayout.Popup("Activate Shield SFX", _choice[0], _listOfClips);
         _choice[1] = EditorGUILayout.Popup("Absorb Bullet SFX", _choice[1], _listOfClips);
