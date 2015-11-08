@@ -85,7 +85,7 @@ public class PlayerSpawner : MonoBehaviour
         foreach (PlayerData pd in m_ListofPlayers)
         {
             GameObject temp = Instantiate(m_PlayerPrefab, m_Spawners[i].transform.position, m_Spawners[i].transform.rotation) as GameObject;
-            Platformer2DUserControl pUserControl = temp.GetComponent<Platformer2DUserControl>();
+            IPlatformer2DUserControl pUserControl = temp.GetComponent<IPlatformer2DUserControl>();
             PlatformerCharacter2D pc2d = temp.GetComponent<PlatformerCharacter2D>();
             ArcShooting gun = temp.GetComponent<ArcShooting>();
             pUserControl.PlayerID = pd.playerID;
@@ -168,7 +168,7 @@ public class PlayerSpawner : MonoBehaviour
         {
             if (pg != null)
             {
-                Platformer2DUserControl controls = pg.GetComponent<Platformer2DUserControl>();
+                IPlatformer2DUserControl controls = pg.GetComponent<IPlatformer2DUserControl>();
                 if (controls != null)
                     controls.FlushInputs();
 

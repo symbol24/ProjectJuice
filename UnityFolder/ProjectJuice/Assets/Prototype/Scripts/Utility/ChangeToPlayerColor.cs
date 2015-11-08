@@ -54,7 +54,10 @@ public class ChangeToPlayerColor : MonoBehaviour
 	    if (_spriteRenderer == null) Debug.LogError("SpriteRenderer not found");
 
         if (_spriteRenderer != null) _originalAlpha = _spriteRenderer.color.a;
-        if (_platformer2DUserControl != null) Character = _platformer2DUserControl;        
+
+
+        if (_character == null) _character = GetComponentInParent<IPlatformer2DUserControl>();
+	    if (_character == null && _platformer2DUserControl != null) Character = _platformer2DUserControl;
 	}
 	
 	// Update is called once per frame

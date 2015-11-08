@@ -37,6 +37,11 @@ public class Platformer2DUserControlKeyboard : MonoBehaviour, IPlatformer2DUserC
     private KeyCode _m_imobilize = KeyCode.LeftAlt;
     
     public bool m_SpecialStay { get; private set; }
+    public PlayerIDs PlayerID { get; set; }
+    public void FlushInputs()
+    {
+        Debug.Log("AttemptingToFlushInputs");
+    }
 
     private bool _mFacingRight = true;
     public bool m_Imobilize { get; private set; }
