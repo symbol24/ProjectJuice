@@ -2,6 +2,7 @@
 using System.Linq;
 using UnityEngine;
 using System.Collections;
+using System;
 
 public class Bullet : ExtendedMonobehaviour, IDamaging {
     [SerializeField] private float m_baseSpeed;
@@ -132,7 +133,7 @@ public class Bullet : ExtendedMonobehaviour, IDamaging {
     public void ShootBullet(float speed)
     {
         if (speed < 1)
-            speed = m_baseSpeed * Random.Range(speed,1);
+            speed = m_baseSpeed * UnityEngine.Random.Range(speed,1);
         m_RigidBody.AddForce(transform.up * speed);
     }
 
@@ -140,4 +141,5 @@ public class Bullet : ExtendedMonobehaviour, IDamaging {
     {
         ImpactForceSettings = toUpdate;
     }
+
 }

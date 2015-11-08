@@ -125,11 +125,11 @@ namespace UnityStandardAssets._2D
                 m_Anim.SetFloat("vSpeed", m_Rigidbody2D.velocity.y);
 
 
-                Move(m_Controller.m_XAxis, m_Controller.m_Dash, m_Controller.m_Jump, m_Controller.m_Imobilize, m_Controller.m_Shoot);
+                Move(m_Controller.m_XAxis, m_Controller.m_Dash, m_Controller.m_Jump, m_Controller.m_Imobilize, m_Controller.m_Shoot, m_Controller.m_Special);
             }
         }
 
-        public void Move(float move, bool dash, bool jump, bool imobile, bool isShooting)
+        public void Move(float move, bool dash, bool jump, bool imobile, bool isShooting, bool doubleJump)
         {
             //CheckPassThrough();
 
@@ -173,6 +173,7 @@ namespace UnityStandardAssets._2D
             }
 
             // If the player should jump...
+            if (m_HasDoubleJump && !IsGrounded && !m_UsedDoubleJump) jump = jump || doubleJump;
             if (jump) Jump();
 
             // If the player should dash

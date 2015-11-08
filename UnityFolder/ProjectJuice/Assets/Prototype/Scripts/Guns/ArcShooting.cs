@@ -26,7 +26,7 @@ public class ArcShooting : Gun
 
     public override void Fire()
     {
-        m_HasDisplayed = false;
+        m_hasPlayedReloaded = false;
         StartCoroutine(BurstFire());
     }
 
@@ -43,17 +43,10 @@ public class ArcShooting : Gun
             else
             {
                 m_DelayManager.AddDelay(m_Delay);
-                m_DelayManager.CanShootDelayResetted += MDelayManagerOnCanShootDelayResetted;
             }
 
             yield return new WaitForSeconds(m_BurstDelay);
         }
         _lightFeedback.StartLightFeedback(m_ShotDelay);
-    }
-
-    private void MDelayManagerOnCanShootDelayResetted(object sender, EventArgs eventArgs)
-    {
-        m_DelayManager.CanShootDelayResetted -= MDelayManagerOnCanShootDelayResetted;
-        SoundManager.PlaySFX(GunReloaded);
     }
 }

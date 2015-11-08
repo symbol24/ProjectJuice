@@ -22,7 +22,8 @@ public class PurpleTimer : MonoBehaviour {
             SoundManager.PlaySFX(m_roundMenu.GoClipName);
         else
             SoundManager.PlaySFX(m_roundMenu.NumberClipName);
-        m_purpleAnimator.SetBool("Play", false);
+
+        m_roundMenu.SetBool(m_purpleAnimator, "Play", false);
         m_animCounter++;
         if (m_animCounter > m_roundMenu.AmountOfSeconds) m_animCounter = 0;
     }

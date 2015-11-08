@@ -124,6 +124,7 @@ public class HPScript : HPBase
             {
                 CurrentHp += checkPowerUp.HPRecov;
                 checkPowerUp.Consumed();
+                SoundManager.PlaySFX(Database.instance.JuicePickup);
             }
         }
     }

@@ -56,7 +56,11 @@ public class ChangeToPlayerColor : MonoBehaviour
         if (_spriteRenderer != null) _originalAlpha = _spriteRenderer.color.a;
 
 
+<<<<<<< HEAD
         if (_character == null) _character = GetComponentInParent<IPlatformer2DUserControl>();
+=======
+        if (_character == null) Character = GetComponentInParent<IPlatformer2DUserControl>();
+>>>>>>> 74cc0824d6118e9a95dab7b99f9fa00d2a5b59df
 	    if (_character == null && _platformer2DUserControl != null) Character = _platformer2DUserControl;
 	}
 	

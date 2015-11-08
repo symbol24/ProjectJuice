@@ -1,19 +1,44 @@
 fileFormatVersion: 2
-guid: fe7745bf0a550a043961de840f2d3116
-timeCreated: 1445560435
+guid: 38aa5eed8a70cba408b035f0044d1114
+timeCreated: 1445914559
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: MuzzleFlash_0
-    21300002: MuzzleFlash_1
-    21300004: MuzzleFlash_2
-    21300006: MuzzleFlash_3
-    21300008: MuzzleFlash_4
-    21300010: MuzzleFlash_5
+    21300000: MuzzleFlash_psd_0
+    21300002: MuzzleFlash_psd_1
+    21300004: MuzzleFlash_psd_2
+    21300006: MuzzleFlash_psd_3
+    21300008: MuzzleFlash_psd_4
+    21300010: MuzzleFlash_psd_5
+    21300012: MuzzleFlash_psd_6
+    21300014: MuzzleFlash_psd_7
+    21300016: MuzzleFlash_psd_8
+    21300018: MuzzleFlash_psd_9
+    21300020: MuzzleFlash_psd_10
+    21300022: MuzzleFlash_psd_11
+    21300024: MuzzleFlash_psd_12
+    21300026: MuzzleFlash_psd_13
+    21300028: MuzzleFlash_psd_14
+    21300030: MuzzleFlash_psd_15
+    21300032: MuzzleFlash_psd_16
+    21300034: MuzzleFlash_psd_17
+    21300036: MuzzleFlash_psd_18
+    21300038: MuzzleFlash_psd_19
+    21300040: MuzzleFlash_psd_20
+    21300042: MuzzleFlash_psd_21
+    21300044: MuzzleFlash_psd_22
+    21300046: MuzzleFlash_psd_23
+    21300048: MuzzleFlash_psd_24
+    21300050: MuzzleFlash_psd_25
+    21300052: MuzzleFlash_psd_26
+    21300054: MuzzleFlash_psd_27
+    21300056: MuzzleFlash_psd_28
+    21300058: MuzzleFlash_psd_29
+    21300060: MuzzleFlash_psd_30
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
-    enableMipMap: 0
+    enableMipMap: 1
     linearTexture: 0
     correctGamma: 0
     fadeOut: 0
@@ -43,67 +68,58 @@ TextureImporter:
   lightmap: 0
   rGBM: 0
   compressionQuality: 50
+  allowsAlphaSplitting: 0
   spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: .5, y: .5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spritePixelsToUnits: 72
+  spritePixelsToUnits: 100
   alphaIsTransparency: 1
   textureType: 8
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: MuzzleFlash_0
+    - name: MuzzleFlash_psd_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 74
-        width: 140
-        height: 142
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: MuzzleFlash_1
-      rect:
-        serializedVersion: 2
-        x: 283
-        y: 57
-        width: 292
-        height: 168
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: MuzzleFlash_2
-      rect:
-        serializedVersion: 2
-        x: 603
+        x: 853
         y: 37
-        width: 284
-        height: 223
-      alignment: 0
-      pivot: {x: .5, y: .5}
+        width: 268
+        height: 206
+      alignment: 9
+      pivot: {x: .109381601, y: .532047451}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: MuzzleFlash_3
+    - name: MuzzleFlash_psd_1
       rect:
         serializedVersion: 2
-        x: 942
-        y: 35
-        width: 192
-        height: 222
-      alignment: 0
-      pivot: {x: .5, y: .5}
+        x: 578
+        y: 23
+        width: 260
+        height: 228
+      alignment: 9
+      pivot: {x: .0284430869, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: MuzzleFlash_4
+    - name: MuzzleFlash_psd_2
       rect:
         serializedVersion: 2
-        x: 480
-        y: 65
-        width: 8
-        height: 7
-      alignment: 0
-      pivot: {x: .5, y: .5}
+        x: 305
+        y: 34
+        width: 262
+        height: 209
+      alignment: 9
+      pivot: {x: .0212436114, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: MuzzleFlash_psd_3
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 30
+        width: 272
+        height: 230
+      alignment: 9
+      pivot: {x: .0215084199, y: .475396991}
       border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 

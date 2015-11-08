@@ -19,8 +19,10 @@ public class MeleeAttack : ExtendedMonobehaviour
 
     [SerializeField] private bool _abilityAerialCancelOnGround = true;
 
-    private bool isGroundedAtStart = false;
+    private bool _isAerial = false;
 
+    [SerializeField] private bool _abilityUseDifferentAerialDmg = true;
+    public bool UsedDifferentAeralDmg { get { return _abilityUseDifferentAerialDmg; } }
 
     #endregion
 
@@ -43,6 +45,15 @@ public class MeleeAttack : ExtendedMonobehaviour
 
     [Range(0,3)]public float _delayAfterSwing = 0.5f;
 
+    private bool ReadInput
+    {
+        get
+        {
+            if (isAbility) return _inputManager.m_Melee || _inputManager.m_Special;
+            else return _inputManager.m_Melee;
+        }
+    }
+
     #region SFX and FX
     [HideInInspector] public string Swipe;
     [HideInInspector] public string PlayerImpact;
@@ -53,6 +64,7 @@ public class MeleeAttack : ExtendedMonobehaviour
     [HideInInspector] public string AbilitySecondSound;
     [HideInInspector] public string AbilityAerial;
     private AudioSource _sound;
+    private bool _hasPlayedSheath = true;
 
     [HideInInspector] public ParticleSystem Trail;
     [HideInInspector] public ParticleSystem ClashingParticle;
@@ -97,8 +109,9 @@ public class MeleeAttack : ExtendedMonobehaviour
     // Update is called once per frame
     void Update()
     {
+        if (_delayManager.CanShoot && !_hasPlayedSheath) _hasPlayedSheath = PlaySheath();
 
-        if (_delayManager.CanShoot && !m_isSwinging && _inputManager.m_Melee)
+        if (_delayManager.CanShoot && !m_isSwinging && ReadInput)
         {
             if (m_animator != null)
             {
@@ -109,19 +122,27 @@ public class MeleeAttack : ExtendedMonobehaviour
 
         _impactForceSettings.DirectionComingForm = _inputManager.m_FacingRight ? Direction2D.Left : Direction2D.Right;
 
-        if (_sound != null && _sound.isPlaying && !isGroundedAtStart && _mouvementManager.IsGrounded)
+        if (_sound != null && _sound.isPlaying && _isAerial && _mouvementManager.IsGrounded)
             StopAerialSwingOnLand();
+    }
+
+    private bool PlaySheath()
+    {
+        SoundManager.PlaySFX(Sheath);
+        return true;
     }
 
     private bool StartAnimatedSwing()
     {
+        _hasPlayedSheath = false;
+        _delayManager.AddDelay(10000);
         if (!_collider.enabled) _collider.enabled = true;
-        isGroundedAtStart = _mouvementManager.IsGrounded;
+        _isAerial = !_mouvementManager.IsGrounded;
         if (isAbility)
         {
             _mouvementManager.ChangeCanFlip();
 
-            if (!isGroundedAtStart)
+            if (_isAerial)
             {
                 _sound = SoundManager.PlaySFX(AbilityAerial);
                 m_animator.SetBool("Air", true);
@@ -147,6 +168,9 @@ public class MeleeAttack : ExtendedMonobehaviour
         {
             _sound.Stop();
             ResetSwing("Air", false);
+            _mouvementManager.ChangeCanFlip();
+            _isAerial = !_mouvementManager.IsGrounded;
+            _delayManager.SetDelay(_delayAfterSwing);
         }
     }
 
@@ -155,15 +179,19 @@ public class MeleeAttack : ExtendedMonobehaviour
         _collider.enabled = true;
         m_isSwinging = false;
         m_animator.SetBool(change, with);
-        _delayManager.AddDelay(_delayAfterSwing);
+        _delayManager.SetDelay(_delayAfterSwing);
         _wasConsumed = false;
-        if(isAbility) _mouvementManager.ChangeCanFlip();
+        if (isAbility)
+        {
+            _mouvementManager.ChangeCanFlip();
+            _isAerial = !_mouvementManager.IsGrounded;
+        }
     }
 
     public void StartTrail()
     {
         float timer = _trailAerialLifeTime;
-        if (isAbility && isGroundedAtStart) timer = _trailGroundLifeTime;
+        if (isAbility && !_isAerial) timer = _trailGroundLifeTime;
 
         InstatiateParticle(Trail, _ParticleReference, true, timer);
     }
@@ -178,8 +206,12 @@ public class MeleeAttack : ExtendedMonobehaviour
     public float Damage
     {
         get {
-            if (isAbility)
-                return Database.instance.MeleeAbilityDamage;
+            if (isAbility) {
+                if (_isAerial && _abilityUseDifferentAerialDmg)
+                    return Database.instance.MeleeAbilityAerialDamage;
+                else
+                    return Database.instance.MeleeAbilityDamage;
+            }
             else
                 return Database.instance.MeleeBaseDamage;
         }

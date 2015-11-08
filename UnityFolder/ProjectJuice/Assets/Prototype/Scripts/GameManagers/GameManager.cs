@@ -25,7 +25,9 @@ public class GameManager : ExtendedMonobehaviour
 
     void Awake()
     {
-        //DontDestroyOnLoad(this);
+        GameManager[] list = FindObjectsOfType<GameManager>();
+        if (list.Length > 1) Destroy(gameObject);
+        else DontDestroyOnLoad(gameObject);
     }
     #endregion
 
@@ -93,13 +95,15 @@ public class GameManager : ExtendedMonobehaviour
         get { return m_CurrentState == GameState.Playing; }
     }
 
+    public bool IsLoading { get { return m_CurrentState == GameState.Loading; } }
+
     public bool IsPaused { get { return m_CurrentState == GameState.Paused; } }
 
     public bool IsCharacterSelect { get { return m_CurrentState == GameState.CharacterSelect; } }
 
     private void CheckEndOfRound(object sender, PlayerScoreEventArgs e)
     {
-        
+        ClearRoundSFX();
         if (e.IsThereAWinner) {
             if (CheckIfMatchWinner())
             {
@@ -119,6 +123,17 @@ public class GameManager : ExtendedMonobehaviour
         }
 
         
+    }
+
+    private void ClearRoundSFX()
+    {
+        AudioSource[] list = FindObjectsOfType<AudioSource>();
+        foreach(AudioSource As in list)
+        {
+            if (As.isPlaying) As.Stop();
+
+            //if (!As.isPlaying) Destroy(As.gameObject);
+        }
     }
 
     private bool CheckIfMatchWinner()
@@ -157,5 +172,6 @@ public class GameManager : ExtendedMonobehaviour
     public void SetGameState(GameState newState)
     {
         m_CurrentState = newState;
+        //print("Loaded level " + Application.loadedLevel + " new GameState " + m_CurrentState);
     }
 }
