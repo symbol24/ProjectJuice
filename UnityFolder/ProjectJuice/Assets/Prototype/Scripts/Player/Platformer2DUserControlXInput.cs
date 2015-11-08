@@ -4,39 +4,15 @@ using XInputDotNetPure;
 
 public class Platformer2DUserControlXInput : ExtendedMonobehaviour, IPlatformer2DUserControl {
 
-	// Use this for initialization
-<<<<<<< HEAD
-	void Start () {
-	
-	}
-=======
 	void Awake() {
         m_FacingRight = true;
     }
->>>>>>> 74cc0824d6118e9a95dab7b99f9fa00d2a5b59df
 	
 	// Update is called once per frame
 	void Update () {
 	    if (GameManager.instance.IsPlaying)
 	    {
 	        var state = GamePad.GetState(m_PlayerData.GamepadIndex.ToPlayerIndex());
-<<<<<<< HEAD
-	        m_Jump = state.GetButton(m_JumpButton) == ButtonState.Pressed;
-	        m_Dash = state.GetButton(m_DashButton) == ButtonState.Pressed;
-	        m_Shoot = state.GetButton(m_ShootButton) == ButtonState.Pressed;
-	        m_Melee = state.GetButton(m_MeleeButton) == ButtonState.Pressed;
-	        m_SpecialStay = m_Special = state.GetButton(m_SpecialButton) == ButtonState.Pressed;
-	        m_Imobilize = state.GetButton(m_ImobilizeButton) == ButtonState.Pressed;
-	        m_XAxis = state.ThumbSticks.Left.X;
-	        m_YAxis = state.ThumbSticks.Right.Y;
-	    }
-	}
-    
-
-    //Gamepad buttons used
-    
-=======
-
             var currentJump = state.GetButton(m_JumpButton);
             var currentDash = state.GetButton(m_DashButton);
             var currentSpecial = state.GetButton(m_SpecialButton);
@@ -66,7 +42,6 @@ public class Platformer2DUserControlXInput : ExtendedMonobehaviour, IPlatformer2
     private ButtonState previousDashButton = ButtonState.Released;
     private ButtonState previousSpecial = ButtonState.Released;
 
->>>>>>> 74cc0824d6118e9a95dab7b99f9fa00d2a5b59df
     [SerializeField]
     private GamepadInput.GamePad.Button m_JumpButton = GamepadInput.GamePad.Button.A;
     [SerializeField]
@@ -96,11 +71,7 @@ public class Platformer2DUserControlXInput : ExtendedMonobehaviour, IPlatformer2
     {
         get
         {
-<<<<<<< HEAD
-            if (_m_playerData == null)
-=======
             if (_m_playerData == null && m_PlayerID != PlayerIDs.X)
->>>>>>> 74cc0824d6118e9a95dab7b99f9fa00d2a5b59df
             {
                 _m_playerData = Utilities.GetPlayerData(m_PlayerID);
             }
@@ -108,12 +79,6 @@ public class Platformer2DUserControlXInput : ExtendedMonobehaviour, IPlatformer2
         }
     }
     public bool m_SpecialStay { get; private set; }
-<<<<<<< HEAD
-    public PlayerIDs PlayerID { get; set; }
-    public void FlushInputs()
-    {
-        //throw new System.NotImplementedException();
-=======
     private PlayerIDs _playerId = PlayerIDs.X;
     public PlayerIDs PlayerID { get { return _playerId; } set
         {
@@ -135,6 +100,5 @@ public class Platformer2DUserControlXInput : ExtendedMonobehaviour, IPlatformer2
         m_Special = false;
         m_Imobilize = false;
         m_SpecialStay = false;
->>>>>>> 74cc0824d6118e9a95dab7b99f9fa00d2a5b59df
     }
 }
