@@ -87,11 +87,13 @@ public class shield : Gun {
             {
                 case DamageType.Melee:
                     _meleeColliderLimiter++;
-                    if(_meleeColliderLimiter == 1)
+                    if (_meleeColliderLimiter == 1)
+                    {
                         AbsordBullets(damaging);
-                    StartCoroutine(ResetMeleeLimiter());
-                    MeleeDamagingCollider melee = damaging as MeleeDamagingCollider;
-                    m_AbsorbAudioSource = PlayNewSound(m_AbsorbAudioSource, melee._meleeAttack.Clash);
+                        StartCoroutine(ResetMeleeLimiter());
+                        MeleeDamagingCollider melee = damaging as MeleeDamagingCollider;
+                        m_AbsorbAudioSource = PlayNewSound(m_AbsorbAudioSource, melee._meleeAttack.Clash);
+                    }
                     break;
                 case DamageType.Explosive:
                     AbsordBullets(damaging);
