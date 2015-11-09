@@ -34,16 +34,12 @@ public class Gun : ExtendedMonobehaviour {
     [HideInInspector] public ParticleSystem m_MuzzleSmoke;
     [Range(0, 5)][SerializeField] private float m_MuzzleSmokeLifeTime = 0.5f;
 
-    protected LightFeedbackTemp _lightFeedback;
-
     protected virtual void Start()
     {
         if (m_GunReference == null) m_GunReference = GetComponentInChildren<gunRef>().gameObject;
         m_Controller = GetComponent<IPlatformer2DUserControl>();
         m_DelayManager = GetComponent<DelayManager>();
         if(m_HpScript == null) m_HpScript = GetComponent<HPScript>();
-        _lightFeedback = GetComponent<LightFeedbackTemp>();
-        _lightFeedback.LightDone += ResetDelayManager;
         if (m_muzzleFlash != null && m_muzzleFlash.enabled) m_muzzleFlash.enabled = false;
     }
 
@@ -85,11 +81,6 @@ public class Gun : ExtendedMonobehaviour {
         SoundManager.PlaySFX(GunShot);
         DisplayParticles();
 
-    }
-
-    private void CheckLight()
-    {
-        if (!m_hasPlayedReloaded && m_DelayManager.CanShoot) _lightFeedback.StartLightFeedback(m_ShotDelay);
     }
 
     protected void DisplayParticles()

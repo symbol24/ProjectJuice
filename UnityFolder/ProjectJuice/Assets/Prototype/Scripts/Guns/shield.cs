@@ -21,7 +21,6 @@ public class shield : Gun {
     private AudioSource m_ActiveDeactiveAudioSource = new AudioSource();
     private AudioSource m_AbsorbAudioSource = new AudioSource();
     private AudioSource m_FullChargeAudioSource = new AudioSource();
-    //[Range(0,5)][SerializeField] private float m_ActiveTime = 1.0f;
     [SerializeField] private Light m_Light;
     [SerializeField]
     private bool m_isDebugFullTest = false;
@@ -55,7 +54,7 @@ public class shield : Gun {
 
             if (m_Controller.m_FacingRight != m_FacingRight) FlipPosition();
 
-            CheckLight();
+            CheckReload();
             
             if (m_isDebugFullTest && m_CurrentCount == 0 && m_DelayManager.CanShield) m_CurrentCount = 10;
         }
@@ -121,13 +120,10 @@ public class shield : Gun {
         _meleeColliderLimiter = 0;
     }
 
-    private void CheckLight()
+    private void CheckReload()
     {
         if (m_CanShootBack)
         {
-            if (!m_Light.enabled)
-                m_Light.enabled = true;
-
             if (m_DelayManager.SoundReady)
             {
                 m_FullChargeAudioSource = PlayNewSound(m_FullChargeAudioSource, FullCharge);
@@ -136,11 +132,8 @@ public class shield : Gun {
         }
         else
         {
-            if (m_Light.enabled)
-            {
-                m_Light.enabled = false;
-                if(m_FullChargeAudioSource != null && m_FullChargeAudioSource.isPlaying) m_FullChargeAudioSource.Stop();
-            }
+            //I dont remember what this was for damn...
+            //if(m_FullChargeAudioSource != null && m_FullChargeAudioSource.isPlaying) m_FullChargeAudioSource.Stop();
         }
     }
 
