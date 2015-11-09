@@ -88,6 +88,7 @@ namespace UnityStandardAssets._2D
         [HideInInspector] public ParticleSystem m_DashBodyThrusters;
         [HideInInspector] public ParticleSystem m_GroundDashGrinding;
         [HideInInspector] public ParticleSystem m_DashChromaticAberation;
+        [HideInInspector] public ParticleSystem m_DashParticle;
         [SerializeField] private GameObject m_BackThrusterPoint;
         [SerializeField] private GameObject m_FeetPoint;
 

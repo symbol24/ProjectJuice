@@ -4,7 +4,6 @@ using XInputDotNetPure;
 
 public class Platformer2DUserControlXInput : ExtendedMonobehaviour, IPlatformer2DUserControl {
 
-	// Use this for initialization
 	void Awake() {
         m_FacingRight = true;
     }
@@ -14,7 +13,6 @@ public class Platformer2DUserControlXInput : ExtendedMonobehaviour, IPlatformer2
 	    if (GameManager.instance.IsPlaying)
 	    {
 	        var state = GamePad.GetState(m_PlayerData.GamepadIndex.ToPlayerIndex());
-
             var currentJump = state.GetButton(m_JumpButton);
             var currentDash = state.GetButton(m_DashButton);
             var currentSpecial = state.GetButton(m_SpecialButton);

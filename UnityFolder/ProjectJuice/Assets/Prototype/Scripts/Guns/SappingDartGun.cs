@@ -45,8 +45,6 @@ public class SappingDartGun : ExtendedMonobehaviour {
     [HideInInspector] public ParticleSystem m_firingParticle;
     [Range(0, 5)][SerializeField] private float m_ParticleLifetime = 0.3f;
 
-    private LightFeedbackTemp _lightFeedback;
-
     private AudioSource m_SappingAudioSource;
 
     void Start()
@@ -54,7 +52,6 @@ public class SappingDartGun : ExtendedMonobehaviour {
         _delayManager = GetComponent<DelayManager>();
         _inputManager = GetComponent<IPlatformer2DUserControl>();
         _hpScript = GetComponent<HPScript>();
-        _lightFeedback = GetComponent<LightFeedbackTemp>();
 
     }
 
@@ -163,7 +160,6 @@ public class SappingDartGun : ExtendedMonobehaviour {
     private void CoolDownEffects()
     {
         SoundManager.PlaySFX(CoolDown);
-        _lightFeedback.StartLightFeedback(_shootDelay);
     }
 
     private void Dart_JuiceSucked(object sender, JuiceSuckedEventArgs e)

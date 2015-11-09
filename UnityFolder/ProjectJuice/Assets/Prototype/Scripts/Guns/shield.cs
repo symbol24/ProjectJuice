@@ -21,10 +21,10 @@ public class shield : Gun {
     private AudioSource m_ActiveDeactiveAudioSource = new AudioSource();
     private AudioSource m_AbsorbAudioSource = new AudioSource();
     private AudioSource m_FullChargeAudioSource = new AudioSource();
-    //[Range(0,5)][SerializeField] private float m_ActiveTime = 1.0f;
     [SerializeField] private Light m_Light;
     [SerializeField]
     private bool m_isDebugFullTest = false;
+    private int _meleeColliderLimiter = 0;
 
     [HideInInspector] public string Activate;
     [HideInInspector] public string AbsorbBullet;
@@ -54,7 +54,7 @@ public class shield : Gun {
 
             if (m_Controller.m_FacingRight != m_FacingRight) FlipPosition();
 
-            CheckLight();
+            CheckReload();
             
             if (m_isDebugFullTest && m_CurrentCount == 0 && m_DelayManager.CanShield) m_CurrentCount = 10;
         }
@@ -78,46 +78,52 @@ public class shield : Gun {
 
     public void RoutedTriggerEnter(Collider2D collision)
     {
-        Bullet bullet = collision.gameObject.GetComponent<Bullet>();
-        MeleeDamagingCollider melee = collision.gameObject.GetComponent<MeleeDamagingCollider>();
-        var explosive = collision.gameObject.GetComponent<IDamaging>();
-        Dart dart = collision.gameObject.GetComponent<Dart>();
-        if (bullet != null)
-        {
-            bullet.Consumed();
-            OnBulletAbsorbed();
-            if (m_CurrentCount < m_MaxBullets) m_CurrentCount += bullet.BulletsToGiveShield;
-            m_AbsorbAudioSource = PlayNewSound(m_AbsorbAudioSource, AbsorbBullet);
-        }
+        var damaging = collision.gameObject.GetComponent<IDamaging>();
 
-        if(melee != null)
+        if (damaging != null)
         {
-            if (m_CurrentCount < m_MaxBullets) m_CurrentCount += melee.BulletsToGiveShield;
-            melee.Consumed();
-            OnBulletAbsorbed();
-            m_AbsorbAudioSource = PlayNewSound(m_AbsorbAudioSource, melee._meleeAttack.Clash);
+            switch (damaging.TypeOfDamage)
+            {
+                case DamageType.Melee:
+                    _meleeColliderLimiter++;
+                    if (_meleeColliderLimiter == 1)
+                    {
+                        AbsordBullets(damaging);
+                        StartCoroutine(ResetMeleeLimiter());
+                        MeleeDamagingCollider melee = damaging as MeleeDamagingCollider;
+                        m_AbsorbAudioSource = PlayNewSound(m_AbsorbAudioSource, melee._meleeAttack.Clash);
+                    }
+                    break;
+                case DamageType.Explosive:
+                    AbsordBullets(damaging);
+                    m_AbsorbAudioSource = PlayNewSound(m_AbsorbAudioSource, AbrosbExplosion);
+                    break;
+                default:
+                    AbsordBullets(damaging);
+                    m_AbsorbAudioSource = PlayNewSound(m_AbsorbAudioSource, AbsorbBullet);
+                    break;
+            }
+            damaging.Consumed();
         }
-        if(explosive != null)
-        {
-            if (m_CurrentCount < m_MaxBullets) m_CurrentCount += explosive.BulletsToGiveShield;
-            OnBulletAbsorbed();
-            m_AbsorbAudioSource = PlayNewSound(m_AbsorbAudioSource, AbrosbExplosion);
-        }
-        if(dart != null)
-        {
-            if (m_CurrentCount < m_MaxBullets) m_CurrentCount += dart.BulletsToGiveShield;
-            OnBulletAbsorbed();
-            m_AbsorbAudioSource = PlayNewSound(m_AbsorbAudioSource, AbsorbBullet);
-        }
+        
     }
 
-    private void CheckLight()
+    private void AbsordBullets(IDamaging damaging)
+    {
+        if (m_CurrentCount < m_MaxBullets) m_CurrentCount += damaging.BulletsToGiveShield;
+        OnBulletAbsorbed();
+    }
+
+    public IEnumerator ResetMeleeLimiter()
+    {
+        yield return new WaitForSeconds(1);
+        _meleeColliderLimiter = 0;
+    }
+
+    private void CheckReload()
     {
         if (m_CanShootBack)
         {
-            if (!m_Light.enabled)
-                m_Light.enabled = true;
-
             if (m_DelayManager.SoundReady)
             {
                 m_FullChargeAudioSource = PlayNewSound(m_FullChargeAudioSource, FullCharge);
@@ -126,11 +132,8 @@ public class shield : Gun {
         }
         else
         {
-            if (m_Light.enabled)
-            {
-                m_Light.enabled = false;
-                if(m_FullChargeAudioSource != null && m_FullChargeAudioSource.isPlaying) m_FullChargeAudioSource.Stop();
-            }
+            //I dont remember what this was for damn...
+            //if(m_FullChargeAudioSource != null && m_FullChargeAudioSource.isPlaying) m_FullChargeAudioSource.Stop();
         }
     }
 

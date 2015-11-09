@@ -78,8 +78,6 @@ public class MeleeAttack : ExtendedMonobehaviour
     [Range(0,5)][SerializeField] private float _trailAerialLifeTime = 2f;
     #endregion
 
-    private LightFeedbackTemp _lightFeedback;
-
     // Use this for initialization
     private void Start()
     {
@@ -87,8 +85,6 @@ public class MeleeAttack : ExtendedMonobehaviour
         if (_inputManager == null) _inputManager = GetComponent<IPlatformer2DUserControl>();
         if (_mouvementManager == null) _mouvementManager = GetComponent<PlatformerCharacter2D>();
         if (_collider == null) Debug.LogError(ColliderString());
-        _lightFeedback = GetComponent<LightFeedbackTemp>();
-        _lightFeedback.LightDone += MeleeTimerReset;
     }
 
     private void MeleeTimerReset(object sender, EventArgs e)
