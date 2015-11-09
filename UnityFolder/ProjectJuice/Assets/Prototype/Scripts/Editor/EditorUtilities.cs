@@ -88,9 +88,12 @@ public static class EditorUtilities {
     {
         int ret = 0;
 
-        for(int i = 0; i < Database.instance.Particles.Length; i++)
+        if (toCheck != null)
         {
-            if (toCheck.name == Database.instance.Particles[i].name) ret = i;
+            for (int i = 0; i < Database.instance.Particles.Length; i++)
+            {
+                if (toCheck.name == Database.instance.Particles[i].name) ret = i;
+            }
         }
 
         return ret;
