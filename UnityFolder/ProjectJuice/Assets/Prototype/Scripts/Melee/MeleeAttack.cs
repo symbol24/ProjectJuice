@@ -170,7 +170,6 @@ public class MeleeAttack : ExtendedMonobehaviour
         {
             _sound.Stop();
             ResetSwing("Air", false);
-            _mouvementManager.ChangeCanFlip();
             _isAerial = !_mouvementManager.IsGrounded;
             _delayManager.SetDelay(_delayAfterSwing);
         }
