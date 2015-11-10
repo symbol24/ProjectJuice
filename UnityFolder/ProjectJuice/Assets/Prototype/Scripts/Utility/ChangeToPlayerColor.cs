@@ -7,6 +7,7 @@ public class ChangeToPlayerColor : MonoBehaviour
     //[SerializeField] private PlayerData _playerData;
     [SerializeField] private SpriteRenderer _spriteRenderer;
     [SerializeField] private Platformer2DUserControlXInput _platformer2DUserControl;
+    public Platformer2DUserControlXInput Controller { get { return _platformer2DUserControl; } }
     [SerializeField] private IPlatformer2DUserControl _character;
     private float _originalAlpha;
 
