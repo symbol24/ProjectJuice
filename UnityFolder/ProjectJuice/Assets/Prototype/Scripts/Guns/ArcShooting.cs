@@ -33,16 +33,16 @@ public class ArcShooting : Gun
     IEnumerator BurstFire()
     {
         m_DelayManager.AddDelay(100f);
+        _feedBack.SetBool();
         for (int i = m_burstAmmount; i >= 0; i--)
         {
             if (i > 0)
             {
                 FireOneBullet();
-                m_DelayManager.AddDelay(m_BurstDelay);
             }
             else
             {
-                m_DelayManager.AddDelay(m_Delay);
+                m_DelayManager.SetDelay(m_Delay);
             }
 
             yield return new WaitForSeconds(m_BurstDelay);

@@ -39,6 +39,15 @@ public class shield : Gun {
         base.Start();
         m_DelayManager.Reset();
         m_Gun.SetActive(false);
+        _feedBack = GetComponent<Feedback>();
+        if (_feedBack == null) Debug.LogError("Gun (Arc or shield) is unable to get the Feedback component on " + gameObject.name);
+        else _feedBack.CanShieldFeedbackEvent += _feedBack_CanShieldFeedbackEvent;
+    }
+
+    private void _feedBack_CanShieldFeedbackEvent(object sender, EventArgs e)
+    {
+        
+
     }
 
     // Update is called once per frame
@@ -132,8 +141,7 @@ public class shield : Gun {
         }
         else
         {
-            //I dont remember what this was for damn...
-            //if(m_FullChargeAudioSource != null && m_FullChargeAudioSource.isPlaying) m_FullChargeAudioSource.Stop();
+            if(m_FullChargeAudioSource != null && m_FullChargeAudioSource.isPlaying) m_FullChargeAudioSource.Stop();
         }
     }
 
