@@ -24,6 +24,8 @@ public class PauseMenu : Menu {
     [SerializeField] private Animator m_PauseMenuAnimator;
 
     private MenuAnimState _animState = MenuAnimState.NotUsable;
+
+    private bool BackPressed { get { return m_Controls._Start[m_ControllingPlayer] || (!m_inConfirm && m_Controls.Cancel[m_ControllingPlayer]); } }
     
     [HideInInspector] public string MenuOpenName;
     [HideInInspector] public string MenuCloseName;
@@ -66,7 +68,7 @@ public class PauseMenu : Menu {
         }
         else if(GameManager.instance.IsPaused && _animState == MenuAnimState.Usable)
         {
-            if (m_DelayManager.CanShoot && m_Controls._Start[m_ControllingPlayer])
+            if (m_DelayManager.CanShoot && BackPressed)
             {
                 SwitchPauseState();
                 m_ControllingPlayer = 0;
