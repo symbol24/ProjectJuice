@@ -26,6 +26,9 @@ public class RoundMenu : Menu {
     [Range(0,3)][SerializeField] private float m_DelayBeforeDisplay = 0.5f;
     [Range(0,3)][SerializeField] private float m_DelayForRtuenToCharSel = 0.5f;
     [Range(0,5)][SerializeField] private float m_DelayToDisplayStar = 0.5f;
+    [Range(0,3)][SerializeField] private float _delayBeforeFlashing = 0.5f;
+    [Range(0,10)][SerializeField] private int _circleFlashCount = 5;
+    [Range(0,1)][SerializeField] private float _flashDelay = 0.3f;
 
     private bool _canDisplayWinner = false;
     private Image _winnerImage;
@@ -411,8 +414,21 @@ public class RoundMenu : Menu {
 
     private void DisplayStar()
     {
-        _winnerImage.sprite = m_Circles[1];
+        StartCoroutine(FlashStar());
         SoundManager.PlaySFX(MedalAppear);
         SoundManager.PlaySFX(MedalCrowd);
+    }
+
+    private IEnumerator FlashStar()
+    {
+        _winnerImage.sprite = m_Circles[1];
+        yield return new WaitForSeconds(_delayBeforeFlashing);
+        for(int i = 0; i< _circleFlashCount; i++)
+        {
+            _winnerImage.sprite = m_Circles[0];
+            yield return new WaitForSeconds(_flashDelay);
+            _winnerImage.sprite = m_Circles[1];
+            yield return new WaitForSeconds(_flashDelay);
+        }
     }
 }
