@@ -70,9 +70,7 @@ public class PauseMenu : Menu {
         {
             if (m_DelayManager.CanShoot && BackPressed)
             {
-                SwitchPauseState();
-                m_ControllingPlayer = 0;
-                SetAnimState(MenuAnimState.NotUsable);
+                PauseResume();
             }
 
             if(m_DelayManager.CanShield && !m_inConfirm && m_Controls.Y[m_ControllingPlayer] != 0)
@@ -91,6 +89,13 @@ public class PauseMenu : Menu {
             }
         }
 	}
+
+    public void PauseResume()
+    {
+        SwitchPauseState();
+        m_ControllingPlayer = 0;
+        SetAnimState(MenuAnimState.NotUsable);
+    }
 
     public void SwitchPauseState()
     {
