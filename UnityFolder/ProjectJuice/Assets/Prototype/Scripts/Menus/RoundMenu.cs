@@ -25,6 +25,10 @@ public class RoundMenu : Menu {
 
     [Range(0,3)][SerializeField] private float m_DelayBeforeDisplay = 0.5f;
     [Range(0,3)][SerializeField] private float m_DelayForRtuenToCharSel = 0.5f;
+    [Range(0,5)][SerializeField] private float m_DelayToDisplayStar = 0.5f;
+
+    private bool _canDisplayWinner = false;
+    private Image _winnerImage;
 
     [SerializeField] List<Sprite> m_Circles;
     [SerializeField] List<GameObject> m_ListOfPlayerLines;
@@ -213,7 +217,11 @@ public class RoundMenu : Menu {
                         child.gameObject.SetActive(true);
                         if (currentPlayerScore != null)
                         {
-                            if (x < currentPlayerScore.CurrentScore)
+                            if(winnerName == currentPlayerScore.Player.PlayerSponsor.SponsorName && x == currentPlayerScore.CurrentScore - 1)
+                            {
+                                _winnerImage = toChange;
+                            }
+                            else if (x < currentPlayerScore.CurrentScore)
                                 toChange.sprite = m_Circles[1];
                         }
                     }
@@ -387,5 +395,24 @@ public class RoundMenu : Menu {
     public void UpdateBoolAnimator(string toUpdate, bool with)
     {
         m_animator.SetBool(toUpdate, with);
+    }
+
+    public void SetDisplayBool(bool newValue)
+    {
+        _canDisplayWinner = newValue;
+        if (_canDisplayWinner) StartCoroutine(DelayForDisplayWinner());
+    }
+
+    private IEnumerator DelayForDisplayWinner()
+    {
+        yield return new WaitForSeconds(m_DelayToDisplayStar);
+        if (_winnerImage != null) DisplayStar();
+    }
+
+    private void DisplayStar()
+    {
+        _winnerImage.sprite = m_Circles[1];
+        SoundManager.PlaySFX(MedalAppear);
+        SoundManager.PlaySFX(MedalCrowd);
     }
 }
