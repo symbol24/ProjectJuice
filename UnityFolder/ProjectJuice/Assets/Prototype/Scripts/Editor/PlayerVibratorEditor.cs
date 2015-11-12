@@ -5,7 +5,7 @@ using System.Collections;
 
 [CustomEditor(typeof(PlayerVibrator))]
 [CanEditMultipleObjects]
-public class PlayerVibratorEditor : Editor
+public class PlayerVibratorEditor : ExtendedEditor
 {
     private DartVibration _dartVib;
     private GunVibration _gunVib;
@@ -112,13 +112,6 @@ public class PlayerVibratorEditor : Editor
         }
     }
 
-    private void AddTitle(string message)
-    {
-        GUILayout.BeginHorizontal();
-        GUILayout.FlexibleSpace();
-        GUILayout.Label(string.Format("*** {0} ***",message), new GUIStyle { fontSize = 15, fontStyle = FontStyle.Bold });
-        GUILayout.FlexibleSpace();
-        GUILayout.EndHorizontal();
-    }
+    
 
 }

@@ -22,7 +22,7 @@ public class PlayerSpawner : MonoBehaviour
     }
     #endregion
     [SerializeField] private bool m_randomizePlayersOnSpawn = true;
-    [SerializeField] GameObject[] m_Spawners;
+    [SerializeField] List<GameObject> m_Spawners;
     [SerializeField] GameObject m_PlayerPrefab;
     private List<PlayerData> m_ListofPlayers = new List<PlayerData>();
     public List<PlayerData> ListOfPlayerDatas { get { return m_ListofPlayers; } }
@@ -62,7 +62,7 @@ public class PlayerSpawner : MonoBehaviour
     private void M_Fader_LoadDone(object sender, EventArgs e)
     {
         //Debug.LogWarning("in playerspawner fader_loaddone");
-        m_ListofPlayers = Utilities.GetAllPlayerData(m_randomizePlayersOnSpawn);
+        m_ListofPlayers = Utilities.GetAllPlayerData();
         SpawnPlayers();
     }
 
@@ -82,6 +82,9 @@ public class PlayerSpawner : MonoBehaviour
 
     void SpawnPlayers()
     {
+        if(m_randomizePlayersOnSpawn)
+            m_Spawners = Utilities.RandomizeList<GameObject>(m_Spawners);
+
         int i = 0;
         foreach (PlayerData pd in m_ListofPlayers)
         {
@@ -132,7 +135,7 @@ public class PlayerSpawner : MonoBehaviour
         leShield.ChangeVisibilty(leShield.m_Gun);
         leShield.enabled = false;
 
-        SappingDartGun leDart = toAbilitize.GetComponent<SappingDartGun>();
+        IDartGun leDart = toAbilitize.GetComponent<IDartGun>();
         leDart.enabled = false;
 
         MeleeAttack[] leMelees = toAbilitize.GetComponents<MeleeAttack>();

@@ -114,8 +114,15 @@ public class LoadingScreen : ExtendedMonobehaviour {
         if (!LoadEventSent) OnLoadDone();
     }
 
+    private void SetDisplay()
+    {
+        _toDisplay = GetSpriteToDisplay();
+        _tipScreenSprite.sprite = _toDisplay;
+    }
+
     private void EnterScreens()
     {
+        SetDisplay();
         _loadingState = LoadingState.Enter;
         _animator.SetInteger("Target", UnityEngine.Random.Range(1, 4));
         _delayManager.AddDelay(_minimumLoadTime);
@@ -192,8 +199,6 @@ public class LoadingScreen : ExtendedMonobehaviour {
         else
         {
             _tipScreenSprite = _tipScreenGameObject.GetComponent<SpriteRenderer>();
-            _toDisplay = GetSpriteToDisplay();
-            _tipScreenSprite.sprite = _toDisplay;
             SetRandomColor();
         }
 

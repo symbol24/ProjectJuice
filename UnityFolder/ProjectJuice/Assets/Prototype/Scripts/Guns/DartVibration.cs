@@ -2,7 +2,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class DartVibration : VibrationBase<SappingDartGun>
+public class DartVibration : VibrationBase<IDartGun>
 {
     [HideInInspector]
     public bool _enableFireVibration;

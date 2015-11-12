@@ -3,6 +3,7 @@ using System.IO;
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 public static class Utilities
 {
@@ -55,6 +56,13 @@ public static class Utilities
             }
         }
         return ListOfPlayers;
+    }
+
+    public static List<T> RandomizeList<T>(List<T> toRandom)
+    {
+        List<T> newList = toRandom.OrderBy(c => Guid.NewGuid()).ToList();
+
+        return newList;
     }
 
     public static void Log(this Exception ex, string comment = "")
