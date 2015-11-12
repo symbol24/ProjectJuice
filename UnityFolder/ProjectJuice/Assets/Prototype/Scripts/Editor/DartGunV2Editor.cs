@@ -15,6 +15,7 @@ public class DartGunV2Editor : ExtendedEditor
         leDartGun.Settings.DartForce = EditorGUILayout.FloatField("Initial Force", leDartGun.Settings.DartForce);
         leDartGun.Settings.DartMaxDistanceTravelled = EditorGUILayout.FloatField("Max Distance to Travel", leDartGun.Settings.DartMaxDistanceTravelled);
         leDartGun.Settings.HpSuckedPerSecond = EditorGUILayout.FloatField("Hp per second", leDartGun.Settings.HpSuckedPerSecond);
+        leDartGun.Settings._dartDestroyTimer = EditorGUILayout.FloatField("DestroyOnImpactTimer", leDartGun.Settings._dartDestroyTimer);
 
         AddTitle("Cross Section");
         leDartGun.Settings.HoseLength = EditorGUILayout.FloatField("Length (to spawn)", leDartGun.Settings.HoseLength);
@@ -27,7 +28,7 @@ public class DartGunV2Editor : ExtendedEditor
         leDartGun.Settings.HoseOriginalDirectionWeight = EditorGUILayout.FloatField("Cascade OrigDirec Weight", leDartGun.Settings.HoseOriginalDirectionWeight);
         leDartGun.Settings.HosePowBaseCorrection = EditorGUILayout.FloatField("Base Exponential Adder", leDartGun.Settings.HosePowBaseCorrection);
         leDartGun.Settings.HoseTimerToActivateTolerance = EditorGUILayout.FloatField("TimerAfterCollision for Tolerance", leDartGun.Settings.HoseTimerToActivateTolerance);
-        leDartGun.Settings.MinimumCrossSectionsToSpawn = EditorGUILayout.FloatField("Minimum CrossSections per shot", leDartGun.Settings.HoseTimerToActivateTolerance);
+        leDartGun.Settings.MinimumCrossSectionsToSpawn = EditorGUILayout.FloatField("Minimum CrossSections per shot", leDartGun.Settings.MinimumCrossSectionsToSpawn);
 
         AddTitle("Dart Gun");
         leDartGun.Settings.m_transferSoundDelay = EditorGUILayout.FloatField("Transfer sound delay", leDartGun.Settings.m_transferSoundDelay);

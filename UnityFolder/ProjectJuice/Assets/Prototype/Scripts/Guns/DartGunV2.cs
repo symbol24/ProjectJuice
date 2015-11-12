@@ -24,7 +24,7 @@ public class DartGunV2 : DartGunBase
     }
 
     
-    private DartGunSettings _settings;
+    [HideInInspector] public DartGunSettings _settings;
     public override DartGunSettings Settings { get { return _settings; } set { _settings = value; } }
 
 
@@ -38,7 +38,7 @@ public class DartGunV2 : DartGunBase
         while(!_dartCollided)
         {
             //Debug.Log(Vector3.Distance(closestHose.transform.position, dartGunV2._kinematicChain.transform.position) + " " + Settings.HoseLength);
-            while (CalculateDistanceBetween(dartGunV2, leDart) > Settings.HoseLength * numberOfCrossSectionsSpawned)
+            while (Vector3.Distance(leDart._kinematicChain.transform.position, dartGunV2._kinematicChain.transform.position) > Settings.HoseLength * numberOfCrossSectionsSpawned)
             {
                 //Debug.Log(Vector3.Distance(closestHose.transform.position, dartGunV2._kinematicChain.transform.position) + " " + Settings.HoseLength);
                 var positionRelative = -closestHose.transform.position + dartGunV2._kinematicChain.transform.position;
@@ -79,10 +79,5 @@ public class DartGunV2 : DartGunBase
         closestHose.Track(_kinematicChain);
         
     }
-
-    private float CalculateDistanceBetween(DartGunV2 dartGunV2, DartV2 leDart)
-    {
-        var ret = Vector3.Distance(leDart._kinematicChain.transform.position, dartGunV2._kinematicChain.transform.position);
-        return ret;
-    }
+    
 }

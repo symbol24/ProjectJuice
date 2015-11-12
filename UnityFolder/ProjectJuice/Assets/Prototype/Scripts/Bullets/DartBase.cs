@@ -6,7 +6,7 @@ public abstract class DartBase : ExtendedMonobehaviour, IDart
 {
 
     private Rigidbody2D _mainRigidbody;
-    protected DartGunSettings _settings;
+    [HideInInspector] public DartGunSettings _settings;
     protected IPlatformer2DUserControl _inputManager;
     protected DelayManager _delayManager;
 
