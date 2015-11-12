@@ -14,7 +14,7 @@ public class DartChainV2 : ExtendedMonobehaviour {
 
     [SerializeField] private float _maxForce = 5f;
 
-    public SappingDartGun CurrentGun { get; set; }
+    public IDartGun CurrentGun { get; set; }
     private Dart _currentDart;
     public Dart CurrentDart
     {
@@ -60,10 +60,10 @@ public class DartChainV2 : ExtendedMonobehaviour {
                 value.PreviousChain = this;
                 MainHingeJoint.connectedBody = value.MainRigidbody;
                 var checkDistance = Vector3.Distance(transform.position, value.transform.position);
-                if (checkDistance >= CurrentGun.HoseCrossSectionLength)
+                if (checkDistance >= CurrentGun.Settings.HoseLength)
                 {
                     var correctedPosition = Vector3.MoveTowards(transform.position, NextChain.transform.position,
-                    checkDistance - (CurrentGun.HoseCrossSectionLength * 2));
+                    checkDistance - (CurrentGun.Settings.HoseLength * 2));
                     transform.position = (correctedPosition);
                 }
             }
@@ -116,10 +116,10 @@ public class DartChainV2 : ExtendedMonobehaviour {
         {
             _breakTimer = 0f;
             var checkDistance = Vector3.Distance(transform.position, NextChain.transform.position);
-            if (checkDistance >= CurrentGun.HoseCrossSectionLength)
+            if (checkDistance >= CurrentGun.Settings.HoseLength)
             {
                 var correctedPosition = Vector3.MoveTowards(transform.position, NextChain.transform.position,
-                    checkDistance - CurrentGun.HoseCrossSectionLength);
+                    checkDistance - CurrentGun.Settings.HoseLength);
                 transform.position = (correctedPosition);
                 //Debug.Log("detectingTooFar");
 
@@ -141,7 +141,7 @@ public class DartChainV2 : ExtendedMonobehaviour {
                         break;
                 }
                 var distanceToNext = Vector3.Distance(transform.position, NextChain.transform.position);
-                if (distanceToNext > CurrentGun.HoseCrossSectionLengthTolerance)
+                if (distanceToNext > CurrentGun.Settings.HoseLengthTolerance)
                 {
                     //Debug.Log("Dart Cut for ToleranceSetting " + distanceToNext);
                     //Debug.DrawLine(transform.position, NextChain.transform.position, Color.red);
@@ -166,7 +166,7 @@ public class DartChainV2 : ExtendedMonobehaviour {
             }
             else if (PreviousChain._isStaticChain)
             {
-                CascadeToNeighbour(CurrentGun._dartSpawnPoint, NextChain);
+                CascadeToNeighbour(CurrentGun.DartSpawnPoint, NextChain);
             }
         }
     }
@@ -176,7 +176,7 @@ public class DartChainV2 : ExtendedMonobehaviour {
         if (!_isStaticChain)
         {
             var distancetochain = Vector3.Distance(measureDistanceTo.transform.position, transform.position);
-            if (distancetochain >= CurrentGun.HoseCrossSectionLength)
+            if (distancetochain >= CurrentGun.Settings.HoseLength)
             {
                 var direction = measureDistanceTo.transform.position - transform.position;
                 MainRigidbody.AddForce(direction.normalized*_maxForce*distancetochain);
@@ -206,7 +206,7 @@ public class DartChainV2 : ExtendedMonobehaviour {
     private void ForceOnDistance()
     {
         var distanceToDart = Vector3.Distance(transform.position, CurrentDart.transform.position);
-        var distanceToGun = Vector3.Distance(transform.position, CurrentGun.transform.position);
+        var distanceToGun = Vector3.Distance(transform.position, CurrentGun.gameObject.transform.position);
         if (distanceToDart < distanceToGun)
         {
 
@@ -215,13 +215,13 @@ public class DartChainV2 : ExtendedMonobehaviour {
         }
         else
         {
-            var direction = CurrentGun.transform.position - transform.position;
+            var direction = CurrentGun.gameObject.transform.position - transform.position;
             MainRigidbody.AddForce(direction.normalized * Mathf.Sqrt(distanceToDart) * Mathf.Pow(_maxForce / (distanceToDart + distanceToGun), 3));
 
         }
 
         if (!IgnoreFloor && Vector3.Distance(transform.position, NextChain.transform.position) >
-            (CurrentGun.HoseCrossSectionLength * 4))
+            (CurrentGun.Settings.HoseLength * 4))
         {
             //Debug.Break();
             Debug.Log(transform.position);

@@ -135,7 +135,7 @@ public class PlayerSpawner : MonoBehaviour
         leShield.ChangeVisibilty(leShield.m_Gun);
         leShield.enabled = false;
 
-        SappingDartGun leDart = toAbilitize.GetComponent<SappingDartGun>();
+        IDartGun leDart = toAbilitize.GetComponent<IDartGun>();
         leDart.enabled = false;
 
         MeleeAttack[] leMelees = toAbilitize.GetComponents<MeleeAttack>();

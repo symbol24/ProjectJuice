@@ -26,9 +26,14 @@ public abstract class ExtendedMonobehaviour : MonoBehaviour, IGameObject {
         transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, zValue);
     }
 
-    protected bool IsAChild(IDamaging toCheck)
+    public bool IsAChild(IDamaging toCheck)
     {
         var checkComponents = GetComponentsInChildren<IDamaging>();
+        return checkComponents.Any(c => c == toCheck);
+    }
+    public bool IsAChild<T>(T toCheck) where T : Component
+    {
+        var checkComponents = GetComponentsInChildren<T>();
         return checkComponents.Any(c => c == toCheck);
     }
 
