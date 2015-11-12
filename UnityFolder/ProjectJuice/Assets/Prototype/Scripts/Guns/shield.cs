@@ -25,6 +25,7 @@ public class shield : Gun {
     [SerializeField]
     private bool m_isDebugFullTest = false;
     private int _meleeColliderLimiter = 0;
+    private bool _hasPlayedCoolDown = true;
 
     [HideInInspector] public string Activate;
     [HideInInspector] public string AbsorbBullet;
@@ -39,15 +40,6 @@ public class shield : Gun {
         base.Start();
         m_DelayManager.Reset();
         m_Gun.SetActive(false);
-        _feedBack = GetComponent<Feedback>();
-        if (_feedBack == null) Debug.LogError("Gun (Arc or shield) is unable to get the Feedback component on " + gameObject.name);
-        else _feedBack.CanShieldFeedbackEvent += _feedBack_CanShieldFeedbackEvent;
-    }
-
-    private void _feedBack_CanShieldFeedbackEvent(object sender, EventArgs e)
-    {
-        
-
     }
 
     // Update is called once per frame
@@ -55,6 +47,8 @@ public class shield : Gun {
     {
         if (GameManager.instance.IsPlaying)
         {
+            if (m_DelayManager.CanShield && !_hasPlayedCoolDown) _hasPlayedCoolDown = EndCooldown();
+
             if (m_DelayManager.CanShield && (m_Controller.m_SpecialStay || m_DebugIsActive))
                 ActivateShield();
 
@@ -63,11 +57,18 @@ public class shield : Gun {
 
             if (m_Controller.m_FacingRight != m_FacingRight) FlipPosition();
 
-            CheckReload();
+            CheckCanShootBack();
             
             if (m_isDebugFullTest && m_CurrentCount == 0 && m_DelayManager.CanShield) m_CurrentCount = 10;
         }
 	}
+
+    private bool EndCooldown()
+    {
+        _feedBack.SetBool(1, false);
+        m_ActiveDeactiveAudioSource = PlayNewSound(m_ActiveDeactiveAudioSource, CoolDown);
+        return true;
+    }
 
     public event EventHandler BulletAbsorbed;
 
@@ -129,7 +130,7 @@ public class shield : Gun {
         _meleeColliderLimiter = 0;
     }
 
-    private void CheckReload()
+    private void CheckCanShootBack()
     {
         if (m_CanShootBack)
         {
@@ -180,9 +181,10 @@ public class shield : Gun {
     {
         if (IsShieldActive)
         {
-            m_ActiveDeactiveAudioSource = PlayNewSound(m_ActiveDeactiveAudioSource, CoolDown);
+            m_ActiveDeactiveAudioSource.Stop();
             m_DelayManager.SetShieldDelay(m_Delay);
             m_DelayManager.SetDelay(m_Delay);
+            _hasPlayedCoolDown = false;
         }
         else
         {
