@@ -78,6 +78,8 @@ public class MeleeAttack : ExtendedMonobehaviour
     [Range(0,5)][SerializeField] private float _trailAerialLifeTime = 2f;
     #endregion
 
+    protected Feedback _feedBack;
+
     // Use this for initialization
     private void Start()
     {
@@ -85,6 +87,9 @@ public class MeleeAttack : ExtendedMonobehaviour
         if (_inputManager == null) _inputManager = GetComponent<IPlatformer2DUserControl>();
         if (_mouvementManager == null) _mouvementManager = GetComponent<PlatformerCharacter2D>();
         if (_collider == null) Debug.LogError(ColliderString());
+        _feedBack = GetComponent<Feedback>();
+        if (_feedBack == null) Debug.LogError("Gun (Arc or shield) is unable to get the Feedback component on " + gameObject.name);
+        //else _feedBack.CanShootFeedbackEvent += MeleeTimerReset;
     }
 
     private void MeleeTimerReset(object sender, EventArgs e)
@@ -130,6 +135,7 @@ public class MeleeAttack : ExtendedMonobehaviour
 
     private bool StartAnimatedSwing()
     {
+        _feedBack.SetBool();
         _hasPlayedSheath = false;
         _delayManager.AddDelay(10000);
         if (!_collider.enabled) _collider.enabled = true;
@@ -164,7 +170,6 @@ public class MeleeAttack : ExtendedMonobehaviour
         {
             _sound.Stop();
             ResetSwing("Air", false);
-            _mouvementManager.ChangeCanFlip();
             _isAerial = !_mouvementManager.IsGrounded;
             _delayManager.SetDelay(_delayAfterSwing);
         }

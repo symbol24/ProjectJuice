@@ -34,6 +34,8 @@ public class Gun : ExtendedMonobehaviour {
     [HideInInspector] public ParticleSystem m_MuzzleSmoke;
     [Range(0, 5)][SerializeField] private float m_MuzzleSmokeLifeTime = 0.5f;
 
+    protected Feedback _feedBack;
+
     protected virtual void Start()
     {
         if (m_GunReference == null) m_GunReference = GetComponentInChildren<gunRef>().gameObject;
@@ -41,6 +43,9 @@ public class Gun : ExtendedMonobehaviour {
         m_DelayManager = GetComponent<DelayManager>();
         if(m_HpScript == null) m_HpScript = GetComponent<HPScript>();
         if (m_muzzleFlash != null && m_muzzleFlash.enabled) m_muzzleFlash.enabled = false;
+        _feedBack = GetComponent<Feedback>();
+        if (_feedBack == null) Debug.LogError("Gun (Arc or shield) is unable to get the Feedback component on " + gameObject.name);
+        //else _feedBack.CanShootFeedbackEvent += ResetDelayManager;
     }
 
     protected void ResetDelayManager(object sender, System.EventArgs e)
