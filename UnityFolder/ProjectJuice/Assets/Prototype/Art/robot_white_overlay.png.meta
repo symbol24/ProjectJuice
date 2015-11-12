@@ -1,0 +1,209 @@
+fileFormatVersion: 2
+guid: 5ae78e7805fd14049826dff391c475b3
+timeCreated: 1447286176
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: robot_white_overlay_0
+    21300002: robot_white_overlay_3
+    21300004: robot_white_overlay_5
+    21300006: robot_white_overlay_6
+    21300008: robot_white_overlay_7
+    21300010: robot_white_overlay_8
+    21300012: robot_white_overlay_9
+    21300014: robot_white_overlay_10
+    21300016: robot_white_overlay_11
+    21300018: robot_white_overlay_12
+    21300020: robot_white_overlay_13
+    21300022: robot_white_overlay_14
+    21300024: robot_white_overlay_15
+    21300026: robot_white_overlay_16
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 8
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -3
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: 2
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 72
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: robot_white_overlay_0
+      rect:
+        serializedVersion: 2
+        x: 729
+        y: 693
+        width: 212
+        height: 207
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: robot_white_overlay_3
+      rect:
+        serializedVersion: 2
+        x: 617
+        y: 695
+        width: 97
+        height: 89
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: robot_white_overlay_5
+      rect:
+        serializedVersion: 2
+        x: 730
+        y: 693
+        width: 6
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: robot_white_overlay_6
+      rect:
+        serializedVersion: 2
+        x: 550
+        y: 381
+        width: 182
+        height: 269
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: robot_white_overlay_7
+      rect:
+        serializedVersion: 2
+        x: 771
+        y: 531
+        width: 82
+        height: 139
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: robot_white_overlay_8
+      rect:
+        serializedVersion: 2
+        x: 890
+        y: 305
+        width: 83
+        height: 365
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: robot_white_overlay_9
+      rect:
+        serializedVersion: 2
+        x: 523
+        y: 183
+        width: 151
+        height: 165
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: robot_white_overlay_10
+      rect:
+        serializedVersion: 2
+        x: 793
+        y: 326
+        width: 74
+        height: 184
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: robot_white_overlay_11
+      rect:
+        serializedVersion: 2
+        x: 715
+        y: 186
+        width: 45
+        height: 66
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: robot_white_overlay_12
+      rect:
+        serializedVersion: 2
+        x: 818
+        y: 157
+        width: 102
+        height: 84
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: robot_white_overlay_13
+      rect:
+        serializedVersion: 2
+        x: 532
+        y: 0
+        width: 150
+        height: 164
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: robot_white_overlay_14
+      rect:
+        serializedVersion: 2
+        x: 735
+        y: 14
+        width: 105
+        height: 117
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: robot_white_overlay_15
+      rect:
+        serializedVersion: 2
+        x: 866
+        y: 69
+        width: 47
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: robot_white_overlay_16
+      rect:
+        serializedVersion: 2
+        x: 923
+        y: 69
+        width: 47
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
