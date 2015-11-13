@@ -9,8 +9,6 @@ public abstract class HPBase : ExtendedMonobehaviour {
     private float _maxHp;
     private float _currentHp;
 
-    private object _currentHpLock = new object();
-
     public float MaxHp
     {
         get { return _maxHp; }
@@ -21,16 +19,13 @@ public abstract class HPBase : ExtendedMonobehaviour {
         get { return _currentHp; }
         set
         {
-           // lock (_currentHpLock)
-           // {
-                if (_currentHp != value)
-                {
-                    var newHpValue = value >= MaxHp ? MaxHp : value;
-                    var e = new HpChangedEventArgs() { NewHp = newHpValue, PreviousHp = _currentHp };
-                    _currentHp = newHpValue;
-                    if ((e.PreviousHp > 0 && e.NewHp >= 0) || (e.PreviousHp > 0 && e.NewHp <= 0)) OnHpChanged(e);
-                }
-            //}
+            if (_currentHp != value)
+            {
+                var newHpValue = value >= MaxHp ? MaxHp : value;
+                var e = new HpChangedEventArgs() { NewHp = newHpValue, PreviousHp = _currentHp };
+                _currentHp = newHpValue;
+                if ((e.PreviousHp > 0 && e.NewHp >= 0) || (e.PreviousHp > 0 && e.NewHp <= 0)) OnHpChanged(e);
+            }
         }
     }
 

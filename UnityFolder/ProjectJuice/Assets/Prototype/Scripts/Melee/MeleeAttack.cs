@@ -20,6 +20,7 @@ public class MeleeAttack : ExtendedMonobehaviour
     [SerializeField] private bool _abilityAerialCancelOnGround = true;
 
     private bool _isAerial = false;
+    private bool _SwingReset = false;
 
     [SerializeField] private bool _abilityUseDifferentAerialDmg = true;
     public bool UsedDifferentAeralDmg { get { return _abilityUseDifferentAerialDmg; } }
@@ -135,6 +136,7 @@ public class MeleeAttack : ExtendedMonobehaviour
 
     private bool StartAnimatedSwing()
     {
+        _SwingReset = false;
         _feedBack.SetBool();
         _hasPlayedSheath = false;
         _delayManager.AddDelay(10000);
@@ -160,7 +162,6 @@ public class MeleeAttack : ExtendedMonobehaviour
             _sound = SoundManager.PlaySFX(Swipe);
             m_animator.SetBool("Grounded", true);
         }
-
         return true;
     }
 
@@ -170,22 +171,25 @@ public class MeleeAttack : ExtendedMonobehaviour
         {
             _sound.Stop();
             ResetSwing("Air", false);
-            _isAerial = !_mouvementManager.IsGrounded;
-            _delayManager.SetDelay(_delayAfterSwing);
         }
     }
 
     public void ResetSwing(string change, bool with)
     {
-        _collider.enabled = true;
-        m_isSwinging = false;
-        m_animator.SetBool(change, with);
-        _delayManager.SetDelay(_delayAfterSwing);
-        _wasConsumed = false;
-        if (isAbility)
+        if (!_SwingReset)
         {
-            _mouvementManager.ChangeCanFlip();
-            _isAerial = !_mouvementManager.IsGrounded;
+            _collider.enabled = true;
+            m_isSwinging = false;
+            m_animator.SetBool(change, with);
+            _delayManager.SetDelay(_delayAfterSwing);
+            _wasConsumed = false;
+            if (isAbility)
+            {
+                _mouvementManager.ChangeCanFlip();
+                if (_isAerial)
+                    _isAerial = !_mouvementManager.IsGrounded;
+            }
+            _SwingReset = true;
         }
     }
 

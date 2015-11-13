@@ -46,7 +46,6 @@ public class HPScript : HPBase
             ex.Log("Before PlayDeathFX and DestroyingGameObject");
             throw;
         }
-        Debug.LogWarning("Missing Death Animation");
         PlayDeathFX();
         if (!_ragdollSpawned) _ragdollSpawned = SpawnRagdoll();
         Destroy(gameObject);

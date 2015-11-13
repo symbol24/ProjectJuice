@@ -47,6 +47,7 @@ public class Feedback : MonoBehaviour {
         return true;
     }
 
+    /*
     public event EventHandler CanShieldFeedbackEvent;
 
     protected virtual bool OnCanShieldFeedbackEvent()
@@ -55,6 +56,7 @@ public class Feedback : MonoBehaviour {
         if (handler != null) handler(this, EventArgs.Empty);
         return true;
     }
+    */
 
     public void SetBool(int toChange = 0, bool newValue = false)
     {
