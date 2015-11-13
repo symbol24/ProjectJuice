@@ -70,7 +70,8 @@ public class DartChainV3 : MonoBehaviour
     private void LeDart_DartCollision(object sender, EventArgs e)
     {
         _instantCollided = true;
-        _mainRigidBody.mass = _settings.HoseWeightAtcollision;
+        if (_mainRigidBody != null) _mainRigidBody.mass = _settings.HoseWeightAtcollision;
+        else Debug.LogWarning("Missing _mainRigidbody");
         StartCoroutine(DelayAction(_settings.HoseTimerToActivateTolerance, new Action(() => { _collided = true; })));
     }
 

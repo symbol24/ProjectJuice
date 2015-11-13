@@ -46,6 +46,8 @@ public class GameManager : ExtendedMonobehaviour
         m_startTimer = startTimer;
     }
 
+    private bool _roundEnded = false;
+
 
     // Use this for initialization
     void Start()
@@ -103,25 +105,29 @@ public class GameManager : ExtendedMonobehaviour
 
     private void CheckEndOfRound(object sender, PlayerScoreEventArgs e)
     {
-        ClearRoundSFX();
-        if (e.IsThereAWinner) {
-            if (CheckIfMatchWinner())
+        if (!_roundEnded)
+        {
+            _roundEnded = true;
+            ClearRoundSFX();
+            if (e.IsThereAWinner)
             {
-                RoundMenu.instance.DisplayRoundMenu(true, true, e.Platformer2DUserControl.m_PlayerData.PlayerSponsor.SponsorName, GameState.MatchEnd);
-                m_CurrentState = GameState.PreMatchEnd;
+                if (CheckIfMatchWinner())
+                {
+                    RoundMenu.instance.DisplayRoundMenu(true, true, e.Platformer2DUserControl.m_PlayerData.PlayerSponsor.SponsorName, GameState.MatchEnd);
+                    m_CurrentState = GameState.PreMatchEnd;
+                }
+                else
+                {
+                    RoundMenu.instance.DisplayRoundMenu(true, false, e.Platformer2DUserControl.m_PlayerData.PlayerSponsor.SponsorName, GameState.RoundEnd);
+                    m_CurrentState = GameState.PreRoundEnd;
+                }
             }
             else
             {
-                RoundMenu.instance.DisplayRoundMenu(true, false, e.Platformer2DUserControl.m_PlayerData.PlayerSponsor.SponsorName, GameState.RoundEnd);
+                RoundMenu.instance.DisplayRoundMenu(true, false, Database.instance.GameTexts[15], GameState.RoundEnd);
                 m_CurrentState = GameState.PreRoundEnd;
             }
         }
-        else
-        {
-            RoundMenu.instance.DisplayRoundMenu(true, false, Database.instance.GameTexts[15], GameState.RoundEnd);
-            m_CurrentState = GameState.PreRoundEnd;
-        }
-
         
     }
 
@@ -160,6 +166,7 @@ public class GameManager : ExtendedMonobehaviour
 
     public void StartNextRound()
     {
+        _roundEnded = false;
         if (m_startTimer != null)
         {
             m_startTimer.gameObject.SetActive(true);

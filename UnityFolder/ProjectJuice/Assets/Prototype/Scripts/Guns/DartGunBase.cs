@@ -8,7 +8,7 @@ public abstract class DartGunBase : ExtendedMonobehaviour, IDartGun
     protected DelayManager _delayManager;
     protected IPlatformer2DUserControl _inputManager;
     protected HPScript _hpScript;
-    protected LightFeedbackTemp _lightFeedback;
+    protected Feedback _feedback;
 
     //AudioWhenTransfering
     private AudioSource m_SappingAudioSource;
@@ -16,6 +16,16 @@ public abstract class DartGunBase : ExtendedMonobehaviour, IDartGun
     //GenericProperties
     public GameObject _dartSpawnPoint;
     public GameObject DartSpawnPoint { get { return _dartSpawnPoint; } }
+    public GameObject _particlesSpawningPoint;
+    public GameObject ParticlesSpawningPoint
+    {
+        get
+        {
+            var ret = _particlesSpawningPoint ?? _dartSpawnPoint;
+            return ret;
+        }
+    }
+    
 
     // Use this for initialization
     protected virtual void Start()
@@ -23,8 +33,8 @@ public abstract class DartGunBase : ExtendedMonobehaviour, IDartGun
         _delayManager = GetComponent<DelayManager>();
         _inputManager = GetComponent<IPlatformer2DUserControl>();
         _hpScript = GetComponent<HPScript>();
-        _lightFeedback = GetComponent<LightFeedbackTemp>();
         DartFired += OnDartFired;
+        _feedback = GetComponent<Feedback>();
     }
 
     private void OnDartFired(object sender, DartFiredEventArgs dartFiredEventArgs)
@@ -66,10 +76,18 @@ public abstract class DartGunBase : ExtendedMonobehaviour, IDartGun
     protected abstract void FireDart();
 
     public abstract DartGunSettings Settings { get; set; }
-    public string Fire { get; set; }
-    public string Transfering { get; set; }
-    public string CoolDown { get; set; }
-    public ParticleSystem m_firingParticle { get; set; }
+    [HideInInspector]
+    public string _fire;
+    public string Fire { get { return _fire; } set { _fire = value; } }
+    [HideInInspector]
+    public string _transfering;
+    public string Transfering { get { return _transfering; } set { _transfering = value; } }
+    [HideInInspector]
+    public string _cooldown;
+    public string CoolDown { get { return _cooldown; } set { _cooldown = value; } }
+    [HideInInspector]
+    public ParticleSystem _m_firingParticle;
+    public ParticleSystem m_firingParticle { get { return _m_firingParticle; } set { _m_firingParticle = value; } }
     public event EventHandler<DartFiredEventArgs> DartFired;
 
     protected virtual void OnDartFired(DartFiredEventArgs e)
@@ -88,11 +106,21 @@ public abstract class DartGunBase : ExtendedMonobehaviour, IDartGun
 
 
 
+    AudioSource _cooldownSound;
     private void CoolDownEffects()
     {
-        SoundManager.PlaySFX(CoolDown);
-        if (_lightFeedback != null) _lightFeedback.StartLightFeedback(Settings._shootDelay);
-        else Debug.LogWarning("No LightFeedBack");
+        _delayManager.SetDelay(Settings._shootDelay);
+        _feedback.SetBool();
+        _cooldownSound = SoundManager.PlaySFX(CoolDown, Settings.LoopCooldown);
+        _feedback.CanShootFeedbackEvent += _feedback_CanShootFeedbackEvent;
     }
 
+    private void _feedback_CanShootFeedbackEvent(object sender, EventArgs e)
+    {
+        if (_cooldownSound != null)
+        {
+            _cooldownSound.Stop();
+        }
+        _feedback.CanShootFeedbackEvent -= _feedback_CanShootFeedbackEvent;
+    }
 }

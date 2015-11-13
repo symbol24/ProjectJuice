@@ -60,6 +60,8 @@ public class PlayerVibratorEditor : ExtendedEditor
             AddTitle("Salto Vibraciones");
             AddToMenu(ref _jumpVib._enableJumpingVibration, ref _jumpVib._jumpingVibrationSettings, "Jump");
             AddToMenu(ref _jumpVib._enableLandingVibration, ref _jumpVib._landingVibrationSettings, "Landing");
+            AddToMenu(ref _jumpVib._enableDashOnGroundVibration, ref _jumpVib._dashOnGroundVibrationSettings, "Arranque en el Suelo");
+            AddToMenu(ref _jumpVib._enableDashInAirVibration, ref _jumpVib._dashInAirVibrationSettings, "Arranque en el Aire");
             EditorGUILayout.Separator();
         }
         if (_shieldVib != null)

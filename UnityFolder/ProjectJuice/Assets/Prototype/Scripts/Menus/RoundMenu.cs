@@ -183,6 +183,7 @@ public class RoundMenu : Menu {
 
     private void DisplayPlayers(bool isMatchOver, string winnerName)
     {
+        _winnerImage = null;
         if (isMatchOver)
         {
             m_TopText.text = Database.instance.GameTexts[14] + winnerName;
