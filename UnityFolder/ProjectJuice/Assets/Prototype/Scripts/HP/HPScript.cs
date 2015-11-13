@@ -27,6 +27,9 @@ public class HPScript : HPBase
         m_ShieldImmunity = !m_ShieldImmunity;
     }
 
+    [SerializeField] private GameObject _ragdoll;
+    private bool _ragdollSpawned = false;
+
     #region EventsAvailable
     public event EventHandler<ImpactEventArgs> HpImpactReceived;
     public event EventHandler Dead;
@@ -45,8 +48,18 @@ public class HPScript : HPBase
         }
         Debug.LogWarning("Missing Death Animation");
         PlayDeathFX();
+        if (!_ragdollSpawned) _ragdollSpawned = SpawnRagdoll();
         Destroy(gameObject);
     }
+
+    private bool SpawnRagdoll()
+    {
+        if (_ragdoll != null)
+            Instantiate(_ragdoll, transform.position, transform.localRotation);
+
+        return true;
+    }
+
     protected virtual void OnHpImpactReceived(ImpactEventArgs e)
     {
         try
@@ -193,7 +206,8 @@ public class HPScript : HPBase
                     PointOfCollision = pointOfCollision,
                     color = _inputController.m_PlayerData.PlayerSponsor.SponsorColor
                 };
-                OnHpImpactReceived(e);
+                if(CurrentHp >= 0)
+                    OnHpImpactReceived(e);
             }
         }
     }
