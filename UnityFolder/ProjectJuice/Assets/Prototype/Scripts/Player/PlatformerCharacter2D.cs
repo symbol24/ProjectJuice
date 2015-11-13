@@ -572,5 +572,12 @@ namespace UnityStandardAssets._2D
                 }
             }
         }
+
+        public event EventHandler PlayerDashed;
+        protected void OnPlayerDashed()
+        {
+            if (PlayerDashed != null) PlayerDashed(this, EventArgs.Empty);
+        }
+
     }
 }

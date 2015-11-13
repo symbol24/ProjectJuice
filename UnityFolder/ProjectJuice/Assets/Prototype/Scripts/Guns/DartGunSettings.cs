@@ -25,4 +25,5 @@ public class DartGunSettings
     public bool HoseBrakeOnCollision;
     public bool DartInvencible;
     public float MinimumCrossSectionsToSpawn;
+    public bool LoopCooldown;
 }

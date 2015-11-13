@@ -21,10 +21,13 @@ public class DartGunV2 : DartGunBase
         {
             StopCoroutine(spawningHoseCoroutine);
         };
+        SoundManager.PlaySFX(Fire);
+        base.InstatiateParticle(m_firingParticle, _particlesSpawningPoint, true);
     }
 
     
     [HideInInspector] public DartGunSettings _settings;
+
     public override DartGunSettings Settings { get { return _settings; } set { _settings = value; } }
 
 
