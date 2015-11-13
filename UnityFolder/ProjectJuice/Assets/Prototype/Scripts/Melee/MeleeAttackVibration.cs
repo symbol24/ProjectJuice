@@ -6,6 +6,14 @@ public class MeleeAttackVibration : VibrationBase<MeleeAttack>
 {
     [HideInInspector] public bool _activarChoqueCuerpoACuerpo;
     [HideInInspector] public VibrationSettings _choqueCuerpoACuerpoParametros;
+    [HideInInspector]
+    public bool _enableDaggerMelee = false;
+    [HideInInspector]
+    public VibrationSettings _daggerMeleeSettings;
+    [HideInInspector]
+    public bool _enableAxeMelee = false;
+    [HideInInspector]
+    public VibrationSettings _axeMeleeSettings;
 
 	// Use this for initialization
 	protected override void Start ()

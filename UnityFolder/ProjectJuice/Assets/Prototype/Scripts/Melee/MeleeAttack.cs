@@ -229,7 +229,6 @@ public class MeleeAttack : ExtendedMonobehaviour
     public ImpactForceSettings ImpactForceSettings { get { return _impactForceSettings; } }
 
     public event EventHandler MeleeClashed;
-
     protected virtual void OnMeleeClashed()
     {
         try
@@ -243,6 +242,16 @@ public class MeleeAttack : ExtendedMonobehaviour
             throw;
         }
     }
+    public event EventHandler MeleeConsumed;
+    protected virtual void OnMeleeConsumed()
+    {
+        try
+        {
+            if (MeleeConsumed != null) MeleeConsumed(this, EventArgs.Empty);
+        }
+        catch(Exception ex) { ex.Log(); throw; }
+    }
+
 
     public void ClashedWithOtherMelee(MeleeDamagingCollider otherMelee)
     {

@@ -87,7 +87,7 @@ public class HPScript : HPBase
 
     private IEnumerator DestroyNextFrame()
     {
-        yield return null;
+        yield return new WaitForFixedUpdate();
         OnDead();
     }
 
