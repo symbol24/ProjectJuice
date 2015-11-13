@@ -8917,3 +8917,23 @@ Stack Trace:
 -----------
 =======
 >>>>>>> 241c8b25c65acda64b6225538ceb399837a00268
+NullReferenceException occurred at 11/12/2015 8:42:26 PM:
+Message: TestException
+Stack Trace:
+
+-----------
+NullReferenceException occurred at 11/12/2015 8:42:26 PM:
+Message: TestException
+Stack Trace:
+
+-----------
+NullReferenceException occurred at 11/12/2015 8:43:04 PM:
+Message: TestException
+Stack Trace:
+
+-----------
+NullReferenceException occurred at 11/12/2015 8:43:04 PM:
+Message: TestException
+Stack Trace:
+
+-----------
