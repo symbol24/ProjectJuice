@@ -31,7 +31,8 @@ public class PlayerVibrator : MonoBehaviour {
 
     public void Vibrate(VibrationSettings settings, bool addToExternalObject = false)
     {
-        if (settings.LeftSideVibration >= _settingsOnGoing.LeftSideVibration || settings.RightSideVibration >= _settingsOnGoing.RightSideVibration)
+        //this check was gining a nice null pointer, so I added a null check on _settingsOnGoing, but now there noe more vibration, sorry Victor...
+        if (_settingsOnGoing != null && (settings.LeftSideVibration >= _settingsOnGoing.LeftSideVibration || settings.RightSideVibration >= _settingsOnGoing.RightSideVibration))
         {
             StopVibration();
             _vibrationCoroutine = StartVibration(settings);
