@@ -53,7 +53,7 @@ public abstract class DartBase : ExtendedMonobehaviour, IDart
     private bool _dartDestroyedCalled = false;
     protected virtual void OnDartDestroyed()
     {
-        Debug.Log("OnDartDestroyed");
+        //Debug.Log("OnDartDestroyed");
         if (!_dartDestroyedCalled)
         {
             Debug.Log("DestroyingDart");
