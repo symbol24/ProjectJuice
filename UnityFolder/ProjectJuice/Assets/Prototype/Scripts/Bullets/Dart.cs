@@ -39,7 +39,7 @@ public class Dart : DartBase
         }
     }
 
-    [SerializeField] private float _maxDistanceToTravel = 30.6f;
+    //[SerializeField] private float _maxDistanceToTravel = 30.6f;
 
     
 
