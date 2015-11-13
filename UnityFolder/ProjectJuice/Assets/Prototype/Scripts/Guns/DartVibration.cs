@@ -44,7 +44,10 @@ public class DartVibration : VibrationBase<IDartGun>
 
     private void DartOnJuiceSucked(object sender, JuiceSuckedEventArgs juiceSuckedEventArgs)
     {
-        if(_enableDartJuiceSuckedVibration) _playerVibrator.Vibrate(_dartJuiceSuckedVibrationSettings);
+        if (_enableDartJuiceSuckedVibration && !_playerVibrator.IsVibrating)
+        {
+            _playerVibrator.Vibrate(_dartJuiceSuckedVibrationSettings);
+        }
     }
 
     private void DartOnDartCollision(object sender, EventArgs eventArgs)

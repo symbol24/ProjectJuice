@@ -117,9 +117,12 @@ public class DartV2 : DartBase
     {
         while (true)
         {
-            float hpToSuck = _settings.HpSuckedPerSecond*Time.deltaTime;
-            hpScript.CurrentHp -= hpToSuck;
-            OnJuiceSucked(new JuiceSuckedEventArgs {HpSucked = hpToSuck});
+            if (Time.deltaTime > 0 && GameManager.instance.CurrentState == GameState.Playing)
+            {
+                float hpToSuck = _settings.HpSuckedPerSecond * Time.deltaTime;
+                hpScript.CurrentHp -= hpToSuck;
+                OnJuiceSucked(new JuiceSuckedEventArgs { HpSucked = hpToSuck });
+            }
             yield return null;
         }
     }
