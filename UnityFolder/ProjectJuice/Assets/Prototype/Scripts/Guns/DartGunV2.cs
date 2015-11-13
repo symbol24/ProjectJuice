@@ -22,7 +22,7 @@ public class DartGunV2 : DartGunBase
             StopCoroutine(spawningHoseCoroutine);
         };
         SoundManager.PlaySFX(Fire);
-        base.InstatiateParticle(m_firingParticle, _particlesSpawningPoint, true);
+        InstatiateParticle(m_firingParticle, ParticlesSpawningPoint, true);
     }
 
     
