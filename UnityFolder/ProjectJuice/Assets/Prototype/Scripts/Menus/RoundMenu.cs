@@ -23,7 +23,7 @@ public class RoundMenu : Menu {
     [SerializeField] GameObject m_RoundPanel;
     private DelayManager m_DelayManager;
 
-    [Range(0,3)][SerializeField] private float m_DelayBeforeDisplay = 0.5f;
+    [Range(0,20)][SerializeField] private float m_DelayBeforeDisplay = 0.5f;
     [Range(0,3)][SerializeField] private float m_DelayForRtuenToCharSel = 0.5f;
     [Range(0,5)][SerializeField] private float m_DelayToDisplayStar = 0.5f;
     [Range(0,3)][SerializeField] private float _delayBeforeFlashing = 0.5f;
