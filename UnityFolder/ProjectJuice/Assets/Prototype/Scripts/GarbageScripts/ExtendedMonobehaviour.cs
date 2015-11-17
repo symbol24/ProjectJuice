@@ -140,7 +140,8 @@ public abstract class ExtendedMonobehaviour : MonoBehaviour, IGameObject {
             ret.transform.position = point.transform.position;
             ret.transform.rotation = point.transform.rotation;
             ret.Play();
-            StartCoroutine(DestroyParticleEmitter(ret, destroyTimer));
+            Destroy(ret.gameObject, destroyTimer);
+//            StartCoroutine(DestroyParticleEmitter(ret, destroyTimer));
             if (isToParent) ret.transform.SetParent(point.transform);
             /*
             if (!facingRight) {
