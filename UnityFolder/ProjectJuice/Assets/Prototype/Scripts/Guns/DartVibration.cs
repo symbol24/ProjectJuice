@@ -2,7 +2,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class DartVibration : VibrationBase<SappingDartGun>
+public class DartVibration : VibrationBase<IDartGun>
 {
     [HideInInspector]
     public bool _enableFireVibration;
@@ -44,7 +44,10 @@ public class DartVibration : VibrationBase<SappingDartGun>
 
     private void DartOnJuiceSucked(object sender, JuiceSuckedEventArgs juiceSuckedEventArgs)
     {
-        if(_enableDartJuiceSuckedVibration) _playerVibrator.Vibrate(_dartJuiceSuckedVibrationSettings);
+        if (_enableDartJuiceSuckedVibration && !_playerVibrator.IsVibrating)
+        {
+            _playerVibrator.Vibrate(_dartJuiceSuckedVibrationSettings);
+        }
     }
 
     private void DartOnDartCollision(object sender, EventArgs eventArgs)

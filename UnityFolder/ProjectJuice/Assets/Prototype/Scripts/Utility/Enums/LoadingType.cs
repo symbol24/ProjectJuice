@@ -1,0 +1,1 @@
+﻿public enum LoadingType { FullyRandom, PartiallyRandom, Single, }

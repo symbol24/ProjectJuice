@@ -19,13 +19,23 @@ public class HPScript : HPBase
     [Range(0,20)][SerializeField] private int _raycastIterationsToFindTarget = 5;
     [SerializeField] private Transform _centerOfReferenceForJuice;
     [SerializeField] private Rigidbody2D _mainRigidbody;
+    [SerializeField] private GameObject _robotEyeToFlicker;
+    [Range(0,1)] [SerializeField] private float _shrinkAmount = 0.2f;
+    [Range(0,5)] [SerializeField] private int _flickerAmount = 3;
+    [Range(0,1)] [SerializeField] private float _flickerTime = 0.2f;
+    private bool _flickering = false;
 
+    private float _originalEyeY;
+ 
     private bool m_ShieldImmunity = false;
     public bool ShieldImunity { get { return m_ShieldImmunity; } }
     public void SwitchShieldImunity()
     {
         m_ShieldImmunity = !m_ShieldImmunity;
     }
+
+    [SerializeField] private GameObject _ragdoll;
+    private bool _ragdollSpawned = false;
 
     #region EventsAvailable
     public event EventHandler<ImpactEventArgs> HpImpactReceived;
@@ -43,10 +53,50 @@ public class HPScript : HPBase
             ex.Log("Before PlayDeathFX and DestroyingGameObject");
             throw;
         }
-        Debug.LogWarning("Missing Death Animation");
         PlayDeathFX();
+        if (!_ragdollSpawned) _ragdollSpawned = SpawnRagdoll();
         Destroy(gameObject);
     }
+
+    private bool SpawnRagdoll()
+    {
+        if (_ragdoll != null)
+            Instantiate(_ragdoll, transform.position, transform.localRotation);
+
+        return true;
+    }
+    
+    private void StartFlicker()
+    {
+        StartCoroutine(FlickerEye());
+    }
+
+    private IEnumerator FlickerEye()
+    {
+        if (_robotEyeToFlicker != null)
+        {
+            if (!_flickering) {
+                _flickering = true;
+                _originalEyeY = _robotEyeToFlicker.transform.localScale.y;
+                float newY = (1 - _shrinkAmount) * _originalEyeY;
+                Transform _updatedTransform = _robotEyeToFlicker.transform;
+                _updatedTransform.localScale = new Vector3(_updatedTransform.localScale.x, newY, _updatedTransform.localScale.z);
+                yield return new WaitForSeconds(_flickerTime);
+                for (int i = 0; i < _flickerAmount; i++)
+                {
+                    _robotEyeToFlicker.SetActive(false);
+                    yield return new WaitForSeconds(_flickerTime);
+                    _robotEyeToFlicker.SetActive(true);
+                    yield return new WaitForSeconds(_flickerTime);
+                }
+                _updatedTransform.localScale = new Vector3(_updatedTransform.localScale.x, _originalEyeY, _updatedTransform.localScale.z);
+                _flickering = false;
+            }
+        }
+        else Debug.LogError("HPscript does not have the eye assigned for " + gameObject.name);
+        yield return 0;
+    }
+
     protected virtual void OnHpImpactReceived(ImpactEventArgs e)
     {
         try
@@ -83,11 +133,16 @@ public class HPScript : HPBase
     private void OnHpChanged(object sender, HpChangedEventArgs hpChangedEventArgs)
     {
         if (CurrentHp <= 0) StartCoroutine(DestroyNextFrame());
+        else if(CurrentHp > 0)
+        {
+            if (hpChangedEventArgs.PreviousHp > hpChangedEventArgs.NewHp)
+                StartFlicker();
+        }
     }
 
     private IEnumerator DestroyNextFrame()
     {
-        yield return null;
+        yield return new WaitForFixedUpdate();
         OnDead();
     }
 
@@ -124,6 +179,7 @@ public class HPScript : HPBase
             {
                 CurrentHp += checkPowerUp.HPRecov;
                 checkPowerUp.Consumed();
+                SoundManager.PlaySFX(Database.instance.JuicePickup);
             }
         }
     }
@@ -192,7 +248,8 @@ public class HPScript : HPBase
                     PointOfCollision = pointOfCollision,
                     color = _inputController.m_PlayerData.PlayerSponsor.SponsorColor
                 };
-                OnHpImpactReceived(e);
+                if(CurrentHp >= 0)
+                    OnHpImpactReceived(e);
             }
         }
     }

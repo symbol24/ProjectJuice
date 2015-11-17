@@ -25,7 +25,9 @@ public class GameManager : ExtendedMonobehaviour
 
     void Awake()
     {
-        //DontDestroyOnLoad(this);
+        GameManager[] list = FindObjectsOfType<GameManager>();
+        if (list.Length > 1) Destroy(gameObject);
+        else DontDestroyOnLoad(gameObject);
     }
     #endregion
 
@@ -43,6 +45,8 @@ public class GameManager : ExtendedMonobehaviour
     {
         m_startTimer = startTimer;
     }
+
+    private bool _roundEnded = false;
 
 
     // Use this for initialization
@@ -93,32 +97,49 @@ public class GameManager : ExtendedMonobehaviour
         get { return m_CurrentState == GameState.Playing; }
     }
 
+    public bool IsLoading { get { return m_CurrentState == GameState.Loading; } }
+
     public bool IsPaused { get { return m_CurrentState == GameState.Paused; } }
 
     public bool IsCharacterSelect { get { return m_CurrentState == GameState.CharacterSelect; } }
 
     private void CheckEndOfRound(object sender, PlayerScoreEventArgs e)
     {
-        
-        if (e.IsThereAWinner) {
-            if (CheckIfMatchWinner())
+        if (!_roundEnded)
+        {
+            _roundEnded = true;
+            ClearRoundSFX();
+            if (e.IsThereAWinner)
             {
-                RoundMenu.instance.DisplayRoundMenu(true, true, e.Platformer2DUserControl.m_PlayerData.PlayerSponsor.SponsorName, GameState.MatchEnd);
-                m_CurrentState = GameState.PreMatchEnd;
+                if (CheckIfMatchWinner())
+                {
+                    RoundMenu.instance.DisplayRoundMenu(true, true, e.Platformer2DUserControl.m_PlayerData.PlayerSponsor.SponsorName, GameState.MatchEnd);
+                    m_CurrentState = GameState.PreMatchEnd;
+                }
+                else
+                {
+                    RoundMenu.instance.DisplayRoundMenu(true, false, e.Platformer2DUserControl.m_PlayerData.PlayerSponsor.SponsorName, GameState.RoundEnd);
+                    m_CurrentState = GameState.PreRoundEnd;
+                }
             }
             else
             {
-                RoundMenu.instance.DisplayRoundMenu(true, false, e.Platformer2DUserControl.m_PlayerData.PlayerSponsor.SponsorName, GameState.RoundEnd);
+                RoundMenu.instance.DisplayRoundMenu(true, false, Database.instance.GameTexts[15], GameState.RoundEnd);
                 m_CurrentState = GameState.PreRoundEnd;
             }
         }
-        else
-        {
-            RoundMenu.instance.DisplayRoundMenu(true, false, Database.instance.GameTexts[15], GameState.RoundEnd);
-            m_CurrentState = GameState.PreRoundEnd;
-        }
-
         
+    }
+
+    private void ClearRoundSFX()
+    {
+        AudioSource[] list = FindObjectsOfType<AudioSource>();
+        foreach(AudioSource As in list)
+        {
+            if (As.isPlaying) As.Stop();
+
+            //if (!As.isPlaying) Destroy(As.gameObject);
+        }
     }
 
     private bool CheckIfMatchWinner()
@@ -145,6 +166,7 @@ public class GameManager : ExtendedMonobehaviour
 
     public void StartNextRound()
     {
+        _roundEnded = false;
         if (m_startTimer != null)
         {
             m_startTimer.gameObject.SetActive(true);
@@ -157,5 +179,6 @@ public class GameManager : ExtendedMonobehaviour
     public void SetGameState(GameState newState)
     {
         m_CurrentState = newState;
+        //print("Loaded level " + Application.loadedLevel + " new GameState " + m_CurrentState);
     }
 }

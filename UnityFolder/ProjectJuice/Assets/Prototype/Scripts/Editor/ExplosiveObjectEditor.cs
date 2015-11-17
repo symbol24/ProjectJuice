@@ -36,7 +36,7 @@ public class ExplosiveObjectEditor : Editor {
         _choice[2] = EditorGUILayout.Popup("Damaging SFX", _choice[2], _listOfClips);
         _choice[3] = EditorGUILayout.Popup("Explosion SFX", _choice[3], _listOfClips);
 
-        _particle[3] = EditorGUILayout.Popup("Chromatic Aberation Particle", _particle[0], _listOFParticles);
+        _particle[0] = EditorGUILayout.Popup("Chromatic Aberation Particle", _particle[0], _listOFParticles);
         _particle[1] = EditorGUILayout.Popup("Explosion Particle", _particle[1], _listOFParticles);
         _particle[2] = EditorGUILayout.Popup("Shockwave Particle", _particle[2], _listOFParticles);
 

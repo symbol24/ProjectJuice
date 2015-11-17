@@ -2,80 +2,47 @@
 using System.Collections;
 using System;
 
-public class SappingDartGun : ExtendedMonobehaviour {
-    [SerializeField]
-    private Dart _dartPrefab;
-    public GameObject _dartSpawnPoint;
-    //[SerializeField]
-    //private DartChain _dartChainPrefab;
+public class SappingDartGun : DartGunBase
+{
+    [SerializeField] private Dart _dartPrefabPrefab;
 
-    HPScript _hpScript;
-    [SerializeField]
-    private float _dartSpeed;
-    [SerializeField]
-    bool _isContiniousSucking = true;
-    [Range(0, 5)][SerializeField]
-    float _suckingInterval = 0.4f;
-    [Range(0, 20)][SerializeField]
-    float _dartCollTimerDisappear = 0f;
+    [SerializeField] private float _dartSpeed;
+    [SerializeField] private bool _isContiniousSucking = true;
+    [Range(0, 5)] [SerializeField] private float _suckingInterval = 0.4f;
+    [Range(0, 20)] [SerializeField] private float _dartCollTimerDisappear = 0f;
 
-    [Range(0, 5)][SerializeField] private float _lifetimeSinceHit = 1f;
+    [Range(0, 5)] [SerializeField] private float _lifetimeSinceHit = 1f;
     [SerializeField] private DartChainV2 _dartChainPrefab;
     [SerializeField] private DartChainV2 _dartChainStatic;
-    [Range(0, 5)][SerializeField]
-    private float _crossSectionLength = 0.1f;
+    [Range(0, 5)] [SerializeField] private float _crossSectionLength = 0.1f;
     [Range(0, 5)] [SerializeField] private float _crossSectionTolerance = 0.3f;
     [SerializeField] private int _crossSectionsLimit = 100;
-    [Range(0, 5)] [SerializeField] private float _shootDelay = 0.5f;
 
-    public float HoseCrossSectionLength { get { return _crossSectionLength; } }
-    [SerializeField]
-    private bool _enabledCrossSectionTolerance = false;
-    public float HoseCrossSectionLengthTolerance { get { return _enabledCrossSectionTolerance ? _crossSectionTolerance : float.MaxValue; } }
-
-    DelayManager _delayManager;
-    IPlatformer2DUserControl _inputManager;
-
-    [Range(0, 5)][SerializeField] private float m_transferSoundDelay = 0.4f;
-
-    [HideInInspector] public string Fire;
-    [HideInInspector] public string Transfering;
-    [HideInInspector] public string CoolDown;
-
-    [HideInInspector] public ParticleSystem m_firingParticle;
-    [Range(0, 5)][SerializeField] private float m_ParticleLifetime = 0.3f;
-
-    private LightFeedbackTemp _lightFeedback;
-
-    private AudioSource m_SappingAudioSource;
-
-    void Start()
+    public float HoseCrossSectionLength
     {
-        _delayManager = GetComponent<DelayManager>();
-        _inputManager = GetComponent<IPlatformer2DUserControl>();
-        _hpScript = GetComponent<HPScript>();
-        _lightFeedback = GetComponent<LightFeedbackTemp>();
-
+        get { return _crossSectionLength; }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (GameManager.instance.IsPlaying)
-        {
-            if (_inputManager.m_Special && _delayManager.CanShoot)
-            {
-                FireDart();
-            }
-        }
-    }
-    
+    [SerializeField] private bool _enabledCrossSectionTolerance = false;
 
-    private void FireDart()
+    public float HoseCrossSectionLengthTolerance
     {
-        var dartGameObject = (Dart)Instantiate(_dartPrefab, _dartSpawnPoint.transform.position, _dartSpawnPoint.transform.rotation);
+        get { return _enabledCrossSectionTolerance ? _crossSectionTolerance : float.MaxValue; }
+    }
+
+
+    [Range(0, 5)] [SerializeField] private float m_ParticleLifetime = 0.3f;
+
+
+
+    protected override void FireDart()
+    {
+        var dartGameObject =
+            (Dart) Instantiate(_dartPrefabPrefab, _dartSpawnPoint.transform.position, _dartSpawnPoint.transform.rotation);
         var dart = dartGameObject.GetComponent<Dart>();
+
         #region SetProperties
+
         dart.IsContiniousSucking = _isContiniousSucking;
         dart.SuckingInterval = _suckingInterval;
         dart.HpSuckedPerSecond = Database.instance.DartBaseDmgPerSecond;
@@ -83,23 +50,27 @@ public class SappingDartGun : ExtendedMonobehaviour {
         dart.LifetimeSinceHit = _lifetimeSinceHit;
         dart.InputManager = _inputManager;
         dart.SourceHPScript = _hpScript;
+
         #endregion SetProperties
+
         #region SubscribeToEvents
+
         dart.JuiceSucked += Dart_JuiceSucked;
         dart.DartDestroyed += Dart_DartDestroyed;
         dart.DartCollision += Dart_DartCollision;
+
         #endregion SubscribeToEvents
 
 
 
         var currentCrossSection = InstantiateChain(dart.StaticCrossSection, dart);
-        OnDartFired(new DartFiredEventArgs{Dart = dart,});
+        OnDartFired(new DartFiredEventArgs {Dart = dart,});
         currentCrossSection.IgnoreFloor = true;
         _currentCount = 0;
         _addCrossSection = AddCrossSection(currentCrossSection);
         StartCoroutine(_addCrossSection);
 
-        
+
         //Debug.Break();
         dart.ShootBullet(_dartSpeed, _dartSpawnPoint.transform);
         _delayManager.AddDelay(float.MaxValue);
@@ -107,20 +78,18 @@ public class SappingDartGun : ExtendedMonobehaviour {
         InstatiateParticle(m_firingParticle, _dartChainStatic.gameObject, true, m_ParticleLifetime);
     }
 
-    public event EventHandler<DartFiredEventArgs> DartFired;
-
-    protected virtual void OnDartFired(DartFiredEventArgs e)
+    public override DartGunSettings Settings
     {
-        try
+        get
         {
-            EventHandler<DartFiredEventArgs> handler = DartFired;
-            if (handler != null) handler(this, e);
+            _settings = new DartGunSettings
+            {
+                HoseLength = _crossSectionLength,
+                HoseLengthTolerance = _crossSectionTolerance
+            };
+            return _settings;
         }
-        catch (Exception ex)
-        {
-            ex.Log();
-            throw;
-        }
+        set { _settings = value; }
     }
 
     private void Dart_DartCollision(object sender, EventArgs e)
@@ -153,31 +122,15 @@ public class SappingDartGun : ExtendedMonobehaviour {
     private void Dart_DartDestroyed(object sender, EventArgs e)
     {
         StopCoroutine(_addCrossSection);
-        if(_moveLastChainToRefPoint != null) StopCoroutine(_moveLastChainToRefPoint);
-        _delayManager.SetDelay(0);
-        _delayManager.AddDelay(_shootDelay);
-        CoolDownEffects();
-        if (m_SappingAudioSource != null && m_SappingAudioSource.isPlaying) m_SappingAudioSource.Stop();
-    }
-
-    private void CoolDownEffects()
-    {
-        SoundManager.PlaySFX(CoolDown);
-        _lightFeedback.StartLightFeedback(_shootDelay);
+        if (_moveLastChainToRefPoint != null) StopCoroutine(_moveLastChainToRefPoint);
     }
 
     private void Dart_JuiceSucked(object sender, JuiceSuckedEventArgs e)
     {
         _hpScript.CurrentHp += e.HpSucked;
-        if (_delayManager.OtherReady)
-        {
-            m_SappingAudioSource = PlayNewSound(m_SappingAudioSource, Transfering);
-            //SoundManager.PlaySFX(Transfering);
-            _delayManager.AddOtherDelay(m_transferSoundDelay);
-        }
     }
 
-    IEnumerator AddHpOnTimer(HPScript hpScript, float hpToAdd, float timer)
+    private IEnumerator AddHpOnTimer(HPScript hpScript, float hpToAdd, float timer)
     {
         yield return new WaitForSeconds(timer);
         SoundManager.PlaySFX(Transfering);
@@ -220,7 +173,8 @@ public class SappingDartGun : ExtendedMonobehaviour {
     }
 
     private IEnumerator _moveLastChainToRefPoint;
-    
+    private DartGunSettings _settings;
+
 
     private IEnumerator MoveLastChainToRefPoint(DartChainV2 lastDartChainAdded)
     {
@@ -241,6 +195,7 @@ public class SappingDartGun : ExtendedMonobehaviour {
         brandNewCrossSection.CurrentDart = dart;
         brandNewCrossSection.NextChain = toAttachTo;
         brandNewCrossSection.transform.parent = dart.transform;
+        
         dart.ListenToCrossSection(brandNewCrossSection);
         return brandNewCrossSection;
     }

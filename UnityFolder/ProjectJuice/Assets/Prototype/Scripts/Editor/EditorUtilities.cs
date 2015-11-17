@@ -2,6 +2,8 @@
 using UnityEditor;
 using System.Collections.Generic;
 using System.Collections;
+using System.Linq;
+using System;
 
 public static class EditorUtilities {
 
@@ -14,6 +16,7 @@ public static class EditorUtilities {
             temp = temp.Substring(0, temp.Length - 6);
             ret[i] = temp;
         }
+        //Array.Sort(ret, StringComparer.InvariantCulture);
         return ret;
     }
 
@@ -32,7 +35,7 @@ public static class EditorUtilities {
                 ret[i] = clips[i].name;
             }
         }
-
+        //Array.Sort(ret, StringComparer.InvariantCulture);
         return ret;
     }
 
@@ -68,7 +71,7 @@ public static class EditorUtilities {
         {
             ret[i] = temp[i].ToString();
         }
-
+        //Array.Sort(ret, StringComparer.InvariantCulture);
         return ret;
     }
 
@@ -80,7 +83,7 @@ public static class EditorUtilities {
         {
             ret[i] = Database.instance.Particles[i].name;
         }
-
+        //Array.Sort(ret, StringComparer.InvariantCulture);
         return ret;
     }
 
@@ -88,9 +91,12 @@ public static class EditorUtilities {
     {
         int ret = 0;
 
-        for(int i = 0; i < Database.instance.Particles.Length; i++)
+        if (toCheck != null)
         {
-            if (toCheck.name == Database.instance.Particles[i].name) ret = i;
+            for (int i = 0; i < Database.instance.Particles.Length; i++)
+            {
+                if (toCheck.name == Database.instance.Particles[i].name) ret = i;
+            }
         }
 
         return ret;

@@ -11,23 +11,43 @@ public class PlayerVibrator : MonoBehaviour {
         _inputManager = GetComponent<IPlatformer2DUserControl>();
         if (_inputManager == null) Debug.LogWarning("No Platformer2dUserControl Detected!");
 	}
+    private bool _needToContinueVibration = false;
+    void Update()
+    {
+        if(GameManager.instance.CurrentState != GameState.Playing && _vibrationOnGoing)
+        {
+            StopCoroutine(_vibrationCoroutine);
+            _vibrationOnGoing = false;
+            StopVibration();
+            _needToContinueVibration = GameManager.instance.CurrentState == GameState.Paused;
+        }
+        else if(_needToContinueVibration && GameManager.instance.CurrentState == GameState.Playing)
+        {
+            StartVibration(_settingsOnGoing, _currentTimePassed);
+            _needToContinueVibration = false;
+        }
+    }
 
 
     public void Vibrate(VibrationSettings settings, bool addToExternalObject = false)
     {
-        StopVibration();
-        _vibrationCoroutine = StartVibration(settings);
-        if (addToExternalObject)
+        //this check was gining a nice null pointer, so I added a null check on _settingsOnGoing, but now there noe more vibration, sorry Victor...
+        //if (_settingsOnGoing != null && (settings.LeftSideVibration >= _settingsOnGoing.LeftSideVibration || settings.RightSideVibration >= _settingsOnGoing.RightSideVibration))
         {
-            var newGameObject = new GameObject();
-            var holder = newGameObject.AddComponent<CoroutineHolder>();
-            var destroyOnTimer = newGameObject.AddComponent<DestroyOnTimer>();
-            holder.StartAndKeepCoroutine(_vibrationCoroutine);
-            destroyOnTimer.Timeout = settings.TimeToVibrate + 0.3f;
-        }
-        else
-        {
-            StartCoroutine(_vibrationCoroutine);
+            StopVibration();
+            _vibrationCoroutine = StartVibration(settings);
+            if (addToExternalObject)
+            {
+                var newGameObject = new GameObject();
+                var holder = newGameObject.AddComponent<CoroutineHolder>();
+                var destroyOnTimer = newGameObject.AddComponent<DestroyOnTimer>();
+                holder.StartAndKeepCoroutine(_vibrationCoroutine);
+                destroyOnTimer.Timeout = settings.TimeToVibrate + 0.3f;
+            }
+            else
+            {
+                StartCoroutine(_vibrationCoroutine);
+            }
         }
     }
     public void StopVibration()
@@ -38,14 +58,29 @@ public class PlayerVibrator : MonoBehaviour {
         }
         SetVibration(0, 0);
     }
+    public bool IsVibrating
+    {
+        get
+        {
+            return _vibrationOnGoing;
+        }
+    }
 
     private IEnumerator _vibrationCoroutine;
     private bool _vibrationOnGoing = false;
-    private IEnumerator StartVibration(VibrationSettings settings)
+    private VibrationSettings _settingsOnGoing;
+    private float _currentTimePassed;
+    private IEnumerator StartVibration(VibrationSettings settings, float startTime = 0)
     {
         _vibrationOnGoing = true;
+        _settingsOnGoing = settings;
+        _currentTimePassed = startTime;
         SetVibration(settings.LeftSideVibration, settings.RightSideVibration);
-        yield return new WaitForSeconds(settings.TimeToVibrate);
+        while (_currentTimePassed <= settings.TimeToVibrate)
+        {
+            _currentTimePassed += Time.deltaTime;
+            yield return null;
+        }
         SetVibration(0, 0);
         _vibrationOnGoing = false;
     }

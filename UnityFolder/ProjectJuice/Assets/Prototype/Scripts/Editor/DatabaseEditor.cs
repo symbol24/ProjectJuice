@@ -10,7 +10,7 @@ public class DatabaseEditor : Editor
     string[] ListOfScenes;
     int _sceneChoice = 0;
 
-    int[] _soundsID = new int[10];
+    int[] _soundsID = new int[11];
 
     public override void OnInspectorGUI()
     {
@@ -32,6 +32,7 @@ public class DatabaseEditor : Editor
         _soundsID[7] = EditorUtilities.GetSelectedClip(_listOfClips, database.Landing);
         _soundsID[8] = EditorUtilities.GetSelectedClip(_listOfClips, database.Dash);
         _soundsID[9] = EditorUtilities.GetSelectedClip(_listOfClips, database.DashMetalGrind);
+        _soundsID[10] = EditorUtilities.GetSelectedClip(_listOfClips, database.JuicePickup);
 
         _sceneChoice = EditorGUILayout.Popup("Main Menu scene", _sceneChoice, ListOfScenes);
         _soundsID[0] = EditorGUILayout.Popup("Menu Slide SFX", _soundsID[0], _listOfClips);
@@ -44,6 +45,7 @@ public class DatabaseEditor : Editor
         _soundsID[7] = EditorGUILayout.Popup("Land SFX", _soundsID[7], _listOfClips);
         _soundsID[8] = EditorGUILayout.Popup("Dash SFX", _soundsID[8], _listOfClips);
         _soundsID[9] = EditorGUILayout.Popup("Ground Dash Metal SFX", _soundsID[9], _listOfClips);
+        _soundsID[10] = EditorGUILayout.Popup("Juice Pickup SFX", _soundsID[10], _listOfClips);
 
 
         database.MainMenuID = _sceneChoice;
@@ -57,6 +59,7 @@ public class DatabaseEditor : Editor
         database.Landing = _listOfClips[_soundsID[7]];
         database.Dash = _listOfClips[_soundsID[8]];
         database.DashMetalGrind = _listOfClips[_soundsID[9]];
+        database.JuicePickup = _listOfClips[_soundsID[10]];
 
         EditorUtility.SetDirty(target);
     }

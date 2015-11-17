@@ -5,7 +5,7 @@ using System.Collections;
 using System;
 using UnityEngine.EventSystems;
 
-public class Dart : ExtendedMonobehaviour
+public class Dart : DartBase
 {
     [SerializeField] private DartChainV2 _staticCrossSection;
     public DartChainV2 StaticCrossSection { get { return _staticCrossSection; } }
@@ -22,18 +22,6 @@ public class Dart : ExtendedMonobehaviour
     private float currentIntervalTimer = 0f;
     private bool _hitAWall = false;
     private float destroyTimer;
-    private Rigidbody2D _mainRigidbody;
-    private Rigidbody2D MainRigidbody2D
-    {
-        get
-        {
-            if (_mainRigidbody == null)
-            {
-                _mainRigidbody = GetComponent<Rigidbody2D>();
-            }
-            return _mainRigidbody;
-        }
-    }
 
     public IPlatformer2DUserControl InputManager { get; set; }
 
@@ -42,11 +30,18 @@ public class Dart : ExtendedMonobehaviour
 
     [Range(0,10)][SerializeField] private int m_BulletsToGiveShield = 2;
     public int BulletsToGiveShield { get { return m_BulletsToGiveShield; } }
-    [SerializeField] private float _maxDistanceToTravel = 30.6f;
 
-    [HideInInspector] public string PlayerImpact;
-    [HideInInspector] public string GroundImpact;
-    [HideInInspector] public string Severed;
+    public override HPScript Target
+    {
+        get
+        {
+            return _targetHpScript;
+        }
+    }
+
+    //[SerializeField] private float _maxDistanceToTravel = 30.6f;
+
+    
 
 
     void Update ()
@@ -121,18 +116,11 @@ public class Dart : ExtendedMonobehaviour
     }
     private bool _nextUpdateIsCollision = false;
 
-    void Start()
+    protected override void Initialize()
     {
+        base.Initialize();
         DartCollision += Dart_DartCollision;
         SourceHPScript.Dead += SourceHpScriptOnDead;
-        var triggerToUse = gameObject.AddComponent<TriggerOnDistance>();
-        triggerToUse.DistanceTravelled += Dart_DistanceTravelled;
-        triggerToUse._maxDistance = _maxDistanceToTravel;
-    }
-
-    private void Dart_DistanceTravelled(object sender, EventArgs e)
-    {
-        OnDartDestroyed();
     }
 
     private void SourceHpScriptOnDead(object sender, EventArgs eventArgs)
@@ -147,11 +135,7 @@ public class Dart : ExtendedMonobehaviour
     }
 
 
-    public void ShootBullet(float force, Transform sourceTransform)
-    {
-        if (force < 1f) force = 1;
-        MainRigidbody2D.AddForce(transform.up * force);
-    }
+    
 
     #region CollisionChecking
     
@@ -292,40 +276,9 @@ public class Dart : ExtendedMonobehaviour
 
 
     #region events
-    public event EventHandler<JuiceSuckedEventArgs> JuiceSucked;
-    protected void OnJuiceSucked(JuiceSuckedEventArgs e)
-    {
-        try
-        {
-            if (JuiceSucked != null)
-            {
-                JuiceSucked(this, e);
-            }
-        }
-        catch (Exception ex)
-        {
-            ex.Log();
-            throw;
-        }
-    }
-    public event EventHandler DartCollision;
-    protected void OnDartCollision()
-    {
-        try
-        {
-            if (DartCollision != null) DartCollision(this, EventArgs.Empty);
-        }
-        catch (Exception ex)
-        {
-            ex.Log();
-        }
-
-    }
     private bool _onDartAlreadyDestroyed = false;
-    
-
-    public event EventHandler DartDestroyed;
-    protected void OnDartDestroyed()
+    public override event EventHandler DartDestroyed;
+    protected override void OnDartDestroyed()
     {
         try
         {

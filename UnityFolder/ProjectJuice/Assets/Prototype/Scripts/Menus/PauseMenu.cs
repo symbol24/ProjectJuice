@@ -22,6 +22,10 @@ public class PauseMenu : Menu {
     [Range(0,10)][SerializeField] private float m_delayToReturn = 2f;
 
     [SerializeField] private Animator m_PauseMenuAnimator;
+
+    private MenuAnimState _animState = MenuAnimState.NotUsable;
+
+    private bool BackPressed { get { return m_Controls._Start[m_ControllingPlayer] || (!m_inConfirm && m_Controls.Cancel[m_ControllingPlayer]); } }
     
     [HideInInspector] public string MenuOpenName;
     [HideInInspector] public string MenuCloseName;
@@ -62,12 +66,11 @@ public class PauseMenu : Menu {
                 }
             }
         }
-        else if(GameManager.instance.IsPaused)
+        else if(GameManager.instance.IsPaused && _animState == MenuAnimState.Usable)
         {
-            if (m_DelayManager.CanShoot && m_Controls._Start[m_ControllingPlayer])
+            if (m_DelayManager.CanShoot && BackPressed)
             {
-                SwitchPauseState();
-                m_ControllingPlayer = 0;
+                PauseResume();
             }
 
             if(m_DelayManager.CanShield && !m_inConfirm && m_Controls.Y[m_ControllingPlayer] != 0)
@@ -86,6 +89,13 @@ public class PauseMenu : Menu {
             }
         }
 	}
+
+    public void PauseResume()
+    {
+        SwitchPauseState();
+        m_ControllingPlayer = 0;
+        SetAnimState(MenuAnimState.NotUsable);
+    }
 
     public void SwitchPauseState()
     {
@@ -109,8 +119,12 @@ public class PauseMenu : Menu {
 
     public void ChangePanelState()
     {
+        if (m_isPaused)
+            m_isPaused = !m_isPaused;
+
         m_PausePanel.SetActive(m_isPaused);
         GameManager.instance.SetPaused(m_isPaused, 1, m_IsFullSoundPause);
+
     }
 
     public void ReturnToMainMenu()
@@ -120,12 +134,15 @@ public class PauseMenu : Menu {
 
     private IEnumerator SoundThenReturn()
     {
+        SetAnimState(MenuAnimState.NotUsable);
         SoundManager.PlaySFX(ReturnToCS);
+        m_PauseMenuAnimator.SetBool("GoUp", true);
         float endTimer = Time.unscaledTime + m_delayToReturn;
         while (endTimer > Time.unscaledTime)
         {
             yield return 0;
         }
+        ChangePanelState();
         Application.LoadLevel(Database.instance.MainMenuID);
     }
 
@@ -197,5 +214,10 @@ public class PauseMenu : Menu {
     public void ResetAnimatorBool(string boolName, bool boolValue)
     {
         m_PauseMenuAnimator.SetBool(boolName, boolValue);
+    }
+
+    public void SetAnimState(MenuAnimState newState)
+    {
+        _animState = newState;
     }
 }

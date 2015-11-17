@@ -23,27 +23,42 @@ public class MenuControls : MonoBehaviour {
     public List<float> X { get { return m_X; } }
     public List<float> Y { get { return m_Y; } }
 
-    private FadeOut m_Fader;
+    private LoadingScreen _loader;
+
+    private bool _loadDoneReceived = false;
 
     void Awake()
     {
     }
 
-    private void M_Fader_FadeDone(object sender, System.EventArgs e)
+    private void LoadDone(object sender, System.EventArgs e)
     {
-        m_Fader = FindObjectOfType<FadeOut>();
-        m_Fader.FadeDone += M_Fader_FadeDone;
+        GetPlayers();
+    }
+
+    private void GetPlayers()
+    {
         m_ListofPlayers = Utilities.GetAllPlayerData();
+        SetInputs();
+        _loadDoneReceived = true;
     }
 
     // Use this for initialization
-    void Start () {
-        m_ListofPlayers = Utilities.GetAllPlayerData();
-        SetInputs();
+    void Start ()
+    {
+        _loader = FindObjectOfType<LoadingScreen>();
+        if (_loader != null) _loader.LoadDone += LoadDone;
+        else
+        {
+            m_ListofPlayers = Utilities.GetAllPlayerData();
+            SetInputs();
+        }
     }
 	
 	// Update is called once per frame
 	void Update () {
+        if (!_loadDoneReceived) GetPlayers();
+
         for (int i = 0; i < m_ListofPlayers.Count; i++)
             ReadInputs(i);
 	}
@@ -60,6 +75,15 @@ public class MenuControls : MonoBehaviour {
         }
     }
 
+    void ClearInputs()
+    {
+        m_Confirm.Clear();
+        m_Cancel.Clear();
+        m_Start.Clear();
+        m_X.Clear();
+        m_Y.Clear();
+    }
+
     void ReadInputs(int id)
     {
         m_Confirm[id] = GamePad.GetButtonDown(m_ConfirmButton, m_ListofPlayers[id].GamepadIndex);
@@ -67,5 +91,16 @@ public class MenuControls : MonoBehaviour {
         m_Start[id] = GamePad.GetButtonDown(m_StartButton, m_ListofPlayers[id].GamepadIndex);
         m_X[id] = GamePad.GetAxis(m_DirectionJoystic, m_ListofPlayers[id].GamepadIndex).x;
         m_Y[id] = GamePad.GetAxis(m_DirectionJoystic, m_ListofPlayers[id].GamepadIndex).y;
+    }
+
+    public void SetPlayerDatas(List<PlayerData> newPlayerDatas)
+    {
+        m_ListofPlayers = newPlayerDatas;
+    }
+
+    public void Restart()
+    {
+        ClearInputs();
+        Start();
     }
 }

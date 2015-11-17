@@ -55,8 +55,10 @@ public class ExplosiveObject : HPBase
     
     [Range(0,10)][SerializeField] public int _bulletsToGive = 5;
 
-    private FadeOut m_fade;
+    private LoadingScreen m_fade;
     private bool isMuted = true;
+
+    [Range(0,10)][SerializeField] private float _chromaticDelayBeforeDestruction = 0.5f;
 
     [HideInInspector] public string Pushing;
     [HideInInspector] public string GroundImpact;
@@ -76,8 +78,8 @@ public class ExplosiveObject : HPBase
         HpChanged += OnHpChanged;
         _delayManager = GetComponent<DelayManager>();
         _delayManager.Reset();
-        m_fade = FindObjectOfType<FadeOut>();
-        if (m_fade != null) m_fade.FadeDone += M_fade_FadeDone;
+        m_fade = FindObjectOfType<LoadingScreen>();
+        if (m_fade != null) m_fade.LoadingAnimDone += M_fade_FadeDone;
         else isMuted = false;
     }
 
@@ -165,8 +167,11 @@ public class ExplosiveObject : HPBase
     private IEnumerator TimerForExplosion()
     {
         _waitingForExplosionNoReturn = true;
-        print("need to add some kind of combustion here");
-        yield return new WaitForSeconds(_timerBeforeExplosion);
+        float before = _timerBeforeExplosion - _chromaticDelayBeforeDestruction;
+        if (before < 0) before = 0;
+        yield return new WaitForSeconds(before);
+        InstatiateParticle(_chromaticAberation, gameObject, false, _chromaticDelayBeforeDestruction);
+        yield return new WaitForSeconds(_chromaticDelayBeforeDestruction);
         Kaboom();
     }
 
@@ -200,7 +205,6 @@ public class ExplosiveObject : HPBase
     {
         InstatiateParticle(_explosionFX, gameObject);
         InstatiateParticle(_shockwave, gameObject);
-        InstatiateParticle(_chromaticAberation, gameObject);
     }
 
     private IEnumerator DeleteNextUpdate(ExplosiveObjectCollider script)

@@ -22,15 +22,15 @@ public class PlayerSpawner : MonoBehaviour
     }
     #endregion
     [SerializeField] private bool m_randomizePlayersOnSpawn = true;
-    [SerializeField] GameObject[] m_Spawners;
+    [SerializeField] List<GameObject> m_Spawners;
     [SerializeField] GameObject m_PlayerPrefab;
-    [SerializeField] private List<PlayerData> m_ListofPlayers = new List<PlayerData>();
+    private List<PlayerData> m_ListofPlayers = new List<PlayerData>();
     public List<PlayerData> ListOfPlayerDatas { get { return m_ListofPlayers; } }
     private List<GameObject> m_Players = new List<GameObject>();
     public List<GameObject> Players { get { return m_Players; } }
     [SerializeField]
     private int[] m_PlayerLayerIDs = { 15, 16, 17, 18 };
-    private FadeOut m_Fader;
+    private LoadingScreen m_Fader;
     private Activator _activator;
     private bool _subscribed = false;
 
@@ -43,17 +43,17 @@ public class PlayerSpawner : MonoBehaviour
 
     void Start()
     {
-        m_Fader = FindObjectOfType<FadeOut>();
+        m_Fader = FindObjectOfType<LoadingScreen>();
         if (m_Fader == null && _activator != null) m_Fader = _activator.Loader;
         SubscribeToEvents(m_Fader);
     }
 
-    public void SubscribeToEvents(FadeOut toUse)
+    public void SubscribeToEvents(LoadingScreen toUse)
     {
         if (!_subscribed)
         {
             m_Fader = toUse;
-            m_Fader.FadeDone += M_Fader_FadeDone;
+            m_Fader.LoadingAnimDone += M_Fader_FadeDone;
             m_Fader.LoadDone += M_Fader_LoadDone;
             _subscribed = true;
         }
@@ -62,7 +62,7 @@ public class PlayerSpawner : MonoBehaviour
     private void M_Fader_LoadDone(object sender, EventArgs e)
     {
         //Debug.LogWarning("in playerspawner fader_loaddone");
-        m_ListofPlayers = Utilities.GetAllPlayerData(m_randomizePlayersOnSpawn);
+        m_ListofPlayers = Utilities.GetAllPlayerData();
         SpawnPlayers();
     }
 
@@ -75,17 +75,21 @@ public class PlayerSpawner : MonoBehaviour
 
     protected virtual void OnSpawnDone()
     {
+        //Debug.LogWarning("in playerspawner OnSpawnDone");
         EventHandler handler = SpawnDone;
         if (handler != null) handler(this, EventArgs.Empty);
     }
 
     void SpawnPlayers()
     {
+        if(m_randomizePlayersOnSpawn)
+            m_Spawners = Utilities.RandomizeList<GameObject>(m_Spawners);
+
         int i = 0;
         foreach (PlayerData pd in m_ListofPlayers)
         {
             GameObject temp = Instantiate(m_PlayerPrefab, m_Spawners[i].transform.position, m_Spawners[i].transform.rotation) as GameObject;
-            Platformer2DUserControl pUserControl = temp.GetComponent<Platformer2DUserControl>();
+            IPlatformer2DUserControl pUserControl = temp.GetComponent<IPlatformer2DUserControl>();
             PlatformerCharacter2D pc2d = temp.GetComponent<PlatformerCharacter2D>();
             ArcShooting gun = temp.GetComponent<ArcShooting>();
             pUserControl.PlayerID = pd.playerID;
@@ -118,6 +122,7 @@ public class PlayerSpawner : MonoBehaviour
 
     public void RespawnPlayers()
     {
+        m_Fader.Respawn();
         DestroyRemainingSpawnedPlayers();
         SpawnPlayers();
     }
@@ -130,7 +135,7 @@ public class PlayerSpawner : MonoBehaviour
         leShield.ChangeVisibilty(leShield.m_Gun);
         leShield.enabled = false;
 
-        SappingDartGun leDart = toAbilitize.GetComponent<SappingDartGun>();
+        IDartGun leDart = toAbilitize.GetComponent<IDartGun>();
         leDart.enabled = false;
 
         MeleeAttack[] leMelees = toAbilitize.GetComponents<MeleeAttack>();
@@ -168,7 +173,7 @@ public class PlayerSpawner : MonoBehaviour
         {
             if (pg != null)
             {
-                Platformer2DUserControl controls = pg.GetComponent<Platformer2DUserControl>();
+                IPlatformer2DUserControl controls = pg.GetComponent<IPlatformer2DUserControl>();
                 if (controls != null)
                     controls.FlushInputs();
 

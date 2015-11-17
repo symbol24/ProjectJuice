@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public abstract class VibrationBase<T> : ExtendedMonobehaviour where T : Component
+public abstract class VibrationBase<T> : ExtendedMonobehaviour where T : IGameObject
 {
     [SerializeField] protected T _componentToListen;
     [SerializeField] protected PlayerVibrator _playerVibrator;

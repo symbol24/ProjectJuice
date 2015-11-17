@@ -4,6 +4,8 @@ using System.Collections;
 
 public abstract class ExtendedMonobehaviour : MonoBehaviour, IGameObject { 
 
+    protected bool RandomBool { get { return Random.value < 0.5f; } }
+
     protected void SetRotationEulerX(float xValue)
     {
         transform.rotation = Quaternion.Euler(xValue, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z);
@@ -24,9 +26,14 @@ public abstract class ExtendedMonobehaviour : MonoBehaviour, IGameObject {
         transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, zValue);
     }
 
-    protected bool IsAChild(IDamaging toCheck)
+    public bool IsAChild(IDamaging toCheck)
     {
         var checkComponents = GetComponentsInChildren<IDamaging>();
+        return checkComponents.Any(c => c == toCheck);
+    }
+    public bool IsAChild<T>(T toCheck) where T : Component
+    {
+        var checkComponents = GetComponentsInChildren<T>();
         return checkComponents.Any(c => c == toCheck);
     }
 
@@ -133,13 +140,15 @@ public abstract class ExtendedMonobehaviour : MonoBehaviour, IGameObject {
             ret.transform.position = point.transform.position;
             ret.transform.rotation = point.transform.rotation;
             ret.Play();
-            StartCoroutine(DestroyParticleEmitter(ret, destroyTimer));
+            Destroy(ret.gameObject, destroyTimer);
+//            StartCoroutine(DestroyParticleEmitter(ret, destroyTimer));
             if (isToParent) ret.transform.SetParent(point.transform);
+            /*
             if (!facingRight) {
                 Vector3 scaleTemp = ret.transform.localScale;
                 scaleTemp.x = -scaleTemp.x;
                 ret.transform.localScale = scaleTemp;
-            }
+            }*/
         }
         else
             Debug.LogWarning("Missing Particle");

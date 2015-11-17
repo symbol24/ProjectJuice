@@ -23,8 +23,15 @@ public class RoundMenu : Menu {
     [SerializeField] GameObject m_RoundPanel;
     private DelayManager m_DelayManager;
 
-    [Range(0,3)][SerializeField] private float m_DelayBeforeDisplay = 0.5f;
+    [Range(0,20)][SerializeField] private float m_DelayBeforeDisplay = 0.5f;
     [Range(0,3)][SerializeField] private float m_DelayForRtuenToCharSel = 0.5f;
+    [Range(0,5)][SerializeField] private float m_DelayToDisplayStar = 0.5f;
+    [Range(0,3)][SerializeField] private float _delayBeforeFlashing = 0.5f;
+    [Range(0,10)][SerializeField] private int _circleFlashCount = 5;
+    [Range(0,1)][SerializeField] private float _flashDelay = 0.3f;
+
+    private bool _canDisplayWinner = false;
+    private Image _winnerImage;
 
     [SerializeField] List<Sprite> m_Circles;
     [SerializeField] List<GameObject> m_ListOfPlayerLines;
@@ -176,6 +183,7 @@ public class RoundMenu : Menu {
 
     private void DisplayPlayers(bool isMatchOver, string winnerName)
     {
+        _winnerImage = null;
         if (isMatchOver)
         {
             m_TopText.text = Database.instance.GameTexts[14] + winnerName;
@@ -213,7 +221,11 @@ public class RoundMenu : Menu {
                         child.gameObject.SetActive(true);
                         if (currentPlayerScore != null)
                         {
-                            if (x < currentPlayerScore.CurrentScore)
+                            if(winnerName == currentPlayerScore.Player.PlayerSponsor.SponsorName && x == currentPlayerScore.CurrentScore - 1)
+                            {
+                                _winnerImage = toChange;
+                            }
+                            else if (x < currentPlayerScore.CurrentScore)
                                 toChange.sprite = m_Circles[1];
                         }
                     }
@@ -387,5 +399,37 @@ public class RoundMenu : Menu {
     public void UpdateBoolAnimator(string toUpdate, bool with)
     {
         m_animator.SetBool(toUpdate, with);
+    }
+
+    public void SetDisplayBool(bool newValue)
+    {
+        _canDisplayWinner = newValue;
+        if (_canDisplayWinner) StartCoroutine(DelayForDisplayWinner());
+    }
+
+    private IEnumerator DelayForDisplayWinner()
+    {
+        yield return new WaitForSeconds(m_DelayToDisplayStar);
+        if (_winnerImage != null) DisplayStar();
+    }
+
+    private void DisplayStar()
+    {
+        StartCoroutine(FlashStar());
+        SoundManager.PlaySFX(MedalAppear);
+        SoundManager.PlaySFX(MedalCrowd);
+    }
+
+    private IEnumerator FlashStar()
+    {
+        _winnerImage.sprite = m_Circles[1];
+        yield return new WaitForSeconds(_delayBeforeFlashing);
+        for(int i = 0; i< _circleFlashCount; i++)
+        {
+            _winnerImage.sprite = m_Circles[0];
+            yield return new WaitForSeconds(_flashDelay);
+            _winnerImage.sprite = m_Circles[1];
+            yield return new WaitForSeconds(_flashDelay);
+        }
     }
 }

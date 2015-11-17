@@ -13,5 +13,6 @@ public class PauseMenuSub : MonoBehaviour {
     public void ResetGoDown()
     {
         m_parentPauseMenu.ResetAnimatorBool("GoDown", false);
+        m_parentPauseMenu.SetAnimState(MenuAnimState.Usable);
     }
 }

@@ -51,12 +51,6 @@ public class Database : MonoBehaviour
     [Range(0,5)][SerializeField] private float m_LongMenuInputDelay = 1.5f;
     public float LongMenuInputDelay { get { return m_LongMenuInputDelay; } }
 
-    [SerializeField] Color m_TakenColorForMenu;
-    public Color TakenColor { get { return m_TakenColorForMenu; } }
-
-    [SerializeField] Color m_NormalTextColorForMenu;
-    public Color NormalTextColor { get { return m_TakenColorForMenu; } }
-
     [SerializeField] Font m_BaseFont;
     public Font BaseFont { get { return m_BaseFont; } }
 
@@ -74,6 +68,9 @@ public class Database : MonoBehaviour
 
     [SerializeField] float m_MeleeAbilityDamage;
     public float MeleeAbilityDamage { get { return m_MeleeAbilityDamage; } }
+
+    [SerializeField] float m_MeleeAbilityAerialDamage;
+    public float MeleeAbilityAerialDamage { get { return m_MeleeAbilityAerialDamage; } }
 
     [SerializeField] float m_ExplosionBaseDamage;
     public float ExplosionBaseDamage { get { return m_ExplosionBaseDamage; } }
@@ -98,6 +95,7 @@ public class Database : MonoBehaviour
     [HideInInspector] public string Landing;
     [HideInInspector] public string Dash;
     [HideInInspector] public string DashMetalGrind;
+    [HideInInspector] public string JuicePickup;
 
     void Start()
     {

@@ -4,5 +4,5 @@ using System;
 
 public class DartFiredEventArgs : EventArgs
 {
-    public Dart Dart { get; set; }
+    public IDart Dart { get; set; }
 }
