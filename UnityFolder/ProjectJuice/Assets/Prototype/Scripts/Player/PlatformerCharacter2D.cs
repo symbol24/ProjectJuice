@@ -93,6 +93,11 @@ namespace UnityStandardAssets._2D
         [SerializeField] private GameObject m_FeetPoint;
 
         private Ground[] m_platforms;
+        
+        [Range(0,1)][SerializeField] private float _bodyThrusterTimer = 0.5f;
+        [Range(0,1)][SerializeField] private float _grindingTimer = 0.5f;
+        [Range(0,1)][SerializeField] private float _chromaticTimer = 0.5f;
+        [Range(0,1)][SerializeField] private float _trailTimer = 0.5f;
  
 
         private void Awake()
@@ -300,13 +305,15 @@ namespace UnityStandardAssets._2D
             {
 
                 SoundManager.PlaySFX(Database.instance.Dash);
-                InstatiateParticle(m_DashBodyThrusters, m_BackThrusterPoint, true);
-                InstatiateParticle(m_DashChromaticAberation, gameObject, true);
+                InstatiateParticle(m_DashBodyThrusters, m_BackThrusterPoint, true, _bodyThrusterTimer);
+                InstatiateParticle(m_DashChromaticAberation, gameObject, true, _chromaticTimer);
+                ParticleSystem trail = InstatiateParticle(m_DashParticle, gameObject, false, _trailTimer, true, true);
+                trail.startColor = m_Controller.m_PlayerData.PlayerSponsor.SponsorColor;
 
                 if (IsGrounded)
                 {
                     SoundManager.PlaySFX(Database.instance.DashMetalGrind);
-                    InstatiateParticle(m_GroundDashGrinding, m_FeetPoint, true);
+                    InstatiateParticle(m_GroundDashGrinding, m_FeetPoint, true, _grindingTimer);
 
                 }
 

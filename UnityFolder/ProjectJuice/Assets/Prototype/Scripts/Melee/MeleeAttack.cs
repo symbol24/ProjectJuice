@@ -89,6 +89,8 @@ public class MeleeAttack : ExtendedMonobehaviour
 
     protected Feedback _feedBack;
 
+    private ParticleSystem trail;
+
     // Use this for initialization
     private void Start()
     {
@@ -171,7 +173,7 @@ public class MeleeAttack : ExtendedMonobehaviour
             _sound = SoundManager.PlaySFX(Swipe);
             m_animator.SetBool("Grounded", true);
         }
-        StartTrail();
+        //StartTrail();
         return true;
     }
 
@@ -193,6 +195,7 @@ public class MeleeAttack : ExtendedMonobehaviour
             m_animator.SetBool(change, with);
             _delayManager.SetDelay(_delayAfterSwing);
             _wasConsumed = false;
+            if (trail != null) Destroy(trail);
             if (isAbility)
             {
                 _mouvementManager.ChangeCanFlip();
@@ -208,7 +211,7 @@ public class MeleeAttack : ExtendedMonobehaviour
         float timer = _trailAerialLifeTime;
         if (isAbility && !_isAerial) timer = _trailGroundLifeTime;
 
-        ParticleSystem trail = InstatiateParticle(Trail, _ParticleReference, true, timer);
+        trail = InstatiateParticle(Trail, _ParticleReference, false, timer, true);
         trail.startColor = _inputManager.m_PlayerData.PlayerSponsor.SponsorColor;
     }
     
