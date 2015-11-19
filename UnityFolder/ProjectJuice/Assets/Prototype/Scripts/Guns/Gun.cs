@@ -91,7 +91,7 @@ public class Gun : ExtendedMonobehaviour {
     protected void DisplayParticles()
     {
         StartCoroutine(DisplayMuzzleFlashes());
-        InstatiateParticle(m_MuzzleSmoke, ParticleReference, true, m_MuzzleSmokeLifeTime, m_Controller.m_FacingRight);
+        InstatiateParticle(m_MuzzleSmoke, ParticleReference, true, m_MuzzleSmokeLifeTime);
     }
 
     public event EventHandler<BulletFiredEventArgs> BulletFired;

@@ -130,36 +130,33 @@ public abstract class ExtendedMonobehaviour : MonoBehaviour, IGameObject {
         return ret;
     }
     
-    protected ParticleSystem InstatiateParticle(ParticleSystem toInstantiate, GameObject point, bool isToParent = false, float destroyTimer = 1f, bool facingRight = true)
+    protected ParticleSystem InstatiateParticle(ParticleSystem toInstantiate, GameObject point, bool isToParent = false, float destroyTimer = 1f, bool isFollow = false, bool keepRotation = false)
     {
         ParticleSystem ret = null;
 
         if (toInstantiate != null)
         {
-            ret = Instantiate<ParticleSystem>(toInstantiate);
-            ret.transform.position = point.transform.position;
-            ret.transform.rotation = point.transform.rotation;
+            ret = Instantiate(toInstantiate, point.transform.position, point.transform.rotation) as ParticleSystem;
+            if (keepRotation) ret.transform.rotation = toInstantiate.transform.rotation;
             ret.Play();
             Destroy(ret.gameObject, destroyTimer);
-//            StartCoroutine(DestroyParticleEmitter(ret, destroyTimer));
             if (isToParent) ret.transform.SetParent(point.transform);
-            /*
-            if (!facingRight) {
-                Vector3 scaleTemp = ret.transform.localScale;
-                scaleTemp.x = -scaleTemp.x;
-                ret.transform.localScale = scaleTemp;
-            }*/
+            if (isFollow)
+            {
+                FollowTheLeader follower = ret.GetComponent<FollowTheLeader>();
+                if (follower == null) Debug.LogError(ret.gameObject.name + " cannot find FollowTheLeader script did you forget to put it on the particle system?");
+                else
+                {
+                    if (point == null) Debug.LogError(ret.gameObject.name + " doesnt have a point to follow, did you forget to send it?");
+                    else follower._toFollow = point;
+                }
+            }
+
         }
         else
             Debug.LogWarning("Missing Particle");
 
         return ret;
-    }
-
-    private IEnumerator DestroyParticleEmitter(ParticleSystem toDestroy, float timer = 1f)
-    {
-        yield return new WaitForSeconds(timer);
-        Destroy(toDestroy.gameObject);
     }
 
     protected Vector2 GetPointOfImpact(Transform targetReference, Transform sourceReference, int raycastIterationsToFindTarget = 5, float raycastVariationPerTry = 0.1f)
