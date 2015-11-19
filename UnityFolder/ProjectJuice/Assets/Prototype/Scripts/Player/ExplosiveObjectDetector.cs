@@ -7,7 +7,6 @@ public class ExplosiveObjectDetector : ExtendedMonobehaviour
     private IPlatformer2DUserControl _inputManager;
     public GameObject _refForPushing;
     public float _rayCastLength = 1;
-    public int _layerMask;
 
     // Use this for initialization
     void Start()
