@@ -162,6 +162,7 @@ public class MeleeAttack : ExtendedMonobehaviour
             _sound = SoundManager.PlaySFX(Swipe);
             m_animator.SetBool("Grounded", true);
         }
+        StartTrail();
         return true;
     }
 
@@ -198,7 +199,8 @@ public class MeleeAttack : ExtendedMonobehaviour
         float timer = _trailAerialLifeTime;
         if (isAbility && !_isAerial) timer = _trailGroundLifeTime;
 
-        InstatiateParticle(Trail, _ParticleReference, true, timer);
+        ParticleSystem trail = InstatiateParticle(Trail, _ParticleReference, true, timer);
+        trail.startColor = _inputManager.m_PlayerData.PlayerSponsor.SponsorColor;
     }
     
     public void Consumed()
