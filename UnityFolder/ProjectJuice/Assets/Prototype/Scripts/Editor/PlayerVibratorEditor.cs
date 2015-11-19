@@ -13,6 +13,7 @@ public class PlayerVibratorEditor : ExtendedEditor
     private MeleeAttackVibration _meleeVib;
     private PlayerJumpVibration _jumpVib;
     private ShieldVibration _shieldVib;
+    private ExplosiveObjectDetectorVibrations _expDetectVib;
     public void OnEnable()
     {
         var vibrator = (PlayerVibrator)target;
@@ -22,6 +23,7 @@ public class PlayerVibratorEditor : ExtendedEditor
         _meleeVib = vibrator.gameObject.GetComponent<MeleeAttackVibration>();
         _jumpVib = vibrator.gameObject.GetComponent<PlayerJumpVibration>();
         _shieldVib = vibrator.gameObject.GetComponent<ShieldVibration>();
+        _expDetectVib = vibrator.gameObject.GetComponent<ExplosiveObjectDetectorVibrations>();
     }
 
     public override void OnInspectorGUI()
@@ -53,6 +55,14 @@ public class PlayerVibratorEditor : ExtendedEditor
         {
             AddTitle("Cuerpo a Cuerpo Vibraciones");
             AddToMenu(ref _meleeVib._activarChoqueCuerpoACuerpo, ref _meleeVib._choqueCuerpoACuerpoParametros, "Choque (clash)");
+            AddTitle("Dagger", 12);
+            AddToMenu(ref _meleeVib._enableDaggerMelee, ref _meleeVib._daggerMeleeSettings, "Start");
+            AddToMenu(ref _meleeVib._enableDaggerHitPlayerVibration, ref _meleeVib._DaggerhitPlayerVibrations, "Hit Player");
+            AddTitle("Axe", 12);
+            AddToMenu(ref _meleeVib._enableAxeMelee, ref _meleeVib._axeMeleeSettings, "Start");
+            AddToMenu(ref _meleeVib._enableAxeHitPlayerVibration, ref _meleeVib._AxehitPlayerVibrations, "Hit Player");
+            AddToMenu(ref _meleeVib._enableAxeHitGround, ref _meleeVib._axeHitGroundSettings, "Hit Ground (own)");
+            AddToMenu(ref _meleeVib._enableAxeHitGroundForOthers, ref _meleeVib._axeHitGroundForOthersSettings, "Hit Ground (others)");
             EditorGUILayout.Separator();
         }
         if (_jumpVib != null)
@@ -70,6 +80,13 @@ public class PlayerVibratorEditor : ExtendedEditor
             AddToMenu(ref _shieldVib._activarEscudoAbsorveVibraciones, ref _shieldVib._escudoAbsorventeParametros, "EscudoAbsorve");
             AddToMenu(ref _shieldVib._enableShieldChargedVibration, ref _shieldVib._shieldChargedVibrationSettings, "CompletelyCharged");
             AddToMenu(ref _shieldVib._enabledShieldFiredVibration, ref _shieldVib._shieldFiredVibrationSettings, "Fire");
+            EditorGUILayout.Separator();
+        }
+        if(_expDetectVib != null)
+        {
+            AddTitle("Barrel/Crate Pushing Vibrations");
+            AddToMenu(ref _expDetectVib._enableExplosiveVibration, ref _expDetectVib._explosiveVibrationSettings, "Barrel Pushing");
+            AddToMenu(ref _expDetectVib._enableNonExplosiveVibration, ref _expDetectVib._nonExplosiveVibrationSettings, "Crate Pushing");
         }
 
     }

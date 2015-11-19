@@ -41,7 +41,15 @@ public class MeleeAttack : ExtendedMonobehaviour
 
     public ImpactForceSettings _impactForceSettings;
 
-    public bool IsAvailableForConsumption { get { return !_wasConsumed; } }
+    public bool IsAvailableForConsumption(object sender)
+    {
+        var ret = !_wasConsumed;
+        if(ret)
+        {
+            MeleeConsumed(this, new ConsumingObjectEventArgs { AttemptingToConsume = sender });
+        }
+        return ret;
+    } 
     private bool _wasConsumed = false;
 
     [Range(0,3)]public float _delayAfterSwing = 0.5f;
@@ -118,6 +126,7 @@ public class MeleeAttack : ExtendedMonobehaviour
             if (m_animator != null)
             {
                 m_isSwinging = StartAnimatedSwing();
+                OnMeleeStarted();
             }
             
         }
@@ -207,7 +216,6 @@ public class MeleeAttack : ExtendedMonobehaviour
     {
         _collider.enabled = false;
         _wasConsumed = true;
-
     }
 
     public float Damage
@@ -248,14 +256,24 @@ public class MeleeAttack : ExtendedMonobehaviour
             throw;
         }
     }
-    public event EventHandler MeleeConsumed;
-    protected virtual void OnMeleeConsumed()
+    public event EventHandler<ConsumingObjectEventArgs> MeleeConsumed;
+    protected virtual void OnMeleeConsumed(ConsumingObjectEventArgs e)
     {
         try
         {
-            if (MeleeConsumed != null) MeleeConsumed(this, EventArgs.Empty);
+            if (MeleeConsumed != null) MeleeConsumed(this, e);
         }
         catch(Exception ex) { ex.Log(); throw; }
+    }
+    public event EventHandler MeleeSpecialHitGround;
+    protected virtual void OnMeleeSpecialHitGround()
+    {
+        if (MeleeSpecialHitGround != null) MeleeSpecialHitGround(this, EventArgs.Empty);
+    }
+    public event EventHandler MeleeStarted;
+    protected virtual void OnMeleeStarted()
+    {
+        if (MeleeStarted != null) MeleeStarted(this, EventArgs.Empty);
     }
 
 
@@ -287,3 +305,10 @@ public class MeleeAttack : ExtendedMonobehaviour
         InstatiateParticle(CrowdParticle, toParent, false, _CrowdFxTimer);
     }
 }
+
+
+public class ConsumingObjectEventArgs : EventArgs
+{
+    public object AttemptingToConsume { get; set; }
+}
+
