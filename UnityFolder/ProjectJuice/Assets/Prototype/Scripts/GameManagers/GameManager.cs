@@ -157,6 +157,7 @@ public class GameManager : ExtendedMonobehaviour
 
     public void DisplayStartTimer()
     {
+        if (_roundEnded) _roundEnded = false;
         if (m_startTimer != null)
         {
             m_startTimer.gameObject.SetActive(true);
@@ -180,5 +181,10 @@ public class GameManager : ExtendedMonobehaviour
     {
         m_CurrentState = newState;
         //print("Loaded level " + Application.loadedLevel + " new GameState " + m_CurrentState);
+    }
+
+    public void SetRoundEnd(bool toValue = false)
+    {
+        _roundEnded = toValue;
     }
 }

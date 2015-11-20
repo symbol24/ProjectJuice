@@ -46,7 +46,7 @@ public class MeleeAttack : ExtendedMonobehaviour
         var ret = !_wasConsumed;
         if(ret)
         {
-            MeleeConsumed(this, new ConsumingObjectEventArgs { AttemptingToConsume = sender });
+            OnMeleeConsumed(new ConsumingObjectEventArgs { AttemptingToConsume = sender });
         }
         return ret;
     } 
