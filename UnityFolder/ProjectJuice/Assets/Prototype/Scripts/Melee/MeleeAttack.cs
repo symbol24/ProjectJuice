@@ -83,13 +83,18 @@ public class MeleeAttack : ExtendedMonobehaviour
     [Range(0,4)][SerializeField] private float _CrowdFxTimer = 2f;
 
     [SerializeField] private GameObject _ParticleReference;
+
+    [SerializeField] private bool _useParticalTrail = true;
     [Range(0,5)][SerializeField] private float _trailGroundLifeTime = 1f;
     [Range(0,5)][SerializeField] private float _trailAerialLifeTime = 2f;
+
+    [SerializeField] private TrailRenderer _trailPrefab;
+
+    private ParticleSystem _particleTrail;
+    private TrailRenderer _trail;
     #endregion
 
     protected Feedback _feedBack;
-
-    private ParticleSystem trail;
 
     // Use this for initialization
     private void Start()
@@ -195,7 +200,14 @@ public class MeleeAttack : ExtendedMonobehaviour
             m_animator.SetBool(change, with);
             _delayManager.SetDelay(_delayAfterSwing);
             _wasConsumed = false;
-            if (trail != null) Destroy(trail);
+            if (_useParticalTrail)
+            {
+                if (_particleTrail != null) Destroy(_particleTrail);
+            }
+            else
+            {
+                if (_trail != null) Destroy(_trail);
+            }
             if (isAbility)
             {
                 _mouvementManager.ChangeCanFlip();
@@ -211,8 +223,17 @@ public class MeleeAttack : ExtendedMonobehaviour
         float timer = _trailAerialLifeTime;
         if (isAbility && !_isAerial) timer = _trailGroundLifeTime;
 
-        trail = InstatiateParticle(Trail, _ParticleReference, false, timer, true);
-        trail.startColor = _inputManager.m_PlayerData.PlayerSponsor.SponsorColor;
+        if (_useParticalTrail)
+        {
+
+            _particleTrail = InstatiateParticle(Trail, _ParticleReference, false, timer, true);
+            _particleTrail.startColor = _inputManager.m_PlayerData.PlayerSponsor.SponsorColor;
+        }
+        else
+        {
+            _trail = InstatiateTrail(_trailPrefab, _ParticleReference, false, timer, true);
+            _trail.material = _inputManager.m_PlayerData.PlayerSponsor.SponsorMaterial;
+        }
     }
     
     public void Consumed()
