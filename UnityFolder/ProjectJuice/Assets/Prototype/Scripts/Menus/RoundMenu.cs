@@ -390,6 +390,7 @@ public class RoundMenu : Menu {
 
     public void RoundReturnToMainMenu()
     {
+        GameManager.instance.SetRoundEnd();
         m_targetLevel = Database.instance.MainMenuID;
         UpdateBoolAnimator("GoUp", true);
     }
