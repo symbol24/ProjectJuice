@@ -2,6 +2,7 @@
 using UnityEngine;
 using System.Collections;
 using UnityStandardAssets._2D;
+using System.Linq;
 
 public class MeleeAttackVibration : VibrationBase<MeleeAttack>
 {
@@ -32,15 +33,26 @@ public class MeleeAttackVibration : VibrationBase<MeleeAttack>
     [HideInInspector]
     public VibrationSettings _axeHitGroundForOthersSettings;
 
+    private MeleeAttack _daggerAttack;
+    private MeleeAttack _axeAttack;
+
+
     // Use this for initialization
     protected override void Start ()
 	{
         base.Start();
-	    _componentToListen.MeleeClashed += ComponentToListenOnMeleeClashed;
-        _componentToListen.MeleeConsumed += _componentToListen_MeleeConsumed;
-        _componentToListen.MeleeSpecialHitGround += _componentToListen_MeleeSpecialHitGround;
-        _componentToListen.MeleeStarted += _componentToListen_MeleeStarted;
-	}
+        var meleeAttacks = GetComponents<MeleeAttack>();
+        _daggerAttack = meleeAttacks.First(c => !c.isAbility);
+        _axeAttack = meleeAttacks.First(c => c.isAbility);
+        _daggerAttack.MeleeClashed += ComponentToListenOnMeleeClashed;
+        _axeAttack.MeleeClashed += ComponentToListenOnMeleeClashed;
+        _daggerAttack.MeleeConsumed += _componentToListen_MeleeConsumed;
+        _axeAttack.MeleeConsumed += _componentToListen_MeleeConsumed;
+        _daggerAttack.MeleeSpecialHitGround += _componentToListen_MeleeSpecialHitGround;
+        _axeAttack.MeleeSpecialHitGround += _componentToListen_MeleeSpecialHitGround;
+        _daggerAttack.MeleeStarted += _componentToListen_MeleeStarted;
+        _axeAttack.MeleeStarted += _componentToListen_MeleeStarted;
+    }
 
     private void _componentToListen_MeleeStarted(object sender, EventArgs e)
     {

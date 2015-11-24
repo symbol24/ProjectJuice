@@ -188,6 +188,7 @@ public class MeleeAttack : ExtendedMonobehaviour
         {
             _sound.Stop();
             ResetSwing("Air", false);
+            OnMeleeSpecialHitGround();
         }
     }
 
