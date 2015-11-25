@@ -212,8 +212,10 @@ public class MeleeAttack : ExtendedMonobehaviour
             if (isAbility)
             {
                 _mouvementManager.ChangeCanFlip();
+                /*
                 if (_isAerial)
                     _isAerial = !_mouvementManager.IsGrounded;
+                    */
             }
             _SwingReset = true;
         }
@@ -247,6 +249,8 @@ public class MeleeAttack : ExtendedMonobehaviour
     {
         get {
             if (isAbility) {
+                if(!_isAerial) _isAerial = !_mouvementManager.IsGrounded;
+
                 if (_isAerial && _abilityUseDifferentAerialDmg)
                     return Database.instance.MeleeAbilityAerialDamage;
                 else
