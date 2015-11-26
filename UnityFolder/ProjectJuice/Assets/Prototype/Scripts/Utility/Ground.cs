@@ -10,7 +10,14 @@ public class Ground : MonoBehaviour {
 
     void Start()
     {
-        m_MyCollider = transform.parent.GetComponentsInChildren<Collider2D>();
+        if (transform.parent != null)
+        {
+            m_MyCollider = transform.parent.GetComponentsInChildren<Collider2D>();
+        }
+        else
+        {
+            m_MyCollider = GetComponentsInChildren<Collider2D>();
+        }
     }
 }
 

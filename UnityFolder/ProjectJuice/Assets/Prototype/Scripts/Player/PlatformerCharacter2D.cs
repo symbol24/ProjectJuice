@@ -308,7 +308,7 @@ namespace UnityStandardAssets._2D
         {
             if (m_CanDash)
             {
-
+                OnPlayerDashed();
                 SoundManager.PlaySFX(Database.instance.Dash);
                 ParticleSystem thruster = InstatiateParticle(m_DashBodyThrusters, m_BackThrusterPoint, false, _bodyThrusterTimer, true);
                 if (m_Controller.m_FacingRight) thruster.startRotation = _thrusterOrientations[0]; 

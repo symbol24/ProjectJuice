@@ -102,6 +102,7 @@ public class PauseMenu : Menu {
         m_isPaused = !m_isPaused;
         if (m_isPaused)
         {
+            _animState = MenuAnimState.NotUsable;
             m_PausePanel.SetActive(m_isPaused);
             GameManager.instance.SetPaused(m_isPaused, m_PauseMusicVolume, m_IsFullSoundPause);
             SoundManager.PlaySFX(MenuOpenName);

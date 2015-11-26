@@ -47,7 +47,10 @@ public abstract class DartGunBase : ExtendedMonobehaviour, IDartGun
         _delayManager.SetDelay(0);
         _delayManager.AddDelay(Settings._shootDelay);
         CoolDownEffects();
-        if (m_SappingAudioSource != null && m_SappingAudioSource.isPlaying) m_SappingAudioSource.Stop();
+        if (m_SappingAudioSource != null && m_SappingAudioSource.isPlaying)
+        {
+            m_SappingAudioSource.Stop();
+        }
     }
     private void DartOnJuiceSucked(object sender, JuiceSuckedEventArgs juiceSuckedEventArgs)
     {
