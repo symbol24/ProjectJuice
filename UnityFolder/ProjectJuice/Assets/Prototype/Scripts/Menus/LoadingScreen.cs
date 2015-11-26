@@ -39,6 +39,9 @@ public class LoadingScreen : ExtendedMonobehaviour {
     private bool CheckCanPress { get { return GameManager.instance.IsLoading && _loadingState == LoadingState.Middle && SpawnDone && !_goScreen && _delayManager.CanShoot; } }
     private bool CheckNoPressNeeded { get { return GameManager.instance.IsLoading && _loadingState == LoadingState.Middle && !_goScreen && _delayManager.CanShoot && _forceGoNoPress; } }
 
+    [SerializeField] private List<int> WhiteXPositions;
+    [SerializeField] private List<int> ColourXPositions;
+    [SerializeField] private List<int> TipXPositions;
     // Use this for initialization
     void Start ()
     {
