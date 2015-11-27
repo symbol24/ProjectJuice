@@ -69,7 +69,7 @@ public class MovementSparking : ExtendedMonobehaviour
                 foreach (var pointsOfSpark in pointsCloseToGround)
                 {
 
-                    InstatiateParticle(_effectsToSpawn, pointsOfSpark, true, _sparklesDestroyTimeout);
+                    InstatiateParticle(_effectsToSpawn, pointsOfSpark, false, _sparklesDestroyTimeout);
                     
                 }
                 if (_delayManager.SoundReady)
