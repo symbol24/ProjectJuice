@@ -53,7 +53,8 @@ public class DartV2 : DartBase
         {
             var hpScript = collider.gameObject.GetComponent<HPScript>();
             if (hpScript == null) hpScript = collider.gameObject.GetComponentInParent<HPScript>();
-            if (hpScript != null && !_dartGun.IsAChild(hpScript))
+            if (hpScript != null && _dartGun.IsAChild(hpScript)) return;
+            else if (hpScript != null)
             {
                 if (hpScript != null)
                 {
@@ -63,7 +64,7 @@ public class DartV2 : DartBase
             else
             {
                 var ground = collider.gameObject.GetComponent<Ground>();
-                if(ground == null || !ground.IsPassThrough)
+                if (ground == null || !ground.IsPassThrough)
                 {
                     CollideWithIt();
                 }

@@ -35,10 +35,9 @@ public class MeleeDamagingCollider : MonoBehaviour, IDamaging
 
 	}
 
-    public bool IsAvailableForConsumption { get { return _meleeAttack.IsAvailableForConsumption; } }
     bool IConsumable.IsAvailableForConsumption(object sender)
     {
-        return IsAvailableForConsumption;
+        return _meleeAttack.IsAvailableForConsumption(sender);
     }
     public void Consumed()
     {

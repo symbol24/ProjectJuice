@@ -12,6 +12,7 @@ public abstract class DartGunBase : ExtendedMonobehaviour, IDartGun
 
     //AudioWhenTransfering
     private AudioSource m_SappingAudioSource;
+    private AudioSource m_FireSound;
 
     //GenericProperties
     public GameObject _dartSpawnPoint;
@@ -41,13 +42,20 @@ public abstract class DartGunBase : ExtendedMonobehaviour, IDartGun
     {
         dartFiredEventArgs.Dart.JuiceSucked += DartOnJuiceSucked;
         dartFiredEventArgs.Dart.DartDestroyed += DartOnDartDestroyed;
+        Debug.Log("OnDartFired");
+        m_FireSound = SoundManager.PlaySFX(Fire);
     }
     private void DartOnDartDestroyed(object sender, EventArgs eventArgs)
     {
         _delayManager.SetDelay(0);
         _delayManager.AddDelay(Settings._shootDelay);
         CoolDownEffects();
-        if (m_SappingAudioSource != null && m_SappingAudioSource.isPlaying) m_SappingAudioSource.Stop();
+        if (m_SappingAudioSource != null && m_SappingAudioSource.isPlaying)
+        {
+            m_SappingAudioSource.Stop();
+        }
+        if (m_FireSound.isPlaying) m_FireSound.Stop();
+        SoundManager.PlaySFX(WireSnapping);
     }
     private void DartOnJuiceSucked(object sender, JuiceSuckedEventArgs juiceSuckedEventArgs)
     {
@@ -85,6 +93,10 @@ public abstract class DartGunBase : ExtendedMonobehaviour, IDartGun
     [HideInInspector]
     public string _cooldown;
     public string CoolDown { get { return _cooldown; } set { _cooldown = value; } }
+    [HideInInspector]
+    public string _wireSnapping;
+    public string WireSnapping { get { return _wireSnapping; } set { _wireSnapping = value; } }
+
     [HideInInspector]
     public ParticleSystem _m_firingParticle;
     public ParticleSystem m_firingParticle { get { return _m_firingParticle; } set { _m_firingParticle = value; } }

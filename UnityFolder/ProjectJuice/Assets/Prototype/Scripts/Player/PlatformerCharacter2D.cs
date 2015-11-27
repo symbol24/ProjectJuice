@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace UnityStandardAssets._2D
@@ -98,6 +99,10 @@ namespace UnityStandardAssets._2D
         [Range(0,1)][SerializeField] private float _grindingTimer = 0.5f;
         [Range(0,1)][SerializeField] private float _chromaticTimer = 0.5f;
         [Range(0,1)][SerializeField] private float _trailTimer = 0.5f;
+        [SerializeField] private List<float> _thrusterOrientations;
+
+        [SerializeField] private bool _useParticleTrail = false;
+        [SerializeField] private TrailRenderer _trailPrefab;
  
 
         private void Awake()
@@ -303,17 +308,28 @@ namespace UnityStandardAssets._2D
         {
             if (m_CanDash)
             {
-
+                OnPlayerDashed();
                 SoundManager.PlaySFX(Database.instance.Dash);
-                InstatiateParticle(m_DashBodyThrusters, m_BackThrusterPoint, true, _bodyThrusterTimer);
+                ParticleSystem thruster = InstatiateParticle(m_DashBodyThrusters, m_BackThrusterPoint, false, _bodyThrusterTimer, true);
+                if (m_Controller.m_FacingRight) thruster.startRotation = _thrusterOrientations[0]; 
+                else thruster.startRotation = _thrusterOrientations[1];
                 InstatiateParticle(m_DashChromaticAberation, gameObject, true, _chromaticTimer);
-                ParticleSystem trail = InstatiateParticle(m_DashParticle, gameObject, false, _trailTimer, true, true);
-                trail.startColor = m_Controller.m_PlayerData.PlayerSponsor.SponsorColor;
+
+                if (_useParticleTrail)
+                {
+                    ParticleSystem trail = InstatiateParticle(m_DashParticle, gameObject, false, _trailTimer, true, true);
+                    trail.startColor = m_Controller.m_PlayerData.PlayerSponsor.SponsorColor;
+                }
+                else
+                {
+                    TrailRenderer trail = InstatiateTrail(_trailPrefab, gameObject, false, _trailTimer, true);
+                    trail.material = m_Controller.m_PlayerData.PlayerSponsor.SponsorMaterial;
+                }
 
                 if (IsGrounded)
                 {
                     SoundManager.PlaySFX(Database.instance.DashMetalGrind);
-                    InstatiateParticle(m_GroundDashGrinding, m_FeetPoint, true, _grindingTimer);
+                    InstatiateParticle(m_GroundDashGrinding, m_FeetPoint, false, _grindingTimer);
 
                 }
 

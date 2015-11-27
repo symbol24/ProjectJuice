@@ -6,6 +6,7 @@ using System.Collections;
 public class ExplosiveObject : HPBase
 {
     [SerializeField] private bool _IsExplosive = true;
+    public bool IsExplosive { get { return _IsExplosive; } }
     [SerializeField] private GameObject _explosionPrefab;
     [Range(0,10)][SerializeField] private float _explosionDestroyTimeout = 3f;
     [SerializeField] private List<GameObject> _ragdollParticles;

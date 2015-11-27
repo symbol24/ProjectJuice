@@ -263,7 +263,10 @@ public class RoundMenu : Menu {
                 Invoke("LoadLevel", m_DelayForRtuenToCharSel);
             }
             else
+            {
+                GameManager.instance.SetRoundEnd();
                 Application.LoadLevel(m_targetLevel);
+            }
         }
     }
 
@@ -387,6 +390,7 @@ public class RoundMenu : Menu {
 
     public void RoundReturnToMainMenu()
     {
+        GameManager.instance.SetRoundEnd();
         m_targetLevel = Database.instance.MainMenuID;
         UpdateBoolAnimator("GoUp", true);
     }

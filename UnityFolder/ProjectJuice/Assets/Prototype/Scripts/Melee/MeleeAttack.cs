@@ -41,7 +41,15 @@ public class MeleeAttack : ExtendedMonobehaviour
 
     public ImpactForceSettings _impactForceSettings;
 
-    public bool IsAvailableForConsumption { get { return !_wasConsumed; } }
+    public bool IsAvailableForConsumption(object sender)
+    {
+        var ret = !_wasConsumed;
+        if(ret)
+        {
+            OnMeleeConsumed(new ConsumingObjectEventArgs { AttemptingToConsume = sender });
+        }
+        return ret;
+    } 
     private bool _wasConsumed = false;
 
     [Range(0,3)]public float _delayAfterSwing = 0.5f;
@@ -75,13 +83,18 @@ public class MeleeAttack : ExtendedMonobehaviour
     [Range(0,4)][SerializeField] private float _CrowdFxTimer = 2f;
 
     [SerializeField] private GameObject _ParticleReference;
+
+    [SerializeField] private bool _useParticalTrail = true;
     [Range(0,5)][SerializeField] private float _trailGroundLifeTime = 1f;
     [Range(0,5)][SerializeField] private float _trailAerialLifeTime = 2f;
+
+    [SerializeField] private TrailRenderer _trailPrefab;
+
+    private ParticleSystem _particleTrail;
+    private TrailRenderer _trail;
     #endregion
 
     protected Feedback _feedBack;
-
-    private ParticleSystem trail;
 
     // Use this for initialization
     private void Start()
@@ -120,6 +133,7 @@ public class MeleeAttack : ExtendedMonobehaviour
             if (m_animator != null)
             {
                 m_isSwinging = StartAnimatedSwing();
+                OnMeleeStarted();
             }
             
         }
@@ -174,6 +188,7 @@ public class MeleeAttack : ExtendedMonobehaviour
         {
             _sound.Stop();
             ResetSwing("Air", false);
+            OnMeleeSpecialHitGround();
         }
     }
 
@@ -186,12 +201,21 @@ public class MeleeAttack : ExtendedMonobehaviour
             m_animator.SetBool(change, with);
             _delayManager.SetDelay(_delayAfterSwing);
             _wasConsumed = false;
-            if (trail != null) Destroy(trail);
+            if (_useParticalTrail)
+            {
+                if (_particleTrail != null) Destroy(_particleTrail);
+            }
+            else
+            {
+                if (_trail != null) Destroy(_trail);
+            }
             if (isAbility)
             {
                 _mouvementManager.ChangeCanFlip();
+                /*
                 if (_isAerial)
                     _isAerial = !_mouvementManager.IsGrounded;
+                    */
             }
             _SwingReset = true;
         }
@@ -202,21 +226,31 @@ public class MeleeAttack : ExtendedMonobehaviour
         float timer = _trailAerialLifeTime;
         if (isAbility && !_isAerial) timer = _trailGroundLifeTime;
 
-        trail = InstatiateParticle(Trail, _ParticleReference, false, timer, true);
-        trail.startColor = _inputManager.m_PlayerData.PlayerSponsor.SponsorColor;
+        if (_useParticalTrail)
+        {
+
+            _particleTrail = InstatiateParticle(Trail, _ParticleReference, false, timer, true);
+            _particleTrail.startColor = _inputManager.m_PlayerData.PlayerSponsor.SponsorColor;
+        }
+        else
+        {
+            _trail = InstatiateTrail(_trailPrefab, _ParticleReference, false, timer, true);
+            _trail.material = _inputManager.m_PlayerData.PlayerSponsor.SponsorMaterial;
+        }
     }
     
     public void Consumed()
     {
         _collider.enabled = false;
         _wasConsumed = true;
-
     }
 
     public float Damage
     {
         get {
             if (isAbility) {
+                if(!_isAerial) _isAerial = !_mouvementManager.IsGrounded;
+
                 if (_isAerial && _abilityUseDifferentAerialDmg)
                     return Database.instance.MeleeAbilityAerialDamage;
                 else
@@ -251,14 +285,24 @@ public class MeleeAttack : ExtendedMonobehaviour
             throw;
         }
     }
-    public event EventHandler MeleeConsumed;
-    protected virtual void OnMeleeConsumed()
+    public event EventHandler<ConsumingObjectEventArgs> MeleeConsumed;
+    protected virtual void OnMeleeConsumed(ConsumingObjectEventArgs e)
     {
         try
         {
-            if (MeleeConsumed != null) MeleeConsumed(this, EventArgs.Empty);
+            if (MeleeConsumed != null) MeleeConsumed(this, e);
         }
         catch(Exception ex) { ex.Log(); throw; }
+    }
+    public event EventHandler MeleeSpecialHitGround;
+    protected virtual void OnMeleeSpecialHitGround()
+    {
+        if (MeleeSpecialHitGround != null) MeleeSpecialHitGround(this, EventArgs.Empty);
+    }
+    public event EventHandler MeleeStarted;
+    protected virtual void OnMeleeStarted()
+    {
+        if (MeleeStarted != null) MeleeStarted(this, EventArgs.Empty);
     }
 
 
@@ -290,3 +334,10 @@ public class MeleeAttack : ExtendedMonobehaviour
         InstatiateParticle(CrowdParticle, toParent, false, _CrowdFxTimer);
     }
 }
+
+
+public class ConsumingObjectEventArgs : EventArgs
+{
+    public object AttemptingToConsume { get; set; }
+}
+

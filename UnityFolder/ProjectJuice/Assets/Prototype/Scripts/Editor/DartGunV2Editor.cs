@@ -8,7 +8,7 @@ public class DartGunV2Editor : ExtendedEditor
 {
     string[] _listOfClips;
 
-    int[] _choice = new int[3];
+    int[] _choice = new int[4];
 
     string[] _listOFParticles;
 
@@ -24,6 +24,7 @@ public class DartGunV2Editor : ExtendedEditor
         _choice[0] = EditorUtilities.GetSelectedClip(_listOfClips, leDartGun.Fire);
         _choice[1] = EditorUtilities.GetSelectedClip(_listOfClips, leDartGun.Transfering);
         _choice[2] = EditorUtilities.GetSelectedClip(_listOfClips, leDartGun.CoolDown);
+        _choice[3] = EditorUtilities.GetSelectedClip(_listOfClips, leDartGun.WireSnapping);
 
         _particle[0] = EditorUtilities.GetSelectedParticle(leDartGun.m_firingParticle);
 
@@ -57,10 +58,13 @@ public class DartGunV2Editor : ExtendedEditor
         _choice[0] = EditorGUILayout.Popup("Fire Dart", _choice[0], _listOfClips);
         _choice[1] = EditorGUILayout.Popup("Transfering Juice", _choice[1], _listOfClips);
         _choice[2] = EditorGUILayout.Popup("Cooldown", _choice[2], _listOfClips);
+        _choice[3] = EditorGUILayout.Popup("Wire Snap", _choice[3], _listOfClips);
+
         leDartGun.Settings.LoopCooldown = EditorGUILayout.Toggle("Loop Cooldown", leDartGun.Settings.LoopCooldown);
         leDartGun.Fire = _listOfClips[_choice[0]];
         leDartGun.Transfering = _listOfClips[_choice[1]];
         leDartGun.CoolDown = _listOfClips[_choice[2]];
+        leDartGun.WireSnapping = _listOfClips[_choice[3]];
 
         AddTitle("Particles");
         _particle[0] = EditorGUILayout.Popup("Firing", _particle[0], _listOFParticles);

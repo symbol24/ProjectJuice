@@ -159,6 +159,34 @@ public abstract class ExtendedMonobehaviour : MonoBehaviour, IGameObject {
         return ret;
     }
 
+    protected TrailRenderer InstatiateTrail(TrailRenderer toInstantiate, GameObject point, bool isToParent = false, float destroyTimer = 1f, bool isFollow = false, bool keepRotation = false)
+    {
+        TrailRenderer ret = null;
+
+        if (toInstantiate != null)
+        {
+            ret = Instantiate(toInstantiate, point.transform.position, point.transform.rotation) as TrailRenderer;
+            if (keepRotation) ret.transform.rotation = toInstantiate.transform.rotation;
+            Destroy(ret.gameObject, destroyTimer);
+            if (isToParent) ret.transform.SetParent(point.transform);
+            if (isFollow)
+            {
+                FollowTheLeader follower = ret.GetComponent<FollowTheLeader>();
+                if (follower == null) Debug.LogError(ret.gameObject.name + " cannot find FollowTheLeader script did you forget to put it on the particle system?");
+                else
+                {
+                    if (point == null) Debug.LogError(ret.gameObject.name + " doesnt have a point to follow, did you forget to send it?");
+                    else follower._toFollow = point;
+                }
+            }
+
+        }
+        else
+            Debug.LogWarning("Missing Particle");
+
+        return ret;
+    }
+
     protected Vector2 GetPointOfImpact(Transform targetReference, Transform sourceReference, int raycastIterationsToFindTarget = 5, float raycastVariationPerTry = 0.1f)
     {
         var ret = default(Vector2);
