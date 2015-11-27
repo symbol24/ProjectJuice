@@ -108,7 +108,7 @@ public class GameManager : ExtendedMonobehaviour
         if (!_roundEnded)
         {
             _roundEnded = true;
-            ClearRoundSFX();
+            //ClearRoundSFX();
             if (e.IsThereAWinner)
             {
                 if (CheckIfMatchWinner())
