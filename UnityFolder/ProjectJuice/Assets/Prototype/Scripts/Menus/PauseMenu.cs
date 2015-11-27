@@ -11,6 +11,7 @@ public class PauseMenu : Menu {
     [SerializeField] private Button[] m_ListOfButtones;
     private int m_currentSelection = 0;
     private int m_maxSelection = 0;
+    private int _lastSelection = -1;
 
     private DelayManager m_DelayManager;
 
@@ -126,14 +127,31 @@ public class PauseMenu : Menu {
             GameManager.instance.SetPaused(m_isPaused, m_PauseMusicVolume, m_IsFullSoundPause);
             SoundManager.PlaySFX(MenuOpenName);
             m_PauseMenuAnimator.SetBool("GoDown", true);
-            m_currentSelection = 0;
-            m_ListOfButtones[m_currentSelection].Select();
+            SetOpeningSelection();
             m_DelayManager.CoroutineDelay(Database.instance.LongMenuInputDelay, true);
         }
         else
         {
             m_PauseMenuAnimator.SetBool("GoUp", true);
             SoundManager.PlaySFX(MenuCloseName);
+        }
+    }
+
+    private void SetOpeningSelection()
+    {
+        m_currentSelection = 0;
+        if (_lastSelection != m_currentSelection)
+        {
+            m_ListOfButtones[m_currentSelection].Select();
+            _lastSelection = m_currentSelection;
+        }
+        else
+        {
+            m_currentSelection++;
+            m_ListOfButtones[m_currentSelection].Select();
+            m_currentSelection--;
+            m_ListOfButtones[m_currentSelection].Select();
+            _lastSelection = m_currentSelection;
         }
     }
 
@@ -222,6 +240,7 @@ public class PauseMenu : Menu {
         }
         SoundManager.PlaySFX(Database.instance.MenuSlideName);
         m_ListOfButtones[m_currentSelection].Select();
+        _lastSelection = m_currentSelection;
     }
 
     private void Activate()
