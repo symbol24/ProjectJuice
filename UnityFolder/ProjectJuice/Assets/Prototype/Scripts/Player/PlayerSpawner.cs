@@ -33,6 +33,11 @@ public class PlayerSpawner : MonoBehaviour
     private LoadingScreen m_Fader;
     private Activator _activator;
     private bool _subscribed = false;
+    [SerializeField] private List<Sprite> _playerIdSprites;
+    [Range(0,5)][SerializeField] private float _flickerTimer = 1f;
+    [Range(0,20)][SerializeField] private int _flickerFrameInterval = 2;
+    private int _displayedIndicators = 0;
+    private List<SpriteRenderer> _listOfActiveIndicators = new List<SpriteRenderer>();
 
     // Use this for initialization
     void Awake()
@@ -68,7 +73,7 @@ public class PlayerSpawner : MonoBehaviour
 
     private void M_Fader_FadeDone(object sender, EventArgs e)
     {
-        //GameManager.instance.SetGameState(GameState.Playing);
+        if (_displayedIndicators > 0) StartAllFlickers();
     }
 
     public event EventHandler SpawnDone;
@@ -103,8 +108,10 @@ public class PlayerSpawner : MonoBehaviour
                 gun.SpawnRotation(pUserControl);
             }
             m_Players.Add(temp);
+            SetPlayerIndicator(m_Spawners, i, pd);
             i++;
         }
+
         OnSpawnDone();
     }
 
@@ -118,6 +125,8 @@ public class PlayerSpawner : MonoBehaviour
             }
         }
         m_Players.Clear();
+        _listOfActiveIndicators.Clear();
+        _displayedIndicators = 0;
     }
 
     public void RespawnPlayers()
@@ -189,5 +198,71 @@ public class PlayerSpawner : MonoBehaviour
                 }
             }
         }
+    }
+
+    private void SetPlayerIndicator(List<GameObject> locations, int spawnLocation, PlayerData player)
+    {
+        int playerInt = GetIntFromPlayerData(player);
+        SpriteRenderer toChange = locations[spawnLocation].GetComponentInChildren<SpriteRenderer>();
+        if (playerInt > -1 && toChange != null && _playerIdSprites.Count > 0)
+        {
+            toChange.sprite = _playerIdSprites[playerInt];
+            toChange.color = player.PlayerSponsor.SponsorColor;
+            toChange.enabled = true;
+            _displayedIndicators++;
+            _listOfActiveIndicators.Add(toChange);
+        }
+    }
+
+    private int GetIntFromPlayerData(PlayerData playerData)
+    {
+        int ret = -1;
+
+        switch (playerData.playerID)
+        {
+            case PlayerIDs.A:
+                ret = 0;
+                break;
+            case PlayerIDs.B:
+                ret = 1;
+                break;
+            case PlayerIDs.C:
+                ret = 2;
+                break;
+            case PlayerIDs.D:
+                ret = 3;
+                break;
+        }
+
+        return ret;
+    }
+
+    private void StartAllFlickers()
+    {
+        foreach(SpriteRenderer toChange in _listOfActiveIndicators)
+            StartCoroutine(FlickerThenClose(toChange));
+    }
+
+    private IEnumerator FlickerThenClose(SpriteRenderer toFlicker)
+    {
+        float timer = Time.time + _flickerTimer;
+        while(Time.time < timer)
+        {
+            for (int i = 0; i < _flickerFrameInterval; i++)
+            {
+                yield return new WaitForEndOfFrame();
+            }
+            toFlicker.enabled = false;
+            for (int i = 0; i < _flickerFrameInterval; i++)
+            {
+                yield return new WaitForEndOfFrame();
+            }
+            toFlicker.enabled = true;
+        }
+        for (int i = 0; i < _flickerFrameInterval; i++)
+        {
+            yield return new WaitForEndOfFrame();
+        }
+        toFlicker.enabled = false;
     }
 }
