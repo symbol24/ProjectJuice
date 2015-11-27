@@ -1,7 +1,13 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:UnityFolder/ProjectJuice/Assets/z_Standard Assets/CrossPlatformInput/Standard Assets/2D/Scripts.meta
 guid: 8370810e4b3c5004598fdb1bd2f3d812
 folderAsset: yes
 timeCreated: 1448583005
+=======
+guid: 82ad970d4b2cda141b77ff5dc0814dfe
+folderAsset: yes
+timeCreated: 1448584388
+>>>>>>> 4a66dd97df8f8736b7d96a1df65292b4ba1a07a4:UnityFolder/ProjectJuice/Assets/z_Standard Assets/CrossPlatformInput/Standard Assets/2D/Scripts.meta
 licenseType: Free
 DefaultImporter:
   userData: 

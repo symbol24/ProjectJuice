@@ -22,6 +22,9 @@ public class PauseMenu : Menu {
     [Range(0,10)][SerializeField] private float m_delayToReturn = 2f;
 
     [SerializeField] private Animator m_PauseMenuAnimator;
+    [SerializeField]
+    private float _animSafeTimer = 2f;
+    private float _currentanimSafeTimer = 0;
 
     private MenuAnimState _animState = MenuAnimState.NotUsable;
 
@@ -52,10 +55,12 @@ public class PauseMenu : Menu {
         return ret;
     }
 
+
     // Update is called once per frame
     protected override void Update () {
         if (GameManager.instance.IsPlaying)
         {
+            _currentanimSafeTimer = 0f;
             for (int i = 0; i < m_ListofPlayers.Count; i++)
             {
                 if (m_Controls._Start[i])
@@ -66,14 +71,14 @@ public class PauseMenu : Menu {
                 }
             }
         }
-        else if(GameManager.instance.IsPaused && _animState == MenuAnimState.Usable)
+        else if (GameManager.instance.IsPaused && _animState == MenuAnimState.Usable)
         {
             if (m_DelayManager.CanShoot && BackPressed)
             {
                 PauseResume();
             }
 
-            if(m_DelayManager.CanShield && !m_inConfirm && m_Controls.Y[m_ControllingPlayer] != 0)
+            if (m_DelayManager.CanShield && !m_inConfirm && m_Controls.Y[m_ControllingPlayer] != 0)
             {
                 SetNextActive(m_Controls.Y[m_ControllingPlayer]);
             }
@@ -83,12 +88,26 @@ public class PauseMenu : Menu {
                 Activate();
             }
 
-            if(m_DelayManager.CanShoot && m_inConfirm && m_Controls.Cancel[m_ControllingPlayer])
+            if (m_DelayManager.CanShoot && m_inConfirm && m_Controls.Cancel[m_ControllingPlayer])
             {
                 CancelConfirm();
             }
         }
-	}
+        else if (GameManager.instance.IsPaused)
+        {
+            _currentanimSafeTimer += Time.unscaledDeltaTime;
+            if (_currentanimSafeTimer > _animSafeTimer)
+            {
+                ResetAnimatorBool("GoUp", false);
+                ChangePanelState();
+            }
+        }
+        else
+        {
+            _currentanimSafeTimer = 0f;
+        }
+
+    }
 
     public void PauseResume()
     {
