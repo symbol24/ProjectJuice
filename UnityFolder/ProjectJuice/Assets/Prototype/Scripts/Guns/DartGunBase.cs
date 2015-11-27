@@ -34,6 +34,7 @@ public abstract class DartGunBase : ExtendedMonobehaviour, IDartGun
         _delayManager = GetComponent<DelayManager>();
         _inputManager = GetComponent<IPlatformer2DUserControl>();
         _hpScript = GetComponent<HPScript>();
+        _hpScript.Dead += _hpScript_Dead;
         DartFired += OnDartFired;
         _feedback = GetComponent<Feedback>();
     }
@@ -43,7 +44,7 @@ public abstract class DartGunBase : ExtendedMonobehaviour, IDartGun
         dartFiredEventArgs.Dart.JuiceSucked += DartOnJuiceSucked;
         dartFiredEventArgs.Dart.DartDestroyed += DartOnDartDestroyed;
         Debug.Log("OnDartFired");
-        m_FireSound = SoundManager.PlaySFX(Fire);
+        m_FireSound = SoundManager.PlaySFX(Fire);        
     }
     private void DartOnDartDestroyed(object sender, EventArgs eventArgs)
     {
@@ -134,5 +135,18 @@ public abstract class DartGunBase : ExtendedMonobehaviour, IDartGun
             _cooldownSound.Stop();
         }
         _feedback.CanShootFeedbackEvent -= _feedback_CanShootFeedbackEvent;
+    }
+
+
+    private void _hpScript_Dead(object sender, EventArgs e)
+    {
+        if (m_SappingAudioSource != null && m_SappingAudioSource.isPlaying)
+        {
+            m_SappingAudioSource.Stop();
+        }
+        if (_cooldownSound != null && _cooldownSound.isPlaying)
+        {
+            _cooldownSound.Stop();
+        }
     }
 }
