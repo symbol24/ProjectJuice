@@ -1,7 +1,11 @@
 fileFormatVersion: 2
 guid: 2dae1e24b1494c148990a82c104f100e
 folderAsset: yes
+<<<<<<< HEAD:UnityFolder/ProjectJuice/Assets/z_Standard Assets/Standard Assets.meta
 timeCreated: 1448583906
+=======
+timeCreated: 1448584656
+>>>>>>> d229400eaa8edcacd5ce9c97a09bf218d0c877fe:UnityFolder/ProjectJuice/Assets/z_Standard Assets/CrossPlatformInput/Standard Assets/2D/Scripts/Rejected.meta
 licenseType: Free
 DefaultImporter:
   userData: 
