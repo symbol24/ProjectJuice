@@ -2,6 +2,7 @@
 using System.Collections;
 using GamepadInput;
 using UnityEngine.UI;
+using System;
 
 public class SelectorMenu : Menu {
     private PlayerData m_Player;
@@ -51,6 +52,12 @@ public class SelectorMenu : Menu {
     [HideInInspector] public string m_PanelActivate;
 
 
+    private static event EventHandler<SponsorTakenEventArgs> SponsorTaken;
+    protected virtual void OnSponsorTaken(SponsorTakenEventArgs e)
+    {
+        if (SponsorTaken != null) SponsorTaken(this, e);
+    }
+
     protected override void Start()
     {
         base.Start();
@@ -59,7 +66,10 @@ public class SelectorMenu : Menu {
         m_DelayManager = GetComponent<DelayManager>();
         m_DelayManager.Reset();
         m_ConfirmedOverlay.SetActive(false);
+        SponsorTaken += SelectorMenu_SponsorTaken;
     }
+
+    
 
     // Update is called once per frame
     protected override void Update () {
@@ -111,8 +121,8 @@ public class SelectorMenu : Menu {
         m_CurrentSelectionState =  SetStateAndTexts(true);
         SetSelector(m_VerticalPosition);
         m_DelayManager.Reset();
-        if (m_TakenImage.enabled)
-            m_TakenImage.enabled = false;
+        /*if (m_TakenImage.enabled)
+            m_TakenImage.enabled = false;*/
         SoundManager.PlaySFX(m_PanelActivate);
     }
 
@@ -214,6 +224,7 @@ public class SelectorMenu : Menu {
                     //sponsor
                     m_Player.PlayerSponsor = Database.instance.ListofSponsors[m_SponsorSelection];
                     Database.instance.ListofSponsors[m_SponsorSelection].TakeSponsor();
+                    OnSponsorTaken(new SponsorTakenEventArgs { Sender = this, SponsorTaken = Database.instance.ListofSponsors[m_SponsorSelection], Status = SponsorStatus.Taken });
                 }
                 else
                     SoundManager.PlaySFX(Database.instance.MenuErrorName);
@@ -241,9 +252,10 @@ public class SelectorMenu : Menu {
         switch (m_CurrentSelectionState)
         {
             case SelectionState.Preselection:
-
+                
                 break;
             case SelectionState.Selection:
+                m_Player.playerID = PlayerIDs.X;
                 m_Player.PlayerSponsor = null;
                 m_SponsorSelection = 0;
                 m_AbilitySelection = 0;
@@ -292,6 +304,7 @@ public class SelectorMenu : Menu {
             case SelectionState.Selection:
                 m_ParentMenu.HeaderText[m_PanelId].text = Database.instance.GameTexts[m_headerSelection];
                 m_Ledger.text = Database.instance.GameTexts[m_ledgerSelection];
+                OnSponsorTaken(new SponsorTakenEventArgs { Sender = this, SponsorTaken = Database.instance.ListofSponsors[m_SponsorSelection], Status = SponsorStatus.Released });
                 break;
             case SelectionState.Confirmation:
                 m_ParentMenu.HeaderText[m_PanelId].text = Database.instance.GameTexts[m_headerConfirmation];
@@ -307,5 +320,14 @@ public class SelectorMenu : Menu {
         }
         //print("New State " + temp);
         return temp;
+    }
+
+    private void SelectorMenu_SponsorTaken(object sender, SponsorTakenEventArgs e)
+    {
+        var sponsorSelected = Database.instance.ListofSponsors.IndexOf(e.SponsorTaken);
+        if (sponsorSelected == m_SponsorSelection && m_CurrentSelectionState == SelectionState.Selection)
+        {
+            m_TakenImage.enabled = e.Status == SponsorStatus.Taken;
+        }
     }
 }
