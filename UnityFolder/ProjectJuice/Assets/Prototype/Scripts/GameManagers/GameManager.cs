@@ -108,7 +108,7 @@ public class GameManager : ExtendedMonobehaviour
         if (!_roundEnded)
         {
             _roundEnded = true;
-            //ClearRoundSFX();
+            ClearRoundSFX();
             if (e.IsThereAWinner)
             {
                 if (CheckIfMatchWinner())
@@ -136,9 +136,7 @@ public class GameManager : ExtendedMonobehaviour
         AudioSource[] list = FindObjectsOfType<AudioSource>();
         foreach(AudioSource As in list)
         {
-            if (As.isPlaying) As.Stop();
-
-            //if (!As.isPlaying) Destroy(As.gameObject);
+            if (As.isPlaying && As.loop) As.Stop();
         }
     }
 
