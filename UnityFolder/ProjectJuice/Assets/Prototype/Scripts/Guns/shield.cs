@@ -59,7 +59,7 @@ public class shield : Gun {
 
             CheckCanShootBack();
             
-            if (m_isDebugFullTest && m_CurrentCount == 0 && m_DelayManager.CanShield) m_CurrentCount = 10;
+            if (m_isDebugFullTest && m_CurrentCount < 10 && m_DelayManager.CanShield) m_CurrentCount = 10;
         }
 	}
 
@@ -150,10 +150,21 @@ public class shield : Gun {
     {
         if (!m_IsActive && m_DelayManager.OtherReady)
         {
-            if (m_CanShootBack) Fire();
-            m_DelayManager.AddOtherDelay(m_DelayToActivate);
-            m_DelayManager.AddShieldOffDelay(float.MaxValue);
-            m_DelayManager.AddDelay(float.MaxValue);
+            if (m_CanShootBack)
+            {
+                m_DelayManager.AddOtherDelay(0);
+                m_DelayManager.AddShieldOffDelay(float.MaxValue);
+                m_DelayManager.AddDelay(float.MaxValue);
+
+                DisplayShield();
+                Fire();
+            }
+            else
+            {
+                m_DelayManager.AddOtherDelay(m_DelayToActivate);
+                m_DelayManager.AddShieldOffDelay(float.MaxValue);
+                m_DelayManager.AddDelay(float.MaxValue);
+            }
             m_IsActive = true;
         }
         else if (m_IsActive && m_DelayManager.CanTurnOffShield)
@@ -243,15 +254,24 @@ public class shield : Gun {
     {
         Vector3 thePosition = m_Gun.transform.localPosition;
         thePosition.x *= -1;
-        m_Gun.transform.localPosition = thePosition;
+        //m_Gun.transform.localPosition = thePosition;
 
         thePosition = GunBulletReference.transform.localPosition;
         thePosition.x *= -1;
-        GunBulletReference.transform.localPosition = thePosition;
+        //GunBulletReference.transform.localPosition = thePosition;
 
         Quaternion theRotation = GunBulletReference.transform.localRotation;
         theRotation.z = -theRotation.z;
         GunBulletReference.transform.localRotation = theRotation;
+        /*
+        Vector3 MuzzlePosition = m_muzzleFlash.transform.localPosition;
+        MuzzlePosition.x *= -1;
+        m_muzzleFlash.transform.localPosition = MuzzlePosition;
+
+        Quaternion MuzzleRotation = m_muzzleFlash.transform.localRotation;
+        MuzzleRotation.z *= -1;
+        m_muzzleFlash.transform.localRotation = MuzzleRotation;
+        */
 
         m_FacingRight = !m_FacingRight;
     }

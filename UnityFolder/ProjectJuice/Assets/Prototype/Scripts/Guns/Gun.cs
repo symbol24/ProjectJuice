@@ -25,7 +25,7 @@ public class Gun : ExtendedMonobehaviour {
     public HPScript m_HpScp { get { return m_HpScript; } }
     protected bool m_hasPlayedReloaded = true;
 
-    [SerializeField] private SpriteRenderer m_muzzleFlash;
+    [SerializeField] protected SpriteRenderer m_muzzleFlash;
     [SerializeField] private List<Sprite> m_muzzleFlashes;
     [Range(0,10)][SerializeField] private int m_framesBetweenFlashes = 2;
 
