@@ -61,6 +61,10 @@ public class shield : Gun {
             
             if (m_isDebugFullTest && m_CurrentCount < 10 && m_DelayManager.CanShield) m_CurrentCount = 10;
         }
+        else
+        {
+            if (m_FullChargeAudioSource != null && m_FullChargeAudioSource.isPlaying) m_FullChargeAudioSource.Stop();
+        }
 	}
 
     private bool EndCooldown()
