@@ -19,26 +19,22 @@ public class ExplosiveObject : HPBase
     [Range(-50,50)][SerializeField] private float _massAdditionWhenIgnited = -10;
     [Range(0,10)][SerializeField] private float _explosionDuration = 0.2f;
     [SerializeField]private ForceMode2D m_ForceType = ForceMode2D.Force;
-    [Range(-10,10)][SerializeField] private float _XMinForce = 1f;
-    [Range(-10,10)][SerializeField] private float _XMaxForce = 1f;
+    [SerializeField] private float _XMinForce = 1f;
+    [SerializeField] private float _XMaxForce = 1f;
     private float RandomXSpeed
     {
         get
         {
-            var range = _XMaxForce - _XMinForce;
-            var ret = UnityEngine.Random.value * range + _XMinForce;
-            return ret * Mathf.Sign(UnityEngine.Random.value - 0.5f);
+            return UnityEngine.Random.Range(_XMinForce, _XMaxForce);
         }
     }
-    [Range(-10,10)][SerializeField] private float _YMinForce = 1f;
-    [Range(-10,10)][SerializeField] private float _YMaxForce = 1f;
+    [SerializeField] private float _YMinForce = 1f;
+    [SerializeField] private float _YMaxForce = 1f;
     private float RandomYSpeed
     {
         get
         {
-            var range = _YMaxForce - _YMinForce;
-            var ret = UnityEngine.Random.value * range + _YMinForce;
-            return ret;
+            return UnityEngine.Random.Range(_YMinForce, _YMaxForce);
         }
     }
     
@@ -185,9 +181,10 @@ public class ExplosiveObject : HPBase
         SwitchCollidersOnOff();
         foreach (var ragdollParticlePrefab in _ragdollParticles)
         {
-            var particle = (GameObject) Instantiate(ragdollParticlePrefab, transform.position, Quaternion.identity);
+            Quaternion randomRotation = new Quaternion(0, 0, UnityEngine.Random.rotation.z, 0);
+            var particle = (GameObject) Instantiate(ragdollParticlePrefab, transform.position, randomRotation);
             var particleRigidbody = particle.GetComponent<Rigidbody2D>();
-            particleRigidbody.AddForce(new Vector2(RandomXSpeed, RandomYSpeed));
+            particleRigidbody.AddForce(new Vector2(RandomXSpeed, RandomYSpeed), m_ForceType);
         }
         if (_IsExplosive)
         {
