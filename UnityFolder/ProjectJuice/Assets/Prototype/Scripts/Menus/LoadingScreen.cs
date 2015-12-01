@@ -60,9 +60,24 @@ public class LoadingScreen : ExtendedMonobehaviour {
         {
             _goScreen = GoScreen();
         }
-        else if (CheckCanPress)
+        else if (CheckCanPress && _isGameplayScene)
         {
             for (int i = 0; i < m_spawner.ListOfPlayerDatas.Count; i++)
+            {
+                if (m_MenuControls.Confirm[i] || m_MenuControls._Start[i])
+                {
+                    _goScreen = GoScreen();
+                }
+            }
+
+            if (_displayLoading)
+            {
+                _displayLoading = false;
+            }
+        }
+        else if (CheckCanPress && !_isGameplayScene)
+        {
+            for (int i = 0; i < 4; i++)
             {
                 if (m_MenuControls.Confirm[i] || m_MenuControls._Start[i])
                 {
