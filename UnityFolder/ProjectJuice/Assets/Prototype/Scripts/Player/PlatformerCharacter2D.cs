@@ -268,6 +268,9 @@ namespace UnityStandardAssets._2D
                 IsGrounded = false;
                 m_Anim.SetBool("Ground", false);
                 m_Rigidbody2D.velocity = Vector2.zero;
+
+                CheckResetDash();
+
                 if (m_Controller.m_YAxis < m_JumpDownYAxisTolerence)
                 {
                     PassDownThroughWithJump();
@@ -285,15 +288,20 @@ namespace UnityStandardAssets._2D
             {
                 CheckDrag();
                 m_UsedDoubleJump = true;
-                if (!m_CanDash)
-                {
-                    m_CanDash = !m_CanDash;
-                    if (m_CanDash) OnPlayerCanDashAgain();
-                }
+                CheckResetDash();
                 m_Rigidbody2D.velocity = Vector2.zero;
                 m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
                 SoundManager.PlaySFX(Database.instance.Jump);
                 InstatiateParticle(m_JumpParticle, m_FeetPoint);
+            }
+        }
+
+        private void CheckResetDash()
+        {
+            if (!m_CanDash)
+            {
+                m_CanDash = !m_CanDash;
+                if (m_CanDash) OnPlayerCanDashAgain();
             }
         }
 
