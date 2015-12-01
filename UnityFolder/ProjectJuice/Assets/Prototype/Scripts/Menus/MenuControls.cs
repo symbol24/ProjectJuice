@@ -91,7 +91,9 @@ public class MenuControls : MonoBehaviour {
 
     void ReadInputs(int id)
     {
-        var state = XInputDotNetPure.GamePad.GetState(m_ListofPlayers[id].GamepadIndex.ToPlayerIndex());
+        var gamepad = m_ListofPlayers[id].GamepadIndex.ToPlayerIndex();
+        if (gamepad == null) return;
+        var state = XInputDotNetPure.GamePad.GetState((XInputDotNetPure.PlayerIndex)gamepad);
         var currentConfirmState = state.GetButton(m_ConfirmButton);
         var currentCancelState = state.GetButton(m_CancelButton);
         var currentStartState = state.GetButton(m_StartButton);
