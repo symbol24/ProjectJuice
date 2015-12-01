@@ -57,7 +57,7 @@ public class DartGunV2 : DartGunBase
                 numberOfCrossSectionsSpawned++;
             }
             //Debug.Break();
-            yield return null;
+            yield return new WaitForFixedUpdate();
         }
 
         //Amazingly bad practice :(

@@ -31,6 +31,14 @@ public class DartChainV3 : MonoBehaviour
     private void Update()
     {
         if (_isStaticChain) return;
+
+        if (!_collided && !_instantCollided)
+        {
+            CorrectPosition();
+        }
+    }
+    void FixedUpdate()
+    {
         if (_collided)
         {
             CascadeForce();
@@ -38,10 +46,6 @@ public class DartChainV3 : MonoBehaviour
             {
                 OnBrokenOnTolerance();
             }
-        }
-        else if (!_instantCollided)
-        {
-            CorrectPosition();
         }
     }
 

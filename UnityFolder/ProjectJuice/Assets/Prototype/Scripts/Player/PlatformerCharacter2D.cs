@@ -147,6 +147,7 @@ namespace UnityStandardAssets._2D
             if (m_DashTimer < Time.time && !m_CanDash && IsGrounded)
             {
                 CheckDrag();
+                OnPlayerCanDashAgain();
                 m_CanDash = true;
                 m_AirControl = true;
             }
@@ -240,7 +241,11 @@ namespace UnityStandardAssets._2D
             {
                 CheckDrag();
                 m_UsedDoubleJump = true;
-                if (!m_CanDash) m_CanDash = !m_CanDash;
+                if (!m_CanDash)
+                {
+                    m_CanDash = !m_CanDash;
+                    if(m_CanDash) OnPlayerCanDashAgain();
+                }
                 m_Rigidbody2D.velocity = Vector2.zero;
                 m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
                 SoundManager.PlaySFX(Database.instance.Jump);
@@ -600,6 +605,11 @@ namespace UnityStandardAssets._2D
         protected void OnPlayerDashed()
         {
             if (PlayerDashed != null) PlayerDashed(this, EventArgs.Empty);
+        }
+        public event EventHandler PlayerCanDashAgain;
+        protected virtual void OnPlayerCanDashAgain()
+        {
+            if (PlayerCanDashAgain != null) PlayerCanDashAgain(this, EventArgs.Empty);
         }
 
     }
