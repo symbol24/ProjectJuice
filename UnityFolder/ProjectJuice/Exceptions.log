@@ -12818,3 +12818,23 @@ Message: TestException
 Stack Trace:
 
 -----------
+NullReferenceException occurred at 11/30/2015 8:54:48 PM:
+Message: TestException
+Stack Trace:
+
+-----------
+NullReferenceException occurred at 11/30/2015 8:54:48 PM:
+Message: TestException
+Stack Trace:
+
+-----------
+NullReferenceException occurred at 11/30/2015 8:55:25 PM:
+Message: TestException
+Stack Trace:
+
+-----------
+NullReferenceException occurred at 11/30/2015 8:55:25 PM:
+Message: TestException
+Stack Trace:
+
+-----------
