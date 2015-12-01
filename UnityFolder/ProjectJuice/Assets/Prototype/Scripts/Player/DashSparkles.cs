@@ -46,7 +46,6 @@ public class DashSparkles : ExtendedMonobehaviour {
         {
             if (_movement.IsGrounded)
             {
-                while (!_movement.IsGrounded) ;
                 foreach (var refPoint in _refSpawnPoints)
                 {
                     InstatiateParticle(_particlesToSpawn, refPoint);

@@ -32,16 +32,23 @@ public class MeleeAttackVibration : VibrationBase<MeleeAttack>
     public bool _enableAxeHitGroundForOthers;
     [HideInInspector]
     public VibrationSettings _axeHitGroundForOthersSettings;
+    [HideInInspector]
+    public bool _enableAxeNonAerialHitGround;
+    [HideInInspector]
+    public VibrationSettings _axeNonAerialHitGroundSettings;
+
 
     private MeleeAttack _daggerAttack;
     private MeleeAttack _axeAttack;
-
+    [SerializeField] private MeleeAnim _meleeAnim;
 
     // Use this for initialization
     protected override void Start ()
 	{
         base.Start();
         var meleeAttacks = GetComponents<MeleeAttack>();
+        if (_meleeAnim == null) _meleeAnim = GetComponent<MeleeAnim>();
+        if (_meleeAnim == null) _meleeAnim = GetComponentInChildren<MeleeAnim>();
         _daggerAttack = meleeAttacks.First(c => !c.isAbility);
         _axeAttack = meleeAttacks.First(c => c.isAbility);
         _daggerAttack.MeleeClashed += ComponentToListenOnMeleeClashed;
@@ -52,6 +59,26 @@ public class MeleeAttackVibration : VibrationBase<MeleeAttack>
         _axeAttack.MeleeSpecialHitGround += _componentToListen_MeleeSpecialHitGround;
         _daggerAttack.MeleeStarted += _componentToListen_MeleeStarted;
         _axeAttack.MeleeStarted += _componentToListen_MeleeStarted;
+        _meleeAnim.AnimationGroundedFinished += _meleeAnim_AnimationGroundedFinished;
+    }
+
+    private void _meleeAnim_AnimationGroundedFinished(object sender, EventArgs e)
+    {
+        if (_axeAttack.enabled)
+        {
+            if (_enableAxeNonAerialHitGround)
+            {
+                var vibrators = FindObjectsOfType<PlayerVibrator>();
+                foreach (var vibrator in vibrators)
+                {
+                    if (vibrator.GetInstanceID() != _playerVibrator.GetInstanceID())
+                    {
+                        var checkIfGrounded = vibrator.GetComponent<PlatformerCharacter2D>();
+                        if (checkIfGrounded.IsGrounded) vibrator.Vibrate(_axeNonAerialHitGroundSettings);
+                    }
+                }
+            }
+        }
     }
 
     private void _componentToListen_MeleeStarted(object sender, EventArgs e)
