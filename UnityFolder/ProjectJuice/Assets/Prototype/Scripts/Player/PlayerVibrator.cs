@@ -107,7 +107,10 @@ public class PlayerVibrator : MonoBehaviour
     private void SetVibration(float leftSide, float rightSide)
     {
         _gamepadIndex = _inputManager.m_PlayerData.GamepadIndex;
-        XInputDotNetPure.GamePad.SetVibration(_gamepadIndex.ToPlayerIndex(), leftSide, rightSide);
+        var gamepad = _gamepadIndex.ToPlayerIndex();
+        if (gamepad == null) return;
+
+        XInputDotNetPure.GamePad.SetVibration((XInputDotNetPure.PlayerIndex)gamepad, leftSide, rightSide);
     }
 
     void OnDestroy()
@@ -116,7 +119,9 @@ public class PlayerVibrator : MonoBehaviour
         {
             if (!FindObjectsOfType<CoroutineHolder>().Any(c => c.gameObject.name == _guidIdentifierForExternalObject))
             {
-                XInputDotNetPure.GamePad.SetVibration(_gamepadIndex.ToPlayerIndex(), 0, 0);
+                var gamepad = _gamepadIndex.ToPlayerIndex();
+                if (gamepad == null) return;
+                XInputDotNetPure.GamePad.SetVibration((XInputDotNetPure.PlayerIndex)gamepad, 0, 0);
             }
         }
     }
