@@ -31,6 +31,14 @@ public class DartChainV3 : MonoBehaviour
     private void Update()
     {
         if (_isStaticChain) return;
+
+        if (!_collided && !_instantCollided)
+        {
+            CorrectPosition();
+        }
+    }
+    void FixedUpdate()
+    {
         if (_collided)
         {
             CascadeForce();
@@ -38,10 +46,6 @@ public class DartChainV3 : MonoBehaviour
             {
                 OnBrokenOnTolerance();
             }
-        }
-        else if (!_instantCollided)
-        {
-            CorrectPosition();
         }
     }
 
@@ -70,9 +74,12 @@ public class DartChainV3 : MonoBehaviour
     private void LeDart_DartCollision(object sender, EventArgs e)
     {
         _instantCollided = true;
-        if (_mainRigidBody != null) _mainRigidBody.mass = _settings.HoseWeightAtcollision;
+        if (_mainRigidBody != null)
+        {
+            _mainRigidBody.mass = _settings.HoseWeightAtcollision;
+            StartCoroutine(DelayAction(_settings.HoseTimerToActivateTolerance, new Action(() => { _collided = true; })));
+        }
         else Debug.LogWarning("Missing _mainRigidbody");
-        StartCoroutine(DelayAction(_settings.HoseTimerToActivateTolerance, new Action(() => { _collided = true; })));
     }
 
     internal void Track(DartChainV3 _kinematicChain)
@@ -120,7 +127,7 @@ public class DartChainV3 : MonoBehaviour
     public event EventHandler BrokenOnGround;
     protected virtual void OnBrokenOnGround()
     {
-        Debug.Log("OnBrokenOnGround");
+//        Debug.Log("OnBrokenOnGround");
         if (BrokenOnGround != null) BrokenOnGround(this, EventArgs.Empty);
     }
 

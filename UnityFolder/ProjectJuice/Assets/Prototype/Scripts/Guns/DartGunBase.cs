@@ -43,7 +43,7 @@ public abstract class DartGunBase : ExtendedMonobehaviour, IDartGun
     {
         dartFiredEventArgs.Dart.JuiceSucked += DartOnJuiceSucked;
         dartFiredEventArgs.Dart.DartDestroyed += DartOnDartDestroyed;
-        Debug.Log("OnDartFired");
+//        Debug.Log("OnDartFired");
         m_FireSound = SoundManager.PlaySFX(Fire);        
     }
     private void DartOnDartDestroyed(object sender, EventArgs eventArgs)

@@ -27,6 +27,8 @@ public class PauseMenu : Menu {
     private float _animSafeTimer = 2f;
     private float _currentanimSafeTimer = 0;
 
+    private bool _isReturnToMainMenu = false;
+
     private MenuAnimState _animState = MenuAnimState.NotUsable;
 
     private bool BackPressed { get { return m_Controls._Start[m_ControllingPlayer] || (!m_inConfirm && m_Controls.Cancel[m_ControllingPlayer]); } }
@@ -163,10 +165,12 @@ public class PauseMenu : Menu {
         m_PausePanel.SetActive(m_isPaused);
         GameManager.instance.SetPaused(m_isPaused, 1, m_IsFullSoundPause);
 
+        if (_isReturnToMainMenu) GameManager.instance.SetGameState(GameState.Loading);
     }
 
     public void ReturnToMainMenu()
     {
+        _isReturnToMainMenu = true;
         StartCoroutine(SoundThenReturn());
     }
 

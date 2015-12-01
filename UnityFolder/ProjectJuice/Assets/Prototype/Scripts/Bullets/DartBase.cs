@@ -56,7 +56,7 @@ public abstract class DartBase : ExtendedMonobehaviour, IDart
         //Debug.Log("OnDartDestroyed");
         if (!_dartDestroyedCalled)
         {
-            Debug.Log("DestroyingDart");
+//            Debug.Log("DestroyingDart");
             _dartDestroyedCalled = true;
             EventHandler handler = DartDestroyed;
             if (handler != null) handler(this, EventArgs.Empty);
