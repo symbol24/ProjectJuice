@@ -31,7 +31,8 @@ public class SingleParticleGrounder : MonoBehaviour {
     void OnTriggerEnter2D(Collider2D collider)
     {
         Ground ground = collider.GetComponent<Ground>();
-        if(ground != null)
+        Wall wall = collider.GetComponent<Wall>();
+        if(ground != null || wall != null)
         {
             m_Grounded = true;
         }
