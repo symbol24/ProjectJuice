@@ -64,7 +64,7 @@ public class DartV2 : DartBase
             else
             {
                 var ground = collider.gameObject.GetComponent<Ground>();
-                var explosion = collider.gameObject.GetComponent<ExplosiveObjectDamagableCollider>();
+                //var explosion = collider.gameObject.GetComponent<ExplosiveObjectDamagableCollider>();
                 if ((ground == null || !ground.IsPassThrough) && collider.gameObject.name != "ExplosionColliders" )
                 {
                     CollideWithIt();
