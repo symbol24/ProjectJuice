@@ -92,6 +92,7 @@ public class DartChainV3 : MonoBehaviour
     {
         while(true)
         {
+            if(_kinematicChain != null)
             transform.position = _kinematicChain.transform.position;
             yield return new WaitForEndOfFrame();
         }
@@ -138,10 +139,12 @@ public class DartChainV3 : MonoBehaviour
         {
             if (_nextChain._crossSectionAngleCorrection.IsEdge)
             {
+                if(_dart != null)
                 CascadeToNeighbour(_dart.gameObject, _previousChain);
             }
             else if (_previousChain._crossSectionAngleCorrection.IsEdge)
             {
+                if(_dartGun != null)
                 CascadeToNeighbour(_dartGun._kinematicChain.gameObject, _nextChain);
             }
         }

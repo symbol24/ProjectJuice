@@ -34,7 +34,6 @@ public abstract class DartBase : ExtendedMonobehaviour, IDart
     
     #region Events
     public event EventHandler DartCollision;
-
     protected virtual void OnDartCollision()
     {
         EventHandler handler = DartCollision;
@@ -42,7 +41,6 @@ public abstract class DartBase : ExtendedMonobehaviour, IDart
     }
 
     public event EventHandler<JuiceSuckedEventArgs> JuiceSucked;
-
     protected virtual void OnJuiceSucked(JuiceSuckedEventArgs e)
     {
         EventHandler<JuiceSuckedEventArgs> handler = JuiceSucked;
@@ -60,7 +58,8 @@ public abstract class DartBase : ExtendedMonobehaviour, IDart
             _dartDestroyedCalled = true;
             EventHandler handler = DartDestroyed;
             if (handler != null) handler(this, EventArgs.Empty);
-            StartCoroutine(DestroyNextFrame());
+            //StartCoroutine(DestroyNextFrame());
+            Destroy(gameObject);
         }
     }
 
@@ -112,4 +111,5 @@ public abstract class DartBase : ExtendedMonobehaviour, IDart
         if (force < 1f) force = 1;
         MainRigidbody2D.AddForce(transform.up * force);
     }
+    
 }
