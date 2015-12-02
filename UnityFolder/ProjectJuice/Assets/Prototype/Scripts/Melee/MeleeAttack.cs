@@ -158,6 +158,7 @@ public class MeleeAttack : ExtendedMonobehaviour
         _delayManager.AddDelay(10000);
         if (!_collider.enabled) _collider.enabled = true;
         _isAerial = !_mouvementManager.IsGrounded;
+        string animationToUse = "Grounded";
         if (isAbility)
         {
             _mouvementManager.ChangeCanFlip();
@@ -165,21 +166,28 @@ public class MeleeAttack : ExtendedMonobehaviour
             if (_isAerial)
             {
                 _sound = SoundManager.PlaySFX(AbilityAerial);
-                m_animator.SetBool("Air", true);
+                animationToUse = "Air";
+                m_animator.SetBool(animationToUse, true);
             }
             else
             {
                 _sound = SoundManager.PlaySFX(Swipe);
-                m_animator.SetBool("Grounded", true);
+                m_animator.SetBool(animationToUse, true);
             }
         }
         else
         {
             _sound = SoundManager.PlaySFX(Swipe);
-            m_animator.SetBool("Grounded", true);
+            m_animator.SetBool(animationToUse, true);
         }
+        StartCoroutine(ResetBoolNextFrame(animationToUse, false));
         //StartTrail();
         return true;
+    }
+    private IEnumerator ResetBoolNextFrame(string animation, bool toSet)
+    {
+        yield return new WaitForEndOfFrame();
+        m_animator.SetBool(animation, toSet);
     }
 
     private void StopAerialSwingOnLand()
