@@ -39,10 +39,10 @@ public static class Extensions
         return midlePoint;
     }
 
-    public static PlayerIndex ToPlayerIndex(this GamePad.Index gamepadIndex)
+    public static PlayerIndex? ToPlayerIndex(this GamePad.Index gamepadIndex)
     {
         if(gamepadIndex == GamePad.Index.Any) gamepadIndex = GamePad.Index.One;
-        PlayerIndex ret;// = (PlayerIndex) Enum.Parse(typeof (PlayerIndex), Enum.GetName(typeof (GamePad.Index), gamepadIndex)); //TOO SLOOOOOW
+        PlayerIndex? ret = null;// = (PlayerIndex) Enum.Parse(typeof (PlayerIndex), Enum.GetName(typeof (GamePad.Index), gamepadIndex)); //TOO SLOOOOOW
         switch(gamepadIndex)
         {
             case GamePad.Index.One:
@@ -58,7 +58,6 @@ public static class Extensions
                 ret = PlayerIndex.Four;
                 break;
             default:
-                ret = PlayerIndex.Four;
                 break;
         }
 

@@ -12,7 +12,9 @@ public class Platformer2DUserControlXInput : ExtendedMonobehaviour, IPlatformer2
 	void Update () {
 	    if (GameManager.instance.IsPlaying)
 	    {
-	        var state = GamePad.GetState(m_PlayerData.GamepadIndex.ToPlayerIndex());
+            var gamepad = m_PlayerData.GamepadIndex.ToPlayerIndex();
+            if (gamepad == null) return;
+            var state = GamePad.GetState((PlayerIndex)gamepad);
             var currentJump = state.GetButton(m_JumpButton);
             var currentDash = state.GetButton(m_DashButton);
             var currentSpecial = state.GetButton(m_SpecialButton);
