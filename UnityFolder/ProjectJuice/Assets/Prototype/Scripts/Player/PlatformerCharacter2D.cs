@@ -10,33 +10,57 @@ namespace UnityStandardAssets._2D
         private IPlatformer2DUserControl m_Controller;
 
         //jump and double jump
-        [Range(0,20)][SerializeField]private float m_MaxSpeed = 10f;                    // The fastest the player can travel in the x axis.
-        [SerializeField]private float m_JumpForce = 400f;                  // Amount of force added when the player jumps.
-        [SerializeField]private bool m_AirControl = false;                 // Whether or not a player can steer while jumping;
-        [Range(0, 1)][SerializeField]private float m_AirSpeed = 0.25f;    // Percentage of speed in the air from controller input
+        [Range(0, 20)]
+        [SerializeField]
+        private float m_MaxSpeed = 10f;                    // The fastest the player can travel in the x axis.
+        [SerializeField]
+        private float m_JumpForce = 400f;                  // Amount of force added when the player jumps.
+        [SerializeField]
+        private bool m_AirControl = false;                 // Whether or not a player can steer while jumping;
+        [Range(0, 1)]
+        [SerializeField]
+        private float m_AirSpeed = 0.25f;    // Percentage of speed in the air from controller input
         private bool m_HasDoubleJump = false;                               // Determines if has special second jump
         private bool m_UsedDoubleJump = false;
-        [Range(-1, 0)][SerializeField]private float m_JumpDownYAxisTolerence = -0.5f;
+        [Range(-1, 0)]
+        [SerializeField]
+        private float m_JumpDownYAxisTolerence = -0.5f;
         private Collider2D[] m_lastPassedThrough;
-        [SerializeField] private bool m_UseForceToPassThrough = false;
-        [Range(0,1)][SerializeField] private float m_percentOfJumpForcedUsed = 0.5f;
+        [SerializeField]
+        private bool m_UseForceToPassThrough = false;
+        [Range(0, 1)]
+        [SerializeField]
+        private float m_percentOfJumpForcedUsed = 0.5f;
 
         //shooting slowdown
-        [Range(0,1)][SerializeField] private float m_ShootingDelayToSlow = 0.25f;
-        [Range(0, 1)][SerializeField]private float m_ShootingSpeed = 0.25f;
+        [Range(0, 1)]
+        [SerializeField]
+        private float m_ShootingDelayToSlow = 0.25f;
+        [Range(0, 1)]
+        [SerializeField]
+        private float m_ShootingSpeed = 0.25f;
         private bool m_shootinDelayAdded = false;
 
         //dash
         private bool m_CanDash = false;                                     // Whether the player can dash. Restes on timer on ground, landing or double jump.
-        [SerializeField]private ForceMode2D m_DashType = ForceMode2D.Force;
-        [SerializeField]private float m_DashForce;
-        [Range(0, 1)][SerializeField]private float m_DashDelay = 0.5f;      // Delay before dashing again
+        [SerializeField]
+        private ForceMode2D m_DashType = ForceMode2D.Force;
+        [SerializeField]
+        private float m_DashForce;
+        [Range(0, 1)]
+        [SerializeField]
+        private float m_DashDelay = 0.5f;      // Delay before dashing again
         private float m_DashTimer = 0.0f;
-        [Range(0, 10)][SerializeField]private int m_DashDrag = 5;
-        [Range(0, 1)][SerializeField]private float m_DashDragRemove = 0.12f;
+        [Range(0, 10)]
+        [SerializeField]
+        private int m_DashDrag = 5;
+        [Range(0, 1)]
+        [SerializeField]
+        private float m_DashDragRemove = 0.12f;
 
         //grounding and ceiling
-        [SerializeField]private LayerMask m_WhatIsGround;                  // A mask determining what is ground to the character
+        [SerializeField]
+        private LayerMask m_WhatIsGround;                  // A mask determining what is ground to the character
         private Transform m_GroundCheck;    // A position marking where to check if the player is grounded.
         const float k_GroundedRadius = .2f; // Radius of the overlap circle to determine if grounded
 
@@ -49,7 +73,7 @@ namespace UnityStandardAssets._2D
             {
                 if (m_Grounded != value)
                 {
-                    var e = new BoolEventArgs() {NewBoolValue = value, PreviousBoolValue = m_Grounded};
+                    var e = new BoolEventArgs() { NewBoolValue = value, PreviousBoolValue = m_Grounded };
                     m_Grounded = value;
                     try
                     {
@@ -71,7 +95,8 @@ namespace UnityStandardAssets._2D
         //private bool m_ConfirmPassing = false;
         private bool m_ignoreCheckPassing = false;
 
-        [SerializeField] private Animator m_Anim;            // Reference to the player's animator component.
+        [SerializeField]
+        private Animator m_Anim;            // Reference to the player's animator component.
         private Rigidbody2D m_Rigidbody2D;
         public GameObject m_Body;           //for sprite and animation
         private Collider2D[] m_MyColliders;
@@ -84,26 +109,45 @@ namespace UnityStandardAssets._2D
 
         private DelayManager m_delayManager;
 
-        [HideInInspector] public ParticleSystem m_JumpParticle;
-        [HideInInspector] public ParticleSystem m_LandingParticle;
-        [HideInInspector] public ParticleSystem m_DashBodyThrusters;
-        [HideInInspector] public ParticleSystem m_GroundDashGrinding;
-        [HideInInspector] public ParticleSystem m_DashChromaticAberation;
-        [HideInInspector] public ParticleSystem m_DashParticle;
-        [SerializeField] private GameObject m_BackThrusterPoint;
-        [SerializeField] private GameObject m_FeetPoint;
+        [HideInInspector]
+        public ParticleSystem m_JumpParticle;
+        [HideInInspector]
+        public ParticleSystem m_LandingParticle;
+        [HideInInspector]
+        public ParticleSystem m_DashBodyThrusters;
+        [HideInInspector]
+        public ParticleSystem m_GroundDashGrinding;
+        [HideInInspector]
+        public ParticleSystem m_DashChromaticAberation;
+        [HideInInspector]
+        public ParticleSystem m_DashParticle;
+        [SerializeField]
+        private GameObject m_BackThrusterPoint;
+        [SerializeField]
+        private GameObject m_FeetPoint;
 
         private Ground[] m_platforms;
-        
-        [Range(0,1)][SerializeField] private float _bodyThrusterTimer = 0.5f;
-        [Range(0,1)][SerializeField] private float _grindingTimer = 0.5f;
-        [Range(0,1)][SerializeField] private float _chromaticTimer = 0.5f;
-        [Range(0,1)][SerializeField] private float _trailTimer = 0.5f;
-        [SerializeField] private List<float> _thrusterOrientations;
 
-        [SerializeField] private bool _useParticleTrail = false;
-        [SerializeField] private TrailRenderer _trailPrefab;
- 
+        [Range(0, 1)]
+        [SerializeField]
+        private float _bodyThrusterTimer = 0.5f;
+        [Range(0, 1)]
+        [SerializeField]
+        private float _grindingTimer = 0.5f;
+        [Range(0, 1)]
+        [SerializeField]
+        private float _chromaticTimer = 0.5f;
+        [Range(0, 1)]
+        [SerializeField]
+        private float _trailTimer = 0.5f;
+        [SerializeField]
+        private List<float> _thrusterOrientations;
+
+        [SerializeField]
+        private bool _useParticleTrail = false;
+        [SerializeField]
+        private TrailRenderer _trailPrefab;
+
 
         private void Awake()
         {
@@ -113,7 +157,7 @@ namespace UnityStandardAssets._2D
             m_GroundCheck = transform.FindChild("GroundCheck");
             m_delayManager = GetComponent<DelayManager>();
             //m_CeilingCheck = transform.FindChild("CeilingCheck");
-            if(m_Anim == null)m_Anim = m_Body.GetComponent<Animator>();
+            if (m_Anim == null) m_Anim = m_Body.GetComponent<Animator>();
             m_Rigidbody2D = GetComponent<Rigidbody2D>();
             m_MyColliders = GetComponents<Collider2D>();
             m_platforms = FindObjectsOfType<Ground>();
@@ -147,6 +191,7 @@ namespace UnityStandardAssets._2D
             if (m_DashTimer < Time.time && !m_CanDash && IsGrounded)
             {
                 CheckDrag();
+                OnPlayerCanDashAgain();
                 m_CanDash = true;
                 m_AirControl = true;
             }
@@ -165,7 +210,7 @@ namespace UnityStandardAssets._2D
                     m_delayManager.AddOtherDelay(m_ShootingDelayToSlow);
                     m_shootinDelayAdded = true;
                 }
-                
+
                 if (!isShooting && m_shootinDelayAdded) m_shootinDelayAdded = false;
 
                 toMove = (isShooting && IsGrounded && m_delayManager.OtherReady ? move * m_ShootingSpeed : move);
@@ -223,6 +268,9 @@ namespace UnityStandardAssets._2D
                 IsGrounded = false;
                 m_Anim.SetBool("Ground", false);
                 m_Rigidbody2D.velocity = Vector2.zero;
+
+                CheckResetDash();
+
                 if (m_Controller.m_YAxis < m_JumpDownYAxisTolerence)
                 {
                     PassDownThroughWithJump();
@@ -240,11 +288,20 @@ namespace UnityStandardAssets._2D
             {
                 CheckDrag();
                 m_UsedDoubleJump = true;
-                if (!m_CanDash) m_CanDash = !m_CanDash;
+                CheckResetDash();
                 m_Rigidbody2D.velocity = Vector2.zero;
                 m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
                 SoundManager.PlaySFX(Database.instance.Jump);
                 InstatiateParticle(m_JumpParticle, m_FeetPoint);
+            }
+        }
+
+        private void CheckResetDash()
+        {
+            if (!m_CanDash)
+            {
+                m_CanDash = !m_CanDash;
+                if (m_CanDash) OnPlayerCanDashAgain();
             }
         }
 
@@ -276,7 +333,7 @@ namespace UnityStandardAssets._2D
                 if (!m_AirControl)
                     m_AirControl = true;
 
-                if(m_UsedDoubleJump)
+                if (m_UsedDoubleJump)
                     m_UsedDoubleJump = false;
 
                 if (m_CanDash)
@@ -311,7 +368,7 @@ namespace UnityStandardAssets._2D
                 OnPlayerDashed();
                 SoundManager.PlaySFX(Database.instance.Dash);
                 ParticleSystem thruster = InstatiateParticle(m_DashBodyThrusters, m_BackThrusterPoint, false, _bodyThrusterTimer, true);
-                if (m_Controller.m_FacingRight) thruster.startRotation = _thrusterOrientations[0]; 
+                if (m_Controller.m_FacingRight) thruster.startRotation = _thrusterOrientations[0];
                 else thruster.startRotation = _thrusterOrientations[1];
                 InstatiateParticle(m_DashChromaticAberation, gameObject, true, _chromaticTimer);
 
@@ -376,7 +433,7 @@ namespace UnityStandardAssets._2D
                 m_AirControl = false;
                 m_Rigidbody2D.drag = m_DashDrag;
 
-                Vector2 angle = new Vector2(0,-1); //get dash angle from x axis
+                Vector2 angle = new Vector2(0, -1); //get dash angle from x axis
 
                 // normalize and add impulse value
                 angle = angle.normalized * force;
@@ -442,7 +499,7 @@ namespace UnityStandardAssets._2D
             yield return new WaitForSeconds(m_DashDragRemove);
             CheckDrag();
         }
-        
+
         public void CheckPassThrough(Collider2D collider)
         {
             Ground ground = collider.GetComponent<Ground>();
@@ -450,7 +507,7 @@ namespace UnityStandardAssets._2D
 
             if (!m_IsPassing)
             {
-                
+
                 if (ground != null && ground.IsPassThrough)
                 {
                     foreach (Collider2D gc2d in ground.Colliders)
@@ -504,7 +561,7 @@ namespace UnityStandardAssets._2D
                 m_IsPassing = false;
             }
 
-            
+
         }
 
         IEnumerator TimedCheckColliders(float timer)
@@ -555,7 +612,7 @@ namespace UnityStandardAssets._2D
         {
             Collider2D[] colls = GetGroundColliders();
 
-            foreach(Collider2D col in colls)
+            foreach (Collider2D col in colls)
             {
                 Ground gr = col.GetComponent<Ground>();
                 if (gr != null && gr.IsPassThrough)
@@ -571,7 +628,7 @@ namespace UnityStandardAssets._2D
             if (m_ignoreCheckPassing)
             {
                 m_LastPassThrough = colls;
-                if(m_UseForceToPassThrough)
+                if (m_UseForceToPassThrough)
                     m_Rigidbody2D.AddForce(new Vector2(0f, -m_JumpForce * m_percentOfJumpForcedUsed));
             }
         }
@@ -600,6 +657,11 @@ namespace UnityStandardAssets._2D
         protected void OnPlayerDashed()
         {
             if (PlayerDashed != null) PlayerDashed(this, EventArgs.Empty);
+        }
+        public event EventHandler PlayerCanDashAgain;
+        protected virtual void OnPlayerCanDashAgain()
+        {
+            if (PlayerCanDashAgain != null) PlayerCanDashAgain(this, EventArgs.Empty);
         }
 
     }

@@ -1,0 +1,110 @@
+fileFormatVersion: 2
+guid: 0be0ecf7dabc3b449b3a64e7283680b2
+timeCreated: 1448584445
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: ShotgunFX_0
+    21300002: ShotgunFX_1
+    21300004: ShotgunFX_2
+    21300006: ShotgunFX_3
+    21300008: ShotgunFX_4
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 8
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -3
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 72
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: ShotgunFX_0
+      rect:
+        serializedVersion: 2
+        x: 141
+        y: 0
+        width: 431
+        height: 698
+      alignment: 9
+      pivot: {x: .779992223, y: .487558275}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: ShotgunFX_1
+      rect:
+        serializedVersion: 2
+        x: 885
+        y: 10
+        width: 377
+        height: 688
+      alignment: 9
+      pivot: {x: .727669895, y: .493672758}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: ShotgunFX_2
+      rect:
+        serializedVersion: 2
+        x: 1626
+        y: 174
+        width: 306
+        height: 357
+      alignment: 9
+      pivot: {x: .395162731, y: .485703915}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: ShotgunFX_3
+      rect:
+        serializedVersion: 2
+        x: 2276
+        y: 224
+        width: 341
+        height: 268
+      alignment: 9
+      pivot: {x: .260947913, y: .489377141}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: ShotgunFX_4
+      rect:
+        serializedVersion: 2
+        x: 2952
+        y: 208
+        width: 328
+        height: 279
+      alignment: 9
+      pivot: {x: .355514169, y: .515679359}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

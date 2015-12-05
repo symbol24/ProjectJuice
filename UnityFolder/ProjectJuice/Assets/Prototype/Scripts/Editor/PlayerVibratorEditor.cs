@@ -62,7 +62,8 @@ public class PlayerVibratorEditor : ExtendedEditor
             AddToMenu(ref _meleeVib._enableAxeMelee, ref _meleeVib._axeMeleeSettings, "Start");
             AddToMenu(ref _meleeVib._enableAxeHitPlayerVibration, ref _meleeVib._AxehitPlayerVibrations, "Hit Player");
             AddToMenu(ref _meleeVib._enableAxeHitGround, ref _meleeVib._axeHitGroundSettings, "Hit Ground (own)");
-            AddToMenu(ref _meleeVib._enableAxeHitGroundForOthers, ref _meleeVib._axeHitGroundForOthersSettings, "Hit Ground (others)");
+            AddToMenu(ref _meleeVib._enableAxeHitGroundForOthers, ref _meleeVib._axeHitGroundForOthersSettings, "Hit Ground Aerial - others");
+            AddToMenu(ref _meleeVib._enableAxeNonAerialHitGround, ref _meleeVib._axeNonAerialHitGroundSettings, "Hit Ground NonAerial - others");
             EditorGUILayout.Separator();
         }
         if (_jumpVib != null)

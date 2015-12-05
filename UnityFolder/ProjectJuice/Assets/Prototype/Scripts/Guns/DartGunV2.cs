@@ -8,29 +8,31 @@ public class DartGunV2 : DartGunBase
     public DartChainV3 _dartChainPrefab;
     public DartChainV3 _kinematicChain;
 
+    private Coroutine _spawningHoseCoroutine;
+    private IDart _currentDart;
     protected override void FireDart()
     {
         var leDart =
             (DartV2) Instantiate(_dartPrefab, _dartSpawnPoint.transform.position, _dartSpawnPoint.transform.rotation);
         leDart.PushConfig(Settings, _inputManager, _delayManager);
         leDart.ShootBullet(Settings.DartForce, _dartSpawnPoint.transform);
-        OnDartFired(new DartFiredEventArgs {Dart = leDart});
+        OnDartFired(new DartFiredEventArgs { Dart = leDart });
 
-        var spawningHoseCoroutine = StartCoroutine(SpawnHosePortions(this, leDart));
-        leDart.DartDestroyed += (sender, args) =>
-        {
-            StopCoroutine(spawningHoseCoroutine);
-        };
+        _spawningHoseCoroutine = StartCoroutine(SpawnHosePortions(this, leDart));
+        _currentDart = leDart;
+        leDart.DartDestroyed += LeDart_DartDestroyed;
         SoundManager.PlaySFX(Fire);
         InstatiateParticle(m_firingParticle, ParticlesSpawningPoint, true);
     }
 
-    
+    private void LeDart_DartDestroyed(object sender, EventArgs e)
+    {
+        StopCoroutine(_spawningHoseCoroutine);
+    }
+
     [HideInInspector] public DartGunSettings _settings;
 
     public override DartGunSettings Settings { get { return _settings; } set { _settings = value; } }
-
-
 
     private IEnumerator SpawnHosePortions(DartGunV2 dartGunV2, DartV2 leDart)
     {
@@ -57,7 +59,7 @@ public class DartGunV2 : DartGunBase
                 numberOfCrossSectionsSpawned++;
             }
             //Debug.Break();
-            yield return null;
+            yield return new WaitForFixedUpdate();
         }
 
         //Amazingly bad practice :(
@@ -82,5 +84,14 @@ public class DartGunV2 : DartGunBase
         closestHose.Track(_kinematicChain);
         
     }
-    
+
+    protected override void OnDestroy()
+    {
+        base.OnDestroy();
+        if (_currentDart != null)
+        {
+            _currentDart.DartDestroyed -= LeDart_DartDestroyed;
+        }
+    }
+
 }

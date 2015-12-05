@@ -9,10 +9,12 @@ public class MenuControls : MonoBehaviour {
     [SerializeField] private GamePad.Button m_ConfirmButton = GamePad.Button.A;
     [SerializeField] private GamePad.Button m_CancelButton = GamePad.Button.B;
     [SerializeField] private GamePad.Button m_StartButton = GamePad.Button.Start;
-    [SerializeField] private GamePad.Axis m_DirectionJoystic = GamePad.Axis.LeftStick;
 
+    private List<XInputDotNetPure.ButtonState> m_previousConfirm = new List<XInputDotNetPure.ButtonState>();
     private List<bool> m_Confirm = new List<bool>();
+    private List<XInputDotNetPure.ButtonState> m_previousCancel = new List<XInputDotNetPure.ButtonState>();
     private List<bool> m_Cancel = new List<bool>();
+    private List<XInputDotNetPure.ButtonState> m_previousStart = new List<XInputDotNetPure.ButtonState>();
     private List<bool> m_Start = new List<bool>();
     private List<float> m_X = new List<float>();
     private List<float> m_Y = new List<float>();
@@ -70,6 +72,9 @@ public class MenuControls : MonoBehaviour {
             m_Confirm.Add(false);
             m_Cancel.Add(false);
             m_Start.Add(false);
+            m_previousConfirm.Add(XInputDotNetPure.ButtonState.Released);
+            m_previousCancel.Add(XInputDotNetPure.ButtonState.Released);
+            m_previousStart.Add(XInputDotNetPure.ButtonState.Released);
             m_X.Add(0);
             m_Y.Add(0);
         }
@@ -86,11 +91,31 @@ public class MenuControls : MonoBehaviour {
 
     void ReadInputs(int id)
     {
+        var gamepad = m_ListofPlayers[id].GamepadIndex.ToPlayerIndex();
+        if (gamepad == null) return;
+        var state = XInputDotNetPure.GamePad.GetState((XInputDotNetPure.PlayerIndex)gamepad);
+        var currentConfirmState = state.GetButton(m_ConfirmButton);
+        var currentCancelState = state.GetButton(m_CancelButton);
+        var currentStartState = state.GetButton(m_StartButton);
+
+        m_Confirm[id] = currentConfirmState == XInputDotNetPure.ButtonState.Pressed && currentConfirmState != m_previousConfirm[id];
+        m_Cancel[id] = currentCancelState == XInputDotNetPure.ButtonState.Pressed && currentCancelState != m_previousCancel[id];
+        m_Start[id] = currentStartState == XInputDotNetPure.ButtonState.Pressed && currentStartState != m_previousStart[id];
+
+        m_previousConfirm[id] = currentConfirmState;
+        m_previousCancel[id] = currentCancelState;
+        m_previousStart[id] = currentStartState;
+
+        m_X[id] = state.ThumbSticks.Left.X;
+        m_Y[id] = state.ThumbSticks.Left.Y;
+
+
+        /*
         m_Confirm[id] = GamePad.GetButtonDown(m_ConfirmButton, m_ListofPlayers[id].GamepadIndex);
         m_Cancel[id] = GamePad.GetButtonDown(m_CancelButton, m_ListofPlayers[id].GamepadIndex);
         m_Start[id] = GamePad.GetButtonDown(m_StartButton, m_ListofPlayers[id].GamepadIndex);
         m_X[id] = GamePad.GetAxis(m_DirectionJoystic, m_ListofPlayers[id].GamepadIndex).x;
-        m_Y[id] = GamePad.GetAxis(m_DirectionJoystic, m_ListofPlayers[id].GamepadIndex).y;
+        m_Y[id] = GamePad.GetAxis(m_DirectionJoystic, m_ListofPlayers[id].GamepadIndex).y;*/
     }
 
     public void SetPlayerDatas(List<PlayerData> newPlayerDatas)

@@ -34,19 +34,23 @@ public abstract class DartGunBase : ExtendedMonobehaviour, IDartGun
         _delayManager = GetComponent<DelayManager>();
         _inputManager = GetComponent<IPlatformer2DUserControl>();
         _hpScript = GetComponent<HPScript>();
+        _hpScript.Dead += _hpScript_Dead;
         DartFired += OnDartFired;
         _feedback = GetComponent<Feedback>();
     }
 
+    private IDart _currentDartShot;
     private void OnDartFired(object sender, DartFiredEventArgs dartFiredEventArgs)
     {
-        dartFiredEventArgs.Dart.JuiceSucked += DartOnJuiceSucked;
-        dartFiredEventArgs.Dart.DartDestroyed += DartOnDartDestroyed;
-        Debug.Log("OnDartFired");
-        m_FireSound = SoundManager.PlaySFX(Fire);
+        _currentDartShot = dartFiredEventArgs.Dart;
+        _currentDartShot.JuiceSucked += DartOnJuiceSucked;
+        _currentDartShot.DartDestroyed += DartOnDartDestroyed;
+//        Debug.Log("OnDartFired");
+        m_FireSound = SoundManager.PlaySFX(Fire);        
     }
     private void DartOnDartDestroyed(object sender, EventArgs eventArgs)
     {
+        _currentDartShot = null;
         _delayManager.SetDelay(0);
         _delayManager.AddDelay(Settings._shootDelay);
         CoolDownEffects();
@@ -116,8 +120,6 @@ public abstract class DartGunBase : ExtendedMonobehaviour, IDartGun
         }
     }
 
-
-
     AudioSource _cooldownSound;
     private void CoolDownEffects()
     {
@@ -126,7 +128,6 @@ public abstract class DartGunBase : ExtendedMonobehaviour, IDartGun
         _cooldownSound = SoundManager.PlaySFX(CoolDown, Settings.LoopCooldown);
         _feedback.CanShootFeedbackEvent += _feedback_CanShootFeedbackEvent;
     }
-
     private void _feedback_CanShootFeedbackEvent(object sender, EventArgs e)
     {
         if (_cooldownSound != null)
@@ -134,5 +135,26 @@ public abstract class DartGunBase : ExtendedMonobehaviour, IDartGun
             _cooldownSound.Stop();
         }
         _feedback.CanShootFeedbackEvent -= _feedback_CanShootFeedbackEvent;
+    }
+    private void _hpScript_Dead(object sender, EventArgs e)
+    {
+        if (m_SappingAudioSource != null && m_SappingAudioSource.isPlaying)
+        {
+            m_SappingAudioSource.Stop();
+        }
+        if (_cooldownSound != null && _cooldownSound.isPlaying)
+        {
+            _cooldownSound.Stop();
+        }
+    }
+
+
+    protected virtual void OnDestroy()
+    {
+        if(_currentDartShot != null)
+        {
+            _currentDartShot.JuiceSucked -= DartOnJuiceSucked;
+            _currentDartShot.DartDestroyed -= DartOnDartDestroyed;
+        }
     }
 }

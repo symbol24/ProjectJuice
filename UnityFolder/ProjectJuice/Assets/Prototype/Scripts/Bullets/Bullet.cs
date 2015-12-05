@@ -72,6 +72,7 @@ public class Bullet : ExtendedMonobehaviour, IDamaging {
     [SerializeField] private Vector3 _preferredImpactPoint;
     [SerializeField] private ImpactForceSettings _impactForceSettings;
     [Range(0,10)][SerializeField] private int _bulletsToGive = 1;
+    [SerializeField] private bool _FlashThroughPassable = false;
     
     [HideInInspector] public string GroundImpact;
     [HideInInspector] public string RobotBulletImpact;
@@ -98,6 +99,7 @@ public class Bullet : ExtendedMonobehaviour, IDamaging {
 
     public void Consumed()
     {
+        InstatiateParticle(m_particleImpact, gameObject, false, m_particleLifeTime);
         Destroy(gameObject);
     }
 
@@ -108,6 +110,11 @@ public class Bullet : ExtendedMonobehaviour, IDamaging {
         {
             SoundManager.PlaySFX(GroundImpact);
             Consumed();
+        }
+        else if (ground != null && ground.IsPassThrough)
+        {
+            if(_FlashThroughPassable)
+                InstatiateParticle(m_particleImpact, gameObject, false, m_particleLifeTime);
         }
         else
         {

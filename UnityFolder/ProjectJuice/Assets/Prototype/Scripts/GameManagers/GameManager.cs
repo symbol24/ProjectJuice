@@ -70,6 +70,7 @@ public class GameManager : ExtendedMonobehaviour
     {
         if (isPaused)
         {
+            PauseUnpauseSFX(isPaused);
             TogglePauseSound(volume, isFullSoundPause);
             m_PreviousState = m_CurrentState;
             m_CurrentState = GameState.Paused;
@@ -77,6 +78,7 @@ public class GameManager : ExtendedMonobehaviour
         }
         else
         {
+            PauseUnpauseSFX(isPaused);
             TogglePauseSound(volume, isFullSoundPause);
             m_CurrentState = m_PreviousState;
             PlayerSpawner.instance.FlushAlivePlayerInputs();
@@ -108,7 +110,7 @@ public class GameManager : ExtendedMonobehaviour
         if (!_roundEnded)
         {
             _roundEnded = true;
-            //ClearRoundSFX();
+            ClearRoundSFX();
             if (e.IsThereAWinner)
             {
                 if (CheckIfMatchWinner())
@@ -136,10 +138,24 @@ public class GameManager : ExtendedMonobehaviour
         AudioSource[] list = FindObjectsOfType<AudioSource>();
         foreach(AudioSource As in list)
         {
-            if (As.isPlaying) As.Stop();
-
-            //if (!As.isPlaying) Destroy(As.gameObject);
+            if (As.isPlaying && As.loop) As.Stop();
         }
+    }
+
+    private void PauseUnpauseSFX(bool isPaused = true)
+    {
+        AudioSource[] list = FindObjectsOfType<AudioSource>();
+        foreach (AudioSource As in list)
+        {
+            if (As.isPlaying && As.loop)
+            {
+                if (isPaused)
+                    As.Pause();
+                else
+                    As.UnPause();
+            }
+        }
+
     }
 
     private bool CheckIfMatchWinner()

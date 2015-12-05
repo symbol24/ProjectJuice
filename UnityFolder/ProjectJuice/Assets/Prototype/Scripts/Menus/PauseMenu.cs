@@ -11,6 +11,7 @@ public class PauseMenu : Menu {
     [SerializeField] private Button[] m_ListOfButtones;
     private int m_currentSelection = 0;
     private int m_maxSelection = 0;
+    private int _lastSelection = -1;
 
     private DelayManager m_DelayManager;
 
@@ -22,6 +23,11 @@ public class PauseMenu : Menu {
     [Range(0,10)][SerializeField] private float m_delayToReturn = 2f;
 
     [SerializeField] private Animator m_PauseMenuAnimator;
+    [SerializeField]
+    private float _animSafeTimer = 2f;
+    private float _currentanimSafeTimer = 0;
+
+    private bool _isReturnToMainMenu = false;
 
     private MenuAnimState _animState = MenuAnimState.NotUsable;
 
@@ -52,10 +58,12 @@ public class PauseMenu : Menu {
         return ret;
     }
 
+
     // Update is called once per frame
     protected override void Update () {
         if (GameManager.instance.IsPlaying)
         {
+            _currentanimSafeTimer = 0f;
             for (int i = 0; i < m_ListofPlayers.Count; i++)
             {
                 if (m_Controls._Start[i])
@@ -66,14 +74,14 @@ public class PauseMenu : Menu {
                 }
             }
         }
-        else if(GameManager.instance.IsPaused && _animState == MenuAnimState.Usable)
+        else if (GameManager.instance.IsPaused && _animState == MenuAnimState.Usable)
         {
             if (m_DelayManager.CanShoot && BackPressed)
             {
                 PauseResume();
             }
 
-            if(m_DelayManager.CanShield && !m_inConfirm && m_Controls.Y[m_ControllingPlayer] != 0)
+            if (m_DelayManager.CanShield && !m_inConfirm && m_Controls.Y[m_ControllingPlayer] != 0)
             {
                 SetNextActive(m_Controls.Y[m_ControllingPlayer]);
             }
@@ -83,12 +91,26 @@ public class PauseMenu : Menu {
                 Activate();
             }
 
-            if(m_DelayManager.CanShoot && m_inConfirm && m_Controls.Cancel[m_ControllingPlayer])
+            if (m_DelayManager.CanShoot && m_inConfirm && m_Controls.Cancel[m_ControllingPlayer])
             {
                 CancelConfirm();
             }
         }
-	}
+        else if (GameManager.instance.IsPaused)
+        {
+            _currentanimSafeTimer += Time.unscaledDeltaTime;
+            if (_currentanimSafeTimer > _animSafeTimer)
+            {
+                ResetAnimatorBool("GoUp", false);
+                ChangePanelState();
+            }
+        }
+        else
+        {
+            _currentanimSafeTimer = 0f;
+        }
+
+    }
 
     public void PauseResume()
     {
@@ -107,14 +129,31 @@ public class PauseMenu : Menu {
             GameManager.instance.SetPaused(m_isPaused, m_PauseMusicVolume, m_IsFullSoundPause);
             SoundManager.PlaySFX(MenuOpenName);
             m_PauseMenuAnimator.SetBool("GoDown", true);
-            m_currentSelection = 0;
-            m_ListOfButtones[m_currentSelection].Select();
+            SetOpeningSelection();
             m_DelayManager.CoroutineDelay(Database.instance.LongMenuInputDelay, true);
         }
         else
         {
             m_PauseMenuAnimator.SetBool("GoUp", true);
             SoundManager.PlaySFX(MenuCloseName);
+        }
+    }
+
+    private void SetOpeningSelection()
+    {
+        m_currentSelection = 0;
+        if (_lastSelection != m_currentSelection)
+        {
+            m_ListOfButtones[m_currentSelection].Select();
+            _lastSelection = m_currentSelection;
+        }
+        else
+        {
+            m_currentSelection++;
+            m_ListOfButtones[m_currentSelection].Select();
+            m_currentSelection--;
+            m_ListOfButtones[m_currentSelection].Select();
+            _lastSelection = m_currentSelection;
         }
     }
 
@@ -126,10 +165,12 @@ public class PauseMenu : Menu {
         m_PausePanel.SetActive(m_isPaused);
         GameManager.instance.SetPaused(m_isPaused, 1, m_IsFullSoundPause);
 
+        if (_isReturnToMainMenu) GameManager.instance.SetGameState(GameState.Loading);
     }
 
     public void ReturnToMainMenu()
     {
+        _isReturnToMainMenu = true;
         StartCoroutine(SoundThenReturn());
     }
 
@@ -203,6 +244,7 @@ public class PauseMenu : Menu {
         }
         SoundManager.PlaySFX(Database.instance.MenuSlideName);
         m_ListOfButtones[m_currentSelection].Select();
+        _lastSelection = m_currentSelection;
     }
 
     private void Activate()

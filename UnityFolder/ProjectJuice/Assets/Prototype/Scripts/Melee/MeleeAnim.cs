@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Linq;
+using System;
 
 public class MeleeAnim : MonoBehaviour {
     [SerializeField] private GameObject m_parent;
@@ -21,6 +22,7 @@ public class MeleeAnim : MonoBehaviour {
     public void EndGrounded()
     {
         m_MeleeAbility.ResetSwing("Grounded", false);
+        OnAnimationGroundedFinished();
     }
 
     public void StartTrail()
@@ -28,5 +30,9 @@ public class MeleeAnim : MonoBehaviour {
         m_MeleeAbility.StartTrail();
     }
 
-	
+    public event EventHandler AnimationGroundedFinished;
+    protected virtual void OnAnimationGroundedFinished()
+    {
+        if (AnimationGroundedFinished != null) AnimationGroundedFinished(this, EventArgs.Empty);
+    }
 }
