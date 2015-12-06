@@ -1,10 +1,17 @@
 fileFormatVersion: 2
 guid: d02bc8798dca122429bdf5975ba17a50
-timeCreated: 1446928617
+timeCreated: 1449428952
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - m_RoundPanel: {instanceID: 0}
+  - m_CirclePrefab: {instanceID: 0}
+  - m_TopText: {instanceID: 0}
+  - m_RoundMenu: {instanceID: 0}
+  - m_MatchMenu: {instanceID: 0}
+  - m_SpecialBGM: {instanceID: 0}
+  - m_animator: {instanceID: 0}
   executionOrder: 480
   icon: {instanceID: 0}
   userData: 
