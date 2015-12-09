@@ -184,9 +184,13 @@ public class MeleeAttack : ExtendedMonobehaviour
         //StartTrail();
         return true;
     }
+    [SerializeField] private int _framesToWaitForResetBoolNextFrame = 3;
     private IEnumerator ResetBoolNextFrame(string animation, bool toSet)
     {
-        yield return new WaitForEndOfFrame();
+        for (int i = 0; i < _framesToWaitForResetBoolNextFrame; i++)
+        {
+            yield return new WaitForEndOfFrame();
+        }
         m_animator.SetBool(animation, toSet);
     }
 
